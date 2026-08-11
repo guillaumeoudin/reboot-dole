@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BienEtreRouteImport } from './routes/bien-etre'
+import { Route as ConceptRouteImport } from './routes/concept'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as SoinsIndexRouteImport } from './routes/soins.index'
+import { Route as SoinsSlugRouteImport } from './routes/soins.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BienEtreRoute = BienEtreRouteImport.update({
+  id: '/bien-etre',
+  path: '/bien-etre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptRoute = ConceptRouteImport.update({
+  id: '/concept',
+  path: '/concept',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoinsIndexRoute = SoinsIndexRouteImport.update({
+  id: '/soins/',
+  path: '/soins/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoinsSlugRoute = SoinsSlugRouteImport.update({
+  id: '/soins/$slug',
+  path: '/soins/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bien-etre': typeof BienEtreRoute
+  '/concept': typeof ConceptRoute
+  '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/soins/': typeof SoinsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bien-etre': typeof BienEtreRoute
+  '/concept': typeof ConceptRoute
+  '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/soins': typeof SoinsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bien-etre': typeof BienEtreRoute
+  '/concept': typeof ConceptRoute
+  '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/soins/': typeof SoinsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bien-etre'
+    | '/concept'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/soins/$slug'
+    | '/blog/'
+    | '/soins/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bien-etre'
+    | '/concept'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/soins/$slug'
+    | '/blog'
+    | '/soins'
+  id:
+    | '__root__'
+    | '/'
+    | '/bien-etre'
+    | '/concept'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/soins/$slug'
+    | '/blog/'
+    | '/soins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BienEtreRoute: typeof BienEtreRoute
+  ConceptRoute: typeof ConceptRoute
+  ContactRoute: typeof ContactRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  SoinsSlugRoute: typeof SoinsSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  SoinsIndexRoute: typeof SoinsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +156,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bien-etre': {
+      id: '/bien-etre'
+      path: '/bien-etre'
+      fullPath: '/bien-etre'
+      preLoaderRoute: typeof BienEtreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept': {
+      id: '/concept'
+      path: '/concept'
+      fullPath: '/concept'
+      preLoaderRoute: typeof ConceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soins/': {
+      id: '/soins/'
+      path: '/soins'
+      fullPath: '/soins/'
+      preLoaderRoute: typeof SoinsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soins/$slug': {
+      id: '/soins/$slug'
+      path: '/soins/$slug'
+      fullPath: '/soins/$slug'
+      preLoaderRoute: typeof SoinsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BienEtreRoute: BienEtreRoute,
+  ConceptRoute: ConceptRoute,
+  ContactRoute: ContactRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  SoinsSlugRoute: SoinsSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  SoinsIndexRoute: SoinsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

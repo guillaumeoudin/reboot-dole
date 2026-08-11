@@ -1,0 +1,32 @@
+# Decap CMS — édition des articles du blog.
+# Voir README.md > "Blog & Decap CMS" pour l'activation de l'authentification GitHub.
+backend:
+  name: github
+  repo: guillaumeoudin/reboot-dole-v4
+  branch: main
+  base_url: https://reboot-dole.fr        # à remplacer par l'URL du service OAuth
+  auth_endpoint: api/auth
+
+publish_mode: editorial_workflow
+media_folder: "public/uploads"
+public_folder: "/uploads"
+locale: "fr"
+
+collections:
+  - name: "blog"
+    label: "Articles de blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { name: "title", label: "Titre", widget: "string" }
+      - { name: "slug", label: "Slug (URL)", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "author", label: "Auteur", widget: "string", default: "L'équipe Reboot" }
+      - { name: "category", label: "Catégorie", widget: "select", options: ["Soins", "Bien-être", "Actualités"] }
+      - { name: "excerpt", label: "Accroche (SEO, 160 caractères max)", widget: "text" }
+      - { name: "coverImage", label: "Image de couverture", widget: "image", required: false }
+      - { name: "coverAlt", label: "Texte alternatif de l'image", widget: "string", required: false }
+      - { name: "draft", label: "Brouillon", widget: "boolean", default: false }
+      - { name: "body", label: "Contenu", widget: "markdown" }
