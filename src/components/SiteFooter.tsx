@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 
-import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
-import logoWordmark from "@/assets/reboot-logo-dark-73ZHWu5H.png";
 import { navLinks, site } from "@/data/site";
+import { BrandWordmark } from "@/components/BrandWordmark";
+import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
 
 export function SiteFooter() {
   return (
@@ -17,15 +17,12 @@ export function SiteFooter() {
                 width={44}
                 height={44}
                 loading="lazy"
+                decoding="async"
                 className="size-11 shrink-0 rounded-full border border-gold/30 object-cover"
               />
-              <img
-                src={logoWordmark}
-                alt="Reboot Dole Jura"
-                width={1242}
-                height={209}
+              <BrandWordmark
                 loading="lazy"
-                className="h-7 w-auto max-w-[9.5rem] object-contain sm:h-8 sm:max-w-none"
+                className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none"
               />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -70,6 +67,29 @@ export function SiteFooter() {
                 <Link to="/contact" className="transition-colors hover:text-gold">
                   Discuter sur WhatsApp
                 </Link>
+              </li>
+            </ul>
+            <p className="label-caps mt-8 text-gold">Suivez-nous</p>
+            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+              <li>
+                <a
+                  href={site.social.instagram}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-gold"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.social.linkedin}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-gold"
+                >
+                  LinkedIn
+                </a>
               </li>
             </ul>
           </div>
