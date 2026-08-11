@@ -32,18 +32,20 @@ export const Route = createFileRoute("/api/auth/callback")({
         }
 
         const token = data.access_token;
+        // Decap CMS 3.x expects JSON — it does JSON.parse on the last segment of the message
+        const payload = JSON.stringify({ token, provider: "github" });
 
         return new Response(
           `<!DOCTYPE html>
 <html><head><meta charset="utf-8"/></head>
 <body style="font-family:monospace;padding:20px;background:#1a1a1a;color:#eee">
-<h3 style="color:#7fff7f">OAuth Callback — Handshake</h3>
-<p><b>Status:</b> <span id="s" style="color:yellow">Envoi authorizing:github...</span></p>
+<h3 style="color:#7fff7f">OAuth Callback</h3>
+<p><b>Status:</b> <span id="s" style="color:yellow">Handshake...</span></p>
 <ul id="log" style="color:#aaa;font-size:12px"></ul>
 <p style="color:#888">Fermeture dans <span id="t">20</span>s</p>
 <script>
 (function(){
-  var token = ${JSON.stringify(token)};
+  var payload = ${JSON.stringify(payload)};
   var sent = false;
 
   function log(msg) {
@@ -55,38 +57,33 @@ export const Route = createFileRoute("/api/auth/callback")({
   function sendToken(targetOrigin) {
     if (sent) return;
     sent = true;
-    var msg = 'authorization:github:success:' + token;
+    var msg = 'authorization:github:success:' + payload;
     try {
       window.opener.postMessage(msg, targetOrigin);
-      log('Token envoyé à ' + targetOrigin);
+      log('Token JSON envoyé à ' + targetOrigin);
       document.getElementById('s').textContent = 'Token envoyé ✓';
       document.getElementById('s').style.color = '#7fff7f';
     } catch(e) {
       log('ERREUR: ' + e.message);
-      document.getElementById('s').style.color = '#ff7f7f';
     }
     setTimeout(function(){ window.close(); }, 2000);
   }
 
   window.addEventListener('message', function(e) {
-    log('Recu: origin=' + e.origin + ' data=' + String(e.data).substring(0, 40));
-    // Wait 500ms before sending token — gives Decap CMS time to set up its token listener
+    log('Ack reçu: ' + e.origin);
+    // 500ms delay — lets Decap CMS register its token listener after the handshake ack
     setTimeout(function(){ sendToken(e.origin); }, 500);
   }, false);
 
   try {
     window.opener.postMessage('authorizing:github', '*');
-    log('authorizing:github envoyé');
+    log('Handshake envoyé');
   } catch(e) {
     log('ERREUR handshake: ' + e.message);
   }
 
-  // Fallback: if no ack in 5s, send directly
   setTimeout(function(){
-    if (!sent) {
-      log('Pas de reponse, envoi direct *');
-      sendToken('*');
-    }
+    if (!sent) { log('Fallback direct'); sendToken('*'); }
   }, 5000);
 
   var n = 20;
