@@ -20,7 +20,9 @@ Vérification faite : **aucune donnée LocalBusiness / JSON-LD n'existe dans le 
 - un bloc de données structurées `LocalBusiness` (type HealthAndBeautyBusiness) avec nom, adresse postale, téléphone, e-mail, URL, zone desservie et lien de réservation ;
 - injecté en JSON-LD dans le `head` du site, donc présent sur toutes les pages.
 
-Points à confirmer si tu les as : horaires d'ouverture, coordonnées GPS, URL finale du site, réseaux sociaux. Sans réponse, j'écris les champs disponibles et je laisse les horaires de côté.
+Les horaires figurent déjà en dur sur la page Contact (Lun–Ven 9h–19h, Sam 9h–17h, Dim fermé) : ils seront repris dans le LocalBusiness (`openingHoursSpecification`) et la page Contact lira la même source, plus de double saisie.
+
+Points à confirmer si tu les as : coordonnées GPS, URL finale du site, réseaux sociaux, fourchette de prix. Sans réponse, j'écris uniquement les champs vérifiés.
 
 ## 4. Images en dur, pas de CDN
 
@@ -33,3 +35,55 @@ Vérification faite : le projet source ne contient **aucun pointeur `.asset.json
 - Copie des deux PNG uploadés dans `src/assets/` (fichiers binaires réels, pas de `lovable-assets`).
 - `src/data/localBusiness.ts` : objet de données structurées ; injection via `head().scripts` (JSON-LD) dans `src/routes/__root.tsx`.
 - Chaque route conserve son `head()` (title/description/og) du projet source.
+
+## 5. Suppression des mentions Planity
+
+`site.booking` pointe sur `https://www.planity.com/` et les libellés parlent de réservation. Le lien externe est remplacé par un champ neutre (`site.booking`) pointant vers la page Contact tant que tu ne me donnes pas l'URL finale de réservation ; aucun texte, logo ou nom « Planity » ne subsiste. Les boutons gardent leur libellé « Réserver » / « Réserver un soin » et leur style. Donne-moi l'URL de réservation définitive si tu en as une, je la branche.
+
+## 6. Audit du site (sans toucher au design)
+
+Constats issus de la lecture du code, avec les correctifs prévus — tous invisibles ou quasi invisibles visuellement.
+
+**SEO**
+- Aucune balise `canonical` et aucun `sitemap.xml` : ajout d'un canonical auto-référent par page et d'un `sitemap.xml`.
+- Aucun `og:image` : ajout d'une image de partage par défaut à partir d'un visuel existant du centre.
+- Aucune donnée structurée (voir point 3) ; ajout aussi d'un `BreadcrumbList` sur les fiches soin.
+- `robots.txt` correct, complété avec la ligne Sitemap une fois le domaine connu.
+- Vérification qu'il n'y a qu'un seul `h1` par page et une hiérarchie de titres continue.
+
+**Accessibilité**
+- Vérification des `alt` (le logo rond décoratif garde `alt=""`, le wordmark porte le nom).
+- Libellés explicites sur les boutons icône (thème, burger, WhatsApp) et sur les liens « en savoir plus ».
+- Lien d'évitement « Aller au contenu » et cible `<main>` focusable.
+- Contraste vérifié en clair et en sombre sur le doré (texte sur `gold-cta`), ajustement du token seulement si un ratio est sous AA.
+- Zones tactiles ≥ 44 px sur la barre CTA mobile et les icônes du header.
+- `prefers-reduced-motion` respecté pour les animations d'apparition.
+
+**Responsive**
+- Passage en revue 320 / 375 / 768 / 900 / 1080 / 1440 px après le changement de breakpoint, avec captures.
+- Recherche des débordements horizontaux et des titres non tronqués dans les en-têtes multi-éléments.
+- `min-h-dvh` plutôt que `min-h-screen` sur les sections plein écran (barres de navigateur mobile).
+
+**Sécurité**
+- Tous les liens externes en `target="_blank"` doivent porter `rel="noopener noreferrer"` : vérification systématique.
+- Aucune clé ni secret côté client ; pas de backend, donc pas de surface RLS.
+- Audit des dépendances npm ; mise à jour uniquement des vulnérabilités hautes/critiques, sans montée de version majeure.
+
+**Bonnes pratiques**
+- Images : `width`/`height` renseignés, `loading="lazy"` et `decoding="async"` hors visuel héros (qui reste en `eager`) pour éviter le décalage de mise en page.
+- Centralisation des infos NAP (nom, adresse, téléphone, horaires) dans `src/data/site.ts` pour éviter les divergences.
+- Page 404 traduite en français et raccordée au design du site (actuellement en anglais et hors charte).
+
+Rien de ce qui précède ne modifie la mise en page, la typographie ou la palette existantes.
+
+## 7. Préparation du blog / Decap CMS
+
+Tu géreras Decap depuis GitHub ; le site sera prêt à l'accueillir :
+- entrée « Blog » ajoutée à la navigation (d'où le breakpoint 1080 px) ;
+- routes `/blog` (liste) et `/blog/$slug` (article) au design existant, alimentées par des fichiers Markdown dans `content/blog/`, chargés au build — donc statiques et compatibles Vercel ;
+- deux articles d'exemple pour valider le rendu ;
+- `head()` par article : title, description, `og:*`, canonical et JSON-LD `Article` ;
+- images d'article dans `public/uploads/` (dossier attendu par Decap), en fichiers réels ;
+- côté Decap tu n'auras qu'à déposer `public/admin/index.html` et `config.yml` pointant sur `content/blog` et `public/uploads` — je peux aussi les générer si tu veux.
+
+Dis-moi si tu veux que le blog fasse partie de cette livraison ou d'une seconde étape.
