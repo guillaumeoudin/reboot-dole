@@ -38,10 +38,10 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; body: st
   if (!match) return { data: {}, body: raw };
 
   const data: Record<string, string> = {};
-  for (const line of match[1].split(/\r?\n/)) {
+  for (const line of (match[1] ?? "").split(/\r?\n/)) {
     const kv = /^([A-Za-z0-9_-]+)\s*:\s*(.*)$/.exec(line.trim());
-    if (!kv) continue;
-    let value = kv[2].trim();
+    if (!kv || !kv[1]) continue;
+    let value = (kv[2] ?? "").trim();
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
       (value.startsWith("'") && value.endsWith("'"))
@@ -64,15 +64,15 @@ function toPost(path: string, raw: string): BlogPost {
   const fallbackSlug = path.split("/").pop()!.replace(/\.md$/, "");
 
   return {
-    slug: data.slug || fallbackSlug,
-    title: data.title || fallbackSlug,
-    date: data.date || "",
-    excerpt: data.excerpt || "",
-    author: data.author || "L'équipe Reboot",
-    category: data.category || "Actualités",
-    coverImage: data.coverImage || "",
-    coverAlt: data.coverAlt || data.title || "",
-    draft: data.draft === "true",
+    slug: data["slug"] || fallbackSlug,
+    title: data["title"] || fallbackSlug,
+    date: data["date"] || "",
+    excerpt: data["excerpt"] || "",
+    author: data["author"] || "L'équipe Reboot",
+    category: data["category"] || "Actualités",
+    coverImage: data["coverImage"] || "",
+    coverAlt: data["coverAlt"] || data["title"] || "",
+    draft: data["draft"] === "true",
     body,
     html: marked.parse(body, { async: false }) as string,
     readingMinutes: readingMinutes(body),
