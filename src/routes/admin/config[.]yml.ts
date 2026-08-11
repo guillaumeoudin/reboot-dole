@@ -47,7 +47,7 @@ export const Route = createFileRoute("/admin/config.yml")({
         new Response(CONFIG_YAML, {
           headers: {
             "Content-Type": "text/yaml; charset=utf-8",
-            "Cache-Control": "public, max-age=3600",
+            "Cache-Control": "no-store, no-cache",
           },
         }),
     },
