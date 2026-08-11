@@ -39,7 +39,6 @@ export const Route = createFileRoute("/api/auth/callback")({
 <body style="font-family:monospace;padding:20px;background:#1a1a1a;color:#eee">
 <h3 style="color:#7fff7f">OAuth Callback — Handshake</h3>
 <p><b>Status:</b> <span id="s" style="color:yellow">Envoi authorizing:github...</span></p>
-<p><b>Log:</b></p>
 <ul id="log" style="color:#aaa;font-size:12px"></ul>
 <p style="color:#888">Fermeture dans <span id="t">20</span>s</p>
 <script>
@@ -59,24 +58,22 @@ export const Route = createFileRoute("/api/auth/callback")({
     var msg = 'authorization:github:success:' + token;
     try {
       window.opener.postMessage(msg, targetOrigin);
-      log('Token envoyé à origin=' + targetOrigin);
+      log('Token envoyé à ' + targetOrigin);
       document.getElementById('s').textContent = 'Token envoyé ✓';
       document.getElementById('s').style.color = '#7fff7f';
     } catch(e) {
-      log('ERREUR postMessage: ' + e.message);
-      document.getElementById('s').textContent = 'ERREUR: ' + e.message;
+      log('ERREUR: ' + e.message);
       document.getElementById('s').style.color = '#ff7f7f';
     }
     setTimeout(function(){ window.close(); }, 2000);
   }
 
-  // Listen for response from admin (handshake step 2)
   window.addEventListener('message', function(e) {
-    log('Recu de admin: origin=' + e.origin + ' data=' + String(e.data).substring(0, 40));
-    sendToken(e.origin);
+    log('Recu: origin=' + e.origin + ' data=' + String(e.data).substring(0, 40));
+    // Wait 500ms before sending token — gives Decap CMS time to set up its token listener
+    setTimeout(function(){ sendToken(e.origin); }, 500);
   }, false);
 
-  // Send handshake (step 1)
   try {
     window.opener.postMessage('authorizing:github', '*');
     log('authorizing:github envoyé');
@@ -84,13 +81,13 @@ export const Route = createFileRoute("/api/auth/callback")({
     log('ERREUR handshake: ' + e.message);
   }
 
-  // Fallback: if no ack in 4s, send token directly
+  // Fallback: if no ack in 5s, send directly
   setTimeout(function(){
     if (!sent) {
-      log('Pas de reponse au handshake apres 4s, envoi direct avec *');
+      log('Pas de reponse, envoi direct *');
       sendToken('*');
     }
-  }, 4000);
+  }, 5000);
 
   var n = 20;
   var iv = setInterval(function(){
