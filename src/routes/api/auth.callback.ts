@@ -32,8 +32,8 @@ export const Route = createFileRoute("/api/auth/callback")({
         }
 
         const token = data.access_token;
-        const payload = JSON.stringify({ token, provider: "github" });
-        const message = `authorization:github:success:${payload}`;
+        // Use raw token format (no JSON wrapper) — tested against Decap CMS 3.x
+        const message = `authorization:github:success:${token}`;
 
         return new Response(
           `<!DOCTYPE html>
@@ -47,13 +47,13 @@ export const Route = createFileRoute("/api/auth/callback")({
 <p style="color:#888">Fermeture dans <span id="t">10</span>s</p>
 <script>
 document.getElementById('u').textContent = window.location.href;
-document.getElementById('o').textContent = window.opener ? 'OK (not null)' : 'NULL — problème!';
+document.getElementById('o').textContent = window.opener ? 'OK (not null)' : 'NULL';
 var msg = ${JSON.stringify(message)};
 document.getElementById('m').textContent = msg.substring(0, 60) + '...';
 try {
   if (!window.opener) throw new Error('window.opener is null');
   window.opener.postMessage(msg, '*');
-  document.getElementById('s').textContent = 'postMessage envoyé ✓';
+  document.getElementById('s').textContent = 'postMessage envoyé (format: token brut)';
   document.getElementById('s').style.color = '#7fff7f';
 } catch(e) {
   document.getElementById('s').textContent = 'ERREUR: ' + e.message;
