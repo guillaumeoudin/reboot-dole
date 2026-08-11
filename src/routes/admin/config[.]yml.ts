@@ -11,7 +11,7 @@ backend:
   name: github
   repo: guillaumeoudin/reboot-dole
   branch: main
-  base_url: https://reboot-dole.fr
+  base_url: https://www.reboot-dole.fr
   auth_endpoint: api/auth
 
 media_folder: "public/uploads"
