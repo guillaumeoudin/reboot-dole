@@ -4,8 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reboot — Administration</title>
-    <!-- Chemin absolu : évite le problème de résolution relative quand /admin n'a pas de slash final -->
     <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml">
+    <script>
+      window.addEventListener('message', function(e) {
+        console.log('[AUTH DEBUG] message received | origin:', e.origin, '| data:', typeof e.data === 'string' ? e.data.substring(0, 120) : JSON.stringify(e.data));
+      });
+    </script>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
