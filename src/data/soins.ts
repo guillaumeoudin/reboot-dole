@@ -1,7 +1,7 @@
-import soinLaser from "@/assets/soin-laser-KCT2h3Zi.jpg";
-import soinCryolipolyse from "@/assets/soin-cryolipolyse-Bud8cgER.jpg";
-import soinPeeling from "@/assets/soin-peeling-CSPstEV_.jpg";
-import soinMicroneedling from "@/assets/soin-microneedling-DcKAeoVg.jpg";
+import soinLaser from "@/assets/soin-laser.jpg";
+import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
+import soinPeeling from "@/assets/soin-peeling.jpg";
+import soinMicroneedling from "@/assets/soin-microneedling.jpg";
 
 export type Soin = {
   slug: string;

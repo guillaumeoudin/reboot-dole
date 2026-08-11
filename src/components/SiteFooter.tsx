@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { navLinks, site } from "@/data/site";
 import { BrandWordmark } from "@/components/BrandWordmark";
-import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
+import logoMark from "@/assets/logo-reboot.jpg";
 
 export function SiteFooter() {
   return (

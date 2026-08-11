@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading } from "@/components/ui-kit";
-import bienEtreYoga from "@/assets/bien-etre-yoga-BOtygO50.jpg";
+import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 
 const title = "Bien-être & longévité — Reboot Dole";
 const description =

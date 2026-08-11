@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading, TextLink } from "@/components/ui-kit";
 import { soins } from "@/data/soins";
-import centreReboot from "@/assets/centre-reboot-BQNUz8Wu.jpg";
-import bienEtreYoga from "@/assets/bien-etre-yoga-BOtygO50.jpg";
+import centreReboot from "@/assets/centre-reboot.jpg";
+import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 
 const title = "Reboot Dole — Soins esthétiques & longévité dans le Jura";
 const description =

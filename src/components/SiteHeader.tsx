@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { navLinks, site } from "@/data/site";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandWordmark";
-import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
+import logoMark from "@/assets/logo-reboot.jpg";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);

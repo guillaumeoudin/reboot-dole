@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading } from "@/components/ui-kit";
-import centreReboot from "@/assets/centre-reboot-BQNUz8Wu.jpg";
+import centreReboot from "@/assets/centre-reboot.jpg";
 
 const title = "Le concept — Reboot Dole";
 const description =
