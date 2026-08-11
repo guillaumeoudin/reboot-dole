@@ -14,6 +14,9 @@ import { Route as BienEtreRouteImport } from './routes/bien-etre'
 import { Route as ConceptRouteImport } from './routes/concept'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as AdminConfigDotYmlRouteImport } from './routes/admin/config[.]yml'
+import { Route as ApiAuthRouteImport } from './routes/api/auth'
+import { Route as ApiAuthCallbackRouteImport } from './routes/api/auth.callback'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
@@ -44,6 +47,21 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminConfigDotYmlRoute = AdminConfigDotYmlRouteImport.update({
+  id: '/admin/config.yml',
+  path: '/admin/config.yml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRoute = ApiAuthRouteImport.update({
+  id: '/api/auth',
+  path: '/api/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthCallbackRoute = ApiAuthCallbackRouteImport.update({
+  id: '/api/auth/callback',
+  path: '/callback',
+  getParentRoute: () => ApiAuthRoute,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -71,6 +89,9 @@ export interface FileRoutesByFullPath {
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/config.yml': typeof AdminConfigDotYmlRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/auth/callback': typeof ApiAuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -82,6 +103,9 @@ export interface FileRoutesByTo {
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/config.yml': typeof AdminConfigDotYmlRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/auth/callback': typeof ApiAuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -94,6 +118,9 @@ export interface FileRoutesById {
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/config.yml': typeof AdminConfigDotYmlRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/auth/callback': typeof ApiAuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -107,6 +134,9 @@ export interface FileRouteTypes {
     | '/concept'
     | '/contact'
     | '/sitemap.xml'
+    | '/admin/config.yml'
+    | '/api/auth'
+    | '/api/auth/callback'
     | '/blog/$slug'
     | '/soins/$slug'
     | '/blog/'
@@ -118,6 +148,9 @@ export interface FileRouteTypes {
     | '/concept'
     | '/contact'
     | '/sitemap.xml'
+    | '/admin/config.yml'
+    | '/api/auth'
+    | '/api/auth/callback'
     | '/blog/$slug'
     | '/soins/$slug'
     | '/blog'
@@ -129,6 +162,9 @@ export interface FileRouteTypes {
     | '/concept'
     | '/contact'
     | '/sitemap.xml'
+    | '/admin/config.yml'
+    | '/api/auth'
+    | '/api/auth/callback'
     | '/blog/$slug'
     | '/soins/$slug'
     | '/blog/'
@@ -141,6 +177,8 @@ export interface RootRouteChildren {
   ConceptRoute: typeof ConceptRoute
   ContactRoute: typeof ContactRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  AdminConfigDotYmlRoute: typeof AdminConfigDotYmlRoute
+  ApiAuthRoute: typeof ApiAuthRoute
   BlogSlugRoute: typeof BlogSlugRoute
   SoinsSlugRoute: typeof SoinsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -184,6 +222,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/config.yml': {
+      id: '/admin/config.yml'
+      path: '/admin/config.yml'
+      fullPath: '/admin/config.yml'
+      preLoaderRoute: typeof AdminConfigDotYmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth': {
+      id: '/api/auth'
+      path: '/api/auth'
+      fullPath: '/api/auth'
+      preLoaderRoute: typeof ApiAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/callback': {
+      id: '/api/auth/callback'
+      path: '/callback'
+      fullPath: '/api/auth/callback'
+      preLoaderRoute: typeof ApiAuthCallbackRouteImport
+      parentRoute: typeof ApiAuthRoute
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -215,12 +274,19 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const apiAuthRouteChildren = {
+  ApiAuthCallbackRoute: ApiAuthCallbackRoute,
+}
+const ApiAuthRouteWithChildren = ApiAuthRoute._addFileChildren(apiAuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BienEtreRoute: BienEtreRoute,
   ConceptRoute: ConceptRoute,
   ContactRoute: ContactRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  AdminConfigDotYmlRoute: AdminConfigDotYmlRoute,
+  ApiAuthRoute: ApiAuthRouteWithChildren,
   BlogSlugRoute: BlogSlugRoute,
   SoinsSlugRoute: SoinsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
