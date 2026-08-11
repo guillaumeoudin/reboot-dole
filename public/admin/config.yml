@@ -1,10 +1,9 @@
 # Decap CMS — édition des articles du blog.
-# Voir README.md > "Blog & Decap CMS" pour l'activation de l'authentification GitHub.
 backend:
   name: github
   repo: guillaumeoudin/reboot-dole
   branch: main
-  base_url: https://reboot-dole.fr
+  base_url: https://www.reboot-dole.fr
   auth_endpoint: api/auth
 
 publish_mode: editorial_workflow
