@@ -14,8 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileCtaBar, WhatsAppFloat } from "@/components/MobileCtaBar";
-
-
+import { localBusinessJsonLd } from "@/data/localBusiness";
 
 function NotFoundComponent() {
   return (
@@ -93,7 +92,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessJsonLd),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -122,8 +128,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-gold-cta focus:px-4 focus:py-2 focus:text-sm focus:text-gold-cta-foreground"
+        >
+          Aller au contenu principal
+        </a>
         <SiteHeader />
-        <main className="flex-1">
+        <main id="contenu" className="flex-1">
           {/* Required: nested routes render here. */}
           <Outlet />
         </main>
