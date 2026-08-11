@@ -22,7 +22,13 @@ Vérification faite : **aucune donnée LocalBusiness / JSON-LD n'existe dans le 
 
 Les horaires figurent déjà en dur sur la page Contact (Lun–Ven 9h–19h, Sam 9h–17h, Dim fermé) : ils seront repris dans le LocalBusiness (`openingHoursSpecification`) et la page Contact lira la même source, plus de double saisie.
 
-Points à confirmer si tu les as : coordonnées GPS, URL finale du site, réseaux sociaux, fourchette de prix. Sans réponse, j'écris uniquement les champs vérifiés.
+Données confirmées et intégrées :
+- `geo` : latitude 47.090721, longitude 5.489599
+- `url` : https://reboot-dole.fr (également utilisée pour les canonical, og:url et le sitemap)
+- `sameAs` : LinkedIn `https://www.linkedin.com/company/reboot-dole/` et Instagram `https://www.instagram.com/reboot_dole`
+- `priceRange` : « 40–250 € »
+
+(Petite correction : l'URL Instagram fournie contenait « instragram », j'utilise `instagram.com/reboot_dole`. Dis-moi si le compte est différent.)
 
 ## 4. Images en dur, pas de CDN
 
@@ -38,7 +44,9 @@ Vérification faite : le projet source ne contient **aucun pointeur `.asset.json
 
 ## 5. Suppression des mentions Planity
 
-`site.booking` pointe sur `https://www.planity.com/` et les libellés parlent de réservation. Le lien externe est remplacé par un champ neutre (`site.booking`) pointant vers la page Contact tant que tu ne me donnes pas l'URL finale de réservation ; aucun texte, logo ou nom « Planity » ne subsiste. Les boutons gardent leur libellé « Réserver » / « Réserver un soin » et leur style. Donne-moi l'URL de réservation définitive si tu en as une, je la branche.
+La réservation continue de passer par Planity : le lien `site.booking` reste actif et pointe vers Planity. Seule la mention explicite disparaît — aucun texte visible, libellé, `aria-label` ou infobulle ne nomme « Planity ». Les boutons gardent « Réserver » / « Réserver un soin », leur style et leur comportement (nouvel onglet, `rel="noopener noreferrer"`).
+
+Note : l'URL actuelle est la racine `https://www.planity.com/`, pas la fiche du centre. Envoie-moi l'URL exacte de la page Planity de Reboot Dole et je la branche.
 
 ## 6. Audit du site (sans toucher au design)
 
@@ -76,14 +84,28 @@ Constats issus de la lecture du code, avec les correctifs prévus — tous invis
 
 Rien de ce qui précède ne modifie la mise en page, la typographie ou la palette existantes.
 
-## 7. Préparation du blog / Decap CMS
+## 7. Blog + Decap CMS (inclus dans cette livraison)
 
-Tu géreras Decap depuis GitHub ; le site sera prêt à l'accueillir :
-- entrée « Blog » ajoutée à la navigation (d'où le breakpoint 1080 px) ;
-- routes `/blog` (liste) et `/blog/$slug` (article) au design existant, alimentées par des fichiers Markdown dans `content/blog/`, chargés au build — donc statiques et compatibles Vercel ;
-- deux articles d'exemple pour valider le rendu ;
-- `head()` par article : title, description, `og:*`, canonical et JSON-LD `Article` ;
-- images d'article dans `public/uploads/` (dossier attendu par Decap), en fichiers réels ;
-- côté Decap tu n'auras qu'à déposer `public/admin/index.html` et `config.yml` pointant sur `content/blog` et `public/uploads` — je peux aussi les générer si tu veux.
+Le blog est livré complet, prêt pour Decap via GitHub :
 
-Dis-moi si tu veux que le blog fasse partie de cette livraison ou d'une seconde étape.
+**Navigation et design**
+- entrée « Blog » dans le menu principal et dans le footer (d'où le breakpoint 1080 px) ;
+- page liste `/blog` : en-tête éditorial, grille de cartes (image, date, temps de lecture, titre, chapô), filtres par catégorie, dans la charte existante (typographies Cormorant/Manrope, doré, marine) ;
+- page article `/blog/$slug` : bandeau image, titre, méta (date, auteur, temps de lecture), corps d'article typographié (titres, listes, citations, images, liens), bloc CTA de réservation en fin d'article, suggestions d'articles liés ;
+- deux articles d'exemple pour valider tous les styles de contenu.
+
+**Contenu et build**
+- articles en Markdown + frontmatter dans `content/blog/*.md`, chargés au build (import glob Vite) : aucune requête au runtime, 100 % statique, compatible Vercel ;
+- frontmatter : `title`, `slug`, `date`, `excerpt`, `author`, `category`, `coverImage`, `draft` (les brouillons ne sont ni listés ni indexés) ;
+- images d'article dans `public/uploads/`, fichiers réels, jamais de CDN.
+
+**Prêt pour Decap sur GitHub**
+- `public/admin/index.html` et `public/admin/config.yml` fournis, backend `github` sur la branche `main`, collection `blog` mappée sur `content/blog` et `media_folder: public/uploads` ;
+- champs Decap alignés un pour un sur le frontmatter, donc un article créé depuis Decap s'affiche sans retouche ;
+- `/admin` exclu de l'indexation (`robots.txt` + `noindex`).
+
+Il te restera uniquement, côté GitHub/Vercel, à brancher l'authentification Decap (OAuth GitHub ou GitHub Actions/proxy) — je documenterai les étapes dans le README.
+
+**SEO du blog**
+- `head()` par article : title, description, `og:*` avec l'image de couverture, canonical auto-référent, JSON-LD `Article` + `BreadcrumbList` ;
+- articles ajoutés automatiquement au `sitemap.xml`.
