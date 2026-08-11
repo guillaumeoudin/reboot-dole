@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
-import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
-import logoWordmark from "@/assets/reboot-logo-dark-73ZHWu5H.png";
 import { navLinks, site } from "@/data/site";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { BrandWordmark } from "@/components/BrandWordmark";
+import logoMark from "@/assets/logo-reboot-BdQvYD6B.jpg";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -19,15 +19,10 @@ export function SiteHeader() {
             alt=""
             width={44}
             height={44}
+            decoding="async"
             className="size-11 shrink-0 rounded-full border border-gold/30 object-cover"
           />
-          <img
-            src={logoWordmark}
-            alt="Reboot Dole Jura"
-            width={1242}
-            height={209}
-            className="h-7 w-auto max-w-[9.5rem] object-contain sm:h-8 sm:max-w-none"
-          />
+          <BrandWordmark className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none" />
         </Link>
 
         <nav className="hidden items-center gap-8 cta:flex">
@@ -60,7 +55,7 @@ export function SiteHeader() {
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:hidden"
           >
             {open ? (
               <X className="size-4" aria-hidden="true" />
