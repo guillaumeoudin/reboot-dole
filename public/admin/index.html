@@ -4,48 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reboot — Administration</title>
-  </head>
-  <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      CMS.init({
-        config: {
-          backend: {
-            name: "github",
-            repo: "guillaumeoudin/reboot-dole",
-            branch: "main",
-            base_url: "https://reboot-dole.fr",
-            auth_endpoint: "api/auth",
-          },
-          media_folder: "public/uploads",
-          public_folder: "/uploads",
-          locale: "fr",
-          collections: [
-            {
-              name: "blog",
-              label: "Articles de blog",
-              folder: "content/blog",
-              create: true,
-              slug: "{{slug}}",
-              preview_path: "blog/{{slug}}",
-              fields: [
-                { name: "title",      label: "Titre",                               widget: "string" },
-                { name: "slug",       label: "Slug (URL)",                          widget: "string" },
-                { name: "date",       label: "Date",       widget: "datetime",
-                  date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" },
-                { name: "author",     label: "Auteur",     widget: "string",        default: "L'équipe Reboot" },
-                { name: "category",   label: "Catégorie",  widget: "select",
-                  options: ["Soins", "Bien-être", "Actualités"] },
-                { name: "excerpt",    label: "Accroche (160 car. max pour le SEO)", widget: "text" },
-                { name: "coverImage", label: "Image de couverture",                 widget: "image",   required: false },
-                { name: "coverAlt",   label: "Texte alternatif de l'image",         widget: "string",  required: false },
-                { name: "draft",      label: "Brouillon",  widget: "boolean",       default: false },
-                { name: "body",       label: "Contenu",    widget: "markdown" },
-              ],
-            },
-          ],
-        },
-      });
-    </script>
-  </body>
+  </head>
+  <body></body>
 </html>
