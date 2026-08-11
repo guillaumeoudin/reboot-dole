@@ -2,10 +2,11 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 
 import { BookButton } from "@/components/ui-kit";
 import { site } from "@/data/site";
+import type { BlogPost } from "@/lib/blog";
 import { formatDate, getPost, relatedPosts } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { post: BlogPost; related: BlogPost[] } => {
     const post = getPost(params.slug);
     if (!post) throw notFound();
     return { post, related: relatedPosts(post) };

@@ -14,6 +14,7 @@ import { Route as BienEtreRouteImport } from './routes/bien-etre'
 import { Route as ConceptRouteImport } from './routes/concept'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
 import { Route as SoinsSlugRouteImport } from './routes/soins.$slug'
 
@@ -42,6 +43,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SoinsIndexRoute = SoinsIndexRouteImport.update({
   id: '/soins/',
   path: '/soins/',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/soins/': typeof SoinsIndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog': typeof BlogIndexRoute
   '/soins': typeof SoinsIndexRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/soins/$slug': typeof SoinsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/soins/': typeof SoinsIndexRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/blog/$slug'
     | '/soins/$slug'
     | '/blog/'
     | '/soins/'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/blog/$slug'
     | '/soins/$slug'
     | '/blog'
     | '/soins'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/blog/$slug'
     | '/soins/$slug'
     | '/blog/'
     | '/soins/'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   BienEtreRoute: typeof BienEtreRoute
   ConceptRoute: typeof ConceptRoute
   ContactRoute: typeof ContactRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   SoinsSlugRoute: typeof SoinsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   SoinsIndexRoute: typeof SoinsIndexRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/soins/': {
       id: '/soins/'
       path: '/soins'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   BienEtreRoute: BienEtreRoute,
   ConceptRoute: ConceptRoute,
   ContactRoute: ContactRoute,
+  BlogSlugRoute: BlogSlugRoute,
   SoinsSlugRoute: SoinsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   SoinsIndexRoute: SoinsIndexRoute,
