@@ -6,8 +6,28 @@
     <title>Reboot — Administration</title>
     <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml">
     <script>
-      window.addEventListener('message', function(e) {
-        console.log('[AUTH DEBUG] message received | origin:', e.origin, '| data:', typeof e.data === 'string' ? e.data.substring(0, 120) : JSON.stringify(e.data));
+      var _fetch = window.fetch;
+      window.fetch = function() {
+        var url = typeof arguments[0] === "string" ? arguments[0] : (arguments[0] && arguments[0].url) || "?";
+        console.log("[FETCH]", url);
+        return _fetch.apply(this, arguments).then(function(r) {
+          console.log("[FETCH RESP]", r.status, url);
+          return r;
+        }).catch(function(e) { console.error("[FETCH ERR]", url, e.message); throw e; });
+      };
+      var _open = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function(m, url) {
+        console.log("[XHR]", m, url);
+        return _open.apply(this, arguments);
+      };
+      window.addEventListener("message", function(e) {
+        console.log("[MSG]", e.origin, typeof e.data === "string" ? e.data.substring(0, 100) : JSON.stringify(e.data));
+      });
+      window.addEventListener("error", function(e) {
+        console.error("[UNCAUGHT]", e.message, e.filename, e.lineno);
+      });
+      window.addEventListener("unhandledrejection", function(e) {
+        console.error("[PROMISE]", e.reason);
       });
     </script>
   </head>
