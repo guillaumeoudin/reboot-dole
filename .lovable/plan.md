@@ -109,3 +109,17 @@ Il te restera uniquement, côté GitHub/Vercel, à brancher l'authentification D
 **SEO du blog**
 - `head()` par article : title, description, `og:*` avec l'image de couverture, canonical auto-référent, JSON-LD `Article` + `BreadcrumbList` ;
 - articles ajoutés automatiquement au `sitemap.xml`.
+
+## 8. README de maintenance complet
+
+Le `README.md` est réécrit comme documentation de référence du site, pensée pour un travail direct sur GitHub :
+
+- **Démarrage** : prérequis, installation, `dev` / `build` / `preview`, structure des dossiers commentée.
+- **Stack** : TanStack Start + Vite + Tailwind v4, et ce qu'il ne faut pas casser (routing par fichiers, `routeTree.gen.ts` généré, pas de `tailwind.config.js`).
+- **Design system** : où sont définis les tokens (`src/styles.css`), la palette doré/marine, les typographies, le breakpoint `cta` (1080 px), les classes utilitaires maison, la règle « pas de couleurs en dur ».
+- **Contenu éditable sans code** : `src/data/site.ts` (NAP, horaires, réseaux, lien de réservation) et `src/data/soins.ts` (ajouter/modifier un soin, champs et slug), avec un exemple avant/après.
+- **Images** : convention `src/assets` (importées) vs `public/uploads` (blog), formats, dimensions recommandées, pas de CDN.
+- **Blog & Decap** : anatomie d'un fichier Markdown, tableau des champs de frontmatter, comment publier ou dépublier, et **les étapes restantes détaillées pour rendre Decap opérationnel** — création de l'OAuth App GitHub, variables à configurer, choix du proxy d'authentification, `config.yml` à ajuster (repo, branche), accès à `/admin`, et procédure de test de bout en bout.
+- **SEO** : où vivent title/description/og par page, le LocalBusiness, le sitemap, le robots.txt, et la checklist à suivre en ajoutant une page.
+- **Déploiement Vercel** : réglages du projet, commande de build, dossier de sortie, domaine `reboot-dole.fr`, et le fait que chaque push sur `main` redéploie.
+- **Dépannage** : erreurs fréquentes (route non générée, image manquante, article invisible car `draft: true`) et leur correctif.
