@@ -13,7 +13,8 @@
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --breakpoint-cta: 900px;
+  /* Seuil de bascule menu burger -> menu horizontal (header, barre CTA mobile). */
+  --breakpoint-cta: 1080px;
 }
 
 @theme inline {
