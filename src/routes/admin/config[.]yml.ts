@@ -1,0 +1,55 @@
+import { createFileRoute } from "@tanstack/react-router";
+import type {} from "@tanstack/react-start";
+
+/**
+ * Sert le fichier de configuration de Decap CMS via une route serveur,
+ * pour contourner le problème de fichier statique sur Vercel SSR.
+ * Même pattern que src/routes/sitemap[.]xml.ts
+ */
+const CONFIG_YAML = `
+backend:
+  name: github
+  repo: guillaumeoudin/reboot-dole
+  branch: main
+  base_url: https://reboot-dole.fr
+  auth_endpoint: api/auth
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+locale: "fr"
+
+collections:
+  - name: "blog"
+    label: "Articles de blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { name: "title",      label: "Titre",                              widget: "string" }
+      - { name: "slug",       label: "Slug (URL)",                         widget: "string" }
+      - { name: "date",       label: "Date",      widget: "datetime",
+          date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "author",     label: "Auteur",    widget: "string",        default: "L'equipe Reboot" }
+      - { name: "category",   label: "Categorie", widget: "select",
+          options: ["Soins", "Bien-etre", "Actualites"] }
+      - { name: "excerpt",    label: "Accroche (160 car. max pour le SEO)", widget: "text" }
+      - { name: "coverImage", label: "Image de couverture",                widget: "image",  required: false }
+      - { name: "coverAlt",   label: "Texte alternatif de l'image",        widget: "string", required: false }
+      - { name: "draft",      label: "Brouillon", widget: "boolean",       default: false }
+      - { name: "body",       label: "Contenu",   widget: "markdown" }
+`.trim();
+
+export const Route = createFileRoute("/admin/config.yml")({
+  server: {
+    handlers: {
+      GET: async () =>
+        new Response(CONFIG_YAML, {
+          headers: {
+            "Content-Type": "text/yaml; charset=utf-8",
+            "Cache-Control": "public, max-age=3600",
+          },
+        }),
+    },
+  },
+});
