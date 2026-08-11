@@ -84,7 +84,7 @@ function BlogPostNotFound() {
 }
 
 function BlogPostPage() {
-  const { post, related } = Route.useLoaderData();
+  const { post, related } = Route.useLoaderData() as { post: BlogPost; related: BlogPost[] };
 
   return (
     <>
