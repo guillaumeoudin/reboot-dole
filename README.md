@@ -11,6 +11,7 @@ Site du centre de soins technico-esthétiques et de longévité **Reboot** à Do
 | Styles | Tailwind CSS v4 (`src/styles.css`, tokens `@theme`) |
 | Icônes | lucide-react |
 | Markdown | `marked` (blog, rendu au build) |
+| Blog | Decap CMS |
 
 ```bash
 npm install
