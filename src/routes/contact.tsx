@@ -84,7 +84,7 @@ function ContactPage() {
           </div>
 
           <div>
-            <p className="label-caps text-gold">Demande de rendez-vous</p>
+            <p className="label-caps text-gold">Nous écrire</p>
             <div className="mt-5">
               <ContactForm />
             </div>
