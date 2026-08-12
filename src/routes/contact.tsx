@@ -99,7 +99,7 @@ function ContactPage() {
               title="Localisation du centre Reboot à Dole"
               loading="lazy"
               className="h-[380px] w-full border-0 grayscale-[35%]"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=5.4838%2C47.0878%2C5.4978%2C47.0938&layer=mapnik&marker=47.0908%2C5.4908"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=5.4849%2C47.0883%2C5.4967%2C47.0934&layer=mapnik&marker=47.0908%2C5.4908"
             />
           </div>
           <div className="flex justify-end">
