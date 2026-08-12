@@ -93,14 +93,24 @@ function ContactPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 space-y-4">
           <div className="overflow-hidden border border-border">
             <iframe
               title="Localisation du centre Reboot à Dole"
               loading="lazy"
               className="h-[380px] w-full border-0 grayscale-[35%]"
-              src="https://www.google.com/maps?q=7%20rue%20Jacques%20de%20Molay%2039100%20Dole&output=embed"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=5.4838%2C47.0878%2C5.4978%2C47.0938&layer=mapnik&marker=47.0908%2C5.4908"
             />
+          </div>
+          <div className="flex justify-end">
+            <a
+              href="https://maps.google.com?q=7+rue+Jacques+de+Molay+39100+Dole"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-muted-foreground transition-colors hover:text-gold"
+            >
+              Ouvrir dans Google Maps →
+            </a>
           </div>
         </div>
       </section>
