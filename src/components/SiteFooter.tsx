@@ -97,16 +97,24 @@ export function SiteFooter() {
 
         <div className="hairline mt-12" />
 
-        <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+        <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Reboot {site.city}. Tous droits réservés.</p>
-          <a
-            href={site.booking}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="transition-colors hover:text-gold"
-          >
-            Réservation en ligne
-          </a>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/mentions-legales" className="transition-colors hover:text-gold">
+              Mentions légales
+            </Link>
+            <Link to="/politique-de-confidentialite" className="transition-colors hover:text-gold">
+              Politique de confidentialité
+            </Link>
+            <a
+              href={site.booking}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="transition-colors hover:text-gold"
+            >
+              Réservation en ligne
+            </a>
+          </div>
         </div>
       </div>
     </footer>
