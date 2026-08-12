@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { ContactForm } from "@/components/ContactForm";
 import { EyebrowHeading } from "@/components/ui-kit";
 import { site } from "@/data/site";
 
@@ -84,17 +85,8 @@ function ContactPage() {
 
           <div>
             <p className="label-caps text-gold">Demande de rendez-vous</p>
-            <div className="mt-5 overflow-hidden border border-border">
-              <iframe
-                title="Formulaire de contact — Reboot Dole"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdc6CeJZGYJ8eLTUjqcwlt9ha2VGX8eEi4huxG11mLop5_cig/viewform?embedded=true"
-                width="100%"
-                height="680"
-                className="border-0"
-                loading="lazy"
-              >
-                Chargement du formulaire…
-              </iframe>
+            <div className="mt-5">
+              <ContactForm />
             </div>
           </div>
         </div>
