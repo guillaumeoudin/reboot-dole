@@ -84,25 +84,17 @@ function ContactPage() {
 
           <div>
             <p className="label-caps text-gold">Demande de rendez-vous</p>
-            <div className="mt-5 border border-border bg-surface p-8">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Le formulaire de demande de rendez-vous sera intégré ici. En attendant, écrivez-nous
-                directement — nous répondons sous 24h ouvrées.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={`mailto:${site.email}`}
-                  className="bg-gold-cta px-5 py-3 text-sm font-medium text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft"
-                >
-                  Écrire un email
-                </a>
-                <a
-                  href={site.phoneHref}
-                  className="border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-gold hover:text-gold"
-                >
-                  Appeler le centre
-                </a>
-              </div>
+            <div className="mt-5 overflow-hidden border border-border">
+              <iframe
+                title="Formulaire de contact — Reboot Dole"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdc6CeJZGYJ8eLTUjqcwlt9ha2VGX8eEi4huxG11mLop5_cig/viewform?embedded=true"
+                width="100%"
+                height="680"
+                className="border-0"
+                loading="lazy"
+              >
+                Chargement du formulaire…
+              </iframe>
             </div>
           </div>
         </div>
