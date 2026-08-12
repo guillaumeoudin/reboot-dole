@@ -29,7 +29,7 @@ function SoinsPage() {
             title="Des protocoles précis, non invasifs."
             intro="Chaque soin commence par un bilan et se poursuit par un plan personnalisé. Aucune promesse démesurée : des résultats mesurables, séance après séance."
           />
-          <div className="mt-10">
+          <div className="mt-10 hidden cta:block">
             <BookButton />
           </div>
         </div>
