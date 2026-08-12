@@ -42,7 +42,7 @@ export function WhatsAppFloat() {
       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-gold-cta text-gold-cta-foreground transition-transform group-hover:scale-105">
         <WhatsAppIcon className="size-5" />
       </span>
-      <span className="truncate text-sm tracking-wide">Discuter sur WhatsApp</span>
+      <span className="truncate text-sm tracking-wide">Une question ?</span>
     </Link>
   );
 }
