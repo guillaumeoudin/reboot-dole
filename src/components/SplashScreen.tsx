@@ -69,9 +69,9 @@ export function SplashScreen() {
           <img
             src={logoMark}
             alt="Reboot"
-            width={96}
-            height={96}
-            className="splash-logo relative size-24 rounded-full border-2 border-gold/30 object-cover"
+            width={144}
+            height={144}
+            className="splash-logo relative size-36 rounded-full border-2 border-gold/30 object-cover"
           />
         </div>
 
