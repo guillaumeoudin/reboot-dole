@@ -234,7 +234,7 @@ h1 {
 }
 /* Remplissage doré subtil en thème clair uniquement. */
 :root:not(.dark) .nav-link--hovered::before {
-  background-color: color-mix(in oklab, var(--gold) 18%, transparent);
+  background-color: color-mix(in oklab, var(--gold-cta) 35%, transparent);
 }
 
 .nav-link--hovered::after {
@@ -275,7 +275,7 @@ h1 {
 }
 /* Fond persistant en thème clair sur la page active. */
 :root:not(.dark) .nav-link--active:not(.nav-link--hovered)::before {
-  background-color: color-mix(in oklab, var(--gold) 18%, transparent);
+  background-color: color-mix(in oklab, var(--gold-cta) 35%, transparent);
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
