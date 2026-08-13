@@ -57,20 +57,20 @@ export function SiteHeader() {
             className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:hidden"
           >
             {/* Animated burger → X */}
-            <span aria-hidden="true" className="flex size-4 flex-col items-stretch justify-center gap-[5px]">
+            <span aria-hidden="true" className="flex size-4 flex-col justify-between">
               <span
-                className={`h-px w-full origin-center bg-current transition-transform duration-300 ${
-                  open ? "translate-y-[6px] rotate-45" : ""
+                className={`h-0.5 w-full origin-center bg-current transition-transform duration-300 ${
+                  open ? "translate-y-[7px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`h-px w-full bg-current transition-opacity duration-200 ${
+                className={`h-0.5 w-full bg-current transition-opacity duration-200 ${
                   open ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`h-px w-full origin-center bg-current transition-transform duration-300 ${
-                  open ? "-translate-y-[6px] -rotate-45" : ""
+                className={`h-0.5 w-full origin-center bg-current transition-transform duration-300 ${
+                  open ? "-translate-y-[7px] -rotate-45" : ""
                 }`}
               />
             </span>
