@@ -165,14 +165,14 @@ h1 {
 }
 
 
-/* ─── Navigation header — effets dorés ────────────────────────────────────
- * 1. Cadre doré qui se trace autour de l'entrée au hover (clockwise) :
- *    ::before → haut puis droite / ::after → bas puis gauche.
- *    Les délais sur :hover créent l'effet séquentiel.
- *    Sur dé-hover, les transitions sans délai replient le cadre rapidement.
- * 2. Cadre persistant (plein, sans animation) sur la page active.
- * 3. Glow subtil sur le texte au hover.
+/* ─── Navigation header — effets de cadre ─────────────────────────────────
+ * --nav-accent : navy en thème clair (--ink), gold en thème sombre.
+ * 1. Cadre qui se trace autour de l'entrée au hover (clockwise).
+ * 2. Cadre persistant sur la page active.
+ * 3. Glow subtil au hover (dark uniquement).
  * ─────────────────────────────────────────────────────────────────────────── */
+:root { --nav-accent: var(--ink); }
+.dark { --nav-accent: var(--gold); }
 .nav-link {
   position: relative;
   transition: color 0.2s ease, text-shadow 0.25s ease;
@@ -221,8 +221,8 @@ h1 {
 .nav-link--hovered::before {
   width: calc(100% + 16px);
   height: calc(100% + 10px);
-  border-top-color: var(--gold);
-  border-right-color: var(--gold);
+  border-top-color: var(--nav-accent);
+  border-right-color: var(--nav-accent);
   transition:
     border-top-color   0s     0s,     /* haut : immédiat */
     border-right-color 0s     0.48s,  /* droite : après le haut */
@@ -233,8 +233,8 @@ h1 {
 .nav-link--hovered::after {
   width: calc(100% + 16px);
   height: calc(100% + 10px);
-  border-bottom-color: var(--gold);
-  border-left-color: var(--gold);
+  border-bottom-color: var(--nav-accent);
+  border-left-color: var(--nav-accent);
   transition:
     border-bottom-color 0s     0.61s,  /* bas : après la droite */
     border-left-color   0s     1.09s,  /* gauche : en dernier */
@@ -242,15 +242,17 @@ h1 {
     height              0.13s  ease 1.09s;
 }
 
-/* Texte doré + glow */
+/* Texte + glow au hover */
 .nav-link--hovered {
-  color: var(--gold);
+  color: var(--nav-accent);
+}
+.dark .nav-link--hovered {
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
 
-/* Page active : couleur dorée persistante. */
+/* Page active : couleur accentuée persistante. */
 .nav-link--active {
-  color: var(--gold);
+  color: var(--nav-accent);
 }
 
 /* Cadre complet (snap instantané) uniquement quand aucune trace n'est
@@ -259,7 +261,7 @@ h1 {
  * jusqu'à son terme — puis --active prend le relais sans artefact. */
 .nav-link--active:not(.nav-link--hovered)::before,
 .nav-link--active:not(.nav-link--hovered)::after {
-  border-color: var(--gold);
+  border-color: var(--nav-accent);
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   transition: none;
