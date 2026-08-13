@@ -44,7 +44,7 @@ export const Route = createFileRoute("/blog/")({
 function BlogIndexPage() {
   return (
     <>
-      <section className="glow-warm border-b border-border">
+      <section data-reveal className="glow-warm border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <EyebrowHeading
             as="h1"
@@ -55,14 +55,14 @@ function BlogIndexPage() {
         </div>
       </section>
 
-      <section className="border-b border-border">
+      <section data-reveal className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           {posts.length === 0 ? (
             <p className="text-sm leading-relaxed text-muted-foreground">
               Les premiers articles arrivent très bientôt.
             </p>
           ) : (
-            <ul className="grid gap-0.5 border border-border bg-border sm:grid-cols-2">
+            <ul data-reveal-stagger className="grid gap-0.5 border border-border bg-border sm:grid-cols-2">
               {posts.map((post) => (
                 <li key={post.slug} className="bg-background">
                   <article className="group flex h-full flex-col transition-colors hover:bg-surface">

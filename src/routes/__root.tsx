@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -124,9 +125,43 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  // Scroll reveal — observe tous les éléments [data-reveal] et [data-reveal-stagger]
+  // et ajoute la classe is-visible quand ils entrent dans le viewport.
+  // Se relance à chaque changement de route pour observer les nouveaux éléments.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    // Délai court pour laisser React rendre la nouvelle page avant d'observer
+    const tid = setTimeout(() => {
+      document
+        .querySelectorAll("[data-reveal], [data-reveal-stagger]")
+        .forEach((el) => {
+          if (!el.classList.contains("is-visible")) observer.observe(el);
+        });
+    }, 50);
+
+    return () => {
+      clearTimeout(tid);
+      observer.disconnect();
+    };
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Barre de progression dorée au scroll — CSS-only, zero JS */}
+      <div className="scroll-progress-bar" aria-hidden="true" />
       <div className="flex min-h-screen flex-col">
         <a
           href="#contenu"
