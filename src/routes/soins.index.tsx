@@ -22,7 +22,7 @@ export const Route = createFileRoute("/soins/")({
 function SoinsPage() {
   return (
     <>
-      <section data-reveal className="glow-warm border-b border-border">
+      <section className="glow-warm border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <EyebrowHeading
             eyebrow="Nos soins"
@@ -36,7 +36,7 @@ function SoinsPage() {
       </section>
 
       {soins.map((soin, i) => (
-        <section data-reveal key={soin.slug} className="border-b border-border">
+        <section key={soin.slug} className="border-b border-border">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2">
             <img
               src={soin.image}

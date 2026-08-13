@@ -68,9 +68,9 @@ function Index() {
         </div>
       </section>
 
-      <section data-reveal className="border-b border-border bg-surface">
+      <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <div data-reveal-stagger className="grid gap-px bg-border md:grid-cols-3">
+          <div className="grid gap-px bg-border md:grid-cols-3">
             {pillars.map((pillar) => (
               <article key={pillar.index} className="bg-background p-8">
                 <span className="label-caps text-gold-soft">{pillar.index}</span>
@@ -82,14 +82,14 @@ function Index() {
         </div>
       </section>
 
-      <section data-reveal className="border-b border-border">
+      <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <EyebrowHeading
             eyebrow="Nos soins"
             title="Quatre protocoles, une même exigence."
             intro="Chaque soin est mené avec la rigueur d'une clinique : bilan, paramètres adaptés, suivi post-séance."
           />
-          <div data-reveal-stagger className="mt-12 grid gap-px bg-border sm:grid-cols-2">
+          <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
             {soins.map((soin) => (
               <Link
                 key={soin.slug}
@@ -127,7 +127,7 @@ function Index() {
         </div>
       </section>
 
-      <section data-reveal className="border-b border-border bg-surface">
+      <section className="border-b border-border bg-surface">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
           <img
             src={centreReboot}
@@ -150,7 +150,7 @@ function Index() {
         </div>
       </section>
 
-      <section data-reveal className="border-b border-border">
+      <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
           <div>
             <EyebrowHeading
@@ -173,7 +173,7 @@ function Index() {
         </div>
       </section>
 
-      <section data-reveal className="hidden border-b border-border bg-surface cta:block">
+      <section className="hidden border-b border-border bg-surface cta:block">
         <div className="mx-auto max-w-6xl px-5 py-20 text-center sm:px-8">
           <h2 className="text-3xl text-foreground sm:text-4xl">
             Prêt·e à commencer votre parcours ?
