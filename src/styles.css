@@ -273,6 +273,10 @@ h1 {
   height: calc(100% + 10px);
   transition: none;
 }
+/* Fond persistant en thème clair sur la page active. */
+:root:not(.dark) .nav-link--active:not(.nav-link--hovered)::before {
+  background-color: color-mix(in oklab, var(--gold) 18%, transparent);
+}
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
  * box-shadow doré au hover sur les boutons et liens bg-gold-cta.
