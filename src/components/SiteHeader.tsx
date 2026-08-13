@@ -29,7 +29,9 @@ export function SiteHeader() {
             <Link
               key={link.to}
               to={link.to}
-              className="label-caps text-muted-foreground transition-colors hover:text-gold"
+              className="nav-link label-caps text-muted-foreground"
+              activeProps={{ className: "nav-link--active" }}
+              activeOptions={link.to === "/" ? { exact: true } : undefined}
             >
               {link.label}
             </Link>
