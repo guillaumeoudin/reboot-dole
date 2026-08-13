@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading, TextLink } from "@/components/ui-kit";
+import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
 import centreReboot from "@/assets/centre-reboot.jpg";
 import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
@@ -71,11 +72,13 @@ function Index() {
       <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <div className="grid gap-px bg-border md:grid-cols-3">
-            {pillars.map((pillar) => (
+            {pillars.map((pillar, i) => (
               <article key={pillar.index} className="bg-background p-8">
-                <span className="label-caps text-gold-soft">{pillar.index}</span>
-                <h2 className="mt-5 text-2xl text-foreground">{pillar.title}</h2>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+                <Reveal delay={i * 90}>
+                  <span className="label-caps text-gold-soft">{pillar.index}</span>
+                  <h2 className="mt-5 text-2xl text-foreground">{pillar.title}</h2>
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+                </Reveal>
               </article>
             ))}
           </div>
@@ -84,13 +87,15 @@ function Index() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <EyebrowHeading
-            eyebrow="Nos soins"
-            title="Quatre protocoles, une même exigence."
-            intro="Chaque soin est mené avec la rigueur d'une clinique : bilan, paramètres adaptés, suivi post-séance."
-          />
+          <Reveal>
+            <EyebrowHeading
+              eyebrow="Nos soins"
+              title="Quatre protocoles, une même exigence."
+              intro="Chaque soin est mené avec la rigueur d'une clinique : bilan, paramètres adaptés, suivi post-séance."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
-            {soins.map((soin) => (
+            {soins.map((soin, i) => (
               <Link
                 key={soin.slug}
                 to="/soins/$slug"
@@ -105,7 +110,7 @@ function Index() {
                   loading="lazy"
                   className="aspect-16/10 w-full object-cover"
                 />
-                <div className="p-8">
+                <Reveal delay={i * 80} className="p-8">
                   <span className="label-caps text-gold-soft">{soin.index}</span>
                   <h3 className="mt-4 text-2xl text-foreground transition-colors group-hover:text-gold">
                     {soin.title}
@@ -120,7 +125,7 @@ function Index() {
                       →
                     </span>
                   </p>
-                </div>
+                </Reveal>
               </Link>
             ))}
           </div>
@@ -129,15 +134,17 @@ function Index() {
 
       <section className="border-b border-border bg-surface">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
-          <img
-            src={centreReboot}
-            alt="Intérieur du centre Reboot à Dole"
-            width={1600}
-            height={1104}
-            loading="lazy"
-            className="aspect-4/3 w-full object-cover"
-          />
-          <div>
+          <Reveal>
+            <img
+              src={centreReboot}
+              alt="Intérieur du centre Reboot à Dole"
+              width={1600}
+              height={1104}
+              loading="lazy"
+              className="aspect-4/3 w-full object-cover"
+            />
+          </Reveal>
+          <Reveal delay={120}>
             <EyebrowHeading
               eyebrow="Le concept"
               title="Un centre pensé comme une clinique."
@@ -146,13 +153,13 @@ function Index() {
             <div className="mt-8">
               <TextLink to="/concept">Découvrir le concept</TextLink>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
-          <div>
+          <Reveal>
             <EyebrowHeading
               eyebrow="Bien-être & longévité"
               title="La longévité commence de l'intérieur."
@@ -161,30 +168,34 @@ function Index() {
             <div className="mt-8">
               <TextLink to="/bien-etre">Explorer le bien-être</TextLink>
             </div>
-          </div>
-          <img
-            src={bienEtreYoga}
-            alt="Espace de yoga du centre Reboot"
-            width={1600}
-            height={1104}
-            loading="lazy"
-            className="aspect-4/3 w-full object-cover lg:order-2"
-          />
+          </Reveal>
+          <Reveal delay={120}>
+            <img
+              src={bienEtreYoga}
+              alt="Espace de yoga du centre Reboot"
+              width={1600}
+              height={1104}
+              loading="lazy"
+              className="aspect-4/3 w-full object-cover lg:order-2"
+            />
+          </Reveal>
         </div>
       </section>
 
       <section className="hidden border-b border-border bg-surface cta:block">
         <div className="mx-auto max-w-6xl px-5 py-20 text-center sm:px-8">
-          <h2 className="text-3xl text-foreground sm:text-4xl">
-            Prêt·e à commencer votre parcours ?
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Réservez votre premier bilan et repartez avec un plan de soin clair, adapté à votre peau
-            et à vos objectifs.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <BookButton />
-          </div>
+          <Reveal>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
+              Prêt·e à commencer votre parcours ?
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Réservez votre premier bilan et repartez avec un plan de soin clair, adapté à votre peau
+              et à vos objectifs.
+            </p>
+            <div className="mt-10 flex justify-center">
+              <BookButton />
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

@@ -44,7 +44,7 @@ export function EyebrowHeading({
         />
         {eyebrow}
       </p>
-      <Tag className="mt-5 text-3xl leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
+      <Tag className="heading-reveal mt-5 text-3xl leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
         {title}
       </Tag>
       {intro ? (

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading, SpecList, TextLink } from "@/components/ui-kit";
+import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
 
 const title = "Soins technico-esthétiques — Reboot Dole";
@@ -38,15 +39,17 @@ function SoinsPage() {
       {soins.map((soin, i) => (
         <section key={soin.slug} className="border-b border-border">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2">
-            <img
-              src={soin.image}
-              alt={soin.imageAlt}
-              width={1600}
-              height={1104}
-              loading="lazy"
-              className={`aspect-4/3 w-full object-cover ${i % 2 === 1 ? "lg:order-2" : ""}`}
-            />
-            <div>
+            <Reveal className={i % 2 === 1 ? "lg:order-2" : ""}>
+              <img
+                src={soin.image}
+                alt={soin.imageAlt}
+                width={1600}
+                height={1104}
+                loading="lazy"
+                className="aspect-4/3 w-full object-cover"
+              />
+            </Reveal>
+            <Reveal delay={100}>
               <span className="label-caps text-gold-soft">{soin.index}</span>
               <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">{soin.title}</h2>
               <p className="mt-3 font-display text-xl text-gold">{soin.tagline}</p>
@@ -63,7 +66,7 @@ function SoinsPage() {
               <div className="mt-8">
                 <TextLink to={`/soins/${soin.slug}`}>En savoir plus</TextLink>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
       ))}

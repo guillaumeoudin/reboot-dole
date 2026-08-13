@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { BookButton, SpecList } from "@/components/ui-kit";
+import { Reveal } from "@/components/Reveal";
 import {
   Accordion,
   AccordionContent,
@@ -117,20 +118,22 @@ function SoinDetail() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-          <SpecList
-            padding="p-6"
-            items={[
-              { term: "Durée", value: soin.duration },
-              { term: "Séances", value: soin.sessions },
-              { term: "Tarif", value: soin.price },
-            ]}
-          />
+          <Reveal>
+            <SpecList
+              padding="p-6"
+              items={[
+                { term: "Durée", value: soin.duration },
+                { term: "Séances", value: soin.sessions },
+                { term: "Tarif", value: soin.price },
+              ]}
+            />
+          </Reveal>
         </div>
       </section>
 
       <section className="border-b border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2">
-          <div>
+          <Reveal>
             <p className="label-caps text-gold">Indications</p>
             <h2 className="mt-5 text-3xl text-foreground">Pour qui ?</h2>
             <ul className="mt-6 space-y-4 text-sm text-muted-foreground">
@@ -143,8 +146,8 @@ function SoinDetail() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={100}>
             <p className="label-caps text-gold">Après la séance</p>
             <h2 className="mt-5 text-3xl text-foreground">Les bons réflexes</h2>
             <ul className="mt-6 space-y-4 text-sm text-muted-foreground">
@@ -157,7 +160,7 @@ function SoinDetail() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 

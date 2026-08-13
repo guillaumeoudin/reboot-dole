@@ -4,10 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -125,6 +126,23 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isMounted = useRef(false);
+
+  // Restart l'animation clip-reveal sur tous les titres après chaque navigation SPA.
+  // On saute le premier render (l'animation CSS démarre seule à l'insertion DOM).
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    const els = document.querySelectorAll<HTMLElement>("h1, .heading-reveal");
+    els.forEach((el) => {
+      el.style.animation = "none";
+      void el.offsetWidth; // force reflow — l'animation redémarre depuis from
+      el.style.animation = "";
+    });
+  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

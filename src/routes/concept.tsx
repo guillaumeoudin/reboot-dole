@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BookButton, EyebrowHeading } from "@/components/ui-kit";
+import { Reveal } from "@/components/Reveal";
 import centreReboot from "@/assets/centre-reboot.jpg";
 
 const title = "Le concept — Reboot Dole";
@@ -80,13 +81,17 @@ function ConceptPage() {
 
       <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <EyebrowHeading eyebrow="Nos principes" title="Quatre engagements, à chaque séance." />
+          <Reveal>
+            <EyebrowHeading eyebrow="Nos principes" title="Quatre engagements, à chaque séance." />
+          </Reveal>
           <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
-            {principles.map((item) => (
+            {principles.map((item, i) => (
               <article key={item.index} className="bg-background p-8">
-                <span className="label-caps text-gold-soft">{item.index}</span>
-                <h3 className="mt-5 text-2xl text-foreground">{item.title}</h3>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <Reveal delay={i * 80}>
+                  <span className="label-caps text-gold-soft">{item.index}</span>
+                  <h3 className="mt-5 text-2xl text-foreground">{item.title}</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                </Reveal>
               </article>
             ))}
           </div>
@@ -95,18 +100,22 @@ function ConceptPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <EyebrowHeading eyebrow="L'équipe" title="Des praticiennes, pas des techniciennes." />
+          <Reveal>
+            <EyebrowHeading eyebrow="L'équipe" title="Des praticiennes, pas des techniciennes." />
+          </Reveal>
           <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
+            {team.map((member, i) => (
               <article key={member.initials} className="bg-background p-8">
-                <span
-                  aria-hidden="true"
-                  className="flex size-14 items-center justify-center rounded-full border border-gold/40 font-display text-lg text-gold"
-                >
-                  {member.initials}
-                </span>
-                <h3 className="mt-6 text-xl text-foreground">{member.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{member.role}</p>
+                <Reveal delay={i * 70}>
+                  <span
+                    aria-hidden="true"
+                    className="flex size-14 items-center justify-center rounded-full border border-gold/40 font-display text-lg text-gold"
+                  >
+                    {member.initials}
+                  </span>
+                  <h3 className="mt-6 text-xl text-foreground">{member.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{member.role}</p>
+                </Reveal>
               </article>
             ))}
           </div>
