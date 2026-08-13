@@ -248,13 +248,17 @@ h1 {
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
 
-/* Page active : cadre complet visible d'emblée, sans animation */
+/* Page active : couleur dorée persistante. */
 .nav-link--active {
   color: var(--gold);
 }
 
-.nav-link--active::before,
-.nav-link--active::after {
+/* Cadre complet (snap instantané) uniquement quand aucune trace n'est
+ * en cours (:not(.nav-link--hovered)). Si --hovered est aussi présent
+ * (clic pendant la trace), c'est --hovered qui pilote l'animation
+ * jusqu'à son terme — puis --active prend le relais sans artefact. */
+.nav-link--active:not(.nav-link--hovered)::before,
+.nav-link--active:not(.nav-link--hovered)::after {
   border-color: var(--gold);
   width: calc(100% + 16px);
   height: calc(100% + 10px);

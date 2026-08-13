@@ -6,13 +6,15 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import logoMark from "@/assets/logo-reboot.jpg";
 
-/** Durée totale de la trace (~1.22s après +15%) + marge → le cadre
- *  finit de se dessiner avant que la classe hovered soit retirée. */
-const HOVER_LINGER_MS = 1300;
+/** Linger après dé-hover normal. */
+const HOVER_LINGER_MS = 650;
+/** Linger après clic — doit couvrir la durée totale de la trace (~1.22s). */
+const CLICK_LINGER_MS = 1400;
 
-/** Lien de navigation avec animation de cadre prolongée au dé-hover.
- *  La classe nav-link--hovered reste active HOVER_LINGER_MS ms après
- *  que la souris soit partie, pour laisser la trace se terminer. */
+/** Lien de navigation avec animation de cadre prolongée au dé-hover et au clic.
+ *  - dé-hover : classe --hovered maintenue 650ms pour laisser l'animation avancer.
+ *  - clic : classe --hovered maintenue 1400ms pour laisser la trace se terminer
+ *    avant que l'état actif (--active) ne prenne le relais. */
 function NavLink({ link }: { link: { to: string; label: string } }) {
   const [hovered, setHovered] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -31,6 +33,13 @@ function NavLink({ link }: { link: { to: string; label: string } }) {
       }}
       onMouseLeave={() => {
         timerRef.current = setTimeout(() => setHovered(false), HOVER_LINGER_MS);
+      }}
+      onClick={() => {
+        // Au clic, prolonger le linger pour que la trace se termine
+        // avant que --active ne prenne le relais.
+        clearTimeout(timerRef.current);
+        setHovered(true);
+        timerRef.current = setTimeout(() => setHovered(false), CLICK_LINGER_MS);
       }}
     >
       {link.label}
