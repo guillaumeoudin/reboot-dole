@@ -7,7 +7,7 @@ import { BrandWordmark } from "@/components/BrandWordmark";
 import logoMark from "@/assets/logo-reboot.jpg";
 
 /** Linger après dé-hover normal. */
-const HOVER_LINGER_MS = 650;
+const HOVER_LINGER_MS = 500;
 /** Linger après clic — doit couvrir la durée totale de la trace (~1.22s). */
 const CLICK_LINGER_MS = 1400;
 
