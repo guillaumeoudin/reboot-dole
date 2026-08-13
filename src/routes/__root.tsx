@@ -7,7 +7,6 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { flushSync } from "react-dom";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
@@ -125,29 +124,6 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const router = useRouter();
-
-  // View Transitions API — intercepte toutes les navigations client-side.
-  // flushSync force React à rendre la nouvelle page de façon synchrone à
-  // l'intérieur du callback, afin que le navigateur capture le bon "after".
-  useEffect(() => {
-    if (!("startViewTransition" in document)) return;
-    const h = router.history;
-    const push = h.push.bind(h);
-    const replace = h.replace.bind(h);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (h as any).push = (...args: Parameters<typeof push>) =>
-      document.startViewTransition(() => flushSync(() => push(...args)));
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (h as any).replace = (...args: Parameters<typeof replace>) =>
-      document.startViewTransition(() => flushSync(() => replace(...args)));
-    return () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (h as any).push = push;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (h as any).replace = replace;
-    };
-  }, [router.history]);
 
   return (
     <QueryClientProvider client={queryClient}>
