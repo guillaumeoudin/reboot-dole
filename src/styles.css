@@ -226,7 +226,7 @@ h1 {
   border-top-color: var(--nav-accent);
   border-right-color: var(--nav-accent);
   transition:
-    background-color   0.45s  ease 0.55s, /* fond après que le haut+droite soient tracés */
+    background-color   0.35s  ease 1.22s, /* fond après cadre intégralement tracé (1.22s) */
     border-top-color   0s     0s,
     border-right-color 0s     0.48s,
     width              0.48s  ease 0s,
