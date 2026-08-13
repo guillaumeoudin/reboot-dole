@@ -4,11 +4,50 @@ Site officiel du centre Reboot à Dole. Ce document explique comment maintenir e
 
 ---
 
+## Avant de commencer — Workflow local
+
+Si tu veux modifier les fichiers directement sur ton poste (plutôt que via l'interface GitHub en ligne), voici le workflow complet.
+
+**Cloner le dépôt (une seule fois)**
+
+```bash
+git clone https://github.com/guillaumeoudin/reboot-dole.git
+cd reboot-dole
+```
+
+**Publier les modifications**
+
+```bash
+git add .                                 # prépare tous les fichiers modifiés
+# ou : git add src/data/soins.ts         # pour ne sélectionner qu'un fichier précis
+
+git commit -m "description de la modification"  # enregistre localement avec un message
+# exemple : "feat: mise à jour tarif épilation laser"
+# exemple : "fix: correction FAQ cryolipolyse ventre"
+
+git push origin main                      # envoie sur GitHub → Vercel déploie automatiquement
+```
+
+**Prévisualiser les modifications avant de publier (optionnel)**
+
+Si tu veux voir le résultat dans le navigateur avant de pousser sur GitHub, tu peux lancer le site en local. Cela nécessite d'installer les dépendances une première fois :
+
+```bash
+npm install          # une seule fois après le clone
+npm run dev          # démarre le serveur → http://localhost:8080
+```
+
+Les modifications sont alors visibles en temps réel dans le navigateur dès que tu sauvegardes un fichier. Pour la plupart des modifications textuelles, ce n'est pas indispensable — tu peux éditer, pousser, et vérifier directement sur le site en ligne 30 secondes plus tard.
+
+> **Alternative :** tu peux aussi modifier les fichiers directement sur GitHub (interface web). La commande `git push` est remplacée par le bouton "Commit changes". Pas besoin de cloner quoi que ce soit.
+
+---
+
 ## Sommaire
 
 1. [Comment fonctionne le site](#1-comment-fonctionne-le-site)
 2. [Mettre à jour les informations du centre](#2-mettre-à-jour-les-informations-du-centre)
-3. [Modifier le contenu des pages](#3-modifier-le-contenu-des-pages)
+3. [Inventaire complet des pages](#3-inventaire-complet-des-pages)
 4. [Soins & landing pages SEO](#4-soins--landing-pages-seo)
 5. [Blog — Decap CMS](#5-blog--decap-cms)
 6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
@@ -16,6 +55,7 @@ Site officiel du centre Reboot à Dole. Ce document explique comment maintenir e
 8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
 9. [Quand faire appel à Guillaume](#9-quand-faire-appel-à-guillaume)
 10. [Stack technique](#10-stack-technique)
+- [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
 
@@ -92,35 +132,35 @@ Modifier les valeurs dans `openingHours`. Ne pas changer les noms des jours en a
 
 ---
 
-## 3. Modifier le contenu des pages
+## 3. Inventaire complet des pages
 
-Chaque page du site correspond à un fichier dans le dossier `src/routes/` :
+Toutes les pages du site, où se trouvent leurs contenus, et comment les modifier :
 
-| Page | Fichier |
-|---|---|
-| Accueil | `src/routes/index.tsx` |
-| Soins (liste) | `src/routes/soins.index.tsx` |
-| Bien-être | `src/routes/bien-etre.tsx` |
-| Le concept | `src/routes/concept.tsx` |
-| Blog | `src/routes/blog.index.tsx` |
-| Contact | `src/routes/contact.tsx` |
-| Mentions légales | `src/routes/mentions-legales.tsx` |
-| Politique de confidentialité | `src/routes/politique-de-confidentialite.tsx` |
+| URL | Page | Fichier à modifier | Comment modifier |
+|---|---|---|---|
+| `/` | Accueil | `src/routes/index.tsx` | Dans le fichier |
+| `/soins` | Liste des soins | `src/routes/soins.index.tsx` | Dans le fichier |
+| `/soins/epilation-laser` | Épilation laser | `src/data/soins.ts` → entrée `epilation-laser` | Via `soins.ts` |
+| `/soins/cryolipolyse` | Cryolipolyse | `src/data/soins.ts` → entrée `cryolipolyse` | Via `soins.ts` |
+| `/soins/peeling` | Peeling | `src/data/soins.ts` → entrée `peeling` | Via `soins.ts` |
+| `/soins/microneedling` | Microneedling | `src/data/soins.ts` → entrée `microneedling` | Via `soins.ts` |
+| `/bien-etre` | Bien-être & Yoga | `src/routes/bien-etre.tsx` | Dans le fichier |
+| `/concept` | Le concept | `src/routes/concept.tsx` | Dans le fichier |
+| `/blog` | Blog (liste articles) | `src/routes/blog.index.tsx` | Dans le fichier |
+| `/blog/[slug]` | Articles de blog | `content/blog/[nom-article].md` | Via Decap CMS |
+| `/contact` | Contact | `src/routes/contact.tsx` | Dans le fichier |
+| `/mentions-legales` | Mentions légales | `src/routes/mentions-legales.tsx` | Dans le fichier |
+| `/politique-de-confidentialite` | Politique de conf. | `src/routes/politique-de-confidentialite.tsx` | Dans le fichier |
+| `/yoga-dole` | Landing SEO — Yoga | `src/routes/yoga-dole.tsx` | Dans le fichier |
+| `/epilation-laser-jambes-dole` | Landing SEO — Jambes | `src/routes/epilation-laser-jambes-dole.tsx` | Dans le fichier |
+| `/epilation-laser-maillot-dole` | Landing SEO — Maillot | `src/routes/epilation-laser-maillot-dole.tsx` | Dans le fichier |
+| `/cryolipolyse-ventre-dole` | Landing SEO — Ventre | `src/routes/cryolipolyse-ventre-dole.tsx` | Dans le fichier |
 
-### Comment modifier un texte dans une page
+**Trois approches d'édition selon la page :**
 
-Dans chaque fichier de page, les textes se trouvent soit dans des constantes en haut du fichier, soit directement dans le code HTML-like (JSX) entre les balises `>` et `<`.
-
-**Exemple — changer le titre de la page Bien-être :**
-
-```tsx
-// Dans src/routes/bien-etre.tsx
-// Chercher la ligne qui ressemble à :
-title="La longévité commence de l'intérieur."
-// Et modifier le texte entre guillemets
-```
-
-**Règle de base :** ne modifier que le texte entre guillemets (`"..."`) ou entre balises (`>texte ici<`). Ne jamais modifier les noms de propriétés, les accolades `{}`, les balises ou la structure.
+- **Dans le fichier** — le texte est directement dans le fichier `.tsx`. Ouvrir le fichier, modifier le texte entre guillemets (`"..."`) ou entre balises (`>texte ici<`). Ne jamais modifier les noms de propriétés, les accolades `{}`, la structure du code.
+- **Via `soins.ts`** — toutes les pages soins partagent un même gabarit de mise en page. Leur contenu (textes, tarifs, FAQ…) est stocké dans `src/data/soins.ts` et injecté automatiquement. Il n'y a qu'un fichier à modifier pour mettre à jour une page soin. → Voir section 4 pour le détail.
+- **Via Decap CMS** — les articles de blog sont gérés via l'interface admin `/admin`. → Voir section 5 pour le détail.
 
 ### Modifier le titre et la description SEO d'une page
 
@@ -172,18 +212,7 @@ Invisibles pour les visiteurs, ces données sont des informations supplémentair
 
 **Fichier :** `src/data/soins.ts`
 
-Toutes les informations sur les soins (4 à l'heure actuelle : épilation laser, cryolipolyse, peeling, microneedling) sont centralisées dans ce fichier. Modifier ici met à jour automatiquement la page liste des soins ET la page détail de chaque soin.
-
-Pages soins accessibles depuis la navigation :
-
-| URL | Fichier de données |
-|---|---|
-| `/soins/epilation-laser` | `src/data/soins.ts` → entrée `epilation-laser` |
-| `/soins/cryolipolyse` | `src/data/soins.ts` → entrée `cryolipolyse` |
-| `/soins/peeling` | `src/data/soins.ts` → entrée `peeling` |
-| `/soins/microneedling` | `src/data/soins.ts` → entrée `microneedling` |
-
-> **Bonne nouvelle pour les soins :** les données structurées JSON-LD (FAQ, prix, description) sont **générées automatiquement** à partir de `soins.ts`. Tu n'as qu'un seul endroit à mettre à jour.
+Toutes les informations sur les soins (épilation laser, cryolipolyse, peeling, microneedling) sont centralisées dans ce fichier. Modifier ici met à jour automatiquement la page liste des soins ET la page détail de chaque soin — les données structurées JSON-LD (FAQ, prix, description pour Google) sont **générées automatiquement** à partir de ce fichier. Tu n'as qu'un seul endroit à modifier.
 
 ### Modifier le contenu d'un soin
 
@@ -577,7 +606,7 @@ Toute modification enregistrée sur la branche `main` du dépôt GitHub déclenc
 
 **Via Decap CMS** (blog) : la publication est instantanée côté Decap — le build Vercel démarre dans la foulée et le site est mis à jour en 30 secondes à 2 minutes.
 
-**Via GitHub directement** (code source) : même processus, dès que le fichier est enregistré (`commit`) sur `main`.
+**Via GitHub directement** (code source) : même processus, dès que le fichier est `commit` sur `main`.
 
 **Pour vérifier qu'un déploiement est terminé** : aller sur [vercel.com](https://vercel.com) → tableau de bord du projet `reboot-dole` → voir le statut du dernier déploiement.
 
@@ -650,3 +679,45 @@ src/routes/           Une page = un fichier (routing fichier TanStack)
 src/routeTree.gen.ts  Registre auto-généré des routes (ne pas modifier manuellement)
 src/styles.css        Design system : tokens couleur, typographie, utilitaires
 ```
+
+---
+
+## Annexe — Comprendre la stack technique
+
+Cette section explique ce que fait chaque brique technologique, en langage clair. Tu n'as pas besoin de la lire pour maintenir le site — elle sert à comprendre pourquoi les choses fonctionnent ainsi.
+
+### GitHub
+
+Le **dépôt Git** où est stocké tout le code source du site. Chaque modification est enregistrée sous forme d'un *commit* : une sauvegarde avec un message, une date et un auteur. Cela permet de voir l'historique de chaque fichier et de revenir en arrière si besoin. C'est aussi le déclencheur du déploiement : quand un commit arrive sur la branche `main`, Vercel le détecte automatiquement.
+
+### Vercel
+
+La **plateforme d'hébergement** qui sert le site aux visiteurs. À chaque push sur `main`, Vercel reconstruit le site (build) et le déploie en production. C'est Vercel qui gère aussi le certificat HTTPS (le cadenas dans l'URL), les performances et la disponibilité. L'offre Hobby est gratuite pour un usage comme celui du site Reboot.
+
+### React
+
+La **bibliothèque JavaScript** qui structure l'interface. React découpe l'interface en *composants* réutilisables — par exemple, le header est un composant utilisé sur toutes les pages, le bouton "Réserver" en est un autre. Chaque fichier `.tsx` dans `src/routes/` est un composant qui décrit une page.
+
+### TanStack Start
+
+Le **framework** qui encapsule React et ajoute le rendu côté serveur (SSR — *Server-Side Rendering*). Concrètement : quand Google visite une page, il reçoit le HTML complet et déjà rendu, pas une page vide que JavaScript doit remplir. C'est indispensable pour le SEO — les pages HTML statiques sont mieux indexées que les pages construites dynamiquement côté client. TanStack Start gère aussi le routage : un fichier dans `src/routes/` = une URL accessible sur le site.
+
+### Vite
+
+L'**outil de build** qui compile et optimise tout le code pour la production. Il transforme les fichiers TypeScript (`.tsx`) et les styles en fichiers HTML/JS/CSS que les navigateurs peuvent lire. Il gère aussi les images dans `src/assets/` (optimisation, hash de nommage pour le cache). En développement local, Vite sert le site sur `localhost:8080` avec rechargement automatique.
+
+### TypeScript
+
+Le **langage** utilisé pour écrire le code (les fichiers `.tsx` et `.ts`). C'est JavaScript avec un système de typage ajouté : chaque variable, propriété ou paramètre a un type défini (texte, nombre, tableau…), ce qui permet de détecter des erreurs avant même de lancer le site. L'extension `.tsx` indique que le fichier contient à la fois du TypeScript et du JSX (la syntaxe HTML-dans-le-code propre à React).
+
+### Tailwind CSS
+
+Le **système de styles** qui contrôle tout l'aspect visuel. Plutôt que d'écrire du CSS classique dans des fichiers séparés, Tailwind fournit des classes courtes à appliquer directement dans le code (`text-gold`, `py-16`, `border-border`…). Le fichier `src/styles.css` définit les tokens du design system de Reboot (couleurs, espacements, typographie) que Tailwind utilise ensuite.
+
+### shadcn/ui
+
+Une **bibliothèque de composants d'interface** prêts à l'emploi : boutons, accordéons, menus, modales… Ils sont construits sur Radix UI (qui garantit l'accessibilité) et stylisés avec Tailwind. Les accordéons FAQ visibles sur les pages soins et les landing pages viennent de là. Les composants sont dans `src/components/ui/`.
+
+### Decap CMS
+
+L'**interface d'administration** accessible à `/admin`. Decap CMS est un CMS *headless* (sans base de données) : il lit et écrit directement des fichiers Markdown dans `content/blog/` via l'API GitHub. Quand tu publies un article, Decap crée ou modifie un fichier `.md` sur le dépôt, ce qui déclenche un build Vercel automatique. Pas de serveur backend à gérer, pas de base de données — tout repose sur Git.

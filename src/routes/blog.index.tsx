@@ -62,10 +62,10 @@ function BlogIndexPage() {
               Les premiers articles arrivent très bientôt.
             </p>
           ) : (
-            <ul className="grid gap-px border border-border bg-border sm:grid-cols-2">
+            <ul className="grid gap-0.5 border border-border bg-border sm:grid-cols-2">
               {posts.map((post) => (
                 <li key={post.slug} className="bg-background">
-                  <article className="group flex h-full flex-col">
+                  <article className="group flex h-full flex-col transition-colors hover:bg-surface">
                     {post.coverImage ? (
                       <img
                         src={post.coverImage}
@@ -85,11 +85,11 @@ function BlogIndexPage() {
                         </span>
                         {post.readingMinutes} min
                       </p>
-                      <h2 className="mt-4 text-2xl leading-tight text-foreground">
+                      <h2 className="mt-4 text-2xl leading-tight text-foreground transition-colors group-hover:text-gold">
                         <Link
                           to="/blog/$slug"
                           params={{ slug: post.slug }}
-                          className="transition-colors after:absolute hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="after:absolute focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           {post.title}
                         </Link>
