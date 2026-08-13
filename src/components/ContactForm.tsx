@@ -90,7 +90,7 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={set("name")}
-            placeholder="Marie Dupont"
+            placeholder="Vénus de Milo"
             className={inputClass}
           />
         </label>
@@ -101,7 +101,7 @@ export function ContactForm() {
             required
             value={form.email}
             onChange={set("email")}
-            placeholder="marie@exemple.fr"
+            placeholder="venus@musee-du-louvre.fr"
             className={inputClass}
           />
         </label>
@@ -114,7 +114,7 @@ export function ContactForm() {
             type="tel"
             value={form.phone}
             onChange={set("phone")}
-            placeholder="06 00 00 00 00"
+            placeholder="01 40 20 50 50"
             className={inputClass}
           />
         </label>
@@ -138,7 +138,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={set("message")}
-          placeholder="Décrivez votre demande…"
+          placeholder="Bonjour, je voudrais prendre rendez-vous pour un bilan complet. J'ai quelques zones à travailler — les bras surtout, j'arrive plus trop à mettre la main dessus. Dans l'attente de votre retour !"
           className={`${inputClass} resize-none`}
         />
       </label>
