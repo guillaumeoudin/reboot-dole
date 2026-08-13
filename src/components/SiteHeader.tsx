@@ -1,10 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { navLinks, site } from "@/data/site";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import logoMark from "@/assets/logo-reboot.jpg";
+
+/** Durée totale de la trace (~1.22s après +15%) + marge → le cadre
+ *  finit de se dessiner avant que la classe hovered soit retirée. */
+const HOVER_LINGER_MS = 1300;
+
+/** Lien de navigation avec animation de cadre prolongée au dé-hover.
+ *  La classe nav-link--hovered reste active HOVER_LINGER_MS ms après
+ *  que la souris soit partie, pour laisser la trace se terminer. */
+function NavLink({ link }: { link: { to: string; label: string } }) {
+  const [hovered, setHovered] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  return (
+    <Link
+      to={link.to}
+      className={`nav-link label-caps text-muted-foreground${hovered ? " nav-link--hovered" : ""}`}
+      activeProps={{ className: "nav-link--active" }}
+      activeOptions={link.to === "/" ? { exact: true } : undefined}
+      onMouseEnter={() => {
+        clearTimeout(timerRef.current);
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        timerRef.current = setTimeout(() => setHovered(false), HOVER_LINGER_MS);
+      }}
+    >
+      {link.label}
+    </Link>
+  );
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -26,15 +58,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 cta:flex">
           {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="nav-link label-caps text-muted-foreground"
-              activeProps={{ className: "nav-link--active" }}
-              activeOptions={link.to === "/" ? { exact: true } : undefined}
-            >
-              {link.label}
-            </Link>
+            <NavLink key={link.to} link={link} />
           ))}
         </nav>
 

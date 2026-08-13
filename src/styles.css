@@ -215,33 +215,35 @@ h1 {
     border-left-color   0s;
 }
 
-/* Hover — chaque couleur de bord apparaît au moment exact où son côté démarre */
-.nav-link:hover::before {
+/* --hovered : classe gérée en JS avec délai au dé-hover (HOVER_LINGER_MS).
+ * Timings après +15% de vitesse : width 0.48s, height 0.13s.
+ * Chaque border-color n'apparaît qu'au moment exact où son côté démarre. */
+.nav-link--hovered::before {
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   border-top-color: var(--gold);
   border-right-color: var(--gold);
   transition:
-    border-top-color   0s    0s,     /* haut : immédiat */
-    border-right-color 0s    0.55s,  /* droite : après le haut */
-    width              0.55s ease 0s,
-    height             0.15s ease 0.55s;
+    border-top-color   0s     0s,     /* haut : immédiat */
+    border-right-color 0s     0.48s,  /* droite : après le haut */
+    width              0.48s  ease 0s,
+    height             0.13s  ease 0.48s;
 }
 
-.nav-link:hover::after {
+.nav-link--hovered::after {
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   border-bottom-color: var(--gold);
   border-left-color: var(--gold);
   transition:
-    border-bottom-color 0s    0.7s,   /* bas : après la droite */
-    border-left-color   0s    1.25s,  /* gauche : en dernier */
-    width               0.55s ease 0.7s,
-    height              0.15s ease 1.25s;
+    border-bottom-color 0s     0.61s,  /* bas : après la droite */
+    border-left-color   0s     1.09s,  /* gauche : en dernier */
+    width               0.48s  ease 0.61s,
+    height              0.13s  ease 1.09s;
 }
 
-/* Hover : texte doré + glow */
-.nav-link:hover {
+/* Texte doré + glow */
+.nav-link--hovered {
   color: var(--gold);
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
