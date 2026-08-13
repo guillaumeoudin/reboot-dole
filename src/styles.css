@@ -446,6 +446,7 @@ header {
   }
 
   html {
+    background-color: var(--color-background);
     scroll-behavior: smooth;
   }
 
