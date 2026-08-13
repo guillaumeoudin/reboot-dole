@@ -178,13 +178,17 @@ h1 {
   transition: color 0.2s ease, text-shadow 0.25s ease;
 }
 
-/* Pseudo-éléments de base : cadre replié, transition rapide pour le dé-hover */
+/* Pseudo-éléments de base — cadre replié et invisible.
+ * opacity: 0 élimine les pixels de coins résiduels (border corner artifacts).
+ * Sur dé-hover : width/height se replient en 0.25s, puis opacity passe à 0
+ * (délai 0.25s) pour que le pixel de coin disparaisse après le repli. */
 .nav-link::before,
 .nav-link::after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
+  opacity: 0;
 }
 
 .nav-link::before {
@@ -192,7 +196,7 @@ h1 {
   left: -8px;
   border-top: 1px solid var(--gold);
   border-right: 1px solid var(--gold);
-  transition: width 0.25s ease, height 0.25s ease;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0s 0.25s;
 }
 
 .nav-link::after {
@@ -200,24 +204,28 @@ h1 {
   right: -8px;
   border-bottom: 1px solid var(--gold);
   border-left: 1px solid var(--gold);
-  transition: width 0.25s ease, height 0.25s ease;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0s 0.25s;
 }
 
-/* Hover — transitions avec délais séquentiels (trace clockwise) */
+/* Hover — opacity instantanée (avant la trace), puis délais séquentiels */
 .nav-link:hover::before {
+  opacity: 1;
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   transition:
-    width  0.55s ease 0s,
-    height 0.15s ease 0.55s;
+    opacity 0s,
+    width   0.55s ease 0s,
+    height  0.15s ease 0.55s;
 }
 
 .nav-link:hover::after {
+  opacity: 1;
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   transition:
-    width  0.55s ease 0.7s,
-    height 0.15s ease 1.25s;
+    opacity 0s,
+    width   0.55s ease 0.7s,
+    height  0.15s ease 1.25s;
 }
 
 /* Hover : texte doré + glow */
@@ -233,6 +241,7 @@ h1 {
 
 .nav-link--active::before,
 .nav-link--active::after {
+  opacity: 1;
   width: calc(100% + 16px);
   height: calc(100% + 10px);
   transition: none;
