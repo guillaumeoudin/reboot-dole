@@ -146,6 +146,53 @@
   --sidebar-ring: oklch(55.1% 0.027 264.364);
 }
 
+/* ─────────────────────────────────────────────────────────────────
+ * View Transitions — transitions entre pages (navigations client-side).
+ * Un seul bloc actif à la fois. Commenter/décommenter pour tester.
+ * ───────────────────────────────────────────────────────────────── */
+
+/* STYLE A — Rise fade (actif)
+   Ancienne page : fondu rapide. Nouvelle page : fondu + montée légère.
+   Ton : élégant, cohérent avec l'animation rise-in existante. */
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-rise-fade-in {
+  from { opacity: 0; transform: translateY(14px); }
+}
+::view-transition-old(root) {
+  animation: vt-fade-out 0.15s ease-out both;
+}
+::view-transition-new(root) {
+  animation: vt-rise-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* STYLE B — Cross-fade pur (commenter A pour activer)
+   Simple fondu enchaîné. Plus neutre.
+@keyframes vt-fade-in  { from { opacity: 0; } }
+@keyframes vt-fade-out { to   { opacity: 0; } }
+::view-transition-old(root) { animation: vt-fade-out 0.2s ease both; }
+::view-transition-new(root) { animation: vt-fade-in  0.2s ease both; }
+*/
+
+/* STYLE C — Slide horizontal (commenter A pour activer)
+   Ancienne page glisse à gauche, nouvelle arrive de droite. Effet "app".
+@keyframes vt-slide-out { to   { transform: translateX(-30px); opacity: 0; } }
+@keyframes vt-slide-in  { from { transform: translateX(30px);  opacity: 0; } }
+::view-transition-old(root) { animation: vt-slide-out 0.25s ease both; }
+::view-transition-new(root) { animation: vt-slide-in  0.3s  ease both; }
+*/
+
+/* Désactive les animations pour les utilisateurs sensibles au mouvement. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 @keyframes rise-in {
   0% {
     opacity: 0;
