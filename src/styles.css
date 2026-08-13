@@ -175,7 +175,7 @@ h1 {
 .dark { --nav-accent: var(--gold); }
 .nav-link {
   position: relative;
-  transition: color 0.2s ease, text-shadow 0.25s ease;
+  transition: color 0.2s ease, text-shadow 0.25s ease, background-color 0.35s ease;
 }
 
 /* Pseudo-éléments de base — cadre replié, bordures transparentes.
@@ -242,18 +242,19 @@ h1 {
     height              0.13s  ease 1.09s;
 }
 
-/* Texte doré au hover (contraste suffisant sur fond clair et sombre). */
+/* Texte en accent + fond doré subtil au hover. */
 .nav-link--hovered {
-  color: var(--gold);
+  color: var(--nav-accent);
+  background-color: color-mix(in oklab, var(--gold) 10%, transparent);
+}
+.dark .nav-link--hovered {
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
-:root:not(.dark) .nav-link--hovered {
-  text-shadow: none;
-}
 
-/* Page active : couleur dorée persistante. */
+/* Page active : accent + fond doré subtil persistant. */
 .nav-link--active {
-  color: var(--gold);
+  color: var(--nav-accent);
+  background-color: color-mix(in oklab, var(--gold) 7%, transparent);
 }
 
 /* Cadre complet (snap instantané) uniquement quand aucune trace n'est
