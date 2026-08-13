@@ -242,17 +242,18 @@ h1 {
     height              0.13s  ease 1.09s;
 }
 
-/* Texte + glow au hover */
+/* Texte doré au hover (contraste suffisant sur fond clair et sombre). */
 .nav-link--hovered {
-  color: var(--nav-accent);
-}
-.dark .nav-link--hovered {
+  color: var(--gold);
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
+:root:not(.dark) .nav-link--hovered {
+  text-shadow: none;
+}
 
-/* Page active : couleur accentuée persistante. */
+/* Page active : couleur dorée persistante. */
 .nav-link--active {
-  color: var(--nav-accent);
+  color: var(--gold);
 }
 
 /* Cadre complet (snap instantané) uniquement quand aucune trace n'est
