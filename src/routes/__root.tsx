@@ -146,6 +146,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Texture de grain — élément DOM dédié pour pouvoir le figer via view-transition-name */}
+      <div aria-hidden="true" className="grain-overlay" />
       {/* Splashscreen — une seule fois par session */}
       <SplashScreen />
       <div className="flex min-h-screen flex-col">
