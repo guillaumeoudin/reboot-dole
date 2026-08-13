@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileCtaBar, WhatsAppFloat } from "@/components/MobileCtaBar";
+import { SplashScreen } from "@/components/SplashScreen";
 import { localBusinessJsonLd } from "@/data/localBusiness";
 
 function NotFoundComponent() {
@@ -129,6 +130,8 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Barre de progression dorée au scroll — CSS-only, zero JS */}
       <div className="scroll-progress-bar" aria-hidden="true" />
+      {/* Splashscreen — une seule fois par session */}
+      <SplashScreen />
       <div className="flex min-h-screen flex-col">
         <a
           href="#contenu"
