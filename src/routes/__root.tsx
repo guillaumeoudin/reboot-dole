@@ -128,8 +128,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Barre de progression dorée au scroll — CSS-only, zero JS */}
-      <div className="scroll-progress-bar" aria-hidden="true" />
       {/* Splashscreen — une seule fois par session */}
       <SplashScreen />
       <div className="flex min-h-screen flex-col">

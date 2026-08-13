@@ -164,43 +164,13 @@ h1 {
   h1 { animation: none; }
 }
 
-/* ─── Barre de progression au scroll ──────────────────────────────────────
- * Barre dorée de 2px, fixed en haut de page, qui s'étend de 0 à 100%
- * pendant le scroll via l'API CSS scroll-driven animations (Chrome 115+).
- * Dégradation silencieuse : invisible sur Safari / anciens navigateurs.
- * ───────────────────────────────────────────────────────────────────────── */
-@keyframes scroll-progress {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-.scroll-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--gold);
-  transform-origin: 0 center;
-  transform: scaleX(0); /* caché par défaut si scroll-driven non supporté */
-  z-index: 60;
-  pointer-events: none;
-}
-
-@supports (animation-timeline: scroll()) {
-  .scroll-progress-bar {
-    animation: scroll-progress linear both;
-    animation-timeline: scroll(root block);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-progress-bar { display: none; }
-}
 
 /* ─── Navigation header — effets dorés ────────────────────────────────────
- * 1. Soulignement animé gauche→droite au hover (pseudo-élément ::after).
- * 2. Indicateur persistant sur la page active (underline toujours visible).
+ * 1. Cadre doré qui se trace autour de l'entrée au hover (clockwise) :
+ *    ::before → haut puis droite / ::after → bas puis gauche.
+ *    Les délais sur :hover créent l'effet séquentiel.
+ *    Sur dé-hover, les transitions sans délai replient le cadre rapidement.
+ * 2. Cadre persistant (plein, sans animation) sur la page active.
  * 3. Glow subtil sur le texte au hover.
  * ─────────────────────────────────────────────────────────────────────────── */
 .nav-link {
@@ -208,34 +178,64 @@ h1 {
   transition: color 0.2s ease, text-shadow 0.25s ease;
 }
 
+/* Pseudo-éléments de base : cadre replié, transition rapide pour le dé-hover */
+.nav-link::before,
 .nav-link::after {
   content: "";
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 1.32s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0;
+  height: 0;
 }
 
-/* Hover : couleur + glow + soulignement qui se dessine */
+.nav-link::before {
+  top: -5px;
+  left: -8px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.nav-link::after {
+  bottom: -5px;
+  right: -8px;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+/* Hover — transitions avec délais séquentiels (trace clockwise) */
+.nav-link:hover::before {
+  width: calc(100% + 16px);
+  height: calc(100% + 10px);
+  transition:
+    width  0.55s ease 0s,
+    height 0.15s ease 0.55s;
+}
+
+.nav-link:hover::after {
+  width: calc(100% + 16px);
+  height: calc(100% + 10px);
+  transition:
+    width  0.55s ease 0.7s,
+    height 0.15s ease 1.25s;
+}
+
+/* Hover : texte doré + glow */
 .nav-link:hover {
   color: var(--gold);
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
-.nav-link:hover::after {
-  transform: scaleX(1);
-}
 
-/* Page active : couleur + soulignement persistant */
+/* Page active : cadre complet visible d'emblée, sans animation */
 .nav-link--active {
   color: var(--gold);
 }
+
+.nav-link--active::before,
 .nav-link--active::after {
-  transform: scaleX(1);
+  width: calc(100% + 16px);
+  height: calc(100% + 10px);
+  transition: none;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
