@@ -45,8 +45,11 @@ function Index() {
     <>
       <section className="glow-warm border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
-          <div className="rise-in max-w-3xl">
-            <p className="label-caps text-gold">
+          <div className="max-w-3xl">
+            <p
+              className="rise-in label-caps text-gold"
+              style={{ "--rise-delay": "0ms" } as React.CSSProperties}
+            >
               <span
                 aria-hidden="true"
                 className="mr-3 inline-block h-px w-6 translate-y-[-3px] bg-gold align-middle"
@@ -57,11 +60,17 @@ function Index() {
               La beauté n'est pas une promesse.
               <span className="block text-gold">C'est un protocole.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p
+              className="rise-in mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+              style={{ "--rise-delay": "320ms" } as React.CSSProperties}
+            >
               Reboot réunit à Dole les soins technico-esthétiques non invasifs les plus efficaces et
               une approche complète de la longévité, dans un lieu intimiste et rigoureux.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
+            <div
+              className="rise-in mt-10 flex flex-wrap items-center gap-6"
+              style={{ "--rise-delay": "440ms" } as React.CSSProperties}
+            >
               <BookButton className="hidden px-6 py-3.5 cta:inline-flex" />
               <TextLink to="/soins">Découvrir les soins</TextLink>
             </div>

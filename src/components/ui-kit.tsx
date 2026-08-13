@@ -29,15 +29,21 @@ export function EyebrowHeading({
   title,
   intro,
   as: Tag = "h2",
+  stagger = false,
 }: {
   eyebrow: string;
   title: string;
   intro?: string;
   as?: "h1" | "h2";
+  /** Active le stagger d'entrée : eyebrow (0ms) → titre (clip-reveal) → intro (280ms). */
+  stagger?: boolean;
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="label-caps text-gold">
+      <p
+        className={`${stagger ? "rise-in " : ""}label-caps text-gold`}
+        style={stagger ? ({ "--rise-delay": "0ms" } as React.CSSProperties) : undefined}
+      >
         <span
           aria-hidden="true"
           className="mr-3 inline-block h-px w-6 translate-y-[-3px] bg-gold align-middle"
@@ -48,7 +54,12 @@ export function EyebrowHeading({
         {title}
       </Tag>
       {intro ? (
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">{intro}</p>
+        <p
+          className={`${stagger ? "rise-in " : ""}mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground`}
+          style={stagger ? ({ "--rise-delay": "280ms" } as React.CSSProperties) : undefined}
+        >
+          {intro}
+        </p>
       ) : null}
     </div>
   );

@@ -70,6 +70,7 @@ function BienEtrePage() {
               eyebrow="Bien-être & longévité"
               title="La longévité commence de l'intérieur."
               intro="Les soins agissent sur la peau ; le mouvement, la respiration et l'accompagnement agissent sur tout le reste. Reboot réunit les deux."
+              stagger
             />
             <div className="mt-10">
               <BookButton />

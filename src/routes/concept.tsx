@@ -64,6 +64,7 @@ function ConceptPage() {
               eyebrow="Le concept"
               title="Un centre pensé comme une clinique."
               intro="À Dole, au cœur du Jura, Reboot rassemble les soins esthétiques non invasifs les plus efficaces dans un lieu intimiste et rigoureux."
+              stagger
             />
             <div className="mt-10">
               <BookButton />

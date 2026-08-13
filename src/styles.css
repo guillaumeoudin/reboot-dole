@@ -194,8 +194,7 @@ h1,
 .reveal-root {
   --reveal-delay: 0ms;
   opacity: 0;
-  transform: translateY(14px);
-  will-change: opacity, transform;
+  transform: translateY(28px); /* cohérent avec le keyframe rise-in */
 }
 
 .reveal-visible {
@@ -206,7 +205,6 @@ h1,
   .reveal-root {
     opacity: 1;
     transform: none;
-    will-change: auto;
   }
   .reveal-visible {
     animation: none;
@@ -381,7 +379,7 @@ button.bg-gold-cta:hover {
 @keyframes rise-in {
   0% {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(28px);
   }
   100% {
     opacity: 1;
@@ -460,7 +458,8 @@ button.bg-gold-cta:hover {
 }
 
 @utility rise-in {
-  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* --rise-delay : custom property pour cascader les éléments d'un hero */
+  animation: rise-in 0.75s var(--rise-delay, 0ms) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Mise en forme du HTML généré depuis le Markdown des articles de blog. */

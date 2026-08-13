@@ -29,6 +29,7 @@ function SoinsPage() {
             eyebrow="Nos soins"
             title="Des protocoles précis, non invasifs."
             intro="Chaque soin commence par un bilan et se poursuit par un plan personnalisé. Aucune promesse démesurée : des résultats mesurables, séance après séance."
+            stagger
           />
           <div className="mt-10 hidden cta:block">
             <BookButton />
