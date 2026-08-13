@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
 
 import { navLinks, site } from "@/data/site";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -57,17 +56,35 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:hidden"
           >
-            {open ? (
-              <X className="size-4" aria-hidden="true" />
-            ) : (
-              <Menu className="size-4" aria-hidden="true" />
-            )}
+            {/* Animated burger → X */}
+            <span aria-hidden="true" className="flex size-4 flex-col items-stretch justify-center gap-[5px]">
+              <span
+                className={`h-px w-full origin-center bg-current transition-transform duration-300 ${
+                  open ? "translate-y-[6px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`h-px w-full bg-current transition-opacity duration-200 ${
+                  open ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`h-px w-full origin-center bg-current transition-transform duration-300 ${
+                  open ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
+              />
+            </span>
           </button>
         </div>
       </div>
 
-      {open ? (
-        <div className="border-t border-border bg-background cta:hidden">
+      {/* Mobile nav panel — animated with grid-template-rows trick (height: 0 → auto) */}
+      <div
+        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out cta:hidden ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="min-h-0 border-t border-border bg-background">
           <nav className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
             {navLinks.map((link) => (
               <Link
@@ -91,7 +108,7 @@ export function SiteHeader() {
             </a>
           </nav>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }
