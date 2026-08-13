@@ -3,8 +3,6 @@
  * Ces pages ne figurent pas dans la navigation principale du site —
  * elles sont découvertes via Google et le sitemap.xml.
  */
-import { Link } from "@tanstack/react-router";
-
 import { BookButton } from "@/components/ui-kit";
 import {
   Accordion,
@@ -12,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { site } from "@/data/site";
 
 export type SeoLandingPageProps = {
   title: string;
@@ -109,12 +106,12 @@ export function SeoLandingPage({
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <BookButton />
-            <div className="text-sm text-muted-foreground">
-              <span>ou appelez le </span>
-              <a href={site.phoneHref} className="text-foreground hover:text-gold">
-                {site.phone}
-              </a>
-            </div>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
+            >
+              Nous contacter <span aria-hidden="true">→</span>
+            </a>
           </div>
           <div className="mt-8 border-t border-border pt-8">
             <a
