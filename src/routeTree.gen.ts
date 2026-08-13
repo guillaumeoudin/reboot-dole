@@ -13,6 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BienEtreRouteImport } from './routes/bien-etre'
 import { Route as ConceptRouteImport } from './routes/concept'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
+import { Route as YogaDoleRouteImport } from './routes/yoga-dole'
+import { Route as EpilationLaserJambesDoleRouteImport } from './routes/epilation-laser-jambes-dole'
+import { Route as EpilationLaserMaillotDoleRouteImport } from './routes/epilation-laser-maillot-dole'
+import { Route as CryolipolyseVentreDoleRouteImport } from './routes/cryolipolyse-ventre-dole'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminConfigDotYmlRouteImport } from './routes/admin/config[.]yml'
 import { Route as ApiAuthRouteImport } from './routes/api/auth'
@@ -40,6 +46,36 @@ const ConceptRoute = ConceptRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitiqueDeConfidentialiteRoute = PolitiqueDeConfidentialiteRouteImport.update({
+  id: '/politique-de-confidentialite',
+  path: '/politique-de-confidentialite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YogaDoleRoute = YogaDoleRouteImport.update({
+  id: '/yoga-dole',
+  path: '/yoga-dole',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EpilationLaserJambesDoleRoute = EpilationLaserJambesDoleRouteImport.update({
+  id: '/epilation-laser-jambes-dole',
+  path: '/epilation-laser-jambes-dole',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EpilationLaserMaillotDoleRoute = EpilationLaserMaillotDoleRouteImport.update({
+  id: '/epilation-laser-maillot-dole',
+  path: '/epilation-laser-maillot-dole',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CryolipolyseVentreDoleRoute = CryolipolyseVentreDoleRouteImport.update({
+  id: '/cryolipolyse-ventre-dole',
+  path: '/cryolipolyse-ventre-dole',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -88,6 +124,12 @@ export interface FileRoutesByFullPath {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/yoga-dole': typeof YogaDoleRoute
+  '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
+  '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
+  '/cryolipolyse-ventre-dole': typeof CryolipolyseVentreDoleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/config.yml': typeof AdminConfigDotYmlRoute
   '/api/auth': typeof ApiAuthRoute
@@ -102,6 +144,12 @@ export interface FileRoutesByTo {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/yoga-dole': typeof YogaDoleRoute
+  '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
+  '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
+  '/cryolipolyse-ventre-dole': typeof CryolipolyseVentreDoleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/config.yml': typeof AdminConfigDotYmlRoute
   '/api/auth': typeof ApiAuthRoute
@@ -117,6 +165,12 @@ export interface FileRoutesById {
   '/bien-etre': typeof BienEtreRoute
   '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/yoga-dole': typeof YogaDoleRoute
+  '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
+  '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
+  '/cryolipolyse-ventre-dole': typeof CryolipolyseVentreDoleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/config.yml': typeof AdminConfigDotYmlRoute
   '/api/auth': typeof ApiAuthRoute
@@ -133,6 +187,12 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/yoga-dole'
+    | '/epilation-laser-jambes-dole'
+    | '/epilation-laser-maillot-dole'
+    | '/cryolipolyse-ventre-dole'
     | '/sitemap.xml'
     | '/admin/config.yml'
     | '/api/auth'
@@ -147,6 +207,12 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/yoga-dole'
+    | '/epilation-laser-jambes-dole'
+    | '/epilation-laser-maillot-dole'
+    | '/cryolipolyse-ventre-dole'
     | '/sitemap.xml'
     | '/admin/config.yml'
     | '/api/auth'
@@ -161,6 +227,12 @@ export interface FileRouteTypes {
     | '/bien-etre'
     | '/concept'
     | '/contact'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/yoga-dole'
+    | '/epilation-laser-jambes-dole'
+    | '/epilation-laser-maillot-dole'
+    | '/cryolipolyse-ventre-dole'
     | '/sitemap.xml'
     | '/admin/config.yml'
     | '/api/auth'
@@ -176,6 +248,12 @@ export interface RootRouteChildren {
   BienEtreRoute: typeof BienEtreRoute
   ConceptRoute: typeof ConceptRoute
   ContactRoute: typeof ContactRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
+  YogaDoleRoute: typeof YogaDoleRoute
+  EpilationLaserJambesDoleRoute: typeof EpilationLaserJambesDoleRoute
+  EpilationLaserMaillotDoleRoute: typeof EpilationLaserMaillotDoleRoute
+  CryolipolyseVentreDoleRoute: typeof CryolipolyseVentreDoleRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminConfigDotYmlRoute: typeof AdminConfigDotYmlRoute
   ApiAuthRoute: typeof ApiAuthRoute
@@ -213,6 +291,48 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-de-confidentialite': {
+      id: '/politique-de-confidentialite'
+      path: '/politique-de-confidentialite'
+      fullPath: '/politique-de-confidentialite'
+      preLoaderRoute: typeof PolitiqueDeConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yoga-dole': {
+      id: '/yoga-dole'
+      path: '/yoga-dole'
+      fullPath: '/yoga-dole'
+      preLoaderRoute: typeof YogaDoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/epilation-laser-jambes-dole': {
+      id: '/epilation-laser-jambes-dole'
+      path: '/epilation-laser-jambes-dole'
+      fullPath: '/epilation-laser-jambes-dole'
+      preLoaderRoute: typeof EpilationLaserJambesDoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/epilation-laser-maillot-dole': {
+      id: '/epilation-laser-maillot-dole'
+      path: '/epilation-laser-maillot-dole'
+      fullPath: '/epilation-laser-maillot-dole'
+      preLoaderRoute: typeof EpilationLaserMaillotDoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cryolipolyse-ventre-dole': {
+      id: '/cryolipolyse-ventre-dole'
+      path: '/cryolipolyse-ventre-dole'
+      fullPath: '/cryolipolyse-ventre-dole'
+      preLoaderRoute: typeof CryolipolyseVentreDoleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -284,6 +404,12 @@ const rootRouteChildren: RootRouteChildren = {
   BienEtreRoute: BienEtreRoute,
   ConceptRoute: ConceptRoute,
   ContactRoute: ContactRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
+  YogaDoleRoute: YogaDoleRoute,
+  EpilationLaserJambesDoleRoute: EpilationLaserJambesDoleRoute,
+  EpilationLaserMaillotDoleRoute: EpilationLaserMaillotDoleRoute,
+  CryolipolyseVentreDoleRoute: CryolipolyseVentreDoleRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminConfigDotYmlRoute: AdminConfigDotYmlRoute,
   ApiAuthRoute: ApiAuthRouteWithChildren,

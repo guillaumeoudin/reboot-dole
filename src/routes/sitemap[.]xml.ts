@@ -10,7 +10,22 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const staticPaths = ["/", "/soins", "/bien-etre", "/concept", "/blog", "/contact"];
+        const staticPaths = [
+          "/",
+          "/soins",
+          "/soins/epilation-laser",
+          "/soins/cryolipolyse",
+          "/soins/peeling",
+          "/soins/microneedling",
+          "/bien-etre",
+          "/yoga-dole",
+          "/epilation-laser-jambes-dole",
+          "/epilation-laser-maillot-dole",
+          "/cryolipolyse-ventre-dole",
+          "/concept",
+          "/blog",
+          "/contact",
+        ];
         const entries = [
           ...staticPaths.map((path) => ({ path, changefreq: "monthly", priority: path === "/" ? "1.0" : "0.8" })),
           ...posts.map((post) => ({

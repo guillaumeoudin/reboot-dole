@@ -1,7 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { BookButton, SpecList } from "@/components/ui-kit";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { getSoin, soins } from "@/data/soins";
+import { site } from "@/data/site";
 
 export const Route = createFileRoute("/soins/$slug")({
   loader: ({ params }) => {
@@ -11,9 +18,55 @@ export const Route = createFileRoute("/soins/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Soin introuvable — Reboot Dole" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Soin introuvable — Reboot Dole" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const { soin } = loaderData;
+    const url = `${site.url}/soins/${soin.slug}`;
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: site.url },
+            { "@type": "ListItem", position: 2, name: "Soins", item: `${site.url}/soins` },
+            { "@type": "ListItem", position: 3, name: soin.title, item: url },
+          ],
+        },
+        {
+          "@type": "Service",
+          name: soin.title,
+          description: soin.metaDescription,
+          url,
+          provider: { "@id": `${site.url}/#localbusiness` },
+          areaServed: [
+            { "@type": "City", name: "Dole" },
+            { "@type": "AdministrativeArea", name: "Jura" },
+          ],
+          offers: {
+            "@type": "Offer",
+            price: soin.priceFrom,
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+          },
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: soin.faq.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: { "@type": "Answer", text: item.a },
+          })),
+        },
+      ],
+    };
+
     return {
       meta: [
         { title: soin.metaTitle },
@@ -21,6 +74,8 @@ export const Route = createFileRoute("/soins/$slug")({
         { property: "og:title", content: soin.metaTitle },
         { property: "og:description", content: soin.metaDescription },
       ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
     };
   },
   component: SoinDetail,
@@ -106,7 +161,40 @@ function SoinDetail() {
         </div>
       </section>
 
+      {soin.seoContent ? (
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+            <p className="label-caps text-gold">Le soin en détail</p>
+            <h2 className="mt-5 text-3xl text-foreground">
+              {soin.title} à Dole — centre Reboot
+            </h2>
+            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {soin.seoContent}
+            </p>
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+          <p className="label-caps text-gold">Questions fréquentes</p>
+          <h2 className="mt-5 text-3xl text-foreground">Ce qu'on nous demande souvent</h2>
+          <Accordion type="single" collapsible className="mt-8 max-w-3xl">
+            {soin.faq.map((item, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="border-border">
+                <AccordionTrigger className="text-left text-sm text-foreground hover:text-gold hover:no-underline">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           <p className="label-caps text-gold">Autres soins</p>
           <div className="mt-8 grid gap-px bg-border sm:grid-cols-3">
