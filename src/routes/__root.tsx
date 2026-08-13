@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileCtaBar, WhatsAppFloat } from "@/components/MobileCtaBar";
 import { SplashScreen } from "@/components/SplashScreen";
+import { CustomCursor } from "@/components/CustomCursor";
 import { localBusinessJsonLd } from "@/data/localBusiness";
 
 function NotFoundComponent() {
@@ -132,6 +133,8 @@ function RootComponent() {
       <div className="scroll-progress-bar" aria-hidden="true" />
       {/* Splashscreen — une seule fois par session */}
       <SplashScreen />
+      {/* Curseur personnalisé — desktop uniquement */}
+      <CustomCursor />
       <div className="flex min-h-screen flex-col">
         <a
           href="#contenu"
