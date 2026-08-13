@@ -109,6 +109,7 @@ function Index() {
                 key={soin.slug}
                 to="/soins/$slug"
                 params={{ slug: soin.slug }}
+                viewTransition
                 className="group bg-background transition-colors hover:bg-surface"
               >
                 <img

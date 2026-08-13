@@ -38,6 +38,7 @@ export function SiteFooter() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
+                    viewTransition
                     className="text-muted-foreground transition-colors hover:text-gold"
                   >
                     {link.label}
@@ -100,10 +101,10 @@ export function SiteFooter() {
         <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Reboot {site.city}. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/mentions-legales" className="transition-colors hover:text-gold">
+            <Link to="/mentions-legales" viewTransition className="transition-colors hover:text-gold">
               Mentions légales
             </Link>
-            <Link to="/politique-de-confidentialite" className="transition-colors hover:text-gold">
+            <Link to="/politique-de-confidentialite" viewTransition className="transition-colors hover:text-gold">
               Politique de confidentialité
             </Link>
             <a

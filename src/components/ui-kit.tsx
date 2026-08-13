@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
 
 type Props = {
@@ -67,13 +68,14 @@ export function EyebrowHeading({
 
 export function TextLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
-    <a
-      href={to}
+    <Link
+      to={to}
+      viewTransition
       className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
     >
       {children}
       <span aria-hidden="true">→</span>
-    </a>
+    </Link>
   );
 }
 

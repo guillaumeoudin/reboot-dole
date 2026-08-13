@@ -93,6 +93,7 @@ function SoinDetail() {
           <div>
             <Link
               to="/soins"
+              viewTransition
               className="label-caps text-muted-foreground transition-colors hover:text-gold"
             >
               ← Tous les soins
@@ -206,6 +207,7 @@ function SoinDetail() {
                 key={other.slug}
                 to="/soins/$slug"
                 params={{ slug: other.slug }}
+                viewTransition
                 className="group bg-background p-8 transition-colors hover:bg-surface"
               >
                 <span className="label-caps text-gold-soft">{other.index}</span>

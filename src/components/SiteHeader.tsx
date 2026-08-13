@@ -24,6 +24,7 @@ function NavLink({ link }: { link: { to: string; label: string } }) {
   return (
     <Link
       to={link.to}
+      viewTransition
       className={`nav-link label-caps text-muted-foreground${hovered ? " nav-link--hovered" : ""}`}
       activeProps={{ className: "nav-link--active" }}
       activeOptions={link.to === "/" ? { exact: true } : undefined}
@@ -53,7 +54,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto grid h-20 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 cta:flex cta:justify-between">
-        <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+        <Link to="/" viewTransition className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
           <img
             src={logoMark}
             alt=""
@@ -125,6 +126,7 @@ export function SiteHeader() {
               <Link
                 key={link.to}
                 to={link.to}
+                viewTransition
                 onClick={() => setOpen(false)}
                 className="label-caps border-b border-border py-4 text-muted-foreground transition-colors hover:text-gold"
               >
