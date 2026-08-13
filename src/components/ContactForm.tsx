@@ -90,7 +90,7 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={set("name")}
-            placeholder="Chewbacca"
+            placeholder="Cléopâtre"
             className={inputClass}
           />
         </label>
@@ -101,7 +101,7 @@ export function ContactForm() {
             required
             value={form.email}
             onChange={set("email")}
-            placeholder="chewie@millennium-falcon.com"
+            placeholder="cleopatre@palais-alexandrie.eg"
             className={inputClass}
           />
         </label>
@@ -138,7 +138,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={set("message")}
-          placeholder="Bonjour, je souhaite un devis pour une épilation laser intégrale. La surface à traiter est légèrement supérieure à la moyenne. Disponible entre deux missions. Cordialement, GRRRWLL."
+          placeholder="Bonjour, depuis que Marc Antoine est reparti à Rome je me laisse un peu aller. Je voudrais reprendre soin de moi. Vous faites le cryolipolyse sur le Nil ou faut-il se déplacer ?"
           className={`${inputClass} resize-none`}
         />
       </label>
