@@ -218,7 +218,7 @@ h1 {
   background-color: var(--gold);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.78s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 1.17s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Hover : couleur + glow + soulignement qui se dessine */
