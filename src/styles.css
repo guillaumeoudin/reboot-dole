@@ -146,6 +146,24 @@
   --sidebar-ring: oklch(55.1% 0.027 264.364);
 }
 
+/* ─── Clip-path reveal sur les h1 ─────────────────────────────────────────
+ * Les titres h1 se dévoilent via un clip-path qui balaie de gauche à droite.
+ * Donne l'impression que les mots sont imprimés sur la page (vs fadés).
+ * Magnifique sur Cormorant Garamond. CSS-only, zéro JS.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes clip-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+h1 {
+  animation: clip-reveal 0.85s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 { animation: none; }
+}
+
 /* ─── Barre de progression au scroll ──────────────────────────────────────
  * Barre dorée de 2px, fixed en haut de page, qui s'étend de 0 à 100%
  * pendant le scroll via l'API CSS scroll-driven animations (Chrome 115+).
