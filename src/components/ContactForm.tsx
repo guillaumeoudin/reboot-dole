@@ -90,7 +90,7 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={set("name")}
-            placeholder="Vénus de Milo"
+            placeholder="Chewbacca"
             className={inputClass}
           />
         </label>
@@ -101,7 +101,7 @@ export function ContactForm() {
             required
             value={form.email}
             onChange={set("email")}
-            placeholder="venus@musee-du-louvre.fr"
+            placeholder="chewie@millennium-falcon.com"
             className={inputClass}
           />
         </label>
@@ -138,7 +138,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={set("message")}
-          placeholder="Bonjour, je voudrais prendre rendez-vous pour un bilan complet. J'ai quelques zones à travailler — les bras surtout, j'arrive plus trop à mettre la main dessus. Dans l'attente de votre retour !"
+          placeholder="Bonjour, je souhaite un devis pour une épilation laser intégrale. La surface à traiter est légèrement supérieure à la moyenne. Disponible entre deux missions. Cordialement, GRRRWLL."
           className={`${inputClass} resize-none`}
         />
       </label>
