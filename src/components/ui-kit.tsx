@@ -8,8 +8,8 @@ type Props = {
   className?: string;
 };
 
-const base =
-  "group items-center gap-3 bg-gold-cta text-sm font-medium tracking-wide text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+const ghostBook =
+  "book-btn group items-center gap-3 border border-gold/70 bg-transparent text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function BookButton({ label = "Réserver un soin", className }: Props) {
   return (
@@ -17,7 +17,7 @@ export function BookButton({ label = "Réserver un soin", className }: Props) {
       href={site.booking}
       target="_blank"
       rel="noreferrer noopener"
-      className={`${base} ${className ?? "inline-flex px-6 py-3.5"}`}
+      className={`${ghostBook} ${className ?? "inline-flex px-6 py-3.5"}`}
     >
       {label}
       <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
@@ -60,7 +60,7 @@ export function HeroBookButton({ label = "Réserver un soin", className }: Props
       href={site.booking}
       target="_blank"
       rel="noreferrer noopener"
-      className={`book-btn hero-book-btn group items-center gap-3 border border-gold/70 bg-transparent text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className ?? "inline-flex px-6 py-3.5"}`}
+      className={`hero-book-btn ${ghostBook} ${className ?? "inline-flex px-6 py-3.5"}`}
     >
       {label}
       <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
