@@ -365,6 +365,10 @@ h1,
 .book-btn {
   position: relative;
   overflow: hidden;
+  /* Isole les repaints du box-shadow (book-attention) dans son propre
+   * compositor layer pour ne pas déclencher de repaint sur les nav-links voisins
+   * (leurs border-color 0s sont sensibles au timing des repaints globaux). */
+  will-change: transform;
   /* Fill ralenti de 80% (0.3s → 1.5s) pour rendre la transition visible */
   transition:
     background-color 1.5s ease,
