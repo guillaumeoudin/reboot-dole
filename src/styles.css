@@ -319,15 +319,17 @@ h1,
 /* 3 apparitions courtes (~1.3s chacune) par cycle de 9.55s, silences asymétriques
  * pour l'effet aléatoire. La durée non-multiple avec border-dot (2.16s) fait que
  * l'étoile apparaît à un endroit différent du périmètre à chaque fois. */
+/* steps(1, end) → transitions instantanées, pas de fondu qui gonfle la durée perçue.
+ * 2.6% de 9.55s = 248ms ≈ 250ms par apparition. */
 @keyframes border-dot-pause {
-  0%        { opacity: 0; }
-  2%, 7%    { opacity: 1; }   /* apparition 1 : ~0.5s */
-  10%       { opacity: 0; }   /* silence ~3.0s */
-  42%, 47%  { opacity: 1; }   /* apparition 2 : ~0.5s */
-  50%       { opacity: 0; }   /* silence ~2.5s */
-  76%, 81%  { opacity: 1; }   /* apparition 3 : ~0.5s */
-  84%       { opacity: 0; }   /* silence ~1.5s + début cycle suivant */
-  100%      { opacity: 0; }
+  0%      { opacity: 0; animation-timing-function: steps(1, end); }
+  2%      { opacity: 1; animation-timing-function: steps(1, end); }
+  4.6%    { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.6s */
+  42%     { opacity: 1; animation-timing-function: steps(1, end); }
+  44.6%   { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.0s */
+  76%     { opacity: 1; animation-timing-function: steps(1, end); }
+  78.6%   { opacity: 0; }                                             /* silence ~2.2s */
+  100%    { opacity: 0; }
 }
 
 
