@@ -409,7 +409,7 @@ h1,
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
   border-color: var(--gold);
-  background-color: color-mix(in oklab, var(--gold-cta) 8%, transparent);
+  background-color: color-mix(in oklab, var(--gold-cta) 35%, transparent);
 }
 
 /* Hover light theme : gold foncé (oklch 56%) — plus visible que gold-cta (74%) */
