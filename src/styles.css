@@ -324,11 +324,11 @@ h1,
 @keyframes border-dot-pause {
   0%      { opacity: 0; animation-timing-function: steps(1, end); }
   2%      { opacity: 1; animation-timing-function: steps(1, end); }
-  4.6%    { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.6s */
+  7.2%    { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.3s */
   42%     { opacity: 1; animation-timing-function: steps(1, end); }
-  44.6%   { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.0s */
+  47.2%   { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~2.8s */
   76%     { opacity: 1; animation-timing-function: steps(1, end); }
-  78.6%   { opacity: 0; }                                             /* silence ~2.2s */
+  81.2%   { opacity: 0; }                                             /* silence ~2.0s */
   100%    { opacity: 0; }
 }
 
