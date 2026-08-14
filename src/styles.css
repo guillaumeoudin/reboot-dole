@@ -438,7 +438,7 @@ html:not(.dark) .mobile-cta .book-btn {
   animation: none;
 }
 .dark .book-btn::after {
-  animation: none;
+  display: none;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
