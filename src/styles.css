@@ -359,7 +359,7 @@ h1,
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
   border-color: color-mix(in oklab, var(--gold) 40%, transparent);
-  background-color: oklch(87% 0.065 82);  /* sable chaud */
+  background-color: oklch(83% 0.09 82);   /* sable chaud, +40% présence */
   color: var(--gold-cta-foreground);
 }
 
@@ -376,7 +376,7 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: oklch(87% 0.065 82);  /* sable chaud opaque */
+  background-color: oklch(83% 0.09 82);   /* sable chaud opaque, +40% présence */
   color: var(--gold-cta-foreground);
   border-color: color-mix(in oklab, var(--gold) 40%, transparent);
 }
