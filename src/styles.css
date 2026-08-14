@@ -216,23 +216,18 @@ h1,
  * Pill : ::before opacity + scale (propriétés GPU-composited → zéro repaint,
  * zéro conflit avec book-attention).
  * ─────────────────────────────────────────────────────────────────────────── */
-:root { --nav-accent: var(--ink); }
-.dark { --nav-accent: var(--gold); }
+/* Gold dans les deux thèmes : cohérence chromatique. */
+:root { --nav-accent: var(--gold); }
 
 .nav-link {
   position: relative;
-  transition: color 0.2s ease;
+  /* Pas de transition sur l'état de base.
+   * Principe : le navigateur utilise la transition de l'état FINAL.
+   * → couleur et pill apparaissent avec 0.2s, disparaissent INSTANTANÉMENT.
+   * Élimine tout blink lors du view-transition TanStack Router (la class
+   * --active sur l'ancien lien s'efface sans déclencher d'animation). */
 }
 
-/* Fond pill : pseudo-élément positionné derrière le texte.
- * opacity 0 → 1 + scale 0.88 → 1 = 100% composited GPU, zéro repaint.
- *
- * Stratégie de transition unidirectionnelle :
- * - `transition: none` sur l'état de base → disparition INSTANTANÉE
- * - `transition: 0.2s` sur :hover / --active → apparition ANIMÉE
- * Pendant un view-transition TanStack Router (snapshot before/after),
- * --active peut clignoter brièvement sur l'ancien lien ; avec une
- * disparition instantanée le blink est imperceptible. */
 .nav-link::before {
   content: '';
   position: absolute;
@@ -247,20 +242,20 @@ h1,
 
 .nav-link:hover {
   color: var(--nav-accent);
+  transition: color 0.2s ease;
 }
 .nav-link:hover::before {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
-/* Glow texte subtil en thème sombre (gold). */
 .dark .nav-link:hover {
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
 
-/* Page active : pill persistante, légèrement plus opaque. */
 .nav-link--active {
   color: var(--nav-accent);
+  transition: color 0.2s ease;
 }
 .nav-link--active::before {
   opacity: 1;
