@@ -416,12 +416,9 @@ header {
   animation: none;
 }
 
-/* MobileCtaBar figée — plus de bounce (vt-out/vt-in sur le root). */
-::view-transition-group(mobile-cta-bar),
-::view-transition-old(mobile-cta-bar),
-::view-transition-new(mobile-cta-bar) {
-  animation: none;
-}
+/* MobileCtaBar exclue des view transitions (pas de view-transition-name).
+ * Elle est capturée dans le snapshot root → animation vt-out/vt-in légère
+ * mais c'est un meilleur compromis que le jump Firefox causé par le named layer. */
 
 /* Hardcodé — pendant une view transition le DOM sous-jacent n'est pas rendu.
  * var() ne se résout pas dans ::view-transition sous Chromium/Firefox.
