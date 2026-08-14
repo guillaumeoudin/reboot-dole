@@ -307,10 +307,9 @@ h1,
  * ─────────────────────────────────────────────────────────────────────────── */
 .book-btn {
   position: relative;
-  overflow: hidden;
-  /* Isole les repaints du box-shadow (book-attention) dans son propre
-   * compositor layer pour ne pas déclencher de repaint sur les nav-links voisins
-   * (leurs border-color 0s sont sensibles au timing des repaints globaux). */
+  /* clip-path à la place de overflow:hidden : clipping identique visuellement,
+   * mais Firefox peut compositor-thread le ::after indépendamment (fix shimmer lag). */
+  clip-path: inset(0);
   will-change: transform;
   /* Fill ralenti de 80% (0.3s → 1.5s) pour rendre la transition visible */
   transition:
@@ -325,9 +324,6 @@ h1,
   color: var(--gold-cta-foreground);
   border-color: transparent;
   animation-play-state: paused;
-  filter:
-    drop-shadow(0 0 20px color-mix(in oklab, var(--gold-cta) 45%, transparent))
-    drop-shadow(0 0  7px color-mix(in oklab, var(--gold-cta) 22%, transparent));
 }
 
 /* Dark mode par défaut : shimmer doré.
