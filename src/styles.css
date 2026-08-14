@@ -439,8 +439,11 @@ html:not(.dark) .mobile-cta .book-btn {
   border-color: transparent;
 }
 
-/* Halo (book-attention) désactivé en thème sombre. */
+/* Halo (book-attention) et shimmer désactivés en thème sombre. */
 .dark .book-btn {
+  animation: none;
+}
+.dark .book-btn::after {
   animation: none;
 }
 
