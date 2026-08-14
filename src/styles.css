@@ -364,8 +364,8 @@ html:not(.dark) .book-btn {
 }
 
 html:not(.dark) .book-btn:hover {
-  background-color: var(--ink);
-  color: var(--gold);
+  background-color: oklch(72% 0.155 83);
+  color: var(--gold-cta-foreground);
   border-color: transparent;
 }
 
