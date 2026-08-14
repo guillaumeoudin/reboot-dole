@@ -46,7 +46,7 @@ export function MobileCtaBar() {
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
-      <div className="pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
+      <div className="mobile-cta pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
         <a
           href={site.booking}
           target="_blank"

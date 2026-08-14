@@ -412,6 +412,25 @@ html:not(.dark) .book-btn {
   background-color: color-mix(in oklab, var(--gold-cta) 8%, transparent);
 }
 
+/* ─── MobileCtaBar — fond opaque sur le bouton Réserver ─────────────────────
+ * En overlay fixe, bg-transparent laisse voir le contenu derrière.
+ * On force var(--background) au repos ; le hover gold reste via .book-btn:hover
+ * (spécificité .mobile-cta .book-btn:hover > .mobile-cta .book-btn).
+ * ─────────────────────────────────────────────────────────────────────────── */
+.mobile-cta .book-btn {
+  background-color: var(--background);
+}
+
+html:not(.dark) .mobile-cta .book-btn {
+  background-color: var(--background);
+}
+
+.mobile-cta .book-btn:hover {
+  background-color: var(--gold-cta);
+  color: var(--gold-cta-foreground);
+  border-color: transparent;
+}
+
 /* ─── Bouton hero Réserver — comme .book-btn, sans sonar ────────────────────
  * Annule uniquement le sonar ring. Le shimmer auto reste via .book-btn::after.
  * ─────────────────────────────────────────────────────────────────────────── */
