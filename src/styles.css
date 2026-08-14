@@ -374,16 +374,16 @@ h1,
   background: conic-gradient(
     from var(--beam-angle) at 50% 50%,
     transparent                                           0deg,
-    transparent                                         308deg,
-    color-mix(in oklab, var(--gold) 10%, transparent)   320deg,
-    color-mix(in oklab, var(--gold) 28%, transparent)   344deg,
-    color-mix(in oklab, var(--gold) 10%, transparent)   356deg,
+    transparent                                         295deg,
+    color-mix(in oklab, var(--gold) 12%, transparent)   310deg,
+    color-mix(in oklab, var(--gold) 60%, transparent)   344deg,
+    color-mix(in oklab, var(--gold) 12%, transparent)   358deg,
     transparent                                         360deg
   );
   mask-image: radial-gradient(ellipse at center, transparent 72%, black 90%);
   opacity: 0;
   transition: opacity 0.35s ease;
-  animation: border-beam 3s linear infinite;
+  animation: border-beam 6s linear infinite;
   animation-play-state: paused;
   pointer-events: none;
 }
