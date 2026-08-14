@@ -350,17 +350,20 @@ h1,
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ─── Bouton Réserver — surcharges light theme (option A) ───────────────────
- * En light theme, bordure pleine + fond gold très légèrement teinté au repos.
+/* ─── Bouton Réserver — surcharges light theme ───────────────────────────────
+ * Repos : bouton rempli doré (pas ghost) → lisible sur fond sable.
+ * Hue 84° + chroma ≥ 0.15 = plage "vrai gold" ; descendre sous 0.12
+ * ou vers hue 50-70° tire vers le brun.
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
-  border-color: var(--gold);
-  background-color: color-mix(in oklab, var(--gold-cta) 25%, transparent);
+  border-color: transparent;
+  background-color: oklch(72% 0.15 84);   /* gold lumineux au repos */
+  color: var(--gold-cta-foreground);       /* texte navy — contraste AAA */
 }
 
-/* Hover light theme : gold foncé (oklch 56%) — plus visible que gold-cta (74%) */
+/* Hover light theme : gold plus profond, même teinte (hue 84°, chroma 0.16). */
 html:not(.dark) .book-btn:hover {
-  background-color: oklch(63% 0.13 87);
+  background-color: oklch(64% 0.16 84);
   color: var(--gold-cta-foreground);
 }
 
@@ -372,7 +375,9 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: color-mix(in oklab, var(--gold-cta) 25%, var(--background));
+  background-color: oklch(72% 0.15 84);   /* même gold plein que le reste */
+  color: var(--gold-cta-foreground);
+  border-color: transparent;
 }
 
 .mobile-cta .book-btn:hover {
