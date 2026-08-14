@@ -426,7 +426,7 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: var(--background);
+  background-color: color-mix(in oklab, var(--gold-cta) 35%, var(--background));
 }
 
 .mobile-cta .book-btn:hover {
