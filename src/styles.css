@@ -423,11 +423,16 @@ header {
   animation: none;
 }
 
-/* Canvas transparent : var() ne se résout pas dans ::view-transition sous Chromium.
- * En mettant transparent, le fond html (correctement coloré sur un vrai nœud DOM)
- * reste visible derrière les snapshots — aucun flash blanc possible. */
+/* Hardcodé — pendant une view transition le DOM sous-jacent n'est pas rendu.
+ * var() ne se résout pas dans ::view-transition sous Chromium/Firefox.
+ * On force la couleur oklch directement. Dark mode = navy (défaut du site).
+ * html:not(.dark) tente le sable en light — si le sélecteur n'est pas supporté,
+ * le flash sera navy plutôt que blanc, ce qui reste acceptable. */
 ::view-transition {
-  background-color: transparent;
+  background-color: oklch(18.5% 0.052 263); /* navy — dark mode (défaut) */
+}
+html:not(.dark)::view-transition {
+  background-color: oklch(97.6% 0.012 85); /* sable — light mode */
 }
 
 /* Contenu principal.
