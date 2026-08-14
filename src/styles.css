@@ -406,6 +406,11 @@ html:not(.dark) .book-btn {
   color: var(--gold-cta-foreground);
 }
 
+/* Shimmer masqué en thème clair (border beam le remplace au hover). */
+html:not(.dark) .book-btn::after {
+  display: none;
+}
+
 html:not(.dark) .book-btn:hover {
   background-color: transparent;
   color: oklch(74% 0.105 83); /* sable — identique au repos */
