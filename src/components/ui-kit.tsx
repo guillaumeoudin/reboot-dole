@@ -1,5 +1,7 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
+import { useHeroCta } from "@/contexts/hero-cta-context";
 
 type Props = {
   label?: string;
@@ -12,6 +14,49 @@ const base =
 export function BookButton({ label = "Réserver un soin", className }: Props) {
   return (
     <a
+      href={site.booking}
+      target="_blank"
+      rel="noreferrer noopener"
+      className={`${base} ${className ?? "inline-flex px-6 py-3.5"}`}
+    >
+      {label}
+      <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+        →
+      </span>
+    </a>
+  );
+}
+
+/**
+ * Variante hero du bouton de réservation.
+ * Observe sa propre visibilité via IntersectionObserver et met à jour
+ * HeroCtaContext — MobileCtaBar se masque automatiquement quand ce bouton
+ * est visible, évitant toute redondance de CTAs à l'écran.
+ */
+export function HeroBookButton({ label = "Réserver un soin", className }: Props) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const { setHeroCtaVisible } = useHeroCta();
+
+  useEffect(() => {
+    const el = ref.current;
+    // Reset à chaque navigation (montage du composant sur une nouvelle page)
+    setHeroCtaVisible(false);
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroCtaVisible(entry.isIntersecting),
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      setHeroCtaVisible(false);
+    };
+  }, [setHeroCtaVisible]);
+
+  return (
+    <a
+      ref={ref}
       href={site.booking}
       target="_blank"
       rel="noreferrer noopener"

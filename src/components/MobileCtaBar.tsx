@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 import { site } from "@/data/site";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { useHeroCta } from "@/contexts/hero-cta-context";
 
 /**
  * La barre n'est affichée qu'après un scroll minimal (SCROLL_THRESHOLD px).
@@ -34,7 +35,10 @@ function useScrolledPast(threshold: number) {
 
 /** Sticky mobile action bar: shown below the `cta` breakpoint (1080px). */
 export function MobileCtaBar() {
-  const visible = useScrolledPast(SCROLL_THRESHOLD);
+  const scrolledPast = useScrolledPast(SCROLL_THRESHOLD);
+  const { heroCtaVisible } = useHeroCta();
+  // Visible uniquement si scrollé + aucun bouton hero en vue (jamais les deux à l'écran)
+  const visible = scrolledPast && !heroCtaVisible;
 
   return (
     <div

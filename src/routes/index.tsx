@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { BookButton, EyebrowHeading, TextLink } from "@/components/ui-kit";
+import { BookButton, HeroBookButton, EyebrowHeading, TextLink } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
 import centreReboot from "@/assets/centre-reboot.jpg";
@@ -71,6 +71,7 @@ function Index() {
               className="rise-in mt-10 flex flex-wrap items-center gap-6"
               style={{ "--rise-delay": "440ms" } as React.CSSProperties}
             >
+              <HeroBookButton className="inline-flex px-6 py-3.5 cta:hidden" />
               <BookButton className="hidden px-6 py-3.5 cta:inline-flex" />
               <TextLink to="/soins">Découvrir les soins</TextLink>
             </div>

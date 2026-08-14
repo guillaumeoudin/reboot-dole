@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileCtaBar, WhatsAppFloat } from "@/components/MobileCtaBar";
+import { HeroCtaProvider } from "@/contexts/hero-cta-context";
 import { SplashScreen } from "@/components/SplashScreen";
 import { localBusinessJsonLd } from "@/data/localBusiness";
 
@@ -146,6 +147,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+    <HeroCtaProvider>
       {/* Texture de grain — élément DOM dédié pour pouvoir le figer via view-transition-name */}
       <div aria-hidden="true" className="grain-overlay" />
       {/* Splashscreen — une seule fois par session */}
@@ -166,6 +168,7 @@ function RootComponent() {
       </div>
       <MobileCtaBar />
       <WhatsAppFloat />
+    </HeroCtaProvider>
     </QueryClientProvider>
   );
 }

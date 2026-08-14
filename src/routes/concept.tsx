@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { BookButton, EyebrowHeading } from "@/components/ui-kit";
+import { BookButton, HeroBookButton, EyebrowHeading } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
 import centreReboot from "@/assets/centre-reboot.jpg";
 
@@ -67,7 +67,8 @@ function ConceptPage() {
               stagger
             />
             <div className="mt-10">
-              <BookButton />
+              <HeroBookButton className="inline-flex cta:hidden px-6 py-3.5" />
+              <BookButton className="hidden cta:inline-flex px-6 py-3.5" />
             </div>
           </div>
           <img

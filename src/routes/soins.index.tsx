@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { BookButton, EyebrowHeading, SpecList, TextLink } from "@/components/ui-kit";
+import { BookButton, HeroBookButton, EyebrowHeading, SpecList, TextLink } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
 
@@ -31,8 +31,9 @@ function SoinsPage() {
             intro="Chaque soin commence par un bilan et se poursuit par un plan personnalisé. Aucune promesse démesurée : des résultats mesurables, séance après séance."
             stagger
           />
-          <div className="mt-10 hidden cta:block">
-            <BookButton />
+          <div className="mt-10">
+            <HeroBookButton className="inline-flex cta:hidden px-6 py-3.5" />
+            <BookButton className="hidden cta:inline-flex px-6 py-3.5" />
           </div>
         </div>
       </section>
