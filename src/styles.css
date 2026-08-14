@@ -343,26 +343,20 @@ h1,
   100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
 }
 
-/* Pulsation fill gauche→droite pour mobile — synchronisée avec book-attention.
- * N'anime que color + border-color ; background-color est géré via ::before.
+/* Pulsation fill uniforme pour mobile (hero + MobileCtaBar) — cycle 5.25s.
+ * background-color : transparent → gold → transparent (fondu).
  * box-shadow délégué à book-attention (second dans la liste → il gagne). */
 @keyframes book-fill-pulse {
   0%, 100% {
+    background-color: var(--background);
     color: var(--gold);
     border-color: var(--gold);
   }
   38%, 62% {
+    background-color: var(--gold-cta);
     color: var(--gold-cta-foreground);
     border-color: transparent;
   }
-}
-
-/* Révélation clip-path de gauche à droite (inset right : 100% → 0% → 100%).
- * 4% de pause au début/fin pour que le départ soit propre. */
-@keyframes book-fill-sweep {
-  0%, 4%    { clip-path: inset(0 100% 0 0); }
-  38%, 62%  { clip-path: inset(0 0%   0 0); }
-  96%, 100% { clip-path: inset(0 100% 0 0); }
 }
 
 /* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
@@ -387,9 +381,6 @@ h1,
 .book-btn {
   position: relative;
   overflow: hidden;
-  /* isolation: isolate crée un stacking context local : ::before z-index:-1
-   * se positionne au-dessus du fond mais sous le texte, sans fuir vers le parent. */
-  isolation: isolate;
   /* Fill ralenti de 80% (0.3s → 1.5s) pour rendre la transition visible */
   transition:
     background-color 1.5s ease,
@@ -443,28 +434,17 @@ html:not(.dark) .book-btn:hover {
   color: var(--gold-cta-foreground);
 }
 
-/* ─── MobileCtaBar — fond opaque + fill gauche→droite + sonar ───────────────
- * book-fill-pulse (7s) : color + border-color synchronisés avec le sweep.
- * book-attention (3s)  : sonar box-shadow (gagne car book-fill-pulse ne le set pas).
- * ::before             : couche gold revelée par clip-path, z:-1 sous le texte.
+/* ─── MobileCtaBar — fond opaque + fill pulse + sonar ───────────────────────
+ * book-fill-pulse (5.25s) : background-color + color + border-color.
+ * book-attention  (3s)    : sonar box-shadow (book-fill-pulse ne le touche pas).
  * ─────────────────────────────────────────────────────────────────────────── */
 .mobile-cta .book-btn {
   background-color: var(--background);
-  animation: book-fill-pulse 7s ease-in-out infinite, book-attention 3s ease-in-out infinite;
+  animation: book-fill-pulse 5.25s ease-in-out infinite, book-attention 3s ease-in-out infinite;
 }
 
 html:not(.dark) .mobile-cta .book-btn {
   background-color: var(--background);
-}
-
-.mobile-cta .book-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: var(--gold-cta);
-  z-index: -1;
-  pointer-events: none;
-  animation: book-fill-sweep 7s ease-in-out infinite;
 }
 
 .mobile-cta .book-btn:hover {
@@ -474,22 +454,10 @@ html:not(.dark) .mobile-cta .book-btn {
   border-color: transparent;
 }
 
-/* ─── Bouton hero Réserver — fill gauche→droite + sonar, pas de shimmer auto ─
- * book-fill-pulse + book-attention : identique à MobileCtaBar.
- * ::before : même sweep gold synchronisé.
+/* ─── Bouton hero Réserver — fill pulse + sonar, identique MobileCtaBar ─────
  * ─────────────────────────────────────────────────────────────────────────── */
 .hero-book-btn {
-  animation: book-fill-pulse 7s ease-in-out infinite, book-attention 3s ease-in-out infinite;
-}
-
-.hero-book-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: var(--gold-cta);
-  z-index: -1;
-  pointer-events: none;
-  animation: book-fill-sweep 7s ease-in-out infinite;
+  animation: book-fill-pulse 5.25s ease-in-out infinite, book-attention 3s ease-in-out infinite;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
@@ -785,10 +753,8 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
-  .book-btn::before,
   .book-btn::after,
-  .mobile-cta .book-btn,
-  .mobile-cta .book-btn::before {
+  .mobile-cta .book-btn {
     animation: none !important;
   }
 }
