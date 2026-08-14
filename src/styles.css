@@ -398,6 +398,11 @@ html:not(.dark) .mobile-cta .book-btn {
   border-color: transparent;
 }
 
+/* Halo (book-attention) désactivé en thème sombre. */
+.dark .book-btn {
+  animation: none;
+}
+
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
  * box-shadow doré au hover sur les boutons et liens bg-gold-cta.
  * La transition est définie ici pour inclure box-shadow en plus des
