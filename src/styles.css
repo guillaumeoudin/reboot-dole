@@ -704,12 +704,10 @@ html:not(.dark)::view-transition {
 }
 
 @supports (-moz-appearance: none) {
-  /* Sur Firefox, le translate n'est pas compositor-threadé dans position:fixed.
-   * Fix scopé au MobileCtaBar uniquement (le seul bouton dans un fixed container). */
+  /* Firefox ne compositor-thread pas les animations dans position:fixed.
+   * Le shimmer est désactivé sur le MobileCtaBar uniquement (fixed container). */
   .mobile-cta .book-shimmer {
-    /* Centre la bande diagonale sur le bouton (184% * 0.5 - 42% = 50%) */
-    transform: translate3d(-42%, 0, 0);
-    animation: book-shimmer-pulse 8.28s ease-in-out infinite;
+    display: none;
   }
 }
 
