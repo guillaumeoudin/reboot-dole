@@ -316,13 +316,18 @@ h1,
   to   { --dot-pos: 100%; }
 }
 
-/* Pauses pseudo-aléatoires : durée non-multiple de border-dot (6.4s vs 8.3s)
- * → la pause tombe à un endroit différent du périmètre à chaque cycle. */
+/* 3 apparitions courtes (~1.3s chacune) par cycle de 9.55s, silences asymétriques
+ * pour l'effet aléatoire. La durée non-multiple avec border-dot (2.16s) fait que
+ * l'étoile apparaît à un endroit différent du périmètre à chaque fois. */
 @keyframes border-dot-pause {
-  0%, 52%  { opacity: 1; }
-  60%, 78% { opacity: 0; }
-  86%      { opacity: 1; }
-  100%     { opacity: 1; }
+  0%        { opacity: 0; }
+  2%, 16%   { opacity: 1; }   /* apparition 1 : ~1.3s */
+  19%       { opacity: 0; }   /* silence ~2.2s */
+  42%, 56%  { opacity: 1; }   /* apparition 2 : ~1.3s */
+  59%       { opacity: 0; }   /* silence ~1.6s */
+  76%, 90%  { opacity: 1; }   /* apparition 3 : ~1.3s */
+  93%       { opacity: 0; }   /* silence ~0.7s + début cycle suivant */
+  100%      { opacity: 0; }
 }
 
 
@@ -387,7 +392,7 @@ h1,
   background: oklch(97% 0.07 85);
   clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
   filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
-  animation: border-dot 2.16s linear infinite, border-dot-pause 9.55s ease-in-out infinite;
+  animation: border-dot 2.16s linear infinite, border-dot-pause 9.55s linear infinite;
   pointer-events: none;
 }
 
