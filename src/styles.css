@@ -290,10 +290,10 @@ h1,
  * translate3d au lieu de translateX → force le thread GPU dans Firefox
  * (fix jank sur position:fixed + overflow:hidden). */
 @keyframes book-shimmer-loop {
-  0%, 30%  { transform: translate3d(-160%, 0, 0); opacity: 0; }
-  36%      { transform: translate3d(-160%, 0, 0); opacity: 1; }
-  79%      { transform: translate3d(340%,  0, 0); opacity: 1; }
-  85%      { transform: translate3d(340%,  0, 0); opacity: 0; }
+  0%, 21%  { transform: translate3d(-160%, 0, 0); opacity: 0; }
+  25%      { transform: translate3d(-160%, 0, 0); opacity: 1; }
+  85%      { transform: translate3d(340%,  0, 0); opacity: 1; }
+  89%      { transform: translate3d(340%,  0, 0); opacity: 0; }
   100%     { transform: translate3d(-160%, 0, 0); opacity: 0; }
 }
 
@@ -341,7 +341,7 @@ h1,
   );
   will-change: transform, opacity;
   pointer-events: none;
-  animation: book-shimmer-loop 6.9s linear infinite;
+  animation: book-shimmer-loop 9.9s linear infinite;
 }
 
 
