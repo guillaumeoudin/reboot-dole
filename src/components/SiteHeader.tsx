@@ -78,10 +78,10 @@ export function SiteHeader() {
             href={site.booking}
             target="_blank"
             rel="noreferrer noopener"
-            className="book-btn group hidden items-center gap-2 bg-gold-cta px-5 py-2.5 text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
+            className="book-btn group hidden items-center gap-3 bg-gold-cta px-5 py-3 text-sm font-medium tracking-wide text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
           >
-            <span className="font-display italic text-[1.05rem]">Réserver</span>
-            <span aria-hidden="true" className="text-xs opacity-60 transition-[opacity,transform] duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
+            Réserver
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
               →
             </span>
           </a>
@@ -137,10 +137,10 @@ export function SiteHeader() {
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => setOpen(false)}
-              className="book-btn group mt-5 inline-flex items-center justify-center gap-2 bg-gold-cta px-5 py-3 text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft"
+              className="book-btn group mt-5 inline-flex items-center justify-center gap-3 bg-gold-cta px-5 py-3 text-sm font-medium tracking-wide text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft"
             >
-              <span className="font-display italic text-[1.1rem]">Réserver un soin</span>
-              <span aria-hidden="true" className="text-xs opacity-60 transition-[opacity,transform] duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+              Réserver un soin
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </nav>
         </div>
