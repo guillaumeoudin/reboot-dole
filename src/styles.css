@@ -385,7 +385,7 @@ h1,
   pointer-events: none;
 }
 
-html:not(.dark) .book-btn:hover::before {
+.dark .book-btn:hover::before {
   opacity: 1;
   animation: border-dot 8s linear infinite;
 }
