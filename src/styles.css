@@ -360,7 +360,7 @@ html:not(.dark) .book-btn {
 
 /* Hover light theme : gold foncé (oklch 56%) — plus visible que gold-cta (74%) */
 html:not(.dark) .book-btn:hover {
-  background-color: oklch(56% 0.13 87);
+  background-color: oklch(63% 0.13 87);
   color: var(--gold-cta-foreground);
 }
 
