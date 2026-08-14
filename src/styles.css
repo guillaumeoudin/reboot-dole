@@ -321,12 +321,12 @@ h1,
  * l'étoile apparaît à un endroit différent du périmètre à chaque fois. */
 @keyframes border-dot-pause {
   0%        { opacity: 0; }
-  2%, 16%   { opacity: 1; }   /* apparition 1 : ~1.3s */
-  19%       { opacity: 0; }   /* silence ~2.2s */
-  42%, 56%  { opacity: 1; }   /* apparition 2 : ~1.3s */
-  59%       { opacity: 0; }   /* silence ~1.6s */
-  76%, 90%  { opacity: 1; }   /* apparition 3 : ~1.3s */
-  93%       { opacity: 0; }   /* silence ~0.7s + début cycle suivant */
+  2%, 12%   { opacity: 1; }   /* apparition 1 : ~1.0s */
+  15%       { opacity: 0; }   /* silence ~2.6s */
+  42%, 52%  { opacity: 1; }   /* apparition 2 : ~1.0s */
+  55%       { opacity: 0; }   /* silence ~2.0s */
+  76%, 86%  { opacity: 1; }   /* apparition 3 : ~1.0s */
+  89%       { opacity: 0; }   /* silence ~1.1s + début cycle suivant */
   100%      { opacity: 0; }
 }
 
@@ -392,7 +392,7 @@ h1,
   background: oklch(97% 0.07 85);
   clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
   filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
-  animation: border-dot 2.16s linear infinite, border-dot-pause 9.55s linear infinite;
+  animation: border-dot 1.84s linear infinite, border-dot-pause 9.55s linear infinite;
   pointer-events: none;
 }
 
