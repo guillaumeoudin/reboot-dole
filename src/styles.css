@@ -343,6 +343,24 @@ h1,
   100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
 }
 
+/* Pulsation fill/empty pour mobile — remplace le sonar sur MobileCtaBar.
+ * Le bouton se remplit lentement en gold, tient, puis se vide aussi lentement.
+ * Cycle 8s pour un effet respiratoire très doux. */
+@keyframes book-fill-pulse {
+  0%, 100% {
+    background-color: var(--background);
+    color: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 5px color-mix(in oklab, var(--gold-cta) 10%, transparent);
+  }
+  38%, 62% {
+    background-color: var(--gold-cta);
+    color: var(--gold-cta-foreground);
+    border-color: transparent;
+    box-shadow: 0 0 20px color-mix(in oklab, var(--gold-cta) 32%, transparent);
+  }
+}
+
 /* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
 @keyframes book-shimmer-auto {
   0%, 62%  { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
@@ -412,20 +430,23 @@ html:not(.dark) .book-btn {
   background-color: color-mix(in oklab, var(--gold-cta) 8%, transparent);
 }
 
-/* ─── MobileCtaBar — fond opaque sur le bouton Réserver ─────────────────────
- * En overlay fixe, bg-transparent laisse voir le contenu derrière.
- * On force var(--background) au repos ; le hover gold reste via .book-btn:hover
- * (spécificité .mobile-cta .book-btn:hover > .mobile-cta .book-btn).
- * ─────────────────────────────────────────────────────────────────────────── */
-.mobile-cta .book-btn {
-  background-color: var(--background);
+/* Hover light theme : gold foncé (oklch 56%) — plus visible que gold-cta (74%) */
+html:not(.dark) .book-btn:hover {
+  background-color: oklch(56% 0.13 87);
+  color: var(--gold-cta-foreground);
 }
 
-html:not(.dark) .mobile-cta .book-btn {
-  background-color: var(--background);
+/* ─── MobileCtaBar — fond opaque + pulsation fill sur le bouton Réserver ─────
+ * - Remplace le sonar (book-attention) par book-fill-pulse : le bouton se
+ *   remplit lentement en gold puis se vide — visible sans hover sur tactile.
+ * - L'animation anime background-color, donc elle supplante bg-transparent.
+ * ─────────────────────────────────────────────────────────────────────────── */
+.mobile-cta .book-btn {
+  animation: book-fill-pulse 8s ease-in-out infinite;
 }
 
 .mobile-cta .book-btn:hover {
+  animation-play-state: paused;
   background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
   border-color: transparent;
@@ -720,5 +741,19 @@ html:not(.dark)::view-transition {
     border: 0;
     border-top: 1px solid var(--border);
     margin-block: 2.5rem;
+  }
+}
+
+/* ─── Accessibilité : animations réduites ────────────────────────────────────
+ * Désactive toutes les animations continues sur les boutons Réserver pour les
+ * utilisateurs ayant activé « Réduire les animations » dans leur OS.
+ * Les transitions hover (fill, couleur) restent actives — elles répondent à
+ * une action et ne sont pas des animations en boucle.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .book-btn,
+  .book-btn::after,
+  .mobile-cta .book-btn {
+    animation: none !important;
   }
 }
