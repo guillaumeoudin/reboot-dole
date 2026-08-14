@@ -364,8 +364,9 @@ html:not(.dark) .book-btn {
 }
 
 html:not(.dark) .book-btn:hover {
-  background-color: oklch(64% 0.16 84);
-  color: var(--gold-cta-foreground);
+  background-color: var(--ink);
+  color: var(--gold);
+  border-color: transparent;
 }
 
 /* ─── MobileCtaBar — fond opaque sur le bouton Réserver ─────────────────────
