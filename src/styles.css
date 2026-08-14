@@ -324,6 +324,42 @@ h1,
   background-color: color-mix(in oklab, var(--gold-cta) 25%, transparent);
 }
 
+/* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────
+ * Filé de lumière incliné qui traverse le bouton au hover.
+ * Référence visuelle : reflet sur un bijou / un flacon de parfum.
+ * La texture de grain (z-index: 9998, mix-blend-mode: overlay) interagit
+ * avec le shimmer → profondeur matière supplémentaire sans JS.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes book-shimmer {
+  from { transform: translateX(-160%) skewX(-18deg); }
+  to   { transform: translateX(340%) skewX(-18deg); }
+}
+
+.book-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.book-btn::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 38%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, white 22%, transparent),
+    transparent
+  );
+  pointer-events: none;
+  transform: translateX(-160%) skewX(-18deg);
+}
+
+.book-btn:hover::after {
+  animation: book-shimmer 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
  * box-shadow doré au hover sur les boutons et liens bg-gold-cta.
  * La transition est définie ici pour inclure box-shadow en plus des
