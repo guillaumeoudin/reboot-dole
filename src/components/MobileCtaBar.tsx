@@ -1,52 +1,47 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { site } from "@/data/site";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 /**
- * Ajuste la position de la barre en temps réel via l'API visualViewport.
+ * La barre n'est affichée qu'après un scroll minimal (SCROLL_THRESHOLD px).
  *
- * Problème : sur Firefox mobile (et certains Chrome Android), `position: fixed; bottom: 0`
- * se positionne par rapport au layout viewport, qui inclut la hauteur de la barre
- * d'adresse/navigation en bas. Au chargement, la barre du navigateur est visible → grand
- * espace en bas de la CTA bar. En scrollant, la barre disparaît → layout viewport change →
- * l'élément saute vers le bas.
+ * Pourquoi : sur Firefox mobile, `position: fixed; bottom: 0` est calculé par
+ * rapport au layout viewport, qui inclut la barre d'adresse du navigateur.
+ * Au sommet de la page (barre visible), l'élément apparaît avec une grande
+ * marge. En scrollant (barre cachée), il "tombe" vers le bas → effet disgracieux.
  *
- * Solution : on calcule l'écart entre le bas du layout viewport et le bas du visual viewport
- * (= hauteur des UI navigateur présentes en bas), et on compense via translateY.
- * visualViewport émet des events continus pendant l'animation de la toolbar → suivi fluide.
+ * En attendant un scroll minimal, la toolbar Firefox a déjà disparu quand la
+ * barre apparaît → position stable et cohérente. C'est aussi un meilleur
+ * pattern UX : le CTA Réserver du hero est visible en haut, la barre sticky
+ * n'est utile qu'une fois que l'utilisateur a commencé à explorer.
  */
-function useVisualViewportBottom(ref: React.RefObject<HTMLDivElement | null>) {
+const SCROLL_THRESHOLD = 80;
+
+function useScrolledPast(threshold: number) {
+  const [past, setPast] = useState(false);
+
   useEffect(() => {
-    const el = ref.current;
-    const vv = window.visualViewport;
-    if (!el || !vv) return;
+    const update = () => setPast(window.scrollY > threshold);
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", update);
+  }, [threshold]);
 
-    const update = () => {
-      // gap = hauteur des UI navigateur en bas (barre adresse, nav bar…)
-      const gap = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
-      el.style.transform = `translateY(${-gap}px)`;
-    };
-
-    vv.addEventListener("resize", update);
-    vv.addEventListener("scroll", update);
-    update(); // position initiale correcte dès le premier rendu
-
-    return () => {
-      vv.removeEventListener("resize", update);
-      vv.removeEventListener("scroll", update);
-    };
-  }, [ref]);
+  return past;
 }
 
 /** Sticky mobile action bar: shown below the `cta` breakpoint (1080px). */
 export function MobileCtaBar() {
-  const barRef = useRef<HTMLDivElement>(null);
-  useVisualViewportBottom(barRef);
+  const visible = useScrolledPast(SCROLL_THRESHOLD);
 
   return (
-    <div ref={barRef} className="pointer-events-none fixed inset-x-0 bottom-0 z-40 cta:hidden">
+    <div
+      className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 transition-[opacity,transform] duration-300 ease-out cta:hidden ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      }`}
+    >
       <div className="pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
         <a
           href={site.booking}
