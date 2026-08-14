@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { site } from "@/data/site";
@@ -7,7 +7,8 @@ import { useHeroCta } from "@/contexts/hero-cta-context";
 
 /**
  * La barre n'est affichée qu'après un scroll minimal (SCROLL_THRESHOLD px).
- * Fix gap Firefox bas d'écran : géré en CSS via calc(100lvh - 100dvh).
+ * Fix gap Firefox bas d'écran : VisualViewport API ajuste `bottom` en temps
+ * réel quand la toolbar du navigateur apparaît/disparaît.
  */
 const SCROLL_THRESHOLD = 50;
 
@@ -24,19 +25,45 @@ function useScrolledPast(threshold: number) {
   return past;
 }
 
+/**
+ * Synchronise `el.style.bottom` avec le décalage réel de la toolbar du
+ * navigateur via l'API VisualViewport. Sans ça, Firefox mobile positionne
+ * `bottom: 0` par rapport au layout viewport (derrière la toolbar).
+ */
+function useVisualViewportBottom(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv || !ref.current) return;
+
+    const update = () => {
+      if (!ref.current) return;
+      // offset = hauteur entre bas du visual viewport et bas du layout viewport
+      const offset = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+      ref.current.style.bottom = `${offset}px`;
+    };
+
+    vv.addEventListener("resize", update);
+    update();
+    return () => vv.removeEventListener("resize", update);
+  }, [ref]);
+}
+
 /** Sticky mobile action bar: shown below the `cta` breakpoint (1080px). */
 export function MobileCtaBar() {
   const scrolledPast = useScrolledPast(SCROLL_THRESHOLD);
   const { heroCtaVisible } = useHeroCta();
   const visible = scrolledPast && !heroCtaVisible;
+  const barRef = useRef<HTMLDivElement>(null);
+  useVisualViewportBottom(barRef);
 
   return (
     <div
+      ref={barRef}
       className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 transition-[opacity,transform] duration-300 ease-out cta:hidden ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
-      <div className="mobile-cta pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(max(env(safe-area-inset-bottom,0px),100lvh_-_100dvh)_+_1rem)]">
+      <div className="mobile-cta pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)]">
         <a
           href={site.booking}
           target="_blank"

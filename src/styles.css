@@ -543,6 +543,9 @@ html:not(.dark)::view-transition {
   html {
     background-color: var(--color-background);
     scroll-behavior: smooth;
+    /* Réserve l'espace de la scrollbar en permanence → évite le décalage
+     * horizontal du header sticky lors des transitions de page (Firefox desktop). */
+    scrollbar-gutter: stable;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -691,6 +694,23 @@ html:not(.dark)::view-transition {
  * Les transitions hover (fill, couleur) restent actives — elles répondent à
  * une action et ne sont pas des animations en boucle.
  * ─────────────────────────────────────────────────────────────────────────── */
+/* ─── Shimmer Firefox — pulse opacity (pas de translate) ──────────────────
+ * Firefox ne compositor-thread pas le translate dans position:fixed+clip-path.
+ * On remplace le sweep par un pulse centré (opacity uniquement). */
+@keyframes book-shimmer-pulse {
+  0%, 35%   { opacity: 0; }
+  50%, 70%  { opacity: 1; }
+  85%, 100% { opacity: 0; }
+}
+
+@supports (-moz-appearance: none) {
+  .book-shimmer {
+    /* Centre la bande diagonale sur le bouton (184% * 0.5 - 42% = 50%) */
+    transform: translate3d(-42%, 0, 0);
+    animation: book-shimmer-pulse 8.28s ease-in-out infinite;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
   .book-shimmer {
