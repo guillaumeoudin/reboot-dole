@@ -338,7 +338,7 @@ h1,
   position: absolute;
   inset-block: 0;
   left: 0;
-  width: 40%;
+  width: 46%;
   background: linear-gradient(
     90deg,
     transparent,
@@ -346,7 +346,7 @@ h1,
     transparent
   );
   pointer-events: none;
-  animation: book-shimmer-loop 6s linear infinite;
+  animation: book-shimmer-loop 7.5s linear infinite;
 }
 
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
