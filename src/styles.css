@@ -211,117 +211,56 @@ h1,
 }
 
 
-/* ─── Navigation header — effets de cadre ─────────────────────────────────
+/* ─── Navigation header — fond pill au hover / active ────────────────────────
  * --nav-accent : navy en thème clair (--ink), gold en thème sombre.
- * 1. Cadre qui se trace autour de l'entrée au hover (clockwise).
- * 2. Cadre persistant sur la page active.
- * 3. Glow subtil au hover (dark uniquement).
+ * Pill : ::before opacity + scale (propriétés GPU-composited → zéro repaint,
+ * zéro conflit avec book-attention).
  * ─────────────────────────────────────────────────────────────────────────── */
 :root { --nav-accent: var(--ink); }
 .dark { --nav-accent: var(--gold); }
+
 .nav-link {
   position: relative;
-  transition: color 0.2s ease, text-shadow 0.25s ease;
+  transition: color 0.2s ease;
 }
 
-/* Pseudo-éléments de base — cadre replié, bordures transparentes.
- * Chaque border-color est contrôlée individuellement pour n'apparaître
- * qu'au moment précis où son côté commence à se tracer → zéro pixel
- * de coin visible prématurément. Sur dé-hover : tout repasse à
- * transparent instantanément, width/height collapsent en 0.25s. */
-.nav-link::before,
-.nav-link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
+/* Fond pill : pseudo-élément positionné derrière le texte.
+ * opacity 0 → 1 + scale 0.88 → 1 = 100% composited GPU, zéro repaint. */
 .nav-link::before {
-  top: -5px;
-  left: -8px;
-  border-top: 1px solid transparent;
-  border-right: 1px solid transparent;
-  background-color: transparent;
-  transition:
-    background-color 0.3s ease,
-    width            0.25s ease,
-    height           0.25s ease,
-    border-top-color   0s,
-    border-right-color 0s;
+  content: '';
+  position: absolute;
+  inset: -5px -10px;
+  background-color: color-mix(in oklab, var(--nav-accent) 14%, transparent);
+  border-radius: 4px;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
 }
 
-.nav-link::after {
-  bottom: -5px;
-  right: -8px;
-  border-bottom: 1px solid transparent;
-  border-left: 1px solid transparent;
-  transition:
-    width              0.25s ease,
-    height             0.25s ease,
-    border-bottom-color 0s,
-    border-left-color   0s;
-}
-
-/* --hovered : classe gérée en JS avec délai au dé-hover (HOVER_LINGER_MS).
- * Timings après +15% de vitesse : width 0.48s, height 0.13s.
- * Chaque border-color n'apparaît qu'au moment exact où son côté démarre. */
-.nav-link--hovered::before {
-  width: calc(100% + 16px);
-  height: calc(100% + 10px);
-  border-top-color: var(--nav-accent);
-  border-right-color: var(--nav-accent);
-  transition:
-    background-color   0.35s  ease 1.22s, /* fond après cadre intégralement tracé (1.22s) */
-    border-top-color   0s     0s,
-    border-right-color 0s     0.48s,
-    width              0.48s  ease 0s,
-    height             0.13s  ease 0.48s;
-}
-/* Remplissage doré subtil en thème clair uniquement. */
-:root:not(.dark) .nav-link--hovered::before {
-  background-color: color-mix(in oklab, var(--gold-cta) 25%, transparent);
-}
-
-.nav-link--hovered::after {
-  width: calc(100% + 16px);
-  height: calc(100% + 10px);
-  border-bottom-color: var(--nav-accent);
-  border-left-color: var(--nav-accent);
-  transition:
-    border-bottom-color 0s     0.61s,  /* bas : après la droite */
-    border-left-color   0s     1.09s,  /* gauche : en dernier */
-    width               0.48s  ease 0.61s,
-    height              0.13s  ease 1.09s;
-}
-
-/* Texte en accent au hover. */
-.nav-link--hovered {
+.nav-link:hover {
   color: var(--nav-accent);
 }
-.dark .nav-link--hovered {
+.nav-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+/* Glow texte subtil en thème sombre (gold). */
+.dark .nav-link:hover {
   text-shadow: 0 0 12px color-mix(in oklab, var(--gold-soft) 55%, transparent);
 }
 
-/* Page active : couleur accentuée persistante. */
+/* Page active : pill persistante, légèrement plus opaque. */
 .nav-link--active {
   color: var(--nav-accent);
 }
-
-/* Cadre complet (snap instantané) uniquement quand aucune trace n'est
- * en cours (:not(.nav-link--hovered)). Si --hovered est aussi présent
- * (clic pendant la trace), c'est --hovered qui pilote l'animation
- * jusqu'à son terme — puis --active prend le relais sans artefact. */
-.nav-link--active:not(.nav-link--hovered)::before,
-.nav-link--active:not(.nav-link--hovered)::after {
-  border-color: var(--nav-accent);
-  width: calc(100% + 16px);
-  height: calc(100% + 10px);
-  transition: none;
+.nav-link--active::before {
+  opacity: 1;
+  transform: scale(1);
+  background-color: color-mix(in oklab, var(--nav-accent) 18%, transparent);
 }
-/* Fond persistant en thème clair sur la page active. */
-:root:not(.dark) .nav-link--active:not(.nav-link--hovered)::before {
-  background-color: color-mix(in oklab, var(--gold-cta) 25%, transparent);
+.dark .nav-link--active {
+  text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
 /* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────

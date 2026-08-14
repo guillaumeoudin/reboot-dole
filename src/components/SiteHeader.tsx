@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { navLinks, site } from "@/data/site";
@@ -6,42 +6,15 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import logoMark from "@/assets/logo-reboot.jpg";
 
-/** Linger après dé-hover normal. */
-const HOVER_LINGER_MS = 500;
-/** Linger après clic — doit couvrir la durée totale de la trace (~1.22s). */
-const CLICK_LINGER_MS = 1400;
-
-/** Lien de navigation avec animation de cadre prolongée au dé-hover et au clic.
- *  - dé-hover : classe --hovered maintenue 650ms pour laisser l'animation avancer.
- *  - clic : classe --hovered maintenue 1400ms pour laisser la trace se terminer
- *    avant que l'état actif (--active) ne prenne le relais. */
+/** Lien de navigation avec fond pill au hover / active (CSS pur, GPU-composited). */
 function NavLink({ link }: { link: { to: string; label: string } }) {
-  const [hovered, setHovered] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
-
-  useEffect(() => () => clearTimeout(timerRef.current), []);
-
   return (
     <Link
       to={link.to}
       viewTransition
-      className={`nav-link label-caps text-muted-foreground${hovered ? " nav-link--hovered" : ""}`}
+      className="nav-link label-caps text-muted-foreground"
       activeProps={{ className: "nav-link--active" }}
       activeOptions={link.to === "/" ? { exact: true } : undefined}
-      onMouseEnter={() => {
-        clearTimeout(timerRef.current);
-        setHovered(true);
-      }}
-      onMouseLeave={() => {
-        timerRef.current = setTimeout(() => setHovered(false), HOVER_LINGER_MS);
-      }}
-      onClick={() => {
-        // Au clic, prolonger le linger pour que la trace se termine
-        // avant que --active ne prenne le relais.
-        clearTimeout(timerRef.current);
-        setHovered(true);
-        timerRef.current = setTimeout(() => setHovered(false), CLICK_LINGER_MS);
-      }}
     >
       {link.label}
     </Link>
