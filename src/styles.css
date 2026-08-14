@@ -358,8 +358,8 @@ h1,
  * Hover : gold profond pour le contraste CTA.
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
-  border-color: color-mix(in oklab, var(--gold) 40%, transparent);
-  background-color: oklch(83% 0.09 82);   /* sable chaud, +40% présence */
+  border-color: transparent;
+  background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
 }
 
@@ -377,9 +377,9 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: oklch(83% 0.09 82);   /* sable chaud opaque, +40% présence */
+  background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
-  border-color: color-mix(in oklab, var(--gold) 40%, transparent);
+  border-color: transparent;
 }
 
 .mobile-cta .book-btn:hover {
