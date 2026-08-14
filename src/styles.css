@@ -343,12 +343,18 @@ h1,
   100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
 }
 
+/* État vide de la pulsation — navy dans les deux thèmes pour éviter
+ * l'interpolation vers le blanc (light mode background = sable quasi-blanc).
+ * Dark mode : var(--background) est déjà navy. Light mode : var(--ink) = navy. */
+:root          { --book-pulse-empty: var(--background); }
+html:not(.dark){ --book-pulse-empty: var(--ink); }
+
 /* Pulsation fill uniforme pour mobile (hero + MobileCtaBar) — cycle 5.25s.
- * background-color : transparent → gold → transparent (fondu).
+ * background-color : navy → gold → navy dans les deux thèmes (pas de flash blanc).
  * box-shadow délégué à book-attention (second dans la liste → il gagne). */
 @keyframes book-fill-pulse {
   0%, 100% {
-    background-color: var(--background);
+    background-color: var(--book-pulse-empty);
     color: var(--gold);
     border-color: var(--gold);
   }
