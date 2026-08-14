@@ -355,7 +355,7 @@ h1,
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
   border-color: var(--gold);
-  background-color: color-mix(in oklab, var(--gold-cta) 35%, transparent);
+  background-color: color-mix(in oklab, var(--gold-cta) 25%, transparent);
 }
 
 /* Hover light theme : gold foncé (oklch 56%) — plus visible que gold-cta (74%) */
@@ -372,7 +372,7 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: color-mix(in oklab, var(--gold-cta) 35%, var(--background));
+  background-color: color-mix(in oklab, var(--gold-cta) 25%, var(--background));
 }
 
 .mobile-cta .book-btn:hover {
