@@ -404,6 +404,22 @@ h1,
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ─── Bouton Réserver — surcharges light theme (option B) ───────────────────
+ * En light theme, fond encre au repos (contraste maximal sur header sable).
+ * Hover : fill gold identique au dark theme.
+ * ─────────────────────────────────────────────────────────────────────────── */
+html:not(.dark) .book-btn {
+  background-color: var(--ink);
+  color: var(--ink-foreground);
+  border-color: transparent;
+}
+
+html:not(.dark) .book-btn:hover {
+  background-color: var(--gold-cta);
+  color: var(--gold-cta-foreground);
+  border-color: transparent;
+}
+
 /* ─── Bouton hero Réserver — comme .book-btn, sans sonar ────────────────────
  * Annule uniquement le sonar ring. Le shimmer auto reste via .book-btn::after.
  * ─────────────────────────────────────────────────────────────────────────── */
