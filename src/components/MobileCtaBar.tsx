@@ -1,12 +1,52 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { site } from "@/data/site";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
-/** Sticky mobile action bar: shown below the `cta` breakpoint (900px). */
+/**
+ * Ajuste la position de la barre en temps réel via l'API visualViewport.
+ *
+ * Problème : sur Firefox mobile (et certains Chrome Android), `position: fixed; bottom: 0`
+ * se positionne par rapport au layout viewport, qui inclut la hauteur de la barre
+ * d'adresse/navigation en bas. Au chargement, la barre du navigateur est visible → grand
+ * espace en bas de la CTA bar. En scrollant, la barre disparaît → layout viewport change →
+ * l'élément saute vers le bas.
+ *
+ * Solution : on calcule l'écart entre le bas du layout viewport et le bas du visual viewport
+ * (= hauteur des UI navigateur présentes en bas), et on compense via translateY.
+ * visualViewport émet des events continus pendant l'animation de la toolbar → suivi fluide.
+ */
+function useVisualViewportBottom(ref: React.RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    const vv = window.visualViewport;
+    if (!el || !vv) return;
+
+    const update = () => {
+      // gap = hauteur des UI navigateur en bas (barre adresse, nav bar…)
+      const gap = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+      el.style.transform = `translateY(${-gap}px)`;
+    };
+
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    update(); // position initiale correcte dès le premier rendu
+
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
+  }, [ref]);
+}
+
+/** Sticky mobile action bar: shown below the `cta` breakpoint (1080px). */
 export function MobileCtaBar() {
+  const barRef = useRef<HTMLDivElement>(null);
+  useVisualViewportBottom(barRef);
+
   return (
-    <div style={{ willChange: "transform" }} className="pointer-events-none fixed inset-x-0 bottom-0 z-40 cta:hidden">
+    <div ref={barRef} className="pointer-events-none fixed inset-x-0 bottom-0 z-40 cta:hidden">
       <div className="pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
         <a
           href={site.booking}
@@ -30,7 +70,7 @@ export function MobileCtaBar() {
   );
 }
 
-/** Floating WhatsApp pill: shown from the `cta` breakpoint (900px) upwards. */
+/** Floating WhatsApp pill: shown from the `cta` breakpoint (1080px) upwards. */
 export function WhatsAppFloat() {
   return (
     <Link
