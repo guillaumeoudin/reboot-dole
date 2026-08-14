@@ -51,7 +51,7 @@ export function MobileCtaBar() {
           href={site.booking}
           target="_blank"
           rel="noreferrer noopener"
-          className="pointer-events-auto flex h-12 flex-1 basis-0 items-center justify-center gap-2 bg-gold-cta text-sm font-medium tracking-wide text-gold-cta-foreground shadow-lg shadow-black/20 transition-colors hover:bg-gold-cta-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="book-btn pointer-events-auto flex h-12 flex-1 basis-0 items-center justify-center gap-2 border border-gold/70 bg-transparent text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Réserver
           <span aria-hidden="true">→</span>

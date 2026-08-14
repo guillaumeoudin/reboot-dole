@@ -404,33 +404,11 @@ h1,
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ─── Bouton hero Réserver — shimmer auto (sans sonar) ──────────────────────
- * Même shimmer que .book-btn, sans l'anneau sonar.
- * Le bouton est déjà rempli (gold-cta solide) ; pas de transition fill.
+/* ─── Bouton hero Réserver — comme .book-btn, sans sonar ────────────────────
+ * Annule uniquement le sonar ring. Le shimmer auto reste via .book-btn::after.
  * ─────────────────────────────────────────────────────────────────────────── */
 .hero-book-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-book-btn::after {
-  content: '';
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  width: 38%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in oklab, white 22%, transparent),
-    transparent
-  );
-  pointer-events: none;
-  animation: book-shimmer-auto 3s ease-in-out infinite;
-}
-
-.hero-book-btn:hover::after {
-  animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: none;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
