@@ -126,7 +126,6 @@ export function SiteHeader() {
               <Link
                 key={link.to}
                 to={link.to}
-                viewTransition
                 onClick={() => setOpen(false)}
                 className="label-caps border-b border-border py-4 text-muted-foreground transition-colors hover:text-gold"
               >

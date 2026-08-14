@@ -6,7 +6,7 @@ import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 /** Sticky mobile action bar: shown below the `cta` breakpoint (900px). */
 export function MobileCtaBar() {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 cta:hidden">
+    <div style={{ viewTransitionName: "mobile-cta-bar" }} className="pointer-events-none fixed inset-x-0 bottom-0 z-40 cta:hidden">
       <div className="pointer-events-none mx-auto flex max-w-md items-center justify-center gap-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
         <a
           href={site.booking}

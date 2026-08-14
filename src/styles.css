@@ -416,10 +416,18 @@ header {
   animation: none;
 }
 
-/* Fond du canvas de transition = couleur du thème actif.
- * Évite le flash blanc du canvas natif navigateur pendant la pause. */
+/* MobileCtaBar figée — plus de bounce (vt-out/vt-in sur le root). */
+::view-transition-group(mobile-cta-bar),
+::view-transition-old(mobile-cta-bar),
+::view-transition-new(mobile-cta-bar) {
+  animation: none;
+}
+
+/* Canvas transparent : var() ne se résout pas dans ::view-transition sous Chromium.
+ * En mettant transparent, le fond html (correctement coloré sur un vrai nœud DOM)
+ * reste visible derrière les snapshots — aucun flash blanc possible. */
 ::view-transition {
-  background-color: var(--background);
+  background-color: transparent;
 }
 
 /* Contenu principal.
