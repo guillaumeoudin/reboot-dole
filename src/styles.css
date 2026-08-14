@@ -274,15 +274,15 @@ h1,
  * avec le shimmer → profondeur matière supplémentaire sans JS.
  * ─────────────────────────────────────────────────────────────────────────── */
 @keyframes book-attention {
-  /* Respiration douce (0 → 55%) — filter:drop-shadow compositable, pas de repaint */
-  0%, 55%  { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 20%, transparent)); }
-  30%      { filter: drop-shadow(0 0 9px  color-mix(in oklab, var(--gold-cta) 34%, transparent))
-                     drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 16%, transparent)); }
-  /* Flash (65 → 85%) — compensé plus intense pour remplacer l'anneau sonar */
-  65%      { filter: drop-shadow(0 0 18px color-mix(in oklab, var(--gold-cta) 60%, transparent))
-                     drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 38%, transparent)); }
-  85%      { filter: drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 18%, transparent)); }
-  100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 20%, transparent)); }
+  /* Repos long (0 → 62%) — halo de base posé, presque imperceptible */
+  0%, 62%  { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 23%, transparent)); }
+  38%      { filter: drop-shadow(0 0 9px  color-mix(in oklab, var(--gold-cta) 39%, transparent))
+                     drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 18%, transparent)); }
+  /* Flash (72 → 87%) — pic d'attention +12% vs précédent */
+  72%      { filter: drop-shadow(0 0 18px color-mix(in oklab, var(--gold-cta) 70%, transparent))
+                     drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 44%, transparent)); }
+  87%      { filter: drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 21%, transparent)); }
+  100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 23%, transparent)); }
 }
 
 /* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
@@ -318,7 +318,7 @@ h1,
     background-color 1.5s ease,
     color            1.2s ease,
     border-color     1.5s ease;
-  animation: book-attention 3s ease-in-out infinite;
+  animation: book-attention 5s ease-in-out infinite;
 }
 
 .book-btn:hover {
