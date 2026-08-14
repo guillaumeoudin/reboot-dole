@@ -317,7 +317,8 @@ h1,
   transition:
     background-color 1.5s ease,
     color            1.2s ease,
-    border-color     1.5s ease;
+    border-color     1.5s ease,
+    transform        0.25s ease-out;
   animation: book-attention 5s ease-in-out infinite;
 }
 
@@ -374,6 +375,7 @@ html:not(.dark) .book-btn:hover {
   background-color: transparent;
   color: oklch(74% 0.105 83); /* sable — identique au repos */
   border-color: var(--gold);
+  transform: translateY(-1.5px) scale(1.015);
 }
 
 /* ─── MobileCtaBar — fond opaque sur le bouton Réserver ─────────────────────
