@@ -312,13 +312,23 @@ h1,
   to   { transform: translateX(340%) skewX(-18deg); }
 }
 
-/* Point fin qui parcourt la périphérie du bouton. */
+/* Étoile périphérique — vitesse constante approximée pour ratio ~3.5:1.
+ * 39% / 11% / 39% / 11% = haut / droite / bas / gauche (proportionnel périmètre). */
 @keyframes border-dot {
   0%   { --spot-x: 0%;   --spot-y: 0%;   }
-  25%  { --spot-x: 100%; --spot-y: 0%;   }
+  39%  { --spot-x: 100%; --spot-y: 0%;   }
   50%  { --spot-x: 100%; --spot-y: 100%; }
-  75%  { --spot-x: 0%;   --spot-y: 100%; }
+  89%  { --spot-x: 0%;   --spot-y: 100%; }
   100% { --spot-x: 0%;   --spot-y: 0%;   }
+}
+
+/* Pauses pseudo-aléatoires : durée non-multiple de border-dot (6.4s vs 8.3s)
+ * → la pause tombe à un endroit différent du périmètre à chaque cycle. */
+@keyframes border-dot-pause {
+  0%, 52%  { opacity: 1; }
+  60%, 78% { opacity: 0; }
+  86%      { opacity: 1; }
+  100%     { opacity: 1; }
 }
 
 
@@ -373,14 +383,15 @@ h1,
 .book-btn::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle 3px at var(--spot-x) var(--spot-y),
-    oklch(97% 0.07 85) 0%,
-    oklch(97% 0.07 85) 35%,
-    transparent 100%
-  );
-  animation: border-dot 8s linear infinite;
+  width: 7px;
+  height: 7px;
+  left: var(--spot-x);
+  top: var(--spot-y);
+  transform: translate(-50%, -50%);
+  background: oklch(97% 0.07 85);
+  clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
+  filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
+  animation: border-dot 6.4s linear infinite, border-dot-pause 8.3s ease-in-out infinite;
   pointer-events: none;
 }
 
