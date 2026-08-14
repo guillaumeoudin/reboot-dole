@@ -335,9 +335,31 @@ h1,
   to   { transform: translateX(340%) skewX(-18deg); }
 }
 
+/* ─── Bouton Réserver — ghost outline → fill + letter-spacing expand ────────
+ * Repos : transparent, bordure gold, texte gold.
+ * Hover : remplit de gold-cta + tracking s'ouvre + shimmer traverse (100ms delay).
+ * Géré intégralement en CSS pour centraliser les timings.
+ * ─────────────────────────────────────────────────────────────────────────── */
 .book-btn {
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.07em;
+  transition:
+    background-color 0.3s ease,
+    color            0.25s ease,
+    border-color     0.3s ease,
+    box-shadow       0.4s ease,
+    letter-spacing   0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-btn:hover {
+  background-color: var(--gold-cta);
+  color: var(--gold-cta-foreground);
+  border-color: transparent;
+  letter-spacing: 0.14em;
+  box-shadow:
+    0 0 24px color-mix(in oklab, var(--gold-cta) 38%, transparent),
+    0 0  8px color-mix(in oklab, var(--gold-cta) 16%, transparent);
 }
 
 .book-btn::after {
@@ -356,8 +378,9 @@ h1,
   transform: translateX(-160%) skewX(-18deg);
 }
 
+/* Shimmer déclenché 100ms après le hover — laisse le fill démarrer d'abord */
 .book-btn:hover::after {
-  animation: book-shimmer 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────

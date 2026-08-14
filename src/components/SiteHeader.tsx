@@ -78,7 +78,7 @@ export function SiteHeader() {
             href={site.booking}
             target="_blank"
             rel="noreferrer noopener"
-            className="book-btn group hidden items-center gap-3 bg-gold-cta px-5 py-3 text-sm font-medium tracking-wide text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
+            className="book-btn group hidden items-center gap-3 border border-gold/70 bg-transparent px-5 py-3 text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
           >
             Réserver
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
@@ -137,7 +137,7 @@ export function SiteHeader() {
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => setOpen(false)}
-              className="book-btn group mt-5 inline-flex items-center justify-center gap-3 bg-gold-cta px-5 py-3 text-sm font-medium tracking-wide text-gold-cta-foreground transition-colors hover:bg-gold-cta-soft"
+              className="book-btn group mt-5 inline-flex items-center justify-center gap-3 border border-gold/70 bg-transparent px-5 py-3 text-sm font-medium text-gold"
             >
               Réserver un soin
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
