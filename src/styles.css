@@ -331,16 +331,15 @@ h1,
  * avec le shimmer → profondeur matière supplémentaire sans JS.
  * ─────────────────────────────────────────────────────────────────────────── */
 @keyframes book-attention {
-  /* Respiration douce (0 → 55%) */
-  0%, 55%  { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
-  30%      { box-shadow: 0 0 14px color-mix(in oklab, var(--gold-cta) 26%, transparent),
-                          0 0  4px color-mix(in oklab, var(--gold-cta) 10%, transparent); }
-  /* Flash + anneau sonar (65 → 85%) */
-  65%      { box-shadow: 0 0  0 0    color-mix(in oklab, var(--gold-cta) 55%, transparent),
-                          0 0 18px   color-mix(in oklab, var(--gold-cta) 30%, transparent); }
-  85%      { box-shadow: 0 0  0 10px color-mix(in oklab, var(--gold-cta) 0%,  transparent),
-                          0 0  6px   color-mix(in oklab, var(--gold-cta) 14%, transparent); }
-  100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
+  /* Respiration douce (0 → 55%) — filter:drop-shadow compositable, pas de repaint */
+  0%, 55%  { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 20%, transparent)); }
+  30%      { filter: drop-shadow(0 0 9px  color-mix(in oklab, var(--gold-cta) 34%, transparent))
+                     drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 16%, transparent)); }
+  /* Flash (65 → 85%) — compensé plus intense pour remplacer l'anneau sonar */
+  65%      { filter: drop-shadow(0 0 18px color-mix(in oklab, var(--gold-cta) 60%, transparent))
+                     drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 38%, transparent)); }
+  85%      { filter: drop-shadow(0 0 6px  color-mix(in oklab, var(--gold-cta) 18%, transparent)); }
+  100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 20%, transparent)); }
 }
 
 /* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
@@ -382,9 +381,9 @@ h1,
   color: var(--gold-cta-foreground);
   border-color: transparent;
   animation-play-state: paused;
-  box-shadow:
-    0 0 24px color-mix(in oklab, var(--gold-cta) 38%, transparent),
-    0 0  8px color-mix(in oklab, var(--gold-cta) 16%, transparent);
+  filter:
+    drop-shadow(0 0 20px color-mix(in oklab, var(--gold-cta) 45%, transparent))
+    drop-shadow(0 0  7px color-mix(in oklab, var(--gold-cta) 22%, transparent));
 }
 
 .book-btn::after {
