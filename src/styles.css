@@ -285,18 +285,20 @@ h1,
   100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 23%, transparent)); }
 }
 
-/* Shimmer lent en boucle — traverse le bouton toutes les ~6s. */
+/* Shimmer lent en boucle — traverse le bouton toutes les ~6s.
+ * Inclinaison portée par le gradient à 72° (= 90° - 18°, équivalent
+ * du skewX(-18deg) précédent) → translateX seul = compositor-thread Firefox. */
 @keyframes book-shimmer-loop {
-  0%, 40%  { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
-  45%      { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
-  75%      { transform: translateX(340%)  skewX(-18deg); opacity: 1; }
-  80%      { transform: translateX(340%)  skewX(-18deg); opacity: 0; }
-  100%     { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  0%, 40%  { transform: translateX(-160%); opacity: 0; }
+  45%      { transform: translateX(-160%); opacity: 1; }
+  75%      { transform: translateX(340%);  opacity: 1; }
+  80%      { transform: translateX(340%);  opacity: 0; }
+  100%     { transform: translateX(-160%); opacity: 0; }
 }
 
 @keyframes book-shimmer {
-  from { transform: translateX(-160%) skewX(-18deg); }
-  to   { transform: translateX(340%)  skewX(-18deg); }
+  from { transform: translateX(-160%); }
+  to   { transform: translateX(340%); }
 }
 
 
@@ -340,7 +342,7 @@ h1,
   left: 0;
   width: 92%;
   background: linear-gradient(
-    90deg,
+    72deg,
     transparent,
     color-mix(in oklab, var(--gold-soft) 42%, transparent),
     transparent
@@ -371,7 +373,7 @@ html:not(.dark) .book-btn {
 /* Light mode : shimmer blanc/beige sur fond sable */
 html:not(.dark) .book-btn::after {
   background: linear-gradient(
-    90deg,
+    72deg,
     transparent,
     color-mix(in oklab, white 32%, transparent),
     transparent
