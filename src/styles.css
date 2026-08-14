@@ -267,6 +267,13 @@ h1,
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
+/* @property requis pour interpoler --beam-angle dans conic-gradient (keyframe). */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 /* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────
  * Filé de lumière incliné qui traverse le bouton au hover.
  * Référence visuelle : reflet sur un bijou / un flacon de parfum.
@@ -297,6 +304,11 @@ h1,
 @keyframes book-shimmer {
   from { transform: translateX(-160%) skewX(-18deg); }
   to   { transform: translateX(340%) skewX(-18deg); }
+}
+
+/* Lumière qui parcourt la périphérie du bouton en un tour complet. */
+@keyframes border-beam {
+  to { --beam-angle: 360deg; }
 }
 
 /* ─── Bouton Réserver — ghost outline → fill + letter-spacing expand ────────
@@ -350,18 +362,51 @@ h1,
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ─── Bouton Réserver — surcharges light theme ───────────────────────────────
- * Repos : bouton rempli doré (pas ghost) → lisible sur fond sable.
- * Hue 84° + chroma ≥ 0.15 = plage "vrai gold" ; descendre sous 0.12
- * ou vers hue 50-70° tire vers le brun.
+/* ─── Bouton Réserver — border beam (lumière périphérique) ──────────────────
+ * Conic-gradient centré qui tourne → spot doré visible uniquement dans la
+ * zone périphérique (masque radial élimine le centre).
+ * GPU-compositable : seule la custom property --beam-angle change.
  * ─────────────────────────────────────────────────────────────────────────── */
-html:not(.dark) .book-btn {
-  border-color: transparent;
-  background-color: oklch(72% 0.15 84);   /* gold lumineux au repos */
-  color: var(--gold-cta-foreground);       /* texte navy — contraste AAA */
+.book-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--beam-angle) at 50% 50%,
+    transparent                                            0deg,
+    transparent                                          325deg,
+    color-mix(in oklab, var(--gold-cta) 20%, transparent) 337deg,
+    color-mix(in oklab, var(--gold-cta) 60%, transparent) 348deg,
+    color-mix(in oklab, var(--gold-cta) 20%, transparent) 358deg,
+    transparent                                          360deg
+  );
+  /* Masque : centre transparent (caché), anneau périphérique visible. */
+  mask-image: radial-gradient(
+    ellipse at center,
+    transparent 72%,
+    black 89%
+  );
+  animation: border-beam 3s linear infinite;
+  pointer-events: none;
 }
 
-/* Hover light theme : gold plus profond, même teinte (hue 84°, chroma 0.16). */
+/* Sur hover : beam en pause (le fill gold prend le relais visuellement). */
+.book-btn:hover::before {
+  animation-play-state: paused;
+}
+
+/* ─── Bouton Réserver — surcharges light theme ───────────────────────────────
+ * Repos : fond sable chaud (pas ghost, pas gold saturé) — s'harmonise avec
+ * les accents gold du site sans les concurrencer.
+ * Hover : gold profond pour le contraste CTA.
+ * ─────────────────────────────────────────────────────────────────────────── */
+html:not(.dark) .book-btn {
+  border-color: color-mix(in oklab, var(--gold) 40%, transparent);
+  background-color: oklch(87% 0.065 82);  /* sable chaud */
+  color: var(--gold-cta-foreground);
+}
+
 html:not(.dark) .book-btn:hover {
   background-color: oklch(64% 0.16 84);
   color: var(--gold-cta-foreground);
@@ -375,9 +420,9 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: oklch(72% 0.15 84);   /* même gold plein que le reste */
+  background-color: oklch(87% 0.065 82);  /* sable chaud opaque */
   color: var(--gold-cta-foreground);
-  border-color: transparent;
+  border-color: color-mix(in oklab, var(--gold) 40%, transparent);
 }
 
 .mobile-cta .book-btn:hover {
@@ -680,6 +725,7 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
+  .book-btn::before,
   .book-btn::after {
     animation: none !important;
   }
