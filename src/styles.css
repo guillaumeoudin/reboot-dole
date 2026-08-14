@@ -267,14 +267,6 @@ h1,
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
-/* Position de l'étoile périphérique le long du chemin offset-path.
- * Requiert @property pour que CSS puisse interpoler la valeur. */
-@property --dot-pos {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: false;
-}
-
 /* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────
  * Filé de lumière incliné qui traverse le bouton au hover.
  * Référence visuelle : reflet sur un bijou / un flacon de parfum.
@@ -293,36 +285,19 @@ h1,
   100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 23%, transparent)); }
 }
 
-/* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
-@keyframes book-shimmer-auto {
-  0%, 62%  { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
-  76%      { transform: translateX(340%)  skewX(-18deg); opacity: 1; }
-  76.5%    { transform: translateX(-160%) skewX(-18deg); opacity: 0; } /* reset invisible */
-  79%      { opacity: 1; }
-  100%     { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
+/* Shimmer lent en boucle — traverse le bouton toutes les ~6s.
+ * Dark : doré ; Light : blanc/beige (override via theme selector). */
+@keyframes book-shimmer-loop {
+  0%, 40%  { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  45%      { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
+  75%      { transform: translateX(340%)  skewX(-18deg); opacity: 1; }
+  80%      { transform: translateX(340%)  skewX(-18deg); opacity: 0; }
+  100%     { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
 }
 
 @keyframes book-shimmer {
   from { transform: translateX(-160%) skewX(-18deg); }
   to   { transform: translateX(340%) skewX(-18deg); }
-}
-
-/* Étoile périphérique via offset-path : vitesse vraiment constante sur tous
- * les côtés (gérée par le moteur de motion path, pas par des stops manuels).
- * offset-path + offset-distance sont sur le thread compositeur → résiste
- * aux interruptions de scroll sur mobile. */
-@keyframes border-dot {
-  from { --dot-pos: 0%; }
-  to   { --dot-pos: 100%; }
-}
-
-/* Flash de 100ms toutes les 500ms. L'étoile voyage en continu (invisible) ;
- * chaque flash la révèle ~27% du périmètre plus loin que le précédent
- * (décalage = 500ms / 1840ms × périmètre). Apparaît aléatoire sur la durée. */
-@keyframes border-dot-pulse {
-  0%   { opacity: 1; animation-timing-function: steps(1, end); }
-  20%  { opacity: 0; }
-  100% { opacity: 0; }
 }
 
 
@@ -357,38 +332,21 @@ h1,
     drop-shadow(0 0  7px color-mix(in oklab, var(--gold-cta) 22%, transparent));
 }
 
+/* Dark mode par défaut : shimmer doré */
 .book-btn::after {
   content: '';
   position: absolute;
   inset-block: 0;
   left: 0;
-  width: 38%;
+  width: 40%;
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in oklab, white 22%, transparent),
+    color-mix(in oklab, var(--gold-soft) 42%, transparent),
     transparent
   );
   pointer-events: none;
-  animation: book-shimmer-auto 3s ease-in-out infinite;
-}
-
-/* Point périphérique — invisible par défaut, activé au hover light. */
-.book-btn::before {
-  content: '';
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  /* offset-path : l'étoile voyage exactement sur le périmètre du bouton.
-   * offset-rotate: 0deg → l'étoile reste droite (ne suit pas la tangente). */
-  offset-path: inset(0);
-  offset-distance: var(--dot-pos);
-  offset-rotate: 0deg;
-  background: oklch(97% 0.07 85);
-  clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
-  filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
-  animation: border-dot 1.84s linear infinite, border-dot-pulse 0.5s linear infinite;
-  pointer-events: none;
+  animation: book-shimmer-loop 6s linear infinite;
 }
 
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
@@ -409,9 +367,14 @@ html:not(.dark) .book-btn {
   color: var(--gold-cta-foreground);
 }
 
-/* Shimmer masqué en thème clair (border beam le remplace au hover). */
+/* Light mode : shimmer blanc/beige sur fond sable */
 html:not(.dark) .book-btn::after {
-  display: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, white 32%, transparent),
+    transparent
+  );
 }
 
 html:not(.dark) .book-btn:hover {
@@ -440,12 +403,9 @@ html:not(.dark) .mobile-cta .book-btn {
   border-color: transparent;
 }
 
-/* Halo (book-attention) et shimmer désactivés en thème sombre. */
+/* Halo (book-attention) désactivé en thème sombre — shimmer actif. */
 .dark .book-btn {
   animation: none;
-}
-.dark .book-btn::after {
-  display: none;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
@@ -741,7 +701,6 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
-  .book-btn::before,
   .book-btn::after {
     animation: none !important;
   }
