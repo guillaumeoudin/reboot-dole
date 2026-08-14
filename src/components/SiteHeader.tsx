@@ -120,7 +120,7 @@ export function SiteHeader() {
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <div className="min-h-0 border-t border-border bg-background">
+        <div className="min-h-0 overflow-visible border-t border-border bg-background">
           <nav className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
             {navLinks.map((link) => (
               <Link

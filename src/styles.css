@@ -343,28 +343,6 @@ h1,
   100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
 }
 
-/* État vide de la pulsation — navy dans les deux thèmes pour éviter
- * l'interpolation vers le blanc (light mode background = sable quasi-blanc).
- * Dark mode : var(--background) est déjà navy. Light mode : var(--ink) = navy. */
-:root          { --book-pulse-empty: var(--background); }
-html:not(.dark){ --book-pulse-empty: var(--ink); }
-
-/* Pulsation fill uniforme pour mobile (hero + MobileCtaBar) — cycle 5.25s.
- * background-color : navy → gold → navy dans les deux thèmes (pas de flash blanc).
- * box-shadow délégué à book-attention (second dans la liste → il gagne). */
-@keyframes book-fill-pulse {
-  0%, 100% {
-    background-color: var(--book-pulse-empty);
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-  38%, 62% {
-    background-color: var(--gold-cta);
-    color: var(--gold-cta-foreground);
-    border-color: transparent;
-  }
-}
-
 /* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
 @keyframes book-shimmer-auto {
   0%, 62%  { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
@@ -440,13 +418,11 @@ html:not(.dark) .book-btn:hover {
   color: var(--gold-cta-foreground);
 }
 
-/* ─── MobileCtaBar — fond opaque + fill pulse + sonar ───────────────────────
- * book-fill-pulse (5.25s) : background-color + color + border-color.
- * book-attention  (3s)    : sonar box-shadow (book-fill-pulse ne le touche pas).
+/* ─── MobileCtaBar — fond opaque sur le bouton Réserver ─────────────────────
+ * bg-transparent laisserait voir le contenu derrière en overlay fixe.
  * ─────────────────────────────────────────────────────────────────────────── */
 .mobile-cta .book-btn {
   background-color: var(--background);
-  animation: book-fill-pulse 5.25s ease-in-out infinite, book-attention 3s ease-in-out infinite;
 }
 
 html:not(.dark) .mobile-cta .book-btn {
@@ -458,12 +434,6 @@ html:not(.dark) .mobile-cta .book-btn {
   background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
   border-color: transparent;
-}
-
-/* ─── Bouton hero Réserver — fill pulse + sonar, identique MobileCtaBar ─────
- * ─────────────────────────────────────────────────────────────────────────── */
-.hero-book-btn {
-  animation: book-fill-pulse 5.25s ease-in-out infinite, book-attention 3s ease-in-out infinite;
 }
 
 /* ─── Micro-lueur sur les CTAs dorés ──────────────────────────────────────
@@ -759,8 +729,7 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
-  .book-btn::after,
-  .mobile-cta .book-btn {
+  .book-btn::after {
     animation: none !important;
   }
 }
