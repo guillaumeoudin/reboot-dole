@@ -267,14 +267,9 @@ h1,
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
-/* Coordonnées du point périphérique — interpolées séparément pour suivre
- * les 4 côtés du rectangle sans couper l'intérieur. */
-@property --spot-x {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: false;
-}
-@property --spot-y {
+/* Position de l'étoile périphérique le long du chemin offset-path.
+ * Requiert @property pour que CSS puisse interpoler la valeur. */
+@property --dot-pos {
   syntax: '<percentage>';
   initial-value: 0%;
   inherits: false;
@@ -312,14 +307,13 @@ h1,
   to   { transform: translateX(340%) skewX(-18deg); }
 }
 
-/* Étoile périphérique — vitesse constante approximée pour ratio ~3.5:1.
- * 39% / 11% / 39% / 11% = haut / droite / bas / gauche (proportionnel périmètre). */
+/* Étoile périphérique via offset-path : vitesse vraiment constante sur tous
+ * les côtés (gérée par le moteur de motion path, pas par des stops manuels).
+ * offset-path + offset-distance sont sur le thread compositeur → résiste
+ * aux interruptions de scroll sur mobile. */
 @keyframes border-dot {
-  0%   { --spot-x: 0%;   --spot-y: 0%;   }
-  39%  { --spot-x: 100%; --spot-y: 0%;   }
-  50%  { --spot-x: 100%; --spot-y: 100%; }
-  89%  { --spot-x: 0%;   --spot-y: 100%; }
-  100% { --spot-x: 0%;   --spot-y: 0%;   }
+  from { --dot-pos: 0%; }
+  to   { --dot-pos: 100%; }
 }
 
 /* Pauses pseudo-aléatoires : durée non-multiple de border-dot (6.4s vs 8.3s)
@@ -385,13 +379,15 @@ h1,
   position: absolute;
   width: 7px;
   height: 7px;
-  left: var(--spot-x);
-  top: var(--spot-y);
-  transform: translate(-50%, -50%);
+  /* offset-path : l'étoile voyage exactement sur le périmètre du bouton.
+   * offset-rotate: 0deg → l'étoile reste droite (ne suit pas la tangente). */
+  offset-path: inset(0);
+  offset-distance: var(--dot-pos);
+  offset-rotate: 0deg;
   background: oklch(97% 0.07 85);
   clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
   filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
-  animation: border-dot 5.76s linear infinite, border-dot-pause 9.55s ease-in-out infinite;
+  animation: border-dot 4.32s linear infinite, border-dot-pause 9.55s ease-in-out infinite;
   pointer-events: none;
 }
 
