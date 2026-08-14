@@ -17,7 +17,7 @@ import { WhatsAppIcon } from "@/components/WhatsAppIcon";
  * pattern UX : le CTA Réserver du hero est visible en haut, la barre sticky
  * n'est utile qu'une fois que l'utilisateur a commencé à explorer.
  */
-const SCROLL_THRESHOLD = 80;
+const SCROLL_THRESHOLD = 50;
 
 function useScrolledPast(threshold: number) {
   const [past, setPast] = useState(false);
