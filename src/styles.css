@@ -326,10 +326,9 @@ h1,
   animation-play-state: paused;
 }
 
-/* Dark mode par défaut : shimmer doré.
- * Angle gradient 80° = effet diagonal sans skewX → compositor-thread sur Firefox. */
-.book-btn::after {
-  content: '';
+/* Shimmer : élément DOM réel (span.book-shimmer) pour un compositing
+ * indépendant dans Firefox — plus fiable qu'un ::after dans fixed+clip-path. */
+.book-shimmer {
   position: absolute;
   inset-block: 0;
   left: 0;
@@ -342,7 +341,7 @@ h1,
   );
   will-change: transform, opacity;
   pointer-events: none;
-  animation: book-shimmer-loop 6s linear infinite;
+  animation: book-shimmer-loop 6.9s linear infinite;
 }
 
 
@@ -360,7 +359,7 @@ html:not(.dark) .book-btn {
 }
 
 /* Light mode : shimmer blanc/beige sur fond sable */
-html:not(.dark) .book-btn::after {
+html:not(.dark) .book-shimmer {
   background: linear-gradient(
     108deg,
     transparent 25%,
@@ -694,7 +693,7 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
-  .book-btn::after {
+  .book-shimmer {
     animation: none !important;
   }
 }

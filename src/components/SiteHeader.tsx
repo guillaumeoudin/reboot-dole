@@ -53,6 +53,7 @@ export function SiteHeader() {
             rel="noreferrer noopener"
             className="book-btn group hidden items-center gap-3 border border-gold/70 bg-transparent px-5 py-3 text-sm font-medium text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
           >
+            <span className="book-shimmer" aria-hidden="true" />
             Réserver
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
               →
@@ -112,6 +113,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="book-btn group mt-5 inline-flex items-center justify-center gap-3 border border-gold/70 bg-transparent px-5 py-3 text-sm font-medium text-gold"
             >
+              <span className="book-shimmer" aria-hidden="true" />
               Réserver un soin
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
             </a>

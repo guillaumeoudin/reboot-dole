@@ -19,6 +19,7 @@ export function BookButton({ label = "Réserver un soin", className }: Props) {
       rel="noreferrer noopener"
       className={`${ghostBook} ${className ?? "inline-flex px-6 py-3.5"}`}
     >
+      <span className="book-shimmer" aria-hidden="true" />
       {label}
       <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
         →
@@ -62,6 +63,7 @@ export function HeroBookButton({ label = "Réserver un soin", className }: Props
       rel="noreferrer noopener"
       className={`hero-book-btn ${ghostBook} ${className ?? "inline-flex px-6 py-3.5"}`}
     >
+      <span className="book-shimmer" aria-hidden="true" />
       {label}
       <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
         →
