@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { site } from "@/data/site";
@@ -6,39 +6,52 @@ import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { useHeroCta } from "@/contexts/hero-cta-context";
 
 /**
- * La barre n'est affichée qu'après un scroll minimal (SCROLL_THRESHOLD px).
- *
- * Pourquoi : sur Firefox mobile, `position: fixed; bottom: 0` est calculé par
- * rapport au layout viewport, qui inclut la barre d'adresse du navigateur.
- * Au sommet de la page (barre visible), l'élément apparaît avec une grande
- * marge. En scrollant (barre cachée), il "tombe" vers le bas → effet disgracieux.
- *
- * En attendant un scroll minimal, la toolbar Firefox a déjà disparu quand la
- * barre apparaît → position stable et cohérente. C'est aussi un meilleur
- * pattern UX : le CTA Réserver du hero est visible en haut, la barre sticky
- * n'est utile qu'une fois que l'utilisateur a commencé à explorer.
+ * La barre se comporte comme suit :
+ * - Cachée dans les premiers SCROLL_THRESHOLD px (toolbar Firefox déjà visible,
+ *   évite le gap en haut).
+ * - Affichée quand on scrolle vers le BAS au-delà du threshold.
+ * - Cachée dès qu'on scrolle vers le HAUT, quelle que soit la position.
+ *   → Quand l'utilisateur remonte, Firefox réaffiche sa toolbar en bas,
+ *     ce qui décale le layout viewport et crée un gap. En masquant la barre
+ *     avant que la toolbar réapparaisse, le gap n'est jamais visible.
+ *   → C'est aussi le pattern standard des barres mobiles (ex: tab bars Safari).
  */
 const SCROLL_THRESHOLD = 50;
+const DIRECTION_MIN_DELTA = 5; // px minimum pour changer de direction (évite le flicker)
 
-function useScrolledPast(threshold: number) {
-  const [past, setPast] = useState(false);
+function useScrollVisible(threshold: number) {
+  const [visible, setVisible] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const update = () => setPast(window.scrollY > threshold);
+    const update = () => {
+      const current = window.scrollY;
+      const delta = current - lastScrollY.current;
+      if (Math.abs(delta) < DIRECTION_MIN_DELTA) return;
+      lastScrollY.current = current;
+
+      if (current <= threshold) {
+        setVisible(false);          // toujours caché près du haut
+      } else if (delta > 0) {
+        setVisible(true);           // scroll vers le bas → afficher
+      } else {
+        setVisible(false);          // scroll vers le haut → masquer (fix Firefox gap)
+      }
+    };
     window.addEventListener("scroll", update, { passive: true });
     update();
     return () => window.removeEventListener("scroll", update);
   }, [threshold]);
 
-  return past;
+  return visible;
 }
 
 /** Sticky mobile action bar: shown below the `cta` breakpoint (1080px). */
 export function MobileCtaBar() {
-  const scrolledPast = useScrolledPast(SCROLL_THRESHOLD);
+  const scrollVisible = useScrollVisible(SCROLL_THRESHOLD);
   const { heroCtaVisible } = useHeroCta();
-  // Visible uniquement si scrollé + aucun bouton hero en vue (jamais les deux à l'écran)
-  const visible = scrolledPast && !heroCtaVisible;
+  // Visible uniquement si scroll-down + aucun bouton hero en vue
+  const visible = scrollVisible && !heroCtaVisible;
 
   return (
     <div
