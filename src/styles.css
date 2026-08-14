@@ -267,6 +267,13 @@ h1,
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
+/* @property requis pour interpoler --beam-angle dans conic-gradient. */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 /* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────
  * Filé de lumière incliné qui traverse le bouton au hover.
  * Référence visuelle : reflet sur un bijou / un flacon de parfum.
@@ -297,6 +304,10 @@ h1,
 @keyframes book-shimmer {
   from { transform: translateX(-160%) skewX(-18deg); }
   to   { transform: translateX(340%) skewX(-18deg); }
+}
+
+@keyframes border-beam {
+  to { --beam-angle: 360deg; }
 }
 
 
@@ -349,6 +360,38 @@ h1,
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
 .book-btn:hover::after {
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Border beam — light theme hover uniquement ─────────────────────────────
+ * Spot doré diffus qui parcourt la périphérie ; invisible au repos.
+ * opacity 0 → 1 au hover ; animation-play-state gère le démarrage.
+ * ─────────────────────────────────────────────────────────────────────────── */
+.book-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--beam-angle) at 50% 50%,
+    transparent                                           0deg,
+    transparent                                         308deg,
+    color-mix(in oklab, var(--gold) 10%, transparent)   320deg,
+    color-mix(in oklab, var(--gold) 28%, transparent)   344deg,
+    color-mix(in oklab, var(--gold) 10%, transparent)   356deg,
+    transparent                                         360deg
+  );
+  mask-image: radial-gradient(ellipse at center, transparent 72%, black 90%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: border-beam 3s linear infinite;
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+/* Activation au hover en thème clair uniquement. */
+html:not(.dark) .book-btn:hover::before {
+  opacity: 1;
+  animation-play-state: running;
 }
 
 
@@ -682,6 +725,7 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
+  .book-btn::before,
   .book-btn::after {
     animation: none !important;
   }
