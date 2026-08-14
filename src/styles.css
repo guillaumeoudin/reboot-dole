@@ -316,20 +316,13 @@ h1,
   to   { --dot-pos: 100%; }
 }
 
-/* 3 apparitions courtes (~1.3s chacune) par cycle de 9.55s, silences asymétriques
- * pour l'effet aléatoire. La durée non-multiple avec border-dot (2.16s) fait que
- * l'étoile apparaît à un endroit différent du périmètre à chaque fois. */
-/* steps(1, end) → transitions instantanées, pas de fondu qui gonfle la durée perçue.
- * 2.6% de 9.55s = 248ms ≈ 250ms par apparition. */
-@keyframes border-dot-pause {
-  0%      { opacity: 0; animation-timing-function: steps(1, end); }
-  2%      { opacity: 1; animation-timing-function: steps(1, end); }
-  7.2%    { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~3.3s */
-  42%     { opacity: 1; animation-timing-function: steps(1, end); }
-  47.2%   { opacity: 0; animation-timing-function: steps(1, end); }  /* silence ~2.8s */
-  76%     { opacity: 1; animation-timing-function: steps(1, end); }
-  81.2%   { opacity: 0; }                                             /* silence ~2.0s */
-  100%    { opacity: 0; }
+/* Flash de 100ms toutes les 500ms. L'étoile voyage en continu (invisible) ;
+ * chaque flash la révèle ~27% du périmètre plus loin que le précédent
+ * (décalage = 500ms / 1840ms × périmètre). Apparaît aléatoire sur la durée. */
+@keyframes border-dot-pulse {
+  0%   { opacity: 1; animation-timing-function: steps(1, end); }
+  20%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 
@@ -394,7 +387,7 @@ h1,
   background: oklch(97% 0.07 85);
   clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
   filter: drop-shadow(0 0 3px oklch(90% 0.12 85));
-  animation: border-dot 1.84s linear infinite, border-dot-pause 9.55s linear infinite;
+  animation: border-dot 1.84s linear infinite, border-dot-pulse 0.5s linear infinite;
   pointer-events: none;
 }
 
