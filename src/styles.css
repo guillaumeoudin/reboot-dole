@@ -286,19 +286,20 @@ h1,
 }
 
 /* Shimmer lent en boucle — traverse le bouton toutes les ~6s.
- * Inclinaison portée par le gradient à 72° (= 90° - 18°, équivalent
- * du skewX(-18deg) précédent) → translateX seul = compositor-thread Firefox. */
+ * 108° = direction des bandes / (même sens que skewX(-18deg)).
+ * translate3d au lieu de translateX → force le thread GPU dans Firefox
+ * (fix jank sur position:fixed + overflow:hidden). */
 @keyframes book-shimmer-loop {
-  0%, 40%  { transform: translateX(-160%); opacity: 0; }
-  45%      { transform: translateX(-160%); opacity: 1; }
-  75%      { transform: translateX(340%);  opacity: 1; }
-  80%      { transform: translateX(340%);  opacity: 0; }
-  100%     { transform: translateX(-160%); opacity: 0; }
+  0%, 40%  { transform: translate3d(-160%, 0, 0); opacity: 0; }
+  45%      { transform: translate3d(-160%, 0, 0); opacity: 1; }
+  75%      { transform: translate3d(340%,  0, 0); opacity: 1; }
+  80%      { transform: translate3d(340%,  0, 0); opacity: 0; }
+  100%     { transform: translate3d(-160%, 0, 0); opacity: 0; }
 }
 
 @keyframes book-shimmer {
-  from { transform: translateX(-160%); }
-  to   { transform: translateX(340%); }
+  from { transform: translate3d(-160%, 0, 0); }
+  to   { transform: translate3d(340%,  0, 0); }
 }
 
 
@@ -342,10 +343,10 @@ h1,
   left: 0;
   width: 92%;
   background: linear-gradient(
-    72deg,
-    transparent,
-    color-mix(in oklab, var(--gold-soft) 42%, transparent),
-    transparent
+    108deg,
+    transparent 25%,
+    color-mix(in oklab, var(--gold-soft) 42%, transparent) 50%,
+    transparent 75%
   );
   will-change: transform, opacity;
   pointer-events: none;
@@ -373,10 +374,10 @@ html:not(.dark) .book-btn {
 /* Light mode : shimmer blanc/beige sur fond sable */
 html:not(.dark) .book-btn::after {
   background: linear-gradient(
-    72deg,
-    transparent,
-    color-mix(in oklab, white 32%, transparent),
-    transparent
+    108deg,
+    transparent 25%,
+    color-mix(in oklab, white 32%, transparent) 50%,
+    transparent 75%
   );
 }
 
@@ -406,8 +407,9 @@ html:not(.dark) .mobile-cta .book-btn {
   border-color: transparent;
 }
 
-/* Halo (book-attention) désactivé en thème sombre — shimmer actif. */
-.dark .book-btn {
+/* Halo (book-attention) désactivé dans les deux thèmes — shimmer seul. */
+.dark .book-btn,
+html:not(.dark) .book-btn {
   animation: none;
 }
 
