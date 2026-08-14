@@ -267,6 +267,19 @@ h1,
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
 }
 
+/* Coordonnées du point périphérique — interpolées séparément pour suivre
+ * les 4 côtés du rectangle sans couper l'intérieur. */
+@property --spot-x {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+@property --spot-y {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
 /* ─── Bouton Réserver — shimmer doré ─────────────────────────────────────
  * Filé de lumière incliné qui traverse le bouton au hover.
  * Référence visuelle : reflet sur un bijou / un flacon de parfum.
@@ -297,6 +310,15 @@ h1,
 @keyframes book-shimmer {
   from { transform: translateX(-160%) skewX(-18deg); }
   to   { transform: translateX(340%) skewX(-18deg); }
+}
+
+/* Point fin qui parcourt la périphérie du bouton. */
+@keyframes border-dot {
+  0%   { --spot-x: 0%;   --spot-y: 0%;   }
+  25%  { --spot-x: 100%; --spot-y: 0%;   }
+  50%  { --spot-x: 100%; --spot-y: 100%; }
+  75%  { --spot-x: 0%;   --spot-y: 100%; }
+  100% { --spot-x: 0%;   --spot-y: 0%;   }
 }
 
 
@@ -345,6 +367,27 @@ h1,
   );
   pointer-events: none;
   animation: book-shimmer-auto 3s ease-in-out infinite;
+}
+
+/* Point périphérique — invisible par défaut, activé au hover light. */
+.book-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 3px at var(--spot-x) var(--spot-y),
+    oklch(97% 0.07 85) 0%,
+    oklch(97% 0.07 85) 35%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+html:not(.dark) .book-btn:hover::before {
+  opacity: 1;
+  animation: border-dot 8s linear infinite;
 }
 
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
@@ -694,6 +737,7 @@ html:not(.dark)::view-transition {
  * ─────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .book-btn,
+  .book-btn::before,
   .book-btn::after {
     animation: none !important;
   }
