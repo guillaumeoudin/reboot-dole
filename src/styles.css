@@ -380,14 +380,8 @@ h1,
     oklch(97% 0.07 85) 35%,
     transparent 100%
   );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.dark .book-btn:hover::before {
-  opacity: 1;
   animation: border-dot 8s linear infinite;
+  pointer-events: none;
 }
 
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
