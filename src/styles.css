@@ -225,7 +225,14 @@ h1,
 }
 
 /* Fond pill : pseudo-élément positionné derrière le texte.
- * opacity 0 → 1 + scale 0.88 → 1 = 100% composited GPU, zéro repaint. */
+ * opacity 0 → 1 + scale 0.88 → 1 = 100% composited GPU, zéro repaint.
+ *
+ * Stratégie de transition unidirectionnelle :
+ * - `transition: none` sur l'état de base → disparition INSTANTANÉE
+ * - `transition: 0.2s` sur :hover / --active → apparition ANIMÉE
+ * Pendant un view-transition TanStack Router (snapshot before/after),
+ * --active peut clignoter brièvement sur l'ancien lien ; avec une
+ * disparition instantanée le blink est imperceptible. */
 .nav-link::before {
   content: '';
   position: absolute;
@@ -234,7 +241,7 @@ h1,
   border-radius: 4px;
   opacity: 0;
   transform: scale(0.88);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: none;
   pointer-events: none;
 }
 
@@ -244,6 +251,7 @@ h1,
 .nav-link:hover::before {
   opacity: 1;
   transform: scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 /* Glow texte subtil en thème sombre (gold). */
 .dark .nav-link:hover {
@@ -258,6 +266,7 @@ h1,
   opacity: 1;
   transform: scale(1);
   background-color: color-mix(in oklab, var(--nav-accent) 18%, transparent);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .dark .nav-link--active {
   text-shadow: 0 0 8px color-mix(in oklab, var(--gold-soft) 35%, transparent);
