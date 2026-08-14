@@ -60,7 +60,7 @@ export function HeroBookButton({ label = "Réserver un soin", className }: Props
       href={site.booking}
       target="_blank"
       rel="noreferrer noopener"
-      className={`${base} ${className ?? "inline-flex px-6 py-3.5"}`}
+      className={`hero-book-btn ${base} ${className ?? "inline-flex px-6 py-3.5"}`}
     >
       {label}
       <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
