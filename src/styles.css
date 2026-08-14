@@ -359,7 +359,7 @@ h1,
  * ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) .book-btn {
   border-color: transparent;
-  background-color: var(--gold-cta);
+  background-color: oklch(74% 0.105 83); /* gold-cta désaturé + hue -7° → moins jaune, plus sable */
   color: var(--gold-cta-foreground);
 }
 
@@ -377,7 +377,7 @@ html:not(.dark) .book-btn:hover {
 }
 
 html:not(.dark) .mobile-cta .book-btn {
-  background-color: var(--gold-cta);
+  background-color: oklch(74% 0.105 83);
   color: var(--gold-cta-foreground);
   border-color: transparent;
 }
