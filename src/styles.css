@@ -330,6 +330,17 @@ h1,
  * La texture de grain (z-index: 9998, mix-blend-mode: overlay) interagit
  * avec le shimmer → profondeur matière supplémentaire sans JS.
  * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes book-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px color-mix(in oklab, var(--gold-cta) 12%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 16px color-mix(in oklab, var(--gold-cta) 28%, transparent),
+      0 0  5px color-mix(in oklab, var(--gold-cta) 10%, transparent);
+  }
+}
+
 @keyframes book-shimmer {
   from { transform: translateX(-160%) skewX(-18deg); }
   to   { transform: translateX(340%) skewX(-18deg); }
@@ -343,20 +354,19 @@ h1,
 .book-btn {
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.07em;
   transition:
     background-color 0.3s ease,
     color            0.25s ease,
-    border-color     0.3s ease,
-    box-shadow       0.4s ease,
-    letter-spacing   0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    border-color     0.3s ease;
+  animation: book-glow-pulse 3s ease-in-out infinite;
 }
 
 .book-btn:hover {
   background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
   border-color: transparent;
-  letter-spacing: 0.14em;
+  /* Pause la pulsation au repos, laisse le glow statique du hover s'exprimer */
+  animation-play-state: paused;
   box-shadow:
     0 0 24px color-mix(in oklab, var(--gold-cta) 38%, transparent),
     0 0  8px color-mix(in oklab, var(--gold-cta) 16%, transparent);
