@@ -330,15 +330,26 @@ h1,
  * La texture de grain (z-index: 9998, mix-blend-mode: overlay) interagit
  * avec le shimmer → profondeur matière supplémentaire sans JS.
  * ─────────────────────────────────────────────────────────────────────────── */
-@keyframes book-glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 5px color-mix(in oklab, var(--gold-cta) 12%, transparent);
-  }
-  50% {
-    box-shadow:
-      0 0 16px color-mix(in oklab, var(--gold-cta) 28%, transparent),
-      0 0  5px color-mix(in oklab, var(--gold-cta) 10%, transparent);
-  }
+@keyframes book-attention {
+  /* Respiration douce (0 → 55%) */
+  0%, 55%  { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
+  30%      { box-shadow: 0 0 14px color-mix(in oklab, var(--gold-cta) 26%, transparent),
+                          0 0  4px color-mix(in oklab, var(--gold-cta) 10%, transparent); }
+  /* Flash + anneau sonar (65 → 85%) */
+  65%      { box-shadow: 0 0  0 0    color-mix(in oklab, var(--gold-cta) 55%, transparent),
+                          0 0 18px   color-mix(in oklab, var(--gold-cta) 30%, transparent); }
+  85%      { box-shadow: 0 0  0 10px color-mix(in oklab, var(--gold-cta) 0%,  transparent),
+                          0 0  6px   color-mix(in oklab, var(--gold-cta) 14%, transparent); }
+  100%     { box-shadow: 0 0 5px  color-mix(in oklab, var(--gold-cta) 12%, transparent); }
+}
+
+/* Shimmer auto-déclenché toutes les 3s, synchronisé avec le sonar */
+@keyframes book-shimmer-auto {
+  0%, 62%  { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
+  76%      { transform: translateX(340%)  skewX(-18deg); opacity: 1; }
+  76.5%    { transform: translateX(-160%) skewX(-18deg); opacity: 0; } /* reset invisible */
+  79%      { opacity: 1; }
+  100%     { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
 }
 
 @keyframes book-shimmer {
@@ -354,18 +365,18 @@ h1,
 .book-btn {
   position: relative;
   overflow: hidden;
+  /* Fill ralenti de 80% (0.3s → 1.5s) pour rendre la transition visible */
   transition:
-    background-color 0.3s ease,
-    color            0.25s ease,
-    border-color     0.3s ease;
-  animation: book-glow-pulse 3s ease-in-out infinite;
+    background-color 1.5s ease,
+    color            1.2s ease,
+    border-color     1.5s ease;
+  animation: book-attention 3s ease-in-out infinite;
 }
 
 .book-btn:hover {
   background-color: var(--gold-cta);
   color: var(--gold-cta-foreground);
   border-color: transparent;
-  /* Pause la pulsation au repos, laisse le glow statique du hover s'exprimer */
   animation-play-state: paused;
   box-shadow:
     0 0 24px color-mix(in oklab, var(--gold-cta) 38%, transparent),
@@ -385,10 +396,10 @@ h1,
     transparent
   );
   pointer-events: none;
-  transform: translateX(-160%) skewX(-18deg);
+  animation: book-shimmer-auto 3s ease-in-out infinite;
 }
 
-/* Shimmer déclenché 100ms après le hover — laisse le fill démarrer d'abord */
+/* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
 .book-btn:hover::after {
   animation: book-shimmer 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
