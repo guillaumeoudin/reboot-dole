@@ -285,20 +285,18 @@ h1,
   100%     { filter: drop-shadow(0 0 3px  color-mix(in oklab, var(--gold-cta) 23%, transparent)); }
 }
 
-/* Shimmer lent en boucle — traverse le bouton toutes les ~7.5s.
- * Pas de skewX : l'angle diagonal est obtenu via le gradient (80°).
- * translateX seul = 100% compositor-thread → smooth sur Firefox fixed/mobile. */
+/* Shimmer lent en boucle — traverse le bouton toutes les ~6s. */
 @keyframes book-shimmer-loop {
-  0%, 40%  { transform: translateX(-160%); opacity: 0; }
-  45%      { transform: translateX(-160%); opacity: 1; }
-  75%      { transform: translateX(340%);  opacity: 1; }
-  80%      { transform: translateX(340%);  opacity: 0; }
-  100%     { transform: translateX(-160%); opacity: 0; }
+  0%, 40%  { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  45%      { transform: translateX(-160%) skewX(-18deg); opacity: 1; }
+  75%      { transform: translateX(340%)  skewX(-18deg); opacity: 1; }
+  80%      { transform: translateX(340%)  skewX(-18deg); opacity: 0; }
+  100%     { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
 }
 
 @keyframes book-shimmer {
-  from { transform: translateX(-160%); }
-  to   { transform: translateX(340%); }
+  from { transform: translateX(-160%) skewX(-18deg); }
+  to   { transform: translateX(340%)  skewX(-18deg); }
 }
 
 
@@ -340,16 +338,16 @@ h1,
   position: absolute;
   inset-block: 0;
   left: 0;
-  width: 46%;
+  width: 92%;
   background: linear-gradient(
-    80deg,
-    transparent 20%,
-    color-mix(in oklab, var(--gold-soft) 42%, transparent) 50%,
-    transparent 80%
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--gold-soft) 42%, transparent),
+    transparent
   );
   will-change: transform, opacity;
   pointer-events: none;
-  animation: book-shimmer-loop 7.5s linear infinite;
+  animation: book-shimmer-loop 6s linear infinite;
 }
 
 /* Sur hover : shimmer déclenché depuis le début, indépendant du cycle auto */
@@ -373,10 +371,10 @@ html:not(.dark) .book-btn {
 /* Light mode : shimmer blanc/beige sur fond sable */
 html:not(.dark) .book-btn::after {
   background: linear-gradient(
-    80deg,
-    transparent 20%,
-    color-mix(in oklab, white 32%, transparent) 50%,
-    transparent 80%
+    90deg,
+    transparent,
+    color-mix(in oklab, white 32%, transparent),
+    transparent
   );
 }
 
