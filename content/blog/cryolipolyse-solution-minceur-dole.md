@@ -1,5 +1,5 @@
 ---
-title: "Mincir à Dole sans chirurgie : ce que peut vraiment la cryolipolyse"
+title: "Ce que la cryolipolyse peut vraiment faire chez Reboot à Dole"
 slug: "cryolipolyse-solution-minceur-dole"
 date: "2026-09-03"
 author: "L'équipe Reboot"

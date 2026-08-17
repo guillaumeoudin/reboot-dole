@@ -102,15 +102,15 @@ const zones = [
     index: "01",
     title: "Jambes",
     body: "Demi-jambes, jambes complètes, genoux, cuisses intérieures et extérieures — toutes les longueurs prises en charge.",
-    href: "/epilation-laser-jambes-dole",
-    cta: "Voir la page jambes →",
+    href: null,
+    cta: null,
   },
   {
     index: "02",
     title: "Maillot",
     body: "Maillot simple, brésilien ou intégral — protocole défini lors du bilan, dans un cadre confidentiel.",
-    href: "/epilation-laser-maillot-dole",
-    cta: "Voir la page maillot →",
+    href: null,
+    cta: null,
   },
   {
     index: "03",
@@ -305,24 +305,12 @@ function EpilationLaserDolePage() {
               Nous contacter <span aria-hidden="true">→</span>
             </a>
           </div>
-          <div className="mt-8 border-t border-border pt-8 flex flex-wrap gap-6">
+          <div className="mt-8 border-t border-border pt-8">
             <a
               href="/soins/epilation-laser"
               className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
             >
               Épilation laser — toutes les infos <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="/epilation-laser-jambes-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Page dédiée : jambes <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="/epilation-laser-maillot-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Page dédiée : maillot <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

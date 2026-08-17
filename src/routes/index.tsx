@@ -65,7 +65,7 @@ function Index() {
               style={{ "--rise-delay": "320ms" } as React.CSSProperties}
             >
               Reboot réunit à Dole les soins technico-esthétiques non invasifs les plus efficaces et
-              une approche complète de la longévité, dans un lieu intimiste et rigoureux.
+              une approche complète de la longévité, dans un lieu intimiste.
             </p>
             <div
               className="rise-in mt-10 flex flex-wrap items-center gap-6"

@@ -1,5 +1,5 @@
 ---
-title: "Longévité : les cinq habitudes qui comptent vraiment"
+title: "Cinq habitudes qui font vraiment la différence sur le long terme"
 slug: "longevite-les-habitudes-qui-comptent"
 date: "2025-01-24"
 author: "L'équipe Reboot"

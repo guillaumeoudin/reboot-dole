@@ -1,5 +1,5 @@
 ---
-title: "Préparer sa première séance d'épilation laser"
+title: "Avant votre première séance d'épilation laser chez Reboot"
 slug: "preparer-sa-premiere-seance-epilation-laser"
 date: "2025-02-18"
 author: "L'équipe Reboot"

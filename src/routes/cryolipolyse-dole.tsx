@@ -102,8 +102,8 @@ const zones = [
     index: "01",
     title: "Ventre",
     body: "Bas-ventre, abdomen, tour de taille — la zone la plus traitée et souvent la plus rebelle aux régimes.",
-    href: "/cryolipolyse-ventre-dole",
-    cta: "Voir la page ventre →",
+    href: null,
+    cta: null,
   },
   {
     index: "02",
@@ -265,14 +265,6 @@ function CryolipolyseDolePage() {
             l'éligibilité et d'établir un devis personnalisé. Centre Reboot — 7 rue Jacques de Molay,
             39100 Dole (Jura), accessible depuis Besançon, Dijon et Lons-le-Saunier.
           </p>
-          <div className="mt-8">
-            <a
-              href="/solution-minceur-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Vous cherchez une solution minceur à Dole ? <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -314,24 +306,12 @@ function CryolipolyseDolePage() {
               Nous contacter <span aria-hidden="true">→</span>
             </a>
           </div>
-          <div className="mt-8 border-t border-border pt-8 flex flex-wrap gap-6">
+          <div className="mt-8 border-t border-border pt-8">
             <a
               href="/soins/cryolipolyse"
               className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
             >
               Cryolipolyse — toutes les infos <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="/cryolipolyse-ventre-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Page dédiée : ventre <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="/solution-minceur-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Solution minceur à Dole <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

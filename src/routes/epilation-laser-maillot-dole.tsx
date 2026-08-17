@@ -134,8 +134,8 @@ function EpilationLaserMaillotDole() {
       highlights={highlights}
       seoContent="L'épilation laser du maillot au centre Reboot à Dole (Jura) propose trois niveaux de traitement : le maillot simple (parties visibles hors du maillot de bain), le brésilien (réduction plus importante avec une bande préservée) et l'intégral (épilation complète de la zone pubienne). La zone traitée est précisément définie avec la praticienne lors d'un bilan gratuit, avant la première séance. La zone bikini étant plus sensible que les jambes, la technologie utilisée à Reboot intègre un système de refroidissement continu pour un confort optimal — une crème anesthésiante peut également être appliquée en amont si nécessaire. En cas de déséquilibre hormonal, quelques séances supplémentaires peuvent être requises : le suivi personnalisé du centre en tient compte. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura)."
       faq={faq}
-      parentHref="/epilation-laser-dole"
-      parentLabel="Épilation laser à Dole"
+      parentHref="/soins/epilation-laser"
+      parentLabel="Épilation laser"
     />
   );
 }

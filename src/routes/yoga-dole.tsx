@@ -200,6 +200,18 @@ function YogaDolePage() {
         </div>
       </section>
 
+      <section className="border-b border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+          <p className="label-caps text-gold">Ce qu'on pratique</p>
+          <h2 className="mt-5 text-3xl text-foreground">Sport, yoga & pratiques douces.</h2>
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            Des séances en petit groupe dans l'espace dédié du centre : yoga doux, respiration,
+            mobilité, stretching, cross training… Une pratique régulière qui prolonge les effets
+            des protocoles de longévité.
+          </p>
+        </div>
+      </section>
+
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           <p className="label-caps text-gold">Infos pratiques</p>

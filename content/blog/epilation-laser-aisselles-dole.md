@@ -1,5 +1,5 @@
 ---
-title: "Épilation laser des aisselles à Dole : zones, séances, résultats"
+title: "Épilation laser des aisselles chez Reboot à Dole — ce qu'on observe en pratique"
 slug: "epilation-laser-aisselles-dole"
 date: "2026-08-20"
 author: "L'équipe Reboot"

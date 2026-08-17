@@ -134,8 +134,8 @@ function EpilationLaserJambesDole() {
       highlights={highlights}
       seoContent="L'épilation laser des jambes au centre Reboot à Dole (Jura) couvre l'ensemble du membre inférieur : demi-jambes inférieures, jambes complètes, genoux et cuisses intérieures ou extérieures. Chaque zone fait l'objet d'un protocole individualisé, défini lors d'un bilan cutané gratuit réalisé avant la première séance. La technologie laser utilisée est adaptée à tous les phototypes, y compris les peaux mates — ce qui n'est pas le cas de tous les appareils. Une séance jambes complètes dure 45 à 60 minutes. Les résultats s'installent progressivement : dès la troisième séance, la repousse est nettement réduite et la densité pilaire diminue séance après séance. Le centre est situé au 7 rue Jacques de Molay à Dole (39100, Jura), accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min)."
       faq={faq}
-      parentHref="/epilation-laser-dole"
-      parentLabel="Épilation laser à Dole"
+      parentHref="/soins/epilation-laser"
+      parentLabel="Épilation laser"
     />
   );
 }

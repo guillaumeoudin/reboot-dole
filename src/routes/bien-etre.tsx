@@ -91,7 +91,7 @@ function BienEtrePage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <EyebrowHeading
             eyebrow="Notre approche"
-            title="Travailler le terrain, pas seulement la surface."
+            title="Travailler sur la cause, pas seulement les effets."
           />
           <div className="mt-12 grid gap-px bg-border md:grid-cols-3">
             {approach.map((item) => (

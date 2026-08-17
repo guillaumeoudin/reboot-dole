@@ -121,10 +121,10 @@ function SolutionMinceurDolePage() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
           <div>
             <a
-              href="/cryolipolyse-dole"
+              href="/soins/cryolipolyse"
               className="label-caps text-muted-foreground transition-colors hover:text-gold"
             >
-              ← Cryolipolyse à Dole
+              ← Cryolipolyse
             </a>
             <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl">
               Solution minceur à Dole
@@ -185,14 +185,6 @@ function SolutionMinceurDolePage() {
             opérée par des praticiennes formées. Un bilan cutané préalable — gratuit — permet de
             confirmer l'indication et de définir le protocole adapté à votre morphologie.
           </p>
-          <div className="mt-8">
-            <a
-              href="/cryolipolyse-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Voir toutes les zones traitées à Dole <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -254,18 +246,12 @@ function SolutionMinceurDolePage() {
               Nous contacter <span aria-hidden="true">→</span>
             </a>
           </div>
-          <div className="mt-8 border-t border-border pt-8 flex flex-wrap gap-6">
+          <div className="mt-8 border-t border-border pt-8">
             <a
-              href="/cryolipolyse-dole"
+              href="/soins/cryolipolyse"
               className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
             >
-              Cryolipolyse à Dole — toutes les zones <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="/cryolipolyse-ventre-dole"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Cryolipolyse ventre à Dole <span aria-hidden="true">→</span>
+              Cryolipolyse — toutes les infos <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

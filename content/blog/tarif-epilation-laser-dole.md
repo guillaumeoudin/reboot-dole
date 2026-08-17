@@ -1,5 +1,5 @@
 ---
-title: "Quel est le prix d'une épilation laser à Dole ?"
+title: "Ce que ça coûte vraiment, l'épilation laser chez Reboot à Dole"
 slug: "tarif-epilation-laser-dole"
 date: "2026-08-27"
 author: "L'équipe Reboot"

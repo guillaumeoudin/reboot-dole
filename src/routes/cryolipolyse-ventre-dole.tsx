@@ -134,8 +134,8 @@ function CryolipolyseVentreDole() {
       highlights={highlights}
       seoContent="La cryolipolyse du ventre au centre Reboot à Dole (Jura) est indiquée sur les amas graisseux du bas-ventre, de l'abdomen et des flancs résistants au sport et à l'alimentation. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants — ils sont ensuite éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention chirurgicale, ni temps d'éviction : vous reprenez vos activités immédiatement après la séance. Un seul passage par zone suffit dans la majorité des cas ; un deuxième peut être envisagé lors du bilan à 8 semaines. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura), à proximité de Besançon, Dijon et Lons-le-Saunier."
       faq={faq}
-      parentHref="/cryolipolyse-dole"
-      parentLabel="Cryolipolyse à Dole"
+      parentHref="/soins/cryolipolyse"
+      parentLabel="Cryolipolyse"
     />
   );
 }

@@ -17,6 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/soins/cryolipolyse", priority: "0.8" },
           { path: "/soins/peeling", priority: "0.8" },
           { path: "/soins/microneedling", priority: "0.8" },
+          { path: "/soins/dome-led", priority: "0.8" },
           { path: "/bien-etre", priority: "0.8" },
           // Landing pages SEO — hubs en tête, spécifiques ensuite
           { path: "/epilation-laser-dole", priority: "0.9" },

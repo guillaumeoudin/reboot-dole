@@ -2,6 +2,8 @@ import soinLaser from "@/assets/soin-laser.jpg";
 import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 import soinPeeling from "@/assets/soin-peeling.jpg";
 import soinMicroneedling from "@/assets/soin-microneedling.jpg";
+// TODO: remplacer par soin-dome-led.jpg lorsque l'image sera disponible
+import soinDomeLed from "@/assets/soin-microneedling.jpg";
 
 export type Soin = {
   slug: string;
@@ -56,7 +58,6 @@ export const soins: Soin[] = [
     metaTitle: "Épilation laser à Dole — Reboot",
     metaDescription:
       "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 40 €. Bilan offert.",
-    hubLandingPage: { href: "/epilation-laser-dole", label: "Épilation laser à Dole — zones et tarifs" },
     faq: [
       {
         q: "Combien de séances faut-il pour une épilation laser définitive à Dole ?",
@@ -107,7 +108,6 @@ export const soins: Soin[] = [
     metaTitle: "Cryolipolyse à Dole — Reboot",
     metaDescription:
       "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 250 €. Bilan offert.",
-    hubLandingPage: { href: "/cryolipolyse-dole", label: "Cryolipolyse à Dole — zones et tarifs" },
     faq: [
       {
         q: "La cryolipolyse est-elle efficace pour éliminer les poignées d'amour ?",
@@ -228,6 +228,56 @@ export const soins: Soin[] = [
       {
         q: "Quel est le tarif du microneedling à Reboot Dole ?",
         a: "Les séances démarrent à partir de 90 €. Un devis est établi lors de votre premier rendez-vous selon le protocole adapté à votre peau.",
+      },
+    ],
+  },
+  {
+    slug: "dome-led",
+    index: "05",
+    title: "Dôme LED",
+    tagline: "Régénérer par la lumière.",
+    short:
+      "Photobiomodulation corps entier : stimulation cellulaire, éclat et récupération par la lumière calibrée.",
+    long: "Le dôme LED enveloppe le corps dans un rayonnement de lumière calibrée — rouge, infrarouge et bleu. Chaque longueur d'onde agit sur un processus distinct : stimulation du collagène, réduction de l'inflammation, récupération musculaire. Aucune chaleur, aucun contact. Une séance douce, visible dès les premières utilisations.",
+    duration: "20 à 30 min",
+    sessions: "Cure de 8 à 12 séances — ou en complément de soin",
+    price: "à partir de 60 €",
+    priceFrom: "à partir de 60 €",
+    image: soinDomeLed,
+    imageAlt: "Dôme LED de photobiomodulation au centre Reboot à Dole",
+    indications: [
+      "Teint terne, manque d'éclat",
+      "Récupération musculaire et articulaire",
+      "Accompagnement anti-âge et régénération cellulaire",
+    ],
+    aftercare: [
+      "Aucune contrainte particulière après la séance",
+      "Hydratation conseillée",
+      "Peut être combiné avec d'autres soins le même jour",
+    ],
+    metaTitle: "Dôme LED à Dole — Photobiomodulation | Reboot",
+    metaDescription:
+      "Séances de dôme LED (photobiomodulation) à Dole (Jura) : stimulation cellulaire, éclat, récupération. Lumière rouge, infrarouge et bleue. À partir de 60 €.",
+    faq: [
+      {
+        q: "Qu'est-ce que le dôme LED et comment ça fonctionne ?",
+        a: "Le dôme LED utilise différentes longueurs d'onde lumineuses — rouge, infrarouge proche, bleu — pour stimuler les processus naturels de réparation et de régénération. La lumière rouge active la production de collagène, l'infrarouge favorise la circulation et la récupération musculaire, le bleu cible les bactéries responsables des imperfections. Aucune chaleur, aucun contact direct.",
+      },
+      {
+        q: "Le dôme LED est-il douloureux ?",
+        a: "Non, la séance est totalement indolore et très relaxante. Vous êtes allongé·e sous le dôme, les yeux protégés. La sensation est douce et légèrement enveloppante.",
+      },
+      {
+        q: "Combien de séances de dôme LED faut-il ?",
+        a: "Pour un effet visible et durable, une cure de 8 à 12 séances est recommandée, à raison d'une à deux par semaine. Le dôme LED peut aussi être utilisé en complément d'un autre soin — microneedling, peeling — pour optimiser la récupération et amplifier les résultats.",
+      },
+      {
+        q: "Qui peut bénéficier du dôme LED chez Reboot ?",
+        a: "Presque tout le monde. La photobiomodulation est contre-indiquée en cas de grossesse, d'épilepsie photosensible ou de traitement photosensibilisant. Un bilan préalable permet de confirmer votre éligibilité et d'adapter le protocole.",
+      },
+      {
+        q: "Quel est le tarif d'une séance de dôme LED à Reboot Dole ?",
+        a: "Les séances démarrent à partir de 60 €. Des formules en cure ou combinées avec d'autres soins sont disponibles — un devis est établi lors de votre bilan.",
       },
     ],
   },
