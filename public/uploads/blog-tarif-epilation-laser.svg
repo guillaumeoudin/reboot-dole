@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1104" width="1600" height="1104">
+  <defs>
+    <radialGradient id="bg-tarif" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#222C48"/>
+      <stop offset="100%" stop-color="#1B2240"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1104" fill="url(#bg-tarif)"/>
+
+  <!-- Abstract horizontal bars suggesting price tiers / scale -->
+  <!-- Three bars stacked, widths decrease top to bottom (or inversely — pyramid) -->
+  <!-- Centered at (800, 552) -->
+
+  <!-- Wide base bar -->
+  <rect x="300"  y="620" width="1000" height="3" fill="#B58B3A" opacity="0.7" rx="1"/>
+  <!-- Medium bar -->
+  <rect x="430"  y="556" width="740"  height="3" fill="#C9A054" opacity="0.8" rx="1"/>
+  <!-- Narrow bar — top, brightest -->
+  <rect x="580"  y="492" width="440"  height="3" fill="#D4AF60"              rx="1"/>
+  <!-- Very narrow accent -->
+  <rect x="680"  y="428" width="240"  height="2" fill="#D4AF60" opacity="0.6" rx="1"/>
+
+  <!-- Left vertical axis line -->
+  <line x1="290" y1="410" x2="290" y2="640" stroke="#B58B3A" stroke-width="1" opacity="0.5"/>
+  <!-- Tick marks on axis -->
+  <line x1="283" y1="428" x2="297" y2="428" stroke="#B58B3A" stroke-width="1" opacity="0.5"/>
+  <line x1="283" y1="492" x2="297" y2="492" stroke="#B58B3A" stroke-width="1" opacity="0.5"/>
+  <line x1="283" y1="556" x2="297" y2="556" stroke="#B58B3A" stroke-width="1" opacity="0.5"/>
+  <line x1="283" y1="620" x2="297" y2="620" stroke="#C9A054" stroke-width="1.5"/>
+
+  <!-- Right-side accent: small price dots at the end of each bar -->
+  <circle cx="820"  cy="428" r="4" fill="#D4AF60" opacity="0.6"/>
+  <circle cx="1020" cy="492" r="5" fill="#D4AF60"/>
+  <circle cx="1170" cy="556" r="5" fill="#C9A054"/>
+  <circle cx="1300" cy="620" r="6" fill="#C9A054" opacity="0.7"/>
+
+  <!-- Outer ring — subtle framing -->
+  <circle cx="800" cy="530" r="310" fill="none" stroke="#B58B3A" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="800" cy="530" r="420" fill="none" stroke="#B58B3A" stroke-width="0.3" opacity="0.08"/>
+
+  <!-- Bottom horizontal scale line -->
+  <line x1="290" y1="680" x2="1310" y2="680" stroke="#B58B3A" stroke-width="0.8" opacity="0.3"/>
+  <!-- Scale ticks on bottom -->
+  <line x1="290"  y1="674" x2="290"  y2="686" stroke="#B58B3A" stroke-width="0.8" opacity="0.3"/>
+  <line x1="545"  y1="674" x2="545"  y2="684" stroke="#B58B3A" stroke-width="0.6" opacity="0.25"/>
+  <line x1="800"  y1="674" x2="800"  y2="687" stroke="#C9A054" stroke-width="1.2" opacity="0.6"/>
+  <line x1="1055" y1="674" x2="1055" y2="684" stroke="#B58B3A" stroke-width="0.6" opacity="0.25"/>
+  <line x1="1310" y1="674" x2="1310" y2="686" stroke="#B58B3A" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Background hairlines — very subtle depth -->
+  <line x1="0" y1="428" x2="1600" y2="428" stroke="#B58B3A" stroke-width="0.2" opacity="0.08"/>
+  <line x1="0" y1="492" x2="1600" y2="492" stroke="#B58B3A" stroke-width="0.2" opacity="0.08"/>
+  <line x1="0" y1="556" x2="1600" y2="556" stroke="#B58B3A" stroke-width="0.2" opacity="0.08"/>
+  <line x1="0" y1="620" x2="1600" y2="620" stroke="#B58B3A" stroke-width="0.2" opacity="0.08"/>
+</svg>

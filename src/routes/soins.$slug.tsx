@@ -165,20 +165,6 @@ function SoinDetail() {
         </div>
       </section>
 
-      {soin.seoContent ? (
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <p className="label-caps text-gold">Le soin en détail</p>
-            <h2 className="mt-5 text-3xl text-foreground">
-              {soin.title} à Dole — centre Reboot
-            </h2>
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              {soin.seoContent}
-            </p>
-          </div>
-        </section>
-      ) : null}
-
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           <p className="label-caps text-gold">Questions fréquentes</p>
@@ -198,33 +184,15 @@ function SoinDetail() {
         </div>
       </section>
 
-      {soin.landingPages && soin.landingPages.length > 0 && (
+      {soin.hubLandingPage && (
         <section className="border-b border-border">
-          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <p className="label-caps text-gold">Pages par zone</p>
-            <h2 className="mt-5 text-3xl text-foreground">Aller plus loin</h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Des pages dédiées détaillent chaque zone, avec protocole, tarifs et FAQ spécifiques.
-            </p>
-            <div className="mt-8 grid gap-px bg-border sm:grid-cols-3">
-              {soin.landingPages.map((lp) => (
-                <a
-                  key={lp.href}
-                  href={lp.href}
-                  className="group bg-background p-8 transition-colors hover:bg-surface"
-                >
-                  <p className="text-sm font-medium text-foreground transition-colors group-hover:text-gold">
-                    {lp.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {lp.description}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 text-xs text-gold transition-colors group-hover:border-gold">
-                    Voir la page <span aria-hidden="true">→</span>
-                  </span>
-                </a>
-              ))}
-            </div>
+          <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
+            <a
+              href={soin.hubLandingPage.href}
+              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
+            >
+              {soin.hubLandingPage.label} <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
       )}

@@ -5,8 +5,8 @@ date: "2026-08-27"
 author: "L'équipe Reboot"
 category: "Soins"
 excerpt: "Tarifs de l'épilation laser à Dole (Jura) : prix par zone, nombre de séances, ce qui influence le coût total. Toutes les réponses au centre Reboot."
-coverImage: "/uploads/centre-reboot.jpg"
-coverAlt: "Centre Reboot à Dole — épilation laser, tarifs et prestations"
+coverImage: "/uploads/blog-tarif-epilation-laser.svg"
+coverAlt: "Barres horizontales en dégradé doré symbolisant une échelle de tarifs — épilation laser à Dole"
 draft: false
 ---
 
@@ -22,7 +22,7 @@ C'est le facteur principal. Une petite zone (aisselles, lèvre supérieure) se t
 
 L'épilation laser ne fonctionne pas en une seule fois : le laser ne détruit que les poils en phase de croissance active (phase anagène) au moment de la séance. Il faut donc espacer les rendez-vous de 4 à 8 semaines pour attraper tous les poils dans leur fenêtre active.
 
-En moyenne, il faut **8 à 10 séances** pour un résultat durable sur les grandes zones. Certaines zones répondent plus vite — les aisselles en 6 à 8 séances, la lèvre supérieure parfois en 6.
+En moyenne, il faut **8 à 10 séances** pour un résultat durable sur les grandes zones. Certaines zones répondent plus vite — les [aisselles en 6 à 8 séances](/blog/epilation-laser-aisselles-dole), la lèvre supérieure parfois en 6.
 
 ### Le profil pilaire
 
@@ -61,4 +61,4 @@ Un protocole laser complet sur les jambes à Dole représente un investissement 
 
 Vous souhaitez connaître le tarif exact pour votre profil ? Le bilan est gratuit et sans engagement.
 
-[Voir toutes les zones traitées à Dole](/epilation-laser-dole) · [Épilation laser des jambes à Dole](/epilation-laser-jambes-dole) · [Épilation laser maillot à Dole](/epilation-laser-maillot-dole)
+[Épilation laser à Dole — zones et tarifs](/epilation-laser-dole) · [Jambes](/epilation-laser-jambes-dole) · [Maillot](/epilation-laser-maillot-dole) · [Fiche soin épilation laser](/soins/epilation-laser)

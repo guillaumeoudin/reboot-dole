@@ -98,6 +98,30 @@ export function SiteFooter() {
 
         <div className="hairline mt-12" />
 
+        {/* Mini-sitemap local — liens vers les landing pages SEO. Non affiché dans la nav principale. */}
+        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground">
+          <a href="/epilation-laser-dole" className="transition-colors hover:text-gold">
+            Épilation laser à Dole
+          </a>
+          <a href="/epilation-laser-jambes-dole" className="transition-colors hover:text-gold">
+            Épilation laser jambes
+          </a>
+          <a href="/epilation-laser-maillot-dole" className="transition-colors hover:text-gold">
+            Épilation laser maillot
+          </a>
+          <a href="/cryolipolyse-dole" className="transition-colors hover:text-gold">
+            Cryolipolyse à Dole
+          </a>
+          <a href="/cryolipolyse-ventre-dole" className="transition-colors hover:text-gold">
+            Cryolipolyse ventre
+          </a>
+          <a href="/solution-minceur-dole" className="transition-colors hover:text-gold">
+            Solution minceur à Dole
+          </a>
+        </div>
+
+        <div className="hairline mt-6" />
+
         <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Reboot {site.city}. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-4">

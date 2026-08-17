@@ -341,7 +341,7 @@ h1,
   );
   will-change: transform, opacity;
   pointer-events: none;
-  animation: book-shimmer-loop 9.9s linear infinite;
+  animation: book-shimmer-loop 7.33s linear infinite;
 }
 
 

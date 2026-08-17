@@ -10,8 +10,6 @@ export type Soin = {
   tagline: string;
   short: string;
   long: string;
-  /** Paragraphe étendu affiché uniquement sur la page détail (SEO). */
-  seoContent: string;
   duration: string;
   sessions: string;
   price: string;
@@ -23,8 +21,11 @@ export type Soin = {
   metaTitle: string;
   metaDescription: string;
   faq: { q: string; a: string }[];
-  /** Landing pages SEO associées — affichées en bas de la page détail pour le maillage interne. */
-  landingPages?: { href: string; label: string; description: string }[];
+  /**
+   * Hub SEO associé — lien discret affiché en bas de page après la FAQ.
+   * Une seule ligne de texte : non intrusif pour l'utilisateur, utile pour Google.
+   */
+  hubLandingPage?: { href: string; label: string };
 };
 
 export const soins: Soin[] = [
@@ -36,8 +37,6 @@ export const soins: Soin[] = [
     short:
       "Élimination progressive et sûre du poil sur toutes les zones du corps et du visage.",
     long: "Nous utilisons une technologie laser de dernière génération, adaptée à tous les phototypes. Le faisceau cible le pigment du poil sans agresser la peau environnante, pour un résultat progressif, précis et durable.",
-    seoContent:
-      "L'épilation laser à Reboot à Dole couvre toutes les zones du corps et du visage : jambes complètes ou demi-jambes, cuisses, aisselles, maillot simple, semi-intégral ou intégral, bras, avant-bras, dos, torse, lèvre supérieure, menton et sourcils. Chaque zone bénéficie d'un protocole adapté à la densité et à la couleur du poil. Le centre est équipé d'une technologie laser certifiée compatible avec tous les phototypes, y compris les peaux mates et foncées. Un bilan cutané gratuit est réalisé avant la première séance pour définir le protocole et estimer le nombre de séances. Situé au 7 rue Jacques de Molay à Dole (Jura), Reboot reçoit sur rendez-vous du lundi au vendredi de 9 h à 19 h et le samedi de 9 h à 17 h.",
     duration: "15 à 60 min selon la zone",
     sessions: "8 à 10 séances espacées de 4 à 8 semaines",
     price: "à partir de 40 €",
@@ -57,23 +56,7 @@ export const soins: Soin[] = [
     metaTitle: "Épilation laser à Dole — Reboot",
     metaDescription:
       "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 40 €. Bilan offert.",
-    landingPages: [
-      {
-        href: "/epilation-laser-dole",
-        label: "Épilation laser à Dole",
-        description: "Toutes les zones en un coup d'œil : tarifs, zones traitées, technologie.",
-      },
-      {
-        href: "/epilation-laser-jambes-dole",
-        label: "Épilation laser des jambes à Dole",
-        description: "Demi-jambes, jambes complètes, genoux et cuisses — à partir de 60 €.",
-      },
-      {
-        href: "/epilation-laser-maillot-dole",
-        label: "Épilation laser maillot intégral à Dole",
-        description: "Maillot simple, brésilien ou intégral — à partir de 45 €.",
-      },
-    ],
+    hubLandingPage: { href: "/epilation-laser-dole", label: "Épilation laser à Dole — zones et tarifs" },
     faq: [
       {
         q: "Combien de séances faut-il pour une épilation laser définitive à Dole ?",
@@ -105,8 +88,6 @@ export const soins: Soin[] = [
     short:
       "Destruction ciblée des cellules graisseuses par le froid, sans chirurgie ni éviction.",
     long: "La cryolipolyse expose les adipocytes à un froid contrôlé qui les détruit sélectivement. Ils sont ensuite éliminés naturellement par l'organisme, sur 6 à 12 semaines, pour un remodelage progressif.",
-    seoContent:
-      "La cryolipolyse à Reboot à Dole est indiquée sur toutes les zones présentant des amas graisseux localisés résistants au sport et à l'alimentation : ventre (bas-ventre, abdomen), flancs (poignées d'amour), cuisses intérieures et extérieures, bras, dos (bourrelets), double menton. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention chirurgicale, ni temps d'éviction : la séance se déroule au centre et vous reprenez vos activités immédiatement. Un seul passage par zone suffit dans la majorité des cas ; un deuxième peut être envisagé lors du bilan à 8 semaines. Le centre Reboot est situé au 7 rue Jacques de Molay à Dole (Jura), à proximité de Besançon, Lons-le-Saunier et Dijon.",
     duration: "45 à 70 min par zone",
     sessions: "1 à 3 séances espacées de 6 à 8 semaines",
     price: "à partir de 250 €",
@@ -126,23 +107,7 @@ export const soins: Soin[] = [
     metaTitle: "Cryolipolyse à Dole — Reboot",
     metaDescription:
       "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 250 €. Bilan offert.",
-    landingPages: [
-      {
-        href: "/cryolipolyse-dole",
-        label: "Cryolipolyse à Dole",
-        description: "Toutes les zones traitées, tarifs et protocole — bilan gratuit.",
-      },
-      {
-        href: "/cryolipolyse-ventre-dole",
-        label: "Cryolipolyse ventre à Dole",
-        description: "Ventre, bas-ventre, flancs — à partir de 250 €.",
-      },
-      {
-        href: "/solution-minceur-dole",
-        label: "Solution minceur à Dole",
-        description: "Une alternative non chirurgicale pour les amas localisés résistants.",
-      },
-    ],
+    hubLandingPage: { href: "/cryolipolyse-dole", label: "Cryolipolyse à Dole — zones et tarifs" },
     faq: [
       {
         q: "La cryolipolyse est-elle efficace pour éliminer les poignées d'amour ?",
@@ -174,8 +139,6 @@ export const soins: Soin[] = [
     short:
       "Exfoliation contrôlée pour raviver le teint, lisser le grain de peau et estomper les tâches.",
     long: "Nous formulons des peelings superficiels à moyens (acides de fruits, salicylique, TCA doux) adaptés à votre type de peau et à votre objectif : éclat, taches, pores dilatés, marques d'acné.",
-    seoContent:
-      "Le peeling au centre Reboot de Dole est formulé selon votre profil cutané et votre objectif : peeling aux acides de fruits (AHA) pour l'éclat et le grain de peau, peeling salicylique pour les peaux à tendance acnéique et les pores dilatés, TCA doux pour les taches pigmentaires résistantes (melasma, taches solaires, taches post-inflammatoires). Chaque protocole est défini lors d'un bilan cutané initial et ajusté séance après séance selon la tolérance de la peau. Le peeling professionnel à Dole s'adresse aux peaux ternes, irrégulières, marquées ou fragilisées par le soleil. Il est également utilisé en association avec le microneedling pour des résultats amplifiés sur les cicatrices et le teint. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura).",
     duration: "30 à 45 min",
     sessions: "Cure de 3 à 5 séances",
     price: "à partir de 95 €",
@@ -226,8 +189,6 @@ export const soins: Soin[] = [
     short:
       "Micro-perforations contrôlées pour relancer la production de collagène et unifier la peau.",
     long: "De fines aiguilles créent des micro-canaux dans le derme et déclenchent une réponse de réparation naturelle : production de collagène et d'élastine, meilleure pénétration des actifs, peau visiblement plus dense.",
-    seoContent:
-      "Le microneedling au centre Reboot à Dole agit sur les mécanismes naturels de réparation de la peau : il stimule la production de collagène et d'élastine, améliore la texture et la densité cutanée, réduit les ridules et les rides d'expression débutantes, estompe les cicatrices d'acné et resserre les pores. Il est particulièrement recommandé pour les peaux qui montrent les premiers signes du temps (perte de fermeté, teint irrégulier), pour les peaux marquées par des cicatrices ou des dommages solaires. Le protocole peut être associé à l'application d'actifs spécifiques (acide hyaluronique, peptides) pendant la séance, pour un effet amplifié. Reboot — centre technico-esthétique à Dole (Jura), 7 rue Jacques de Molay, 39100 Dole.",
     duration: "45 à 60 min",
     sessions: "Cure de 3 à 4 séances espacées de 4 semaines",
     price: "à partir de 90 €",

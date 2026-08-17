@@ -5,8 +5,8 @@ date: "2026-08-20"
 author: "L'équipe Reboot"
 category: "Soins"
 excerpt: "L'épilation laser des aisselles à Dole : combien de séances, quel résultat, quel prix ? Tout ce qu'il faut savoir avant de commencer au centre Reboot."
-coverImage: "/uploads/centre-reboot.jpg"
-coverAlt: "Cabine de soin du centre Reboot à Dole — épilation laser"
+coverImage: "/uploads/blog-epilation-laser-aisselles.svg"
+coverAlt: "Faisceau laser doré se propageant depuis un point focal — épilation laser"
 draft: false
 ---
 
@@ -58,6 +58,6 @@ Pour connaître le tarif exact et vérifier que le laser est adapté à votre pr
 
 ---
 
-Vous souhaitez traiter d'autres zones en même temps ? Il est possible de combiner les aisselles avec le maillot ou une autre zone courte lors d'un même rendez-vous.
+Vous souhaitez traiter d'autres zones en même temps ? Il est possible de combiner les aisselles avec le [maillot](/epilation-laser-maillot-dole) ou une autre zone courte lors d'un même rendez-vous.
 
-[Voir toutes les zones traitées à Dole](/epilation-laser-dole)
+[Voir toutes les zones traitées à Dole](/epilation-laser-dole) · [Fiche soin épilation laser](/soins/epilation-laser)

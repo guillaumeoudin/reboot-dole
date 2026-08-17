@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1104" width="1600" height="1104">
+  <defs>
+    <radialGradient id="bg-prep" cx="55%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#20304E"/>
+      <stop offset="100%" stop-color="#1B2240"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1104" fill="url(#bg-prep)"/>
+
+  <!-- Outer framing rectangle — subtle -->
+  <rect x="340" y="270" width="920" height="564" fill="none" stroke="#B58B3A" stroke-width="0.6" opacity="0.2"/>
+
+  <!-- Step 1 — y=380 -->
+  <!-- Checkmark circle -->
+  <circle cx="460" cy="380" r="22" fill="none" stroke="#C9A054" stroke-width="2"/>
+  <polyline points="448,380 457,392 475,367"
+    fill="none" stroke="#C9A054" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Title bar -->
+  <line x1="508" y1="380" x2="1140" y2="380" stroke="#B58B3A" stroke-width="1.8"/>
+  <!-- Sub-line -->
+  <line x1="508" y1="397" x2="900"  y2="397" stroke="#B58B3A" stroke-width="0.9" opacity="0.45"/>
+
+  <!-- Connector -->
+  <line x1="460" y1="402" x2="460" y2="530"
+    stroke="#B58B3A" stroke-width="1" stroke-dasharray="5,5" opacity="0.35"/>
+
+  <!-- Step 2 — y=552 -->
+  <circle cx="460" cy="552" r="22" fill="none" stroke="#C9A054" stroke-width="2"/>
+  <polyline points="448,552 457,564 475,539"
+    fill="none" stroke="#C9A054" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="508" y1="552" x2="1140" y2="552" stroke="#B58B3A" stroke-width="1.8"/>
+  <line x1="508" y1="569" x2="980"  y2="569" stroke="#B58B3A" stroke-width="0.9" opacity="0.45"/>
+
+  <!-- Connector -->
+  <line x1="460" y1="574" x2="460" y2="702"
+    stroke="#B58B3A" stroke-width="1" stroke-dasharray="5,5" opacity="0.35"/>
+
+  <!-- Step 3 — y=724 -->
+  <circle cx="460" cy="724" r="22" fill="none" stroke="#C9A054" stroke-width="2"/>
+  <polyline points="448,724 457,736 475,711"
+    fill="none" stroke="#C9A054" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="508" y1="724" x2="1140" y2="724" stroke="#B58B3A" stroke-width="1.8"/>
+  <line x1="508" y1="741" x2="840"  y2="741" stroke="#B58B3A" stroke-width="0.9" opacity="0.45"/>
+
+  <!-- Corner accent dots -->
+  <circle cx="340"  cy="270"  r="3.5" fill="#C9A054" opacity="0.5"/>
+  <circle cx="1260" cy="270"  r="3.5" fill="#C9A054" opacity="0.5"/>
+  <circle cx="340"  cy="834"  r="3.5" fill="#C9A054" opacity="0.5"/>
+  <circle cx="1260" cy="834"  r="3.5" fill="#C9A054" opacity="0.5"/>
+
+  <!-- Background hairline grid — very subtle -->
+  <line x1="0"    y1="552" x2="1600" y2="552" stroke="#B58B3A" stroke-width="0.3" opacity="0.1"/>
+  <line x1="800"  y1="0"   x2="800"  y2="1104" stroke="#B58B3A" stroke-width="0.3" opacity="0.1"/>
+</svg>
