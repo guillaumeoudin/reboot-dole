@@ -2,6 +2,11 @@
  * Layout partagé pour les landing pages SEO zone-spécifiques.
  * Ces pages ne figurent pas dans la navigation principale du site —
  * elles sont découvertes via Google et le sitemap.xml.
+ *
+ * Props optionnelles pour enrichir le contenu page par page :
+ * - image      → active la mise en page 2 colonnes dans le héro
+ * - highlights → section « points forts » (3 piliers recommandés)
+ * - seoContent → paragraphe SEO étendu affiché avant la FAQ
  */
 import { BookButton } from "@/components/ui-kit";
 import {
@@ -17,9 +22,15 @@ export type SeoLandingPageProps = {
   description: string;
   specs: { duration: string; sessions: string; price: string };
   faq: { q: string; a: string }[];
-  /** Lien de retour vers la page soin parente */
+  /** Lien de retour vers la page parente */
   parentHref: string;
   parentLabel: string;
+  /** Image héro optionnelle — active la mise en page 2 colonnes */
+  image?: { src: string; alt: string; width?: number; height?: number };
+  /** Points forts / piliers (3 recommandés) */
+  highlights?: { index: string; title: string; text: string }[];
+  /** Paragraphe SEO étendu — affiché avant la FAQ */
+  seoContent?: string;
 };
 
 export function SeoLandingPage({
@@ -30,28 +41,46 @@ export function SeoLandingPage({
   faq,
   parentHref,
   parentLabel,
+  image,
+  highlights,
+  seoContent,
 }: SeoLandingPageProps) {
   return (
     <>
       {/* Hero */}
       <section className="glow-warm border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <a
-            href={parentHref}
-            className="label-caps text-muted-foreground transition-colors hover:text-gold"
-          >
-            ← {parentLabel}
-          </a>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] text-foreground sm:text-5xl">
-            {title}
-          </h1>
-          <p className="mt-4 font-display text-2xl text-gold">{tagline}</p>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            {description}
-          </p>
-          <div className="mt-10">
-            <BookButton />
+        <div
+          className={`mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20${
+            image ? " grid items-center gap-10 lg:grid-cols-2" : ""
+          }`}
+        >
+          <div>
+            <a
+              href={parentHref}
+              className="label-caps text-muted-foreground transition-colors hover:text-gold"
+            >
+              ← {parentLabel}
+            </a>
+            <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] text-foreground sm:text-5xl">
+              {title}
+            </h1>
+            <p className="mt-4 font-display text-2xl text-gold">{tagline}</p>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              {description}
+            </p>
+            <div className="mt-10">
+              <BookButton />
+            </div>
           </div>
+          {image && (
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={image.width ?? 1600}
+              height={image.height ?? 1104}
+              className="aspect-4/3 w-full object-cover"
+            />
+          )}
         </div>
       </section>
 
@@ -74,6 +103,36 @@ export function SeoLandingPage({
           </dl>
         </div>
       </section>
+
+      {/* Points forts */}
+      {highlights && highlights.length > 0 && (
+        <section className="border-b border-border bg-surface">
+          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+            <div className="grid gap-px bg-border md:grid-cols-3">
+              {highlights.map((item) => (
+                <article key={item.index} className="bg-background p-8">
+                  <span className="label-caps text-gold-soft">{item.index}</span>
+                  <h3 className="mt-5 text-2xl text-foreground">{item.title}</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Contenu SEO étendu */}
+      {seoContent && (
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+            <p className="label-caps text-gold">Le soin en détail</p>
+            <h2 className="mt-5 text-3xl text-foreground">{title} — centre Reboot</h2>
+            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {seoContent}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="border-b border-border bg-surface">

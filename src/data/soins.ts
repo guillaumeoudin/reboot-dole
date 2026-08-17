@@ -23,6 +23,8 @@ export type Soin = {
   metaTitle: string;
   metaDescription: string;
   faq: { q: string; a: string }[];
+  /** Landing pages SEO associées — affichées en bas de la page détail pour le maillage interne. */
+  landingPages?: { href: string; label: string; description: string }[];
 };
 
 export const soins: Soin[] = [
@@ -55,6 +57,23 @@ export const soins: Soin[] = [
     metaTitle: "Épilation laser à Dole — Reboot",
     metaDescription:
       "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 40 €. Bilan offert.",
+    landingPages: [
+      {
+        href: "/epilation-laser-dole",
+        label: "Épilation laser à Dole",
+        description: "Toutes les zones en un coup d'œil : tarifs, zones traitées, technologie.",
+      },
+      {
+        href: "/epilation-laser-jambes-dole",
+        label: "Épilation laser des jambes à Dole",
+        description: "Demi-jambes, jambes complètes, genoux et cuisses — à partir de 60 €.",
+      },
+      {
+        href: "/epilation-laser-maillot-dole",
+        label: "Épilation laser maillot intégral à Dole",
+        description: "Maillot simple, brésilien ou intégral — à partir de 45 €.",
+      },
+    ],
     faq: [
       {
         q: "Combien de séances faut-il pour une épilation laser définitive à Dole ?",
@@ -107,6 +126,23 @@ export const soins: Soin[] = [
     metaTitle: "Cryolipolyse à Dole — Reboot",
     metaDescription:
       "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 250 €. Bilan offert.",
+    landingPages: [
+      {
+        href: "/cryolipolyse-dole",
+        label: "Cryolipolyse à Dole",
+        description: "Toutes les zones traitées, tarifs et protocole — bilan gratuit.",
+      },
+      {
+        href: "/cryolipolyse-ventre-dole",
+        label: "Cryolipolyse ventre à Dole",
+        description: "Ventre, bas-ventre, flancs — à partir de 250 €.",
+      },
+      {
+        href: "/solution-minceur-dole",
+        label: "Solution minceur à Dole",
+        description: "Une alternative non chirurgicale pour les amas localisés résistants.",
+      },
+    ],
     faq: [
       {
         q: "La cryolipolyse est-elle efficace pour éliminer les poignées d'amour ?",

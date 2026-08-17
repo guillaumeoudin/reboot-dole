@@ -10,24 +10,28 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const staticPaths = [
-          "/",
-          "/soins",
-          "/soins/epilation-laser",
-          "/soins/cryolipolyse",
-          "/soins/peeling",
-          "/soins/microneedling",
-          "/bien-etre",
-          "/yoga-dole",
-          "/epilation-laser-jambes-dole",
-          "/epilation-laser-maillot-dole",
-          "/cryolipolyse-ventre-dole",
-          "/concept",
-          "/blog",
-          "/contact",
+        const staticPaths: { path: string; priority: string }[] = [
+          { path: "/", priority: "1.0" },
+          { path: "/soins", priority: "0.9" },
+          { path: "/soins/epilation-laser", priority: "0.9" },
+          { path: "/soins/cryolipolyse", priority: "0.8" },
+          { path: "/soins/peeling", priority: "0.8" },
+          { path: "/soins/microneedling", priority: "0.8" },
+          { path: "/bien-etre", priority: "0.8" },
+          // Landing pages SEO — hubs en tête, spécifiques ensuite
+          { path: "/epilation-laser-dole", priority: "0.9" },
+          { path: "/cryolipolyse-dole", priority: "0.9" },
+          { path: "/solution-minceur-dole", priority: "0.8" },
+          { path: "/epilation-laser-jambes-dole", priority: "0.7" },
+          { path: "/epilation-laser-maillot-dole", priority: "0.7" },
+          { path: "/cryolipolyse-ventre-dole", priority: "0.7" },
+          { path: "/yoga-dole", priority: "0.7" },
+          { path: "/concept", priority: "0.7" },
+          { path: "/blog", priority: "0.8" },
+          { path: "/contact", priority: "0.8" },
         ];
         const entries = [
-          ...staticPaths.map((path) => ({ path, changefreq: "monthly", priority: path === "/" ? "1.0" : "0.8" })),
+          ...staticPaths.map(({ path, priority }) => ({ path, changefreq: "monthly", priority })),
           ...posts.map((post) => ({
             path: `/blog/${post.slug}`,
             changefreq: "yearly",

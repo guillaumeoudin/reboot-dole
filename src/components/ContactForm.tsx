@@ -90,7 +90,7 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={set("name")}
-            placeholder="Cléopâtre"
+            placeholder="Cléopâtre Philopator"
             className={inputClass}
           />
         </label>
@@ -101,7 +101,7 @@ export function ContactForm() {
             required
             value={form.email}
             onChange={set("email")}
-            placeholder="cleopatre@palais-alexandrie.eg"
+            placeholder="reine.cleo@nil-royal.eg"
             className={inputClass}
           />
         </label>
@@ -138,7 +138,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={set("message")}
-          placeholder="Bonjour, depuis que Marc Antoine est reparti à Rome je me laisse un peu aller. Je voudrais reprendre soin de moi. Vous faites le cryolipolyse sur le Nil ou faut-il se déplacer ?"
+          placeholder="Bonjour, je prépare une surprise pour le retour de Marc Antoine — il revient de campagne dans un mois. J'aimerais traiter quelques amas rebelles au niveau du ventre. Vous proposez la cryolipolyse pour ce type de résultat ? Je voudrais prendre rendez-vous pour un bilan."
           className={`${inputClass} resize-none`}
         />
       </label>
