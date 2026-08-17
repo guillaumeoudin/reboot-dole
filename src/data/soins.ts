@@ -2,8 +2,7 @@ import soinLaser from "@/assets/soin-laser.jpg";
 import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 import soinPeeling from "@/assets/soin-peeling.jpg";
 import soinMicroneedling from "@/assets/soin-microneedling.jpg";
-// TODO: remplacer par soin-dome-led.jpg lorsque l'image sera disponible
-import soinDomeLed from "@/assets/soin-microneedling.jpg";
+import soinDomeLed from "@/assets/soin-dome-led.jpg";
 
 export type Soin = {
   slug: string;

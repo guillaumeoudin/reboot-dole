@@ -187,14 +187,14 @@ function SoinDetail() {
       <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           <p className="label-caps text-gold">Autres soins</p>
-          <div className="mt-8 grid gap-px bg-border sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {others.map((other) => (
               <Link
                 key={other.slug}
                 to="/soins/$slug"
                 params={{ slug: other.slug }}
                 viewTransition
-                className="group bg-background p-8 transition-colors hover:bg-surface"
+                className="group border border-border bg-background p-8 transition-colors hover:bg-surface"
               >
                 <span className="label-caps text-gold-soft">{other.index}</span>
                 <h3 className="mt-4 text-2xl text-foreground transition-colors group-hover:text-gold">

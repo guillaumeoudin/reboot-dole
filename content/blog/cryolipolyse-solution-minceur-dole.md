@@ -5,8 +5,8 @@ date: "2026-09-03"
 author: "L'équipe Reboot"
 category: "Soins"
 excerpt: "La cryolipolyse est-elle une vraie solution minceur à Dole ? Ce qu'elle traite, ce qu'elle ne traite pas, et à qui elle s'adresse vraiment."
-coverImage: "/uploads/blog-cryolipolyse-minceur.svg"
-coverAlt: "Cristal de glace stylisé — cryolipolyse, réduction des amas graisseux localisés"
+coverImage: "/uploads/blog-cryolipolyse-minceur.jpg"
+coverAlt: "Séance de laser au centre Reboot à Dole"
 draft: false
 ---
 

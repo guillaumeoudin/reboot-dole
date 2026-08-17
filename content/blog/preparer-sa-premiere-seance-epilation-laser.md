@@ -5,8 +5,8 @@ date: "2025-02-18"
 author: "L'équipe Reboot"
 category: "Soins"
 excerpt: "Ce qu'il faut savoir avant votre premier rendez-vous : rasage, exposition solaire, sensations et nombre de séances à prévoir."
-coverImage: "/uploads/blog-preparer-seance-epilation.svg"
-coverAlt: "Checklist abstraite en or sur fond marine — préparer sa première séance d'épilation laser"
+coverImage: "/uploads/blog-preparer-seance-epilation.jpg"
+coverAlt: "Préparation à une séance d'épilation laser au centre Reboot à Dole"
 draft: false
 ---
 

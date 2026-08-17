@@ -5,8 +5,8 @@ date: "2026-08-27"
 author: "L'équipe Reboot"
 category: "Soins"
 excerpt: "Tarifs de l'épilation laser à Dole (Jura) : prix par zone, nombre de séances, ce qui influence le coût total. Toutes les réponses au centre Reboot."
-coverImage: "/uploads/blog-tarif-epilation-laser.svg"
-coverAlt: "Barres horizontales en dégradé doré symbolisant une échelle de tarifs — épilation laser à Dole"
+coverImage: "/uploads/blog-tarif-epilation-laser.jpg"
+coverAlt: "Séance d'épilation laser visage au centre Reboot à Dole"
 draft: false
 ---
 

@@ -63,8 +63,11 @@ function BlogIndexPage() {
             </p>
           ) : (
             <ul className="grid gap-0.5 border border-border bg-border sm:grid-cols-2">
-              {posts.map((post) => (
-                <li key={post.slug} className="bg-background">
+              {posts.map((post, i) => (
+                <li
+                  key={post.slug}
+                  className={`bg-background${i === posts.length - 1 && posts.length % 2 !== 0 ? " sm:col-span-2" : ""}`}
+                >
                   <article className="group flex h-full flex-col transition-colors hover:bg-surface">
                     {post.coverImage ? (
                       <img
@@ -76,7 +79,11 @@ function BlogIndexPage() {
                         decoding="async"
                         className="aspect-4/3 w-full object-cover"
                       />
-                    ) : null}
+                    ) : (
+                      <div className="flex aspect-4/3 w-full items-center justify-center border-b border-border bg-surface">
+                        <span className="label-caps text-muted-foreground">{post.category}</span>
+                      </div>
+                    )}
                     <div className="flex flex-1 flex-col p-6 sm:p-8">
                       <p className="label-caps text-gold-soft">
                         {post.category}
