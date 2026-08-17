@@ -29,9 +29,9 @@ export const site = {
 
 /** Horaires d'ouverture : affichés sur la page Contact et repris en JSON-LD. */
 export const openingHours = [
-  { day: "Lundi — Vendredi", value: "9h — 19h", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "19:00" },
-  { day: "Samedi", value: "9h — 17h", days: ["Saturday"], opens: "09:00", closes: "17:00" },
-  { day: "Dimanche", value: "Fermé", days: ["Sunday"], opens: null, closes: null },
+  { day: "Lundi — Vendredi", value: "9h30 — 12h", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:30", closes: "12:00" },
+  { day: "", value: "13h30 — 18h", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "13:30", closes: "18:00" },
+  { day: "Samedi — Dimanche", value: "Fermé", days: ["Saturday", "Sunday"], opens: null, closes: null },
 ] as const;
 
 export const navLinks = [

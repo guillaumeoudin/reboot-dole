@@ -21,9 +21,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 const hours = [
-  { day: "Lundi — Vendredi", value: "9h — 19h" },
-  { day: "Samedi", value: "9h — 17h" },
-  { day: "Dimanche", value: "Fermé" },
+  { day: "Lundi — Vendredi", value: "9h30 — 12h · 13h30 — 18h" },
+  { day: "Samedi — Dimanche", value: "Fermé" },
 ];
 
 function ContactPage() {
