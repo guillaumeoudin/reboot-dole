@@ -1,5 +1,5 @@
 ---
-title: "Ce que ça coûte vraiment, l'épilation laser chez Reboot à Dole"
+title: "Ce que coûte vraiment l'épilation laser chez Reboot"
 slug: "tarif-epilation-laser-dole"
 date: "2026-08-27"
 author: "L'équipe Reboot"
@@ -28,9 +28,9 @@ En moyenne, il faut **8 à 10 séances** pour un résultat durable sur les grand
 
 Des poils très denses ou un déséquilibre hormonal peuvent nécessiter quelques séances supplémentaires. Le bilan initial permet d'en tenir compte dès le départ.
 
-## Les tarifs au centre Reboot à Dole
+## Les tarifs au centre Reboot
 
-Au centre Reboot, les séances démarrent à partir de :
+Les séances démarrent à partir de :
 
 | Zone | Tarif indicatif |
 |---|---|
@@ -61,4 +61,4 @@ Un protocole laser complet sur les jambes à Dole représente un investissement 
 
 Vous souhaitez connaître le tarif exact pour votre profil ? Le bilan est gratuit et sans engagement.
 
-[Épilation laser à Dole — zones et tarifs](/epilation-laser-dole) · [Jambes](/epilation-laser-jambes-dole) · [Maillot](/epilation-laser-maillot-dole) · [Fiche soin épilation laser](/soins/epilation-laser)
+[Fiche soin épilation laser](/soins/epilation-laser)

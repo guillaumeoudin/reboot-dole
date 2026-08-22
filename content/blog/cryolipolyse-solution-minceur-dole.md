@@ -1,5 +1,5 @@
 ---
-title: "Ce que la cryolipolyse peut vraiment faire chez Reboot à Dole"
+title: "Ce que la cryolipolyse peut vraiment faire chez Reboot"
 slug: "cryolipolyse-solution-minceur-dole"
 date: "2026-09-03"
 author: "L'équipe Reboot"
@@ -42,7 +42,7 @@ La cryolipolyse est indiquée pour les personnes :
 
 Le bilan préalable, réalisé gratuitement au centre avant toute séance, permet de confirmer l'indication et d'identifier les zones à traiter.
 
-## Combien de séances à Dole ?
+## Combien de séances ?
 
 Une seule séance par zone suffit dans la majorité des cas. Un bilan de suivi à 8 semaines permet d'évaluer le résultat et de décider si un deuxième passage est utile. Certains clients traitent plusieurs zones lors du même rendez-vous pour optimiser le protocole.
 
@@ -52,4 +52,4 @@ Les séances démarrent à partir de 250 € par zone au centre Reboot. Un devis
 
 ---
 
-[Cryolipolyse à Dole — toutes les zones](/cryolipolyse-dole) · [Cryolipolyse du ventre à Dole](/cryolipolyse-ventre-dole) · [Solution minceur à Dole](/solution-minceur-dole) · [Fiche soin cryolipolyse](/soins/cryolipolyse)
+[Fiche soin cryolipolyse](/soins/cryolipolyse)

@@ -1,5 +1,5 @@
 ---
-title: "Épilation laser des aisselles chez Reboot à Dole — ce qu'on observe en pratique"
+title: "Épilation laser des aisselles — ce qu'on observe en pratique"
 slug: "epilation-laser-aisselles-dole"
 date: "2026-08-20"
 author: "L'équipe Reboot"
@@ -50,7 +50,7 @@ Pour les peaux très réactives, une crème anesthésiante peut être appliquée
 - Pas de sauna, hammam ou sport intense pendant 48 h
 - Appliquer une crème apaisante si une rougeur persiste
 
-## Quel est le tarif à Dole ?
+## Quel est le tarif ?
 
 Le tarif d'une séance aisselles au centre Reboot est établi lors du bilan initial. Le prix tient compte de la surface et du protocole défini. Des forfaits multi-séances permettent de réduire le coût global.
 
@@ -58,6 +58,6 @@ Pour connaître le tarif exact et vérifier que le laser est adapté à votre pr
 
 ---
 
-Vous souhaitez traiter d'autres zones en même temps ? Il est possible de combiner les aisselles avec le [maillot](/epilation-laser-maillot-dole) ou une autre zone courte lors d'un même rendez-vous.
+Vous souhaitez traiter d'autres zones en même temps ? Il est possible de combiner les aisselles avec le maillot ou une autre zone courte lors d'un même rendez-vous.
 
-[Voir toutes les zones traitées à Dole](/epilation-laser-dole) · [Fiche soin épilation laser](/soins/epilation-laser)
+[Fiche soin épilation laser](/soins/epilation-laser)
