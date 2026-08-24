@@ -110,7 +110,7 @@ export const Route = createFileRoute("/api/whatsapp")({
         } catch (err) {
           console.error("[WhatsApp webhook] Claude error:", err);
           reply =
-            "Bonjour ! Je rencontre un problème technique momentané. N'hésitez pas à nous appeler au 06 77 59 24 50 ou à prendre rendez-vous sur Planity. À très bientôt !";
+            "Bonjour ! Je rencontre un problème technique momentané. N'hésitez pas à nous appeler au 06 51 57 79 09 ou à prendre rendez-vous sur Planity. À très bientôt !";
         }
 
         // Envoi de la réponse via WhatsApp Cloud API

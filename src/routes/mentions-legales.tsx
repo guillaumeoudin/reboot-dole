@@ -26,7 +26,7 @@ function MentionsLegalesPage() {
             <p>Capital social : 1 000 €</p>
             <p>RCS Lons-le-Saunier 108 112 731</p>
             <p>Siège social : 7 rue Jacques de Molay, 39100 Dole</p>
-            <p>Téléphone : 06 77 59 24 50</p>
+            <p>Téléphone : 06 51 57 79 09</p>
             <p>Email : contact@reboot-dole.fr</p>
           </address>
           <p className="mt-3">Directeur de la publication : Aline Gauthier</p>

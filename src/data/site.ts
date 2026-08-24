@@ -15,8 +15,8 @@ export const site = {
   countryCode: "FR",
   geo: { latitude: 47.090721, longitude: 5.489599 },
   priceRange: "40–250 €",
-  phone: "06 77 59 24 50",
-  phoneHref: "tel:+33677592450",
+  phone: "06 51 57 79 09",
+  phoneHref: "tel:+33651577909",
   email: "contact@reboot-dole.fr",
   /** Réservation de créneaux en ligne (plateforme externe). */
   booking: "https://www.planity.com/",
