@@ -29,6 +29,11 @@ export const Route = createFileRoute("/api/whatsapp")({
         const token = url.searchParams.get("hub.verify_token");
         const challenge = url.searchParams.get("hub.challenge");
 
+        console.log("[WhatsApp GET] mode:", mode);
+        console.log("[WhatsApp GET] received token:", token);
+        console.log("[WhatsApp GET] expected token:", process.env.WHATSAPP_VERIFY_TOKEN);
+        console.log("[WhatsApp GET] match:", token === process.env.WHATSAPP_VERIFY_TOKEN);
+
         if (
           mode === "subscribe" &&
           token === process.env.WHATSAPP_VERIFY_TOKEN
