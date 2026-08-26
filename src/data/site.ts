@@ -20,7 +20,7 @@ export const site = {
   email: "contact@reboot-dole.fr",
   /** Réservation de créneaux en ligne (plateforme externe). */
   booking: "https://www.planity.com/",
-  whatsappHref: "/contact",
+  whatsappHref: "https://wa.me/33651577909",
   social: {
     linkedin: "https://www.linkedin.com/company/reboot-dole/",
     instagram: "https://www.instagram.com/reboot_dole",
