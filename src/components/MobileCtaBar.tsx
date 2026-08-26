@@ -74,14 +74,16 @@ export function MobileCtaBar() {
           Réserver
           <span aria-hidden="true">→</span>
         </a>
-        <Link
-          to="/contact"
+        <a
+          href={site.whatsappHref}
+          target="_blank"
+          rel="noreferrer noopener"
           aria-label="Discuter sur WhatsApp"
           className="pointer-events-auto flex h-12 flex-1 basis-0 items-center justify-center gap-2 border border-gold/40 bg-surface text-sm font-medium tracking-wide text-surface-foreground shadow-lg shadow-black/20 transition-colors hover:border-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <WhatsAppIcon className="size-4 shrink-0 text-gold" />
           Une question ?
-        </Link>
+        </a>
       </div>
     </div>
   );
@@ -90,8 +92,10 @@ export function MobileCtaBar() {
 /** Floating WhatsApp pill: shown from the `cta` breakpoint (1080px) upwards. */
 export function WhatsAppFloat() {
   return (
-    <Link
-      to="/contact"
+    <a
+      href={site.whatsappHref}
+      target="_blank"
+      rel="noreferrer noopener"
       aria-label="Discuter sur WhatsApp"
       title="Discuter sur WhatsApp"
       className="group fixed right-6 bottom-6 z-50 hidden max-w-[calc(100vw-2rem)] items-center gap-3 rounded-full border border-gold/25 bg-surface/95 p-2 pr-5 text-surface-foreground shadow-lg shadow-black/20 backdrop-blur transition-colors hover:border-gold/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background cta:inline-flex"
@@ -100,6 +104,6 @@ export function WhatsAppFloat() {
         <WhatsAppIcon className="size-5" />
       </span>
       <span className="truncate text-sm tracking-wide">Une question ?</span>
-    </Link>
+    </a>
   );
 }
