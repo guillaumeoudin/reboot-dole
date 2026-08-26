@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import systemPrompt from "./whatsapp-system-prompt.txt?raw";
 
 /**
  * Webhook WhatsApp Business Cloud API — assistant virtuel Reboot Dole.
@@ -93,7 +94,7 @@ export const Route = createFileRoute("/api/whatsapp")({
               body: JSON.stringify({
                 model: "claude-haiku-4-5-20251001",
                 max_tokens: 350,
-                system: process.env.REBOOT_SYSTEM_PROMPT,
+                system: systemPrompt,
                 messages: [{ role: "user", content: userText }],
               }),
             }
