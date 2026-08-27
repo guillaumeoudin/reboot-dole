@@ -10,13 +10,7 @@
  */
 import { createFileRoute } from "@tanstack/react-router";
 
-import { BookButton } from "@/components/ui-kit";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { SeoLandingPage } from "@/components/SeoLandingPage";
 import { site } from "@/data/site";
 import soinLaser from "@/assets/soin-laser.jpg";
 
@@ -158,163 +152,30 @@ export const Route = createFileRoute("/epilation-laser-dole")({
 
 function EpilationLaserDolePage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="glow-warm border-b border-border">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
-          <div>
-            <a
-              href="/soins/epilation-laser"
-              className="label-caps text-muted-foreground transition-colors hover:text-gold"
-            >
-              ← Épilation laser
-            </a>
-            <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl">
-              Épilation laser à Dole
-            </h1>
-            <p className="mt-4 font-display text-2xl text-gold">
-              Toutes les zones. Définitivement.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du
-              visage — jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous
-              phototypes. Bilan cutané gratuit avant la première séance.
-            </p>
-            <div className="mt-10">
-              <BookButton label="Prendre rendez-vous" />
-            </div>
-          </div>
-          <img
-            src={soinLaser}
-            alt="Épilation laser au centre Reboot à Dole, Jura — technologie dernière génération"
-            width={1600}
-            height={1104}
-            className="aspect-4/3 w-full object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Zones traitées */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Zones traitées</p>
-          <h2 className="mt-5 text-3xl text-foreground sm:text-4xl">
-            Corps et visage — tout est traitable.
-          </h2>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Chaque zone fait l'objet d'un protocole adapté à sa densité pilaire, à sa sensibilité et
-            au phototype. Le bilan initial permet de définir le plan de traitement complet.
-          </p>
-          <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {zones.map((zone) => (
-              <article key={zone.index} className="group bg-background p-8">
-                <span className="label-caps text-gold-soft">{zone.index}</span>
-                <h3 className="mt-4 text-2xl text-foreground">{zone.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{zone.body}</p>
-                {zone.href && zone.cta && (
-                  <a
-                    href={zone.href}
-                    className="mt-5 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 text-xs text-gold transition-colors hover:border-gold"
-                  >
-                    {zone.cta}
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Specs */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-          <dl className="grid gap-px border border-border bg-border sm:grid-cols-3">
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Durée</dt>
-              <dd className="mt-2 text-sm text-foreground">15 à 60 min selon la zone</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Séances</dt>
-              <dd className="mt-2 text-sm text-foreground">8 à 10 séances espacées de 4 à 8 sem.</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Tarif</dt>
-              <dd className="mt-2 text-sm text-foreground">à partir de 40 € — devis au bilan</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      {/* Contenu SEO */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Le centre en détail</p>
-          <h2 className="mt-5 text-3xl text-foreground">
-            Épilation laser à Dole — centre Reboot
-          </h2>
-          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du
-            visage : jambes (demi-jambes, jambes complètes, genoux, cuisses), maillot (simple,
-            brésilien, intégral), aisselles, bras et avant-bras, dos, torse, et visage (lèvre
-            supérieure, menton, sourcils). Chaque zone fait l'objet d'un protocole adapté à la
-            densité pilaire et à la couleur du poil. La technologie laser utilisée est certifiée pour
-            tous les phototypes, y compris les peaux mates et foncées. Un bilan cutané gratuit est
-            systématiquement réalisé avant la première séance pour définir le protocole, estimer le
-            nombre de séances et établir un devis personnalisé. Situé au 7 rue Jacques de Molay à
-            Dole (39100), le centre Reboot est accessible depuis Besançon (45 min), Dijon (50 min)
-            et Lons-le-Saunier (40 min). Rendez-vous en ligne via Planity ou par téléphone.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Questions fréquentes</p>
-          <h2 className="mt-5 text-3xl text-foreground">Ce qu'on nous demande souvent</h2>
-          <Accordion type="single" collapsible className="mt-8 max-w-3xl">
-            {faq.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="border-border">
-                <AccordionTrigger className="text-left text-sm text-foreground hover:text-gold hover:no-underline">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA bas de page */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Passer à l'action</p>
-          <h2 className="mt-5 text-3xl text-foreground">Prendre rendez-vous à Dole</h2>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Réservez en ligne ou contactez-nous directement. Le bilan initial est gratuit et sans
-            engagement — il permet de définir les zones à traiter, le protocole et le tarif.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <BookButton />
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Nous contacter <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div className="mt-8 border-t border-border pt-8">
-            <a
-              href="/soins/epilation-laser"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Épilation laser — toutes les infos <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+    <SeoLandingPage
+      title="Épilation laser à Dole"
+      tagline="Toutes les zones. Définitivement."
+      description="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage — jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous phototypes. Bilan cutané gratuit avant la première séance."
+      image={{
+        src: soinLaser,
+        alt: "Épilation laser au centre Reboot à Dole, Jura — technologie dernière génération",
+      }}
+      highlights={zones.map((z) => ({ index: z.index, title: z.title, text: z.body }))}
+      highlightsHeading={{
+        label: "Zones traitées",
+        title: "Corps et visage — tout est traitable.",
+        description:
+          "Chaque zone fait l'objet d'un protocole adapté à sa densité pilaire, à sa sensibilité et au phototype. Le bilan initial permet de définir le plan de traitement complet.",
+      }}
+      seoContent="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage : jambes (demi-jambes, jambes complètes, genoux, cuisses), maillot (simple, brésilien, intégral), aisselles, bras et avant-bras, dos, torse, et visage (lèvre supérieure, menton, sourcils). Chaque zone fait l'objet d'un protocole adapté à la densité pilaire et à la couleur du poil. La technologie laser utilisée est certifiée pour tous les phototypes, y compris les peaux mates et foncées. Un bilan cutané gratuit est systématiquement réalisé avant la première séance pour définir le protocole, estimer le nombre de séances et établir un devis personnalisé. Situé au 7 rue Jacques de Molay à Dole (39100), le centre Reboot est accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min). Rendez-vous en ligne via Planity ou par téléphone."
+      specs={{
+        duration: "15 à 60 min selon la zone",
+        sessions: "8 à 10 séances espacées de 4 à 8 sem.",
+        price: "à partir de 40 € — devis au bilan",
+      }}
+      faq={faq}
+      parentHref="/soins/epilation-laser"
+      parentLabel="Épilation laser"
+    />
   );
 }

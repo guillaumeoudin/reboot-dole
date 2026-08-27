@@ -10,13 +10,7 @@
  */
 import { createFileRoute } from "@tanstack/react-router";
 
-import { BookButton } from "@/components/ui-kit";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { SeoLandingPage } from "@/components/SeoLandingPage";
 import { site } from "@/data/site";
 import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 
@@ -158,164 +152,30 @@ export const Route = createFileRoute("/cryolipolyse-dole")({
 
 function CryolipolyseDolePage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="glow-warm border-b border-border">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
-          <div>
-            <a
-              href="/soins/cryolipolyse"
-              className="label-caps text-muted-foreground transition-colors hover:text-gold"
-            >
-              ← Cryolipolyse
-            </a>
-            <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl">
-              Cryolipolyse à Dole
-            </h1>
-            <p className="mt-4 font-display text-2xl text-gold">
-              Éliminer les amas localisés. Sans bistouri.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Le centre Reboot à Dole (Jura) propose la cryolipolyse sur toutes les zones du corps :
-              ventre, flancs, cuisses, bras, dos, double menton. Technologie certifiée, sans
-              anesthésie, sans éviction. Bilan gratuit avant la première séance.
-            </p>
-            <div className="mt-10">
-              <BookButton label="Prendre rendez-vous" />
-            </div>
-          </div>
-          <img
-            src={soinCryolipolyse}
-            alt="Cryolipolyse à Dole — réduction des amas graisseux localisés au centre Reboot, Jura"
-            width={1600}
-            height={1104}
-            className="aspect-4/3 w-full object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Zones traitées */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Zones traitées</p>
-          <h2 className="mt-5 text-3xl text-foreground sm:text-4xl">
-            Tout le corps — amas par amas.
-          </h2>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            La cryolipolyse est indiquée sur tous les amas graisseux localisés résistants au sport
-            et à l'alimentation. Chaque zone bénéficie d'un protocole adapté à sa surface et à son
-            épaisseur.
-          </p>
-          <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {zones.map((zone) => (
-              <article key={zone.index} className="bg-background p-8">
-                <span className="label-caps text-gold-soft">{zone.index}</span>
-                <h3 className="mt-4 text-2xl text-foreground">{zone.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{zone.body}</p>
-                {zone.href && zone.cta && (
-                  <a
-                    href={zone.href}
-                    className="mt-5 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 text-xs text-gold transition-colors hover:border-gold"
-                  >
-                    {zone.cta}
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Specs */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-          <dl className="grid gap-px border border-border bg-border sm:grid-cols-3">
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Durée</dt>
-              <dd className="mt-2 text-sm text-foreground">45 à 70 min par zone</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Séances</dt>
-              <dd className="mt-2 text-sm text-foreground">1 à 2 séances par zone</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Tarif</dt>
-              <dd className="mt-2 text-sm text-foreground">à partir de 250 € — devis au bilan</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      {/* Contenu SEO */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">La technique en détail</p>
-          <h2 className="mt-5 text-3xl text-foreground">
-            Cryolipolyse à Dole — centre Reboot
-          </h2>
-          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            La cryolipolyse au centre Reboot à Dole (Jura) cible les amas graisseux localisés
-            résistants aux régimes et à l'activité physique : ventre (bas-ventre, abdomen), flancs
-            (poignées d'amour), cuisses intérieures et extérieures, bras, dos (bourrelets dorsaux)
-            et double menton. Le froid contrôlé détruit sélectivement les adipocytes sans toucher
-            les tissus environnants — ils sont éliminés naturellement par l'organisme sur 6 à 12
-            semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention, ni
-            temps d'éviction. Un seul passage par zone suffit dans la majorité des cas. Le bilan
-            préalable — gratuit et sans engagement — permet de définir les zones à traiter, d'évaluer
-            l'éligibilité et d'établir un devis personnalisé. Centre Reboot — 7 rue Jacques de Molay,
-            39100 Dole (Jura), accessible depuis Besançon, Dijon et Lons-le-Saunier.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Questions fréquentes</p>
-          <h2 className="mt-5 text-3xl text-foreground">Ce qu'on nous demande souvent</h2>
-          <Accordion type="single" collapsible className="mt-8 max-w-3xl">
-            {faq.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="border-border">
-                <AccordionTrigger className="text-left text-sm text-foreground hover:text-gold hover:no-underline">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA bas de page */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Passer à l'action</p>
-          <h2 className="mt-5 text-3xl text-foreground">Prendre rendez-vous à Dole</h2>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Réservez en ligne ou contactez-nous directement. Le bilan initial est gratuit et sans
-            engagement — il permet de définir les zones, le protocole et le tarif.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <BookButton />
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Nous contacter <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div className="mt-8 border-t border-border pt-8">
-            <a
-              href="/soins/cryolipolyse"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Cryolipolyse — toutes les infos <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+    <SeoLandingPage
+      title="Cryolipolyse à Dole"
+      tagline="Éliminer les amas localisés. Sans bistouri."
+      description="Le centre Reboot à Dole (Jura) propose la cryolipolyse sur toutes les zones du corps : ventre, flancs, cuisses, bras, dos, double menton. Technologie certifiée, sans anesthésie, sans éviction. Bilan gratuit avant la première séance."
+      image={{
+        src: soinCryolipolyse,
+        alt: "Cryolipolyse à Dole — réduction des amas graisseux localisés au centre Reboot, Jura",
+      }}
+      highlights={zones.map((z) => ({ index: z.index, title: z.title, text: z.body }))}
+      highlightsHeading={{
+        label: "Zones traitées",
+        title: "Tout le corps — amas par amas.",
+        description:
+          "La cryolipolyse est indiquée sur tous les amas graisseux localisés résistants au sport et à l'alimentation. Chaque zone bénéficie d'un protocole adapté à sa surface et à son épaisseur.",
+      }}
+      seoContent="La cryolipolyse au centre Reboot à Dole (Jura) cible les amas graisseux localisés résistants aux régimes et à l'activité physique : ventre (bas-ventre, abdomen), flancs (poignées d'amour), cuisses intérieures et extérieures, bras, dos (bourrelets dorsaux) et double menton. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants — ils sont éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention, ni temps d'éviction. Un seul passage par zone suffit dans la majorité des cas. Le bilan préalable — gratuit et sans engagement — permet de définir les zones à traiter, d'évaluer l'éligibilité et d'établir un devis personnalisé. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura), accessible depuis Besançon, Dijon et Lons-le-Saunier."
+      specs={{
+        duration: "45 à 70 min par zone",
+        sessions: "1 à 2 séances par zone",
+        price: "à partir de 250 € — devis au bilan",
+      }}
+      faq={faq}
+      parentHref="/soins/cryolipolyse"
+      parentLabel="Cryolipolyse"
+    />
   );
 }

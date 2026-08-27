@@ -5,13 +5,7 @@
  */
 import { createFileRoute } from "@tanstack/react-router";
 
-import { BookButton } from "@/components/ui-kit";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { SeoLandingPage } from "@/components/SeoLandingPage";
 import { site } from "@/data/site";
 import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 
@@ -115,147 +109,29 @@ export const Route = createFileRoute("/solution-minceur-dole")({
 
 function SolutionMinceurDolePage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="glow-warm border-b border-border">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-2">
-          <div>
-            <a
-              href="/soins/cryolipolyse"
-              className="label-caps text-muted-foreground transition-colors hover:text-gold"
-            >
-              ← Cryolipolyse
-            </a>
-            <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl">
-              Solution minceur à Dole
-            </h1>
-            <p className="mt-4 font-display text-2xl text-gold">
-              Les amas localisés que ni le sport ni les régimes n'éliminent.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Il existe des zones où la graisse résiste à tout. La cryolipolyse au centre Reboot à
-              Dole (Jura) les cible par le froid, sans chirurgie, sans anesthésie, sans temps
-              d'arrêt. Un résultat visible et durable en 6 à 12 semaines.
-            </p>
-            <div className="mt-10">
-              <BookButton label="Prendre rendez-vous" />
-            </div>
-          </div>
-          <img
-            src={soinCryolipolyse}
-            alt="Solution minceur à Dole — cryolipolyse sans chirurgie au centre Reboot, Jura"
-            width={1600}
-            height={1104}
-            className="aspect-4/3 w-full object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Pourquoi la cryo */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Pourquoi la cryolipolyse</p>
-          <h2 className="mt-5 text-3xl text-foreground sm:text-4xl">
-            Une solution minceur non chirurgicale.
-          </h2>
-          <div className="mt-12 grid gap-px bg-border md:grid-cols-3">
-            {pillars.map((item) => (
-              <article key={item.index} className="bg-background p-8">
-                <span className="label-caps text-gold-soft">{item.index}</span>
-                <h3 className="mt-5 text-2xl text-foreground">{item.title}</h3>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Explication */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Comment ça fonctionne</p>
-          <h2 className="mt-5 text-3xl text-foreground">Le froid au service de la minceur.</h2>
-          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            La cryolipolyse repose sur un principe simple : les cellules graisseuses (adipocytes) sont
-            plus sensibles au froid que les autres tissus. En les exposant à une température précisément
-            contrôlée, on déclenche leur apoptose — une mort cellulaire naturelle et progressive. Les
-            adipocytes détruits sont ensuite éliminés par l'organisme via le système lymphatique sur
-            6 à 12 semaines. Le résultat est une réduction mesurable et durable de la couche graisseuse
-            dans la zone traitée. Le centre Reboot à Dole (Jura) est équipé d'une technologie certifiée,
-            opérée par des praticiennes formées. Un bilan cutané préalable — gratuit — permet de
-            confirmer l'indication et de définir le protocole adapté à votre morphologie.
-          </p>
-        </div>
-      </section>
-
-      {/* Specs */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-          <dl className="grid gap-px border border-border bg-border sm:grid-cols-3">
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Durée de séance</dt>
-              <dd className="mt-2 text-sm text-foreground">45 à 70 min par zone</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Résultat visible</dt>
-              <dd className="mt-2 text-sm text-foreground">6 à 12 semaines après la séance</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Tarif</dt>
-              <dd className="mt-2 text-sm text-foreground">à partir de 250 € — devis au bilan</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Questions fréquentes</p>
-          <h2 className="mt-5 text-3xl text-foreground">Ce qu'on nous demande souvent</h2>
-          <Accordion type="single" collapsible className="mt-8 max-w-3xl">
-            {faq.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="border-border">
-                <AccordionTrigger className="text-left text-sm text-foreground hover:text-gold hover:no-underline">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <p className="label-caps text-gold">Passer à l'action</p>
-          <h2 className="mt-5 text-3xl text-foreground">Votre bilan minceur à Dole — gratuit</h2>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Le bilan initial est gratuit et sans engagement. Il permet d'évaluer les zones à traiter,
-            de confirmer l'indication et d'établir un devis personnalisé.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <BookButton />
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Nous contacter <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div className="mt-8 border-t border-border pt-8">
-            <a
-              href="/soins/cryolipolyse"
-              className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Cryolipolyse — toutes les infos <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+    <SeoLandingPage
+      title="Solution minceur à Dole"
+      tagline="Les amas localisés que ni le sport ni les régimes n'éliminent."
+      description="Il existe des zones où la graisse résiste à tout. La cryolipolyse au centre Reboot à Dole (Jura) les cible par le froid, sans chirurgie, sans anesthésie, sans temps d'arrêt. Un résultat visible et durable en 6 à 12 semaines."
+      image={{
+        src: soinCryolipolyse,
+        alt: "Solution minceur à Dole — cryolipolyse sans chirurgie au centre Reboot, Jura",
+      }}
+      highlights={pillars}
+      highlightsHeading={{
+        label: "Pourquoi la cryolipolyse",
+        title: "Une solution minceur non chirurgicale.",
+      }}
+      seoContent="La cryolipolyse repose sur un principe simple : les cellules graisseuses (adipocytes) sont plus sensibles au froid que les autres tissus. En les exposant à une température précisément contrôlée, on déclenche leur apoptose — une mort cellulaire naturelle et progressive. Les adipocytes détruits sont ensuite éliminés par l'organisme via le système lymphatique sur 6 à 12 semaines. Le résultat est une réduction mesurable et durable de la couche graisseuse dans la zone traitée. Le centre Reboot à Dole (Jura) est équipé d'une technologie certifiée, opérée par des praticiennes formées. Un bilan cutané préalable — gratuit — permet de confirmer l'indication et de définir le protocole adapté à votre morphologie."
+      specs={{
+        duration: "45 à 70 min par zone",
+        sessions: "6 à 12 semaines après la séance",
+        price: "à partir de 250 € — devis au bilan",
+      }}
+      specLabels={{ sessions: "Résultat visible" }}
+      faq={faq}
+      parentHref="/soins/cryolipolyse"
+      parentLabel="Cryolipolyse"
+    />
   );
 }

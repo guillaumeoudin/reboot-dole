@@ -283,14 +283,9 @@ Pages SEO actuelles :
 
 #### Structure d'un fichier landing page
 
-Il existe deux générations de landing pages dans le projet, selon la date de création :
+Toutes les landing pages utilisent le composant `<SeoLandingPage>` — une approche unique pour les maintenir facilement.
 
-| Génération | Pages concernées | Format du layout |
-|---|---|---|
-| **Ancienne** | `epilation-laser-jambes-dole`, `epilation-laser-maillot-dole`, `cryolipolyse-ventre-dole` | Composant `<SeoLandingPage>` |
-| **Nouvelle** | `epilation-laser-dole`, `cryolipolyse-dole`, `solution-minceur-dole` | Layout JSX custom (sections Hero, Pilliers, Specs, FAQ, CTA) |
-
-**Les deux formats partagent la même structure de données :**
+**Chaque fichier est structuré en quatre parties :**
 
 ```ts
 // ─────────────────────────────────────────────────────────────
@@ -328,45 +323,23 @@ const jsonLd = {
 }
 ```
 
-**Format nouveau (layout custom) — où trouver le contenu :**
-
-```ts
-// Titre H1 — dans le JSX, balise <h1>
-<h1>Solution minceur à Dole</h1>
-
-// Accroche — <p className="... font-display ..."> sous le H1
-<p className="font-display text-2xl text-gold">Les amas que ni le sport ni les régimes...</p>
-
-// Paragraphe d'intro — <p className="... text-muted-foreground"> suivant
-<p>Il existe des zones où la graisse résiste à tout...</p>
-
-// Piliers (3 cartes numérotées) — tableau const pillars = [...]
-const pillars = [
-  { index: "01", title: "Sans chirurgie", text: "..." },
-  { index: "02", title: "Ciblé", text: "..." },
-  { index: "03", title: "Durable", text: "..." },
-]
-
-// Specs — valeurs dans les balises <dd> du bloc <dl>
-<dd>45 à 70 min par zone</dd>     // durée
-<dd>6 à 12 semaines</dd>           // résultat
-<dd>à partir de 250 €</dd>         // tarif
-```
-
 ---
 
 #### Modifier le contenu d'une landing page
 
-| Ce que tu veux changer | Format ancien (`SeoLandingPage`) | Format nouveau (layout custom) |
-|---|---|---|
-| Titre dans Google | `const metaTitle = "..."` | `const metaTitle = "..."` |
-| Description Google | `const metaDescription = "..."` | `const metaDescription = "..."` |
-| Titre H1 | prop `title="..."` du composant | balise `<h1>` dans le JSX |
-| Accroche sous le titre | prop `tagline="..."` | `<p className="... font-display ...">` |
-| Paragraphe d'intro | prop `description="..."` | `<p className="... text-muted-foreground">` après le H1 |
-| Durée / Séances / Tarif | `specs={{ duration, sessions, price }}` | valeurs `<dd>` dans le bloc `<dl>` |
-| Piliers / arguments clés | — | tableau `const pillars = [...]` |
-| FAQ | `const faq = [...]` | `const faq = [...]` |
+| Ce que tu veux changer | Où modifier |
+|---|---|
+| Titre dans Google | `const metaTitle = "..."` |
+| Description Google | `const metaDescription = "..."` |
+| Titre H1 | prop `title="..."` du composant `<SeoLandingPage>` |
+| Accroche sous le titre | prop `tagline="..."` |
+| Paragraphe d'intro | prop `description="..."` |
+| Durée / Séances / Tarif | `specs={{ duration, sessions, price }}` |
+| Libellé d'un spec (ex : "Résultat visible") | `specLabels={{ sessions: "Résultat visible" }}` |
+| Cartes (piliers / zones traitées) | tableau `const pillars` ou `const zones` puis `highlights={...}` |
+| En-tête des cartes | `highlightsHeading={{ label, title, description }}` |
+| Paragraphe SEO étendu | prop `seoContent="..."` |
+| FAQ | `const faq = [...]` |
 
 **⚠ Si tu modifies un tarif ou une FAQ visible, pense à mettre à jour également :**
 - Le prix dans `jsonLd` → `offers: { price: "XX" }` (chiffre seul, sans le symbole €)
@@ -380,7 +353,7 @@ Tu peux créer une nouvelle landing page en autonomie en suivant ces étapes. Ex
 
 **Étape 1 — Copier un fichier existant**
 
-Dans `src/routes/`, copier `cryolipolyse-dole.tsx` ou `solution-minceur-dole.tsx` (format nouveau, layout custom) et renommer la copie :
+Dans `src/routes/`, copier `cryolipolyse-dole.tsx` ou `solution-minceur-dole.tsx` et renommer la copie :
 ```
 epilation-laser-aisselles-dole.tsx
 ```
@@ -409,7 +382,7 @@ Modifier les quatre parties du fichier (voir structure ci-dessus) :
 - `metaTitle`, `metaDescription`
 - Le bloc `jsonLd` en entier (nom du service, fil d'ariane, prix, FAQ)
 - Le tableau `faq`
-- Les props du composant `<SeoLandingPage>` (title, tagline, description, specs, parentHref, parentLabel)
+- Les props du composant `<SeoLandingPage>` (title, tagline, description, specs, highlights, seoContent, parentHref, parentLabel…)
 
 **Étape 5 — Ajouter l'URL au sitemap**
 

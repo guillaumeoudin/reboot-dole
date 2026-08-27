@@ -4,9 +4,11 @@
  * elles sont découvertes via Google et le sitemap.xml.
  *
  * Props optionnelles pour enrichir le contenu page par page :
- * - image      → active la mise en page 2 colonnes dans le héro
- * - highlights → section « points forts » (3 piliers recommandés)
- * - seoContent → paragraphe SEO étendu affiché avant la FAQ
+ * - image              → active la mise en page 2 colonnes dans le héro
+ * - highlights         → section "points forts" ou "zones traitées"
+ * - highlightsHeading  → label / titre / description au-dessus des cartes
+ * - seoContent         → paragraphe SEO étendu affiché avant la FAQ
+ * - specLabels         → surcharge des libellés "Durée", "Séances", "Tarif"
  */
 import { BookButton } from "@/components/ui-kit";
 import {
@@ -27,10 +29,14 @@ export type SeoLandingPageProps = {
   parentLabel: string;
   /** Image héro optionnelle — active la mise en page 2 colonnes */
   image?: { src: string; alt: string; width?: number; height?: number };
-  /** Points forts / piliers (3 recommandés) */
+  /** Points forts / zones traitées (nombre variable) */
   highlights?: { index: string; title: string; text: string }[];
+  /** En-tête optionnel de la section highlights */
+  highlightsHeading?: { label?: string; title?: string; description?: string };
   /** Paragraphe SEO étendu — affiché avant la FAQ */
   seoContent?: string;
+  /** Surcharge des libellés de la bande specs */
+  specLabels?: { duration?: string; sessions?: string; price?: string };
 };
 
 export function SeoLandingPage({
@@ -43,7 +49,9 @@ export function SeoLandingPage({
   parentLabel,
   image,
   highlights,
+  highlightsHeading,
   seoContent,
+  specLabels,
 }: SeoLandingPageProps) {
   return (
     <>
@@ -84,31 +92,28 @@ export function SeoLandingPage({
         </div>
       </section>
 
-      {/* Specs */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-          <dl className="grid gap-px border border-border bg-border sm:grid-cols-3">
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Durée</dt>
-              <dd className="mt-2 text-sm text-foreground">{specs.duration}</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Séances</dt>
-              <dd className="mt-2 text-sm text-foreground">{specs.sessions}</dd>
-            </div>
-            <div className="bg-background p-6">
-              <dt className="label-caps text-gold-soft">Tarif</dt>
-              <dd className="mt-2 text-sm text-foreground">{specs.price}</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      {/* Points forts */}
+      {/* Points forts / Zones traitées */}
       {highlights && highlights.length > 0 && (
         <section className="border-b border-border bg-surface">
           <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-            <div className="grid gap-px bg-border md:grid-cols-3">
+            {highlightsHeading && (
+              <div className={highlights.length > 0 ? "mb-10" : ""}>
+                {highlightsHeading.label && (
+                  <p className="label-caps text-gold">{highlightsHeading.label}</p>
+                )}
+                {highlightsHeading.title && (
+                  <h2 className="mt-5 text-3xl text-foreground sm:text-4xl">
+                    {highlightsHeading.title}
+                  </h2>
+                )}
+                {highlightsHeading.description && (
+                  <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    {highlightsHeading.description}
+                  </p>
+                )}
+              </div>
+            )}
+            <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
               {highlights.map((item) => (
                 <article key={item.index} className="bg-background p-8">
                   <span className="label-caps text-gold-soft">{item.index}</span>
@@ -120,6 +125,26 @@ export function SeoLandingPage({
           </div>
         </section>
       )}
+
+      {/* Specs */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+          <dl className="grid gap-px border border-border bg-border sm:grid-cols-3">
+            <div className="bg-background p-6">
+              <dt className="label-caps text-gold-soft">{specLabels?.duration ?? "Durée"}</dt>
+              <dd className="mt-2 text-sm text-foreground">{specs.duration}</dd>
+            </div>
+            <div className="bg-background p-6">
+              <dt className="label-caps text-gold-soft">{specLabels?.sessions ?? "Séances"}</dt>
+              <dd className="mt-2 text-sm text-foreground">{specs.sessions}</dd>
+            </div>
+            <div className="bg-background p-6">
+              <dt className="label-caps text-gold-soft">{specLabels?.price ?? "Tarif"}</dt>
+              <dd className="mt-2 text-sm text-foreground">{specs.price}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
 
       {/* Contenu SEO étendu */}
       {seoContent && (
