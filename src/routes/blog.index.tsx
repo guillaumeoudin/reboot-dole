@@ -66,7 +66,7 @@ function BlogIndexPage() {
               {posts.map((post, i) => (
                 <li
                   key={post.slug}
-                  className={`bg-background${i === posts.length - 1 && posts.length % 2 !== 0 ? " sm:col-span-2" : ""}`}
+                  className={`bg-background${i === 0 && posts.length % 2 !== 0 ? " sm:col-span-2" : ""}`}
                 >
                   <article className="group flex h-full flex-col transition-colors hover:bg-surface">
                     {post.coverImage ? (

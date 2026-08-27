@@ -139,6 +139,36 @@ function Index() {
                 </Reveal>
               </Link>
             ))}
+            {/* Tuile CTA — équilibre la grille quand le nombre de soins est impair */}
+            {soins.length % 2 !== 0 && (
+              <Link
+                to="/contact"
+                className="group flex flex-col bg-background transition-colors hover:bg-surface"
+              >
+                <div className="glow-warm flex aspect-16/10 w-full items-center justify-center border-b border-border">
+                  <span className="font-display text-4xl text-gold">Bilan offert</span>
+                </div>
+                <div className="p-8">
+                  <span className="label-caps text-gold-soft">Première étape</span>
+                  <h3 className="mt-4 text-2xl text-foreground transition-colors group-hover:text-gold">
+                    Votre bilan personnalisé
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    Avant toute chose, un bilan. Gratuit, sans engagement — pour définir le protocole
+                    adapté à votre peau et à vos objectifs.
+                  </p>
+                  <p className="mt-6 text-sm text-gold">
+                    Prendre rendez-vous
+                    <span
+                      aria-hidden="true"
+                      className="ml-2 inline-block transition-transform group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </p>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       </section>
