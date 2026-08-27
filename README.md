@@ -154,9 +154,12 @@ Toutes les pages du site, où se trouvent leurs contenus, et comment les modifie
 | `/mentions-legales` | Mentions légales | `src/routes/mentions-legales.tsx` | Dans le fichier |
 | `/politique-de-confidentialite` | Politique de conf. | `src/routes/politique-de-confidentialite.tsx` | Dans le fichier |
 | `/yoga-dole` | Landing SEO — Yoga | `src/routes/yoga-dole.tsx` | Dans le fichier |
+| `/epilation-laser-dole` | Landing SEO — Épilation laser (générale) | `src/routes/epilation-laser-dole.tsx` | Dans le fichier |
 | `/epilation-laser-jambes-dole` | Landing SEO — Jambes | `src/routes/epilation-laser-jambes-dole.tsx` | Dans le fichier |
 | `/epilation-laser-maillot-dole` | Landing SEO — Maillot | `src/routes/epilation-laser-maillot-dole.tsx` | Dans le fichier |
+| `/cryolipolyse-dole` | Landing SEO — Cryolipolyse (générale) | `src/routes/cryolipolyse-dole.tsx` | Dans le fichier |
 | `/cryolipolyse-ventre-dole` | Landing SEO — Ventre | `src/routes/cryolipolyse-ventre-dole.tsx` | Dans le fichier |
+| `/solution-minceur-dole` | Landing SEO — Solution minceur | `src/routes/solution-minceur-dole.tsx` | Dans le fichier |
 
 **Trois approches d'édition selon la page :**
 
@@ -269,9 +272,12 @@ Pages SEO actuelles :
 | URL | Requête ciblée | Fichier |
 |---|---|---|
 | `/yoga-dole` | yoga Dole | `src/routes/yoga-dole.tsx` |
+| `/epilation-laser-dole` | épilation laser Dole | `src/routes/epilation-laser-dole.tsx` |
 | `/epilation-laser-jambes-dole` | épilation laser jambes Dole | `src/routes/epilation-laser-jambes-dole.tsx` |
 | `/epilation-laser-maillot-dole` | épilation laser maillot Dole | `src/routes/epilation-laser-maillot-dole.tsx` |
+| `/cryolipolyse-dole` | cryolipolyse Dole | `src/routes/cryolipolyse-dole.tsx` |
 | `/cryolipolyse-ventre-dole` | cryolipolyse ventre Dole | `src/routes/cryolipolyse-ventre-dole.tsx` |
+| `/solution-minceur-dole` | solution minceur Dole | `src/routes/solution-minceur-dole.tsx` |
 
 ---
 
@@ -731,6 +737,8 @@ Le formulaire utilise le mode `no-cors` : on ne reçoit pas de réponse de Googl
 ```javascript
 function doPost(e) {
   const data = JSON.parse(e.postData.contents);
+
+  // 1. Enregistrement dans le Google Sheet
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   sheet.appendRow([
     new Date(),
@@ -740,6 +748,18 @@ function doPost(e) {
     data.subject,
     data.message,
   ]);
+
+  // 2. Notification email à Aline
+  GmailApp.sendEmail(
+    "aline@reboot-dole.fr",
+    "Nouveau message — " + (data.subject || "Formulaire de contact"),
+    "Nom : " + data.name + "\n" +
+    "Email : " + data.email + "\n" +
+    "Téléphone : " + data.phone + "\n" +
+    "Objet : " + data.subject + "\n\n" +
+    data.message
+  );
+
   return ContentService.createTextOutput("OK");
 }
 ```
