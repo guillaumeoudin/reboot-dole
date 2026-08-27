@@ -132,7 +132,7 @@ async function logToSheets(
     const userId = `****${phone.slice(-4)}`;
 
     await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1!A1:append?valueInputOption=USER_ENTERED`,
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/echanges-bot!A1:append?valueInputOption=USER_ENTERED`,
       {
         method: "POST",
         headers: {
