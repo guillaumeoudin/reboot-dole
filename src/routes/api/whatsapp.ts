@@ -57,10 +57,12 @@ function generateSessionId(phone: string): string {
 
 async function getSession(phone: string): Promise<Session> {
   try {
-    return (await redis.get<Session>(HISTORY_KEY(phone))) ?? {
-      sessionId: generateSessionId(phone),
-      messages: [],
-    };
+    const raw = await redis.get<Session | Message[]>(HISTORY_KEY(phone));
+    // Ancien format (Message[]) ou entrée corrompue → nouvelle session
+    if (!raw || Array.isArray(raw) || !Array.isArray(raw.messages)) {
+      return { sessionId: generateSessionId(phone), messages: [] };
+    }
+    return raw;
   } catch {
     return { sessionId: generateSessionId(phone), messages: [] };
   }
