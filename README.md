@@ -283,106 +283,90 @@ Pages SEO actuelles :
 
 #### Structure d'un fichier landing page
 
-Chaque landing page est un fichier `.tsx` dans `src/routes/`. Voici l'anatomie complète, avec chaque partie expliquée :
+Il existe deux générations de landing pages dans le projet, selon la date de création :
+
+| Génération | Pages concernées | Format du layout |
+|---|---|---|
+| **Ancienne** | `epilation-laser-jambes-dole`, `epilation-laser-maillot-dole`, `cryolipolyse-ventre-dole` | Composant `<SeoLandingPage>` |
+| **Nouvelle** | `epilation-laser-dole`, `cryolipolyse-dole`, `solution-minceur-dole` | Layout JSX custom (sections Hero, Pilliers, Specs, FAQ, CTA) |
+
+**Les deux formats partagent la même structure de données :**
 
 ```ts
 // ─────────────────────────────────────────────────────────────
 // PARTIE 1 — CE QUI S'AFFICHE DANS GOOGLE
 // ─────────────────────────────────────────────────────────────
-const metaTitle = "Épilation laser des jambes à Dole — Reboot"
-const metaDescription =
-  "Épilation laser des jambes à Dole (Jura) : demi-jambes, jambes complètes..."
-  // ↑ 160 caractères max. Affiché dans les résultats Google.
+const metaTitle = "Solution minceur à Dole — Reboot"
+const metaDescription = "..."   // 160 caractères max
 
 // ─────────────────────────────────────────────────────────────
-// PARTIE 2 — DONNÉES STRUCTURÉES GOOGLE (JSON-LD)
-// Lues par Google pour enrichir les résultats (rich snippets, FAQ, localisation).
-// ⚠ Attention : les FAQ et le tarif ici sont une COPIE de la Partie 3 et de la Partie 4.
-// Si tu modifies un tarif ou une question visible, tu dois le mettre à jour ici aussi.
+// PARTIE 2 — FAQ (visible sur la page + injectée dans le JSON-LD)
+// ─────────────────────────────────────────────────────────────
+const faq = [
+  { q: "Question ?", a: "Réponse." },
+  // jusqu'à 6 questions
+]
+
+// ─────────────────────────────────────────────────────────────
+// PARTIE 3 — DONNÉES STRUCTURÉES GOOGLE (JSON-LD)
+// La FAQPage utilise faq.map() — pas de duplication manuelle.
 // ─────────────────────────────────────────────────────────────
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "BreadcrumbList",      // fil d'ariane affiché par Google
-      itemListElement: [
-        { position: 1, name: "Accueil", item: "https://reboot-dole.fr" },
-        { position: 2, name: "Épilation laser", item: "https://reboot-dole.fr/soins/epilation-laser" },
-        { position: 3, name: "Épilation laser des jambes à Dole", item: PAGE_URL },
-      ],
-    },
-    {
-      "@type": "Service",
-      name: "Épilation laser des jambes à Dole",  ← nom du service pour Google
-      description: metaDescription,               ← reprend la metaDescription
-      offers: {
-        price: "60",         ← prix de base en chiffre, sans €
-        priceCurrency: "EUR",
-      },
-    },
+    { "@type": "BreadcrumbList", itemListElement: [...] },
+    { "@type": "Service", name: "...", description: metaDescription, ... },
     {
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          name: "Combien coûte l'épilation laser des jambes à Dole ?",  ← copie de la FAQ visible
-          acceptedAnswer: { text: "À Reboot Dole..." },
-        },
-        // ... une entrée par question
-      ],
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
     },
   ],
 }
+```
 
-// ─────────────────────────────────────────────────────────────
-// PARTIE 3 — LES QUESTIONS / RÉPONSES (FAQ visible sur la page)
-// ─────────────────────────────────────────────────────────────
-const faq = [
-  {
-    q: "Combien coûte l'épilation laser des jambes à Dole ?",
-    a: "À Reboot Dole, l'épilation laser des jambes complètes débute à partir de 60 €...",
-  },
-  // ... jusqu'à 5 questions
+**Format nouveau (layout custom) — où trouver le contenu :**
+
+```ts
+// Titre H1 — dans le JSX, balise <h1>
+<h1>Solution minceur à Dole</h1>
+
+// Accroche — <p className="... font-display ..."> sous le H1
+<p className="font-display text-2xl text-gold">Les amas que ni le sport ni les régimes...</p>
+
+// Paragraphe d'intro — <p className="... text-muted-foreground"> suivant
+<p>Il existe des zones où la graisse résiste à tout...</p>
+
+// Piliers (3 cartes numérotées) — tableau const pillars = [...]
+const pillars = [
+  { index: "01", title: "Sans chirurgie", text: "..." },
+  { index: "02", title: "Ciblé", text: "..." },
+  { index: "03", title: "Durable", text: "..." },
 ]
 
-// ─────────────────────────────────────────────────────────────
-// PARTIE 4 — CONTENU VISIBLE DE LA PAGE
-// ─────────────────────────────────────────────────────────────
-<SeoLandingPage
-  title="Épilation laser des jambes à Dole"
-  // ↑ Titre H1 affiché en grand. Doit contenir les mots-clés ("jambes", "Dole").
-
-  tagline="Finies les rasages, les irritations, les poils incarnés."
-  // ↑ Accroche courte sous le titre.
-
-  description="Demi-jambes, jambes complètes, genoux, cuisses : le centre Reboot à Dole..."
-  // ↑ Paragraphe d'intro. Mentionner "Dole" et le soin naturellement.
-
-  specs={{
-    duration: "45 à 60 min (jambes complètes)",
-    sessions: "8 à 10 séances espacées de 4 à 8 sem.",
-    price: "à partir de 60 €",    ← texte affiché dans l'encadré Durée/Séances/Tarif
-  }}
-
-  faq={faq}           // ← relie la liste de FAQ de la Partie 3
-
-  parentHref="/soins/epilation-laser"   // ← lien de retour vers la page soin principale
-  parentLabel="Épilation laser"
-/>
+// Specs — valeurs dans les balises <dd> du bloc <dl>
+<dd>45 à 70 min par zone</dd>     // durée
+<dd>6 à 12 semaines</dd>           // résultat
+<dd>à partir de 250 €</dd>         // tarif
 ```
 
 ---
 
 #### Modifier le contenu d'une landing page
 
-| Ce que tu veux changer | Où le trouver dans le fichier |
-|---|---|
-| Titre dans Google | `const metaTitle = "..."` en haut |
-| Description dans Google | `const metaDescription = "..."` (160 car. max) |
-| Titre H1 de la page | `title="..."` dans `<SeoLandingPage` |
-| Accroche sous le titre | `tagline="..."` |
-| Paragraphe d'intro | `description="..."` |
-| Durée / Séances / Tarif affiché | `specs={{ duration: ..., sessions: ..., price: ... }}` |
-| Une question FAQ (visible) | Dans `const faq = [...]`, modifier `{ q: "...", a: "..." }` |
+| Ce que tu veux changer | Format ancien (`SeoLandingPage`) | Format nouveau (layout custom) |
+|---|---|---|
+| Titre dans Google | `const metaTitle = "..."` | `const metaTitle = "..."` |
+| Description Google | `const metaDescription = "..."` | `const metaDescription = "..."` |
+| Titre H1 | prop `title="..."` du composant | balise `<h1>` dans le JSX |
+| Accroche sous le titre | prop `tagline="..."` | `<p className="... font-display ...">` |
+| Paragraphe d'intro | prop `description="..."` | `<p className="... text-muted-foreground">` après le H1 |
+| Durée / Séances / Tarif | `specs={{ duration, sessions, price }}` | valeurs `<dd>` dans le bloc `<dl>` |
+| Piliers / arguments clés | — | tableau `const pillars = [...]` |
+| FAQ | `const faq = [...]` | `const faq = [...]` |
 
 **⚠ Si tu modifies un tarif ou une FAQ visible, pense à mettre à jour également :**
 - Le prix dans `jsonLd` → `offers: { price: "XX" }` (chiffre seul, sans le symbole €)
@@ -396,7 +380,7 @@ Tu peux créer une nouvelle landing page en autonomie en suivant ces étapes. Ex
 
 **Étape 1 — Copier un fichier existant**
 
-Dans `src/routes/`, copier `epilation-laser-jambes-dole.tsx` et renommer la copie :
+Dans `src/routes/`, copier `cryolipolyse-dole.tsx` ou `solution-minceur-dole.tsx` (format nouveau, layout custom) et renommer la copie :
 ```
 epilation-laser-aisselles-dole.tsx
 ```
