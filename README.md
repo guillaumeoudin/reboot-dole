@@ -53,9 +53,10 @@ Les modifications sont alors visibles en temps réel dans le navigateur dès que
 6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
 7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
 8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
-9. [Quand faire appel à Guillaume](#9-quand-faire-appel-à-guillaume)
-10. [Stack technique](#10-stack-technique)
-11. [Assistant WhatsApp — architecture et configuration](#11-assistant-whatsapp--architecture-et-configuration)
+9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
+10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
+11. [Stack technique](#11-stack-technique)
+12. [Assistant WhatsApp — architecture et configuration](#12-assistant-whatsapp--architecture-et-configuration)
 - [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
@@ -631,19 +632,28 @@ Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les 
 
 ---
 
-## 9. Quand faire appel à Guillaume
+## 9. Tableaux de bord & ressources utiles
+
+| Ressource | Lien |
+|---|---|
+| 💬 Échanges assistant WhatsApp | [Google Sheet](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit) |
+| 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
+
+---
+
+## 10. Quand faire appel à Guillaume
 
 Les opérations suivantes sortent du périmètre de maintenance courante et nécessitent une intervention de développeur :
 
 - **Modifier la navigation** (menu principal)
 - **Changer le design** : couleurs, mise en page, typographie
 - **Ajouter une fonctionnalité** : formulaire, intégration, widget
-- **Intégrer l'assistant WhatsApp** (à venir)
+- **Modifier le comportement de l'assistant WhatsApp** au-delà du system prompt
 - **Tout problème de build** : si le site ne se met pas à jour après une modification
 
 ---
 
-## 10. Stack technique
+## 11. Stack technique
 
 | Élément | Choix |
 |---|---|
@@ -686,7 +696,7 @@ src/styles.css        Design system : tokens couleur, typographie, utilitaires
 
 ---
 
-## 11. Assistant WhatsApp — architecture et configuration
+## 12. Assistant WhatsApp — architecture et configuration
 
 ### Comment ça fonctionne
 
@@ -710,7 +720,9 @@ Utilisateur WhatsApp
 
 ### Consulter les conversations
 
-Les échanges sont automatiquement enregistrés dans le Google Sheet partagé avec Aline. Chaque ligne correspond à un message, avec 5 colonnes :
+📊 **[Google Sheet — Échanges avec l'assistant WhatsApp](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit)**
+
+Les échanges sont automatiquement enregistrés dans ce Google Sheet. Chaque ligne correspond à un message, avec 5 colonnes :
 
 | Session ID | Timestamp | Utilisateur | Question | Réponse bot |
 |---|---|---|---|---|
