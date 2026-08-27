@@ -283,9 +283,9 @@ Pages SEO actuelles :
 
 #### Structure d'un fichier landing page
 
-Toutes les landing pages utilisent le composant `<SeoLandingPage>` — une approche unique pour les maintenir facilement.
+Toutes les landing pages utilisent le composant `<SeoLandingPage>`, défini dans **`src/components/SeoLandingPage.tsx`**. Ce composant gère la mise en page complète : héro, points forts, bande specs, FAQ, CTA bas de page. Ne pas modifier ce fichier pour changer du contenu — le contenu est dans chaque fichier de route (`src/routes/[nom-de-la-page].tsx`).
 
-**Chaque fichier est structuré en quatre parties :**
+**Chaque fichier de route landing page (ex : `src/routes/cryolipolyse-dole.tsx`) est structuré en quatre parties :**
 
 ```ts
 // ─────────────────────────────────────────────────────────────
@@ -320,6 +320,39 @@ const jsonLd = {
       })),
     },
   ],
+}
+
+// ─────────────────────────────────────────────────────────────
+// PARTIE 4 — COMPOSANT DE PAGE
+// Toute la mise en page est déléguée à <SeoLandingPage>.
+// ─────────────────────────────────────────────────────────────
+export const Route = createFileRoute("/nom-de-la-page")({
+  head: () => ({
+    meta: [{ title: metaTitle }, { name: "description", content: metaDescription }, ...],
+    links: [{ rel: "canonical", href: PAGE_URL }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
+  }),
+  component: NomDeLaPage,
+})
+
+function NomDeLaPage() {
+  return (
+    <SeoLandingPage
+      title="..."
+      tagline="..."
+      description="..."
+      specs={{ duration: "...", sessions: "...", price: "..." }}
+      faq={faq}
+      parentHref="/soins/[soin]"
+      parentLabel="[Soin]"
+      // props optionnelles :
+      image={{ src: monImage, alt: "..." }}
+      highlights={pillars}
+      highlightsHeading={{ label: "...", title: "..." }}
+      seoContent="..."
+      specLabels={{ sessions: "Résultat visible" }}
+    />
+  )
 }
 ```
 
