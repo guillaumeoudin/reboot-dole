@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { Redis } from "@upstash/redis";
+import { createSign } from "crypto";
 import systemPrompt from "./whatsapp-system-prompt.txt?raw";
 
 /**
@@ -7,21 +9,155 @@ import systemPrompt from "./whatsapp-system-prompt.txt?raw";
  *
  * Flow :
  *  GET  /api/whatsapp → vérification du webhook par Meta (challenge)
- *  POST /api/whatsapp → message entrant → appel Claude Haiku → réponse WhatsApp
+ *  POST /api/whatsapp → message entrant → contexte session → Claude Haiku → réponse WhatsApp + log Sheets
  *
  * Variables d'environnement requises (Vercel) :
- *  - WHATSAPP_TOKEN         : token d'accès Meta permanent (System User)
- *  - WHATSAPP_VERIFY_TOKEN  : chaîne arbitraire choisie lors de la config Meta
- *  - ANTHROPIC_API_KEY      : clé API Anthropic
- *  - REBOOT_SYSTEM_PROMPT   : base de connaissances du centre (voir guide déploiement)
+ *  - WHATSAPP_TOKEN              : token d'accès Meta permanent (System User)
+ *  - WHATSAPP_VERIFY_TOKEN       : chaîne arbitraire choisie lors de la config Meta
+ *  - ANTHROPIC_API_KEY           : clé API Anthropic
+ *  - GOOGLE_SERVICE_ACCOUNT_EMAIL: email du service account Google
+ *  - GOOGLE_SERVICE_ACCOUNT_KEY  : clé privée PEM (retours à la ligne en \n)
+ *  - GOOGLE_SHEET_ID             : ID du Google Sheet de logging
+ *
+ * Variables injectées automatiquement par Vercel KV :
+ *  - KV_REST_API_URL, KV_REST_API_TOKEN (+ variantes)
  */
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+type Message = { role: "user" | "assistant"; content: string };
+
+// ---------------------------------------------------------------------------
+// Session memory — Vercel KV (Redis)
+// 5 échanges max (10 messages) · TTL 24h (fenêtre WhatsApp)
+// ---------------------------------------------------------------------------
+
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
+
+const HISTORY_KEY = (phone: string) => `chat:${phone}`;
+const MAX_MESSAGES = 10; // 5 exchanges
+const SESSION_TTL = 86400; // 24h in seconds
+
+async function getHistory(phone: string): Promise<Message[]> {
+  try {
+    return (await redis.get<Message[]>(HISTORY_KEY(phone))) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+async function saveHistory(phone: string, history: Message[]): Promise<void> {
+  try {
+    await redis.set(HISTORY_KEY(phone), history.slice(-MAX_MESSAGES), {
+      ex: SESSION_TTL,
+    });
+  } catch (err) {
+    console.error("[WhatsApp webhook] KV write error:", err);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Google Sheets logging
+// Auth via service account JWT (RS256) — aucune dépendance externe
+// ---------------------------------------------------------------------------
+
+function toBase64Url(data: string | Buffer): string {
+  const buf = typeof data === "string" ? Buffer.from(data) : data;
+  return buf
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
+}
+
+async function getGoogleAccessToken(): Promise<string> {
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!;
+  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY!.replace(
+    /\\n/g,
+    "\n"
+  );
+  const now = Math.floor(Date.now() / 1000);
+
+  const header = toBase64Url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
+  const payload = toBase64Url(
+    JSON.stringify({
+      iss: email,
+      scope: "https://www.googleapis.com/auth/spreadsheets",
+      aud: "https://oauth2.googleapis.com/token",
+      exp: now + 3600,
+      iat: now,
+    })
+  );
+
+  const signer = createSign("RSA-SHA256");
+  signer.update(`${header}.${payload}`);
+  const jwt = `${header}.${payload}.${toBase64Url(signer.sign(privateKey))}`;
+
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion: jwt,
+    }),
+  });
+
+  const data = (await res.json()) as { access_token: string };
+  return data.access_token;
+}
+
+/**
+ * Ajoute une ligne dans le Google Sheet de logs.
+ * Colonnes : Timestamp | User (anonymisé) | Question | Réponse du bot
+ * Le numéro est masqué : seuls les 4 derniers chiffres sont conservés.
+ */
+async function logToSheets(
+  phone: string,
+  userMessage: string,
+  botReply: string
+): Promise<void> {
+  const sheetId = process.env.GOOGLE_SHEET_ID;
+  if (!sheetId) return;
+
+  try {
+    const token = await getGoogleAccessToken();
+    const timestamp = new Date().toLocaleString("fr-FR", {
+      timeZone: "Europe/Paris",
+    });
+    const userId = `****${phone.slice(-4)}`;
+
+    await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1!A1:append?valueInputOption=USER_ENTERED`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          values: [[timestamp, userId, userMessage, botReply]],
+        }),
+      }
+    );
+  } catch (err) {
+    console.error("[WhatsApp webhook] Sheets logging error:", err);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Route
+// ---------------------------------------------------------------------------
 
 export const Route = createFileRoute("/api/whatsapp")({
   server: {
     handlers: {
       /**
        * Vérification du webhook — Meta appelle cette URL en GET lors de la configuration.
-       * Si le verify_token correspond, on renvoie le challenge.
        */
       GET: async ({ request }) => {
         const url = new URL(request.url);
@@ -40,7 +176,12 @@ export const Route = createFileRoute("/api/whatsapp")({
       },
 
       /**
-       * Réception d'un message entrant et réponse via Claude Haiku.
+       * Réception d'un message entrant.
+       * 1. Extraction du texte et du numéro expéditeur
+       * 2. Chargement de l'historique session (Vercel KV)
+       * 3. Appel Claude Haiku avec contexte complet
+       * 4. Envoi WhatsApp + log Sheets en parallèle
+       * 5. Sauvegarde de l'historique mis à jour
        */
       POST: async ({ request }) => {
         let body: unknown;
@@ -63,7 +204,7 @@ export const Route = createFileRoute("/api/whatsapp")({
         const messages = value?.messages as unknown[] | undefined;
         const message = messages?.[0] as Record<string, unknown> | undefined;
 
-        // Ignorer les messages non textuels (images, audio, etc.)
+        // Ignorer les notifications de statut (delivered, read…) et les médias
         if (!message || message.type !== "text") {
           return new Response("OK", { status: 200 });
         }
@@ -78,6 +219,15 @@ export const Route = createFileRoute("/api/whatsapp")({
         if (!userText || !from || !phoneNumberId) {
           return new Response("OK", { status: 200 });
         }
+
+        // Chargement de l'historique session
+        const history = await getHistory(from);
+
+        // Construction des messages pour Claude (historique + message courant)
+        const claudeMessages: Message[] = [
+          ...history,
+          { role: "user", content: userText },
+        ];
 
         // Appel à Claude Haiku
         let reply: string;
@@ -95,7 +245,7 @@ export const Route = createFileRoute("/api/whatsapp")({
                 model: "claude-haiku-4-5-20251001",
                 max_tokens: 350,
                 system: systemPrompt,
-                messages: [{ role: "user", content: userText }],
+                messages: claudeMessages,
               }),
             }
           );
@@ -107,39 +257,44 @@ export const Route = createFileRoute("/api/whatsapp")({
           const claudeData = (await claudeRes.json()) as {
             content: { type: string; text: string }[];
           };
-          reply = claudeData.content[0]?.text ?? "Je n'ai pas pu générer une réponse.";
+          reply =
+            claudeData.content[0]?.text ??
+            "Je n'ai pas pu générer une réponse.";
         } catch (err) {
           console.error("[WhatsApp webhook] Claude error:", err);
           reply =
             "Bonjour ! Je rencontre un problème technique momentané. N'hésitez pas à nous appeler au 06 51 57 79 09 ou à prendre rendez-vous sur Planity. À très bientôt !";
         }
 
-        // Envoi de la réponse via WhatsApp Cloud API
-        try {
-          const waRes = await fetch(
-            `https://graph.facebook.com/v20.0/${phoneNumberId}/messages`,
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                messaging_product: "whatsapp",
-                to: from,
-                type: "text",
-                text: { body: reply },
-              }),
-            }
-          );
+        // Envoi WhatsApp + log Sheets en parallèle
+        await Promise.all([
+          // Envoi de la réponse via WhatsApp Cloud API
+          fetch(`https://graph.facebook.com/v20.0/${phoneNumberId}/messages`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              messaging_product: "whatsapp",
+              to: from,
+              type: "text",
+              text: { body: reply },
+            }),
+          }).catch((err) =>
+            console.error("[WhatsApp webhook] WhatsApp send error:", err)
+          ),
 
-          if (!waRes.ok) {
-            const errBody = await waRes.text();
-            console.error("[WhatsApp webhook] WhatsApp send error:", errBody);
-          }
-        } catch (err) {
-          console.error("[WhatsApp webhook] fetch error:", err);
-        }
+          // Logging dans Google Sheets
+          logToSheets(from, userText, reply),
+        ]);
+
+        // Mise à jour de l'historique session
+        await saveHistory(from, [
+          ...history,
+          { role: "user", content: userText },
+          { role: "assistant", content: reply },
+        ]);
 
         // Toujours renvoyer 200 à Meta pour éviter les retentatives
         return new Response("OK", { status: 200 });
