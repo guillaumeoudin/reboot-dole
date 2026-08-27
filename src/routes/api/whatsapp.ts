@@ -28,6 +28,7 @@ import systemPrompt from "./whatsapp-system-prompt.txt?raw";
 // ---------------------------------------------------------------------------
 
 type Message = { role: "user" | "assistant"; content: string };
+type Session = { sessionId: string; messages: Message[] };
 
 // ---------------------------------------------------------------------------
 // Session memory — Vercel KV (Redis)
@@ -43,19 +44,35 @@ const HISTORY_KEY = (phone: string) => `chat:${phone}`;
 const MAX_MESSAGES = 10; // 5 exchanges
 const SESSION_TTL = 86400; // 24h in seconds
 
-async function getHistory(phone: string): Promise<Message[]> {
+function generateSessionId(phone: string): string {
+  const now = new Date().toLocaleString("fr-FR", {
+    timeZone: "Europe/Paris",
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).replace(",", "").replace(":", "h");
+  return `****${phone.slice(-4)}_${now}`;
+}
+
+async function getSession(phone: string): Promise<Session> {
   try {
-    return (await redis.get<Message[]>(HISTORY_KEY(phone))) ?? [];
+    return (await redis.get<Session>(HISTORY_KEY(phone))) ?? {
+      sessionId: generateSessionId(phone),
+      messages: [],
+    };
   } catch {
-    return [];
+    return { sessionId: generateSessionId(phone), messages: [] };
   }
 }
 
-async function saveHistory(phone: string, history: Message[]): Promise<void> {
+async function saveSession(phone: string, session: Session): Promise<void> {
   try {
-    await redis.set(HISTORY_KEY(phone), history.slice(-MAX_MESSAGES), {
-      ex: SESSION_TTL,
-    });
+    await redis.set(
+      HISTORY_KEY(phone),
+      { ...session, messages: session.messages.slice(-MAX_MESSAGES) },
+      { ex: SESSION_TTL }
+    );
   } catch (err) {
     console.error("[WhatsApp webhook] KV write error:", err);
   }
@@ -113,10 +130,10 @@ async function getGoogleAccessToken(): Promise<string> {
 
 /**
  * Ajoute une ligne dans le Google Sheet de logs.
- * Colonnes : Timestamp | User (anonymisé) | Question | Réponse du bot
- * Le numéro est masqué : seuls les 4 derniers chiffres sont conservés.
+ * Colonnes : Session ID | Timestamp | User (anonymisé) | Question | Réponse du bot
  */
 async function logToSheets(
+  sessionId: string,
   phone: string,
   userMessage: string,
   botReply: string
@@ -140,7 +157,7 @@ async function logToSheets(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          values: [[timestamp, userId, userMessage, botReply]],
+          values: [[sessionId, timestamp, userId, userMessage, botReply]],
         }),
       }
     );
@@ -220,12 +237,12 @@ export const Route = createFileRoute("/api/whatsapp")({
           return new Response("OK", { status: 200 });
         }
 
-        // Chargement de l'historique session
-        const history = await getHistory(from);
+        // Chargement de la session (historique + session ID)
+        const session = await getSession(from);
 
         // Construction des messages pour Claude (historique + message courant)
         const claudeMessages: Message[] = [
-          ...history,
+          ...session.messages,
           { role: "user", content: userText },
         ];
 
@@ -286,15 +303,18 @@ export const Route = createFileRoute("/api/whatsapp")({
           ),
 
           // Logging dans Google Sheets
-          logToSheets(from, userText, reply),
+          logToSheets(session.sessionId, from, userText, reply),
         ]);
 
-        // Mise à jour de l'historique session
-        await saveHistory(from, [
-          ...history,
-          { role: "user", content: userText },
-          { role: "assistant", content: reply },
-        ]);
+        // Mise à jour de la session
+        await saveSession(from, {
+          sessionId: session.sessionId,
+          messages: [
+            ...session.messages,
+            { role: "user", content: userText },
+            { role: "assistant", content: reply },
+          ],
+        });
 
         // Toujours renvoyer 200 à Meta pour éviter les retentatives
         return new Response("OK", { status: 200 });
