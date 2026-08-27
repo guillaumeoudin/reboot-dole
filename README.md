@@ -51,12 +51,12 @@ Les modifications sont alors visibles en temps réel dans le navigateur dès que
 4. [Soins & landing pages SEO](#4-soins--landing-pages-seo)
 5. [Blog — Decap CMS](#5-blog--decap-cms)
 6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
-7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
-8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
-9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
-10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
-11. [Stack technique](#11-stack-technique)
-12. [Assistant WhatsApp — architecture et configuration](#12-assistant-whatsapp--architecture-et-configuration)
+7. [Assistant WhatsApp — architecture et configuration](#7-assistant-whatsapp--architecture-et-configuration)
+8. [Comment les modifications arrivent en ligne](#8-comment-les-modifications-arrivent-en-ligne)
+9. [Ce qu'il ne faut pas toucher](#9-ce-quil-ne-faut-pas-toucher)
+10. [Tableaux de bord & ressources utiles](#10-tableaux-de-bord--ressources-utiles)
+11. [Quand faire appel à Guillaume](#11-quand-faire-appel-à-guillaume)
+12. [Stack technique](#12-stack-technique)
 - [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
@@ -602,101 +602,7 @@ Les images des articles s'uploadent directement depuis l'interface Decap CMS via
 
 ---
 
-## 7. Comment les modifications arrivent en ligne
-
-Toute modification enregistrée sur la branche `main` du dépôt GitHub déclenche automatiquement un déploiement sur Vercel.
-
-**Via Decap CMS** (blog) : la publication est instantanée côté Decap — le build Vercel démarre dans la foulée et le site est mis à jour en 30 secondes à 2 minutes.
-
-**Via GitHub directement** (code source) : même processus, dès que le fichier est `commit` sur `main`.
-
-**Pour vérifier qu'un déploiement est terminé** : aller sur [vercel.com](https://vercel.com) → tableau de bord du projet `reboot-dole` → voir le statut du dernier déploiement.
-
----
-
-## 8. Ce qu'il ne faut pas toucher
-
-Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les modifier sans valider avec moi:
-
-| Fichier / Dossier | Rôle |
-|---|---|
-| `src/routeTree.gen.ts` | Registre de toutes les pages — **auto-généré par Vercel à chaque build**, ne pas modifier manuellement |
-| `src/routes/__root.tsx` | Structure globale (header, footer, données structurées Google) |
-| `src/lib/` | Logique de chargement du blog |
-| `src/components/ui/` | Composants d'interface de base (boutons, accordéons…) |
-| `vite.config.ts` | Configuration du build |
-| `src/routes/api/` | Routes d'authentification Decap CMS |
-| `src/routes/admin/` | Interface d'administration Decap CMS |
-| `public/admin/` | Interface Decap CMS (HTML) |
-| `package.json` | Dépendances du projet |
-
----
-
-## 9. Tableaux de bord & ressources utiles
-
-| Ressource | Lien |
-|---|---|
-| 💬 Échanges assistant WhatsApp | [Google Sheet](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit) |
-| 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
-
----
-
-## 10. Quand faire appel à Guillaume
-
-Les opérations suivantes sortent du périmètre de maintenance courante et nécessitent une intervention de développeur :
-
-- **Modifier la navigation** (menu principal)
-- **Changer le design** : couleurs, mise en page, typographie
-- **Ajouter une fonctionnalité** : formulaire, intégration, widget
-- **Modifier le comportement de l'assistant WhatsApp** au-delà du system prompt
-- **Tout problème de build** : si le site ne se met pas à jour après une modification
-
----
-
-## 11. Stack technique
-
-| Élément | Choix |
-|---|---|
-| Framework | TanStack Start (React 19, SSR) |
-| Build & bundler | Vite 8 |
-| Styles | Tailwind CSS v4 |
-| Composants UI | shadcn/ui (Radix) |
-| Icônes | lucide-react |
-| Assistant WhatsApp | Claude Haiku (Anthropic) |
-| Mémoire de session | Upstash Redis (via Vercel) |
-| Logs conversations | Google Sheets (service account) |
-| Blog (CMS) | Decap CMS (backend GitHub) |
-| Markdown | `marked` (rendu au build) |
-| Hébergement | Vercel (offre Hobby) |
-| Domaine | `reboot-dole.fr` via Hostinger |
-| Repo | [github.com/guillaumeoudin/reboot-dole](https://github.com/guillaumeoudin/reboot-dole) |
-
-### Commandes de développement
-
-```bash
-npm install        # installer les dépendances
-npm run dev        # serveur local → http://localhost:8080
-npm run build      # build de production
-npm run lint       # vérification du code
-```
-
-### Architecture des dossiers
-
-```
-content/blog/         Articles Markdown (source du blog, éditée via Decap CMS)
-public/               Fichiers statiques : favicon, robots.txt, uploads blog, admin Decap
-src/assets/           Images du site (bundlées par Vite, ne pas mettre dans public/)
-src/components/       Composants : Header, Footer, SeoLandingPage, ui-kit, ui/
-src/data/             Données centralisées : site.ts, soins.ts, localBusiness.ts
-src/lib/              Logique blog (chargement des markdown)
-src/routes/           Une page = un fichier (routing fichier TanStack)
-src/routeTree.gen.ts  Registre auto-généré des routes (ne pas modifier manuellement)
-src/styles.css        Design system : tokens couleur, typographie, utilitaires
-```
-
----
-
-## 12. Assistant WhatsApp — architecture et configuration
+## 7. Assistant WhatsApp — architecture et configuration
 
 ### Comment ça fonctionne
 
@@ -765,6 +671,100 @@ Réponse exacte à donner : "Non, nous sommes fermés le dimanche. Nous vous acc
 Un fichier séparé n'apporterait rien de plus — le system prompt est déjà le fichier texte dédié au chatbot, simple à modifier sans aucune compétence technique.
 
 ---
+## 8. Comment les modifications arrivent en ligne
+
+Toute modification enregistrée sur la branche `main` du dépôt GitHub déclenche automatiquement un déploiement sur Vercel.
+
+**Via Decap CMS** (blog) : la publication est instantanée côté Decap — le build Vercel démarre dans la foulée et le site est mis à jour en 30 secondes à 2 minutes.
+
+**Via GitHub directement** (code source) : même processus, dès que le fichier est `commit` sur `main`.
+
+**Pour vérifier qu'un déploiement est terminé** : aller sur [vercel.com](https://vercel.com) → tableau de bord du projet `reboot-dole` → voir le statut du dernier déploiement.
+
+---
+
+## 9. Ce qu'il ne faut pas toucher
+
+Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les modifier sans valider avec moi:
+
+| Fichier / Dossier | Rôle |
+|---|---|
+| `src/routeTree.gen.ts` | Registre de toutes les pages — **auto-généré par Vercel à chaque build**, ne pas modifier manuellement |
+| `src/routes/__root.tsx` | Structure globale (header, footer, données structurées Google) |
+| `src/lib/` | Logique de chargement du blog |
+| `src/components/ui/` | Composants d'interface de base (boutons, accordéons…) |
+| `vite.config.ts` | Configuration du build |
+| `src/routes/api/` | Routes d'authentification Decap CMS |
+| `src/routes/admin/` | Interface d'administration Decap CMS |
+| `public/admin/` | Interface Decap CMS (HTML) |
+| `package.json` | Dépendances du projet |
+
+---
+
+## 10. Tableaux de bord & ressources utiles
+
+| Ressource | Lien |
+|---|---|
+| 💬 Échanges assistant WhatsApp | [Google Sheet](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit) |
+| 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
+
+---
+
+## 11. Quand faire appel à Guillaume
+
+Les opérations suivantes sortent du périmètre de maintenance courante et nécessitent une intervention de développeur :
+
+- **Modifier la navigation** (menu principal)
+- **Changer le design** : couleurs, mise en page, typographie
+- **Ajouter une fonctionnalité** : formulaire, intégration, widget
+- **Modifier le comportement de l'assistant WhatsApp** au-delà du system prompt
+- **Tout problème de build** : si le site ne se met pas à jour après une modification
+
+---
+
+## 12. Stack technique
+
+| Élément | Choix |
+|---|---|
+| Framework | TanStack Start (React 19, SSR) |
+| Build & bundler | Vite 8 |
+| Styles | Tailwind CSS v4 |
+| Composants UI | shadcn/ui (Radix) |
+| Icônes | lucide-react |
+| Assistant WhatsApp | Claude Haiku (Anthropic) |
+| Mémoire de session | Upstash Redis (via Vercel) |
+| Logs conversations | Google Sheets (service account) |
+| Blog (CMS) | Decap CMS (backend GitHub) |
+| Markdown | `marked` (rendu au build) |
+| Hébergement | Vercel (offre Hobby) |
+| Domaine | `reboot-dole.fr` via Hostinger |
+| Repo | [github.com/guillaumeoudin/reboot-dole](https://github.com/guillaumeoudin/reboot-dole) |
+
+### Commandes de développement
+
+```bash
+npm install        # installer les dépendances
+npm run dev        # serveur local → http://localhost:8080
+npm run build      # build de production
+npm run lint       # vérification du code
+```
+
+### Architecture des dossiers
+
+```
+content/blog/         Articles Markdown (source du blog, éditée via Decap CMS)
+public/               Fichiers statiques : favicon, robots.txt, uploads blog, admin Decap
+src/assets/           Images du site (bundlées par Vite, ne pas mettre dans public/)
+src/components/       Composants : Header, Footer, SeoLandingPage, ui-kit, ui/
+src/data/             Données centralisées : site.ts, soins.ts, localBusiness.ts
+src/lib/              Logique blog (chargement des markdown)
+src/routes/           Une page = un fichier (routing fichier TanStack)
+src/routeTree.gen.ts  Registre auto-généré des routes (ne pas modifier manuellement)
+src/styles.css        Design system : tokens couleur, typographie, utilitaires
+```
+
+---
+
 
 ## Annexe — Comprendre la stack technique
 
