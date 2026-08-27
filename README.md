@@ -708,6 +708,42 @@ Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les 
 | 💬 Échanges assistant WhatsApp | [Google Sheet](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit) |
 | 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
 
+### Formulaire de contact — comment ça fonctionne
+
+Le formulaire de la page Contact (`src/components/ContactForm.tsx`) envoie les données directement à un **Google Apps Script** déployé côté Google, qui écrit chaque soumission dans le sheet ci-dessus.
+
+**Champs collectés :** Nom, Email, Téléphone, Objet, Message.
+
+**Architecture :**
+```
+Visiteur remplit le formulaire
+        ↓
+POST JSON vers l'URL du Apps Script (VITE_CONTACT_SCRIPT_URL)
+        ↓
+Google Apps Script → append une ligne dans le Google Sheet
+```
+
+Le formulaire utilise le mode `no-cors` : on ne reçoit pas de réponse de Google, mais la requête arrive bien côté Apps Script. C'est la raison pour laquelle la page affiche "Message envoyé" dès que la requête est envoyée, sans attendre confirmation.
+
+**Variable d'environnement :** `VITE_CONTACT_SCRIPT_URL` — définie dans Vercel (Settings → Environment Variables). C'est l'URL de déploiement du Apps Script Google. Ne pas modifier sans raison.
+
+**Code du Apps Script (dans Google Apps Script, projet lié au sheet "Formulaires") :**
+```javascript
+function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  sheet.appendRow([
+    new Date(),
+    data.name,
+    data.email,
+    data.phone,
+    data.subject,
+    data.message,
+  ]);
+  return ContentService.createTextOutput("OK");
+}
+```
+
 ---
 
 ## 11. Quand faire appel à Guillaume
