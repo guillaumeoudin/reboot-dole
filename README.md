@@ -55,6 +55,7 @@ Les modifications sont alors visibles en temps réel dans le navigateur dès que
 8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
 9. [Quand faire appel à Guillaume](#9-quand-faire-appel-à-guillaume)
 10. [Stack technique](#10-stack-technique)
+11. [Assistant WhatsApp — architecture et configuration](#11-assistant-whatsapp--architecture-et-configuration)
 - [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
@@ -651,6 +652,9 @@ Les opérations suivantes sortent du périmètre de maintenance courante et néc
 | Styles | Tailwind CSS v4 |
 | Composants UI | shadcn/ui (Radix) |
 | Icônes | lucide-react |
+| Assistant WhatsApp | Claude Haiku (Anthropic) |
+| Mémoire de session | Upstash Redis (via Vercel) |
+| Logs conversations | Google Sheets (service account) |
 | Blog (CMS) | Decap CMS (backend GitHub) |
 | Markdown | `marked` (rendu au build) |
 | Hébergement | Vercel (offre Hobby) |
@@ -679,6 +683,74 @@ src/routes/           Une page = un fichier (routing fichier TanStack)
 src/routeTree.gen.ts  Registre auto-généré des routes (ne pas modifier manuellement)
 src/styles.css        Design system : tokens couleur, typographie, utilitaires
 ```
+
+---
+
+## 11. Assistant WhatsApp — architecture et configuration
+
+### Comment ça fonctionne
+
+Quand une personne envoie un message WhatsApp au numéro du centre, voici ce qui se passe :
+
+1. **WhatsApp** transmet le message à une URL secrète sur le site (un *webhook*)
+2. Le site récupère les **5 derniers échanges** de la conversation (mémorisés dans une base Redis pendant 24h) pour donner du contexte au chatbot
+3. Le message + l'historique sont envoyés à **Claude Haiku** (intelligence artificielle d'Anthropic), avec les instructions spécifiques à Reboot
+4. La réponse générée est renvoyée à l'utilisateur via WhatsApp
+5. L'échange (question + réponse) est enregistré dans le **Google Sheet de logs**
+
+```
+Utilisateur WhatsApp
+        ↓
+  Webhook site (Vercel)
+        ↓
+  Redis (historique 24h)  ←→  Claude Haiku (IA)
+        ↓
+  Réponse WhatsApp  +  Log Google Sheets
+```
+
+### Consulter les conversations
+
+Les échanges sont automatiquement enregistrés dans le Google Sheet partagé avec Aline. Chaque ligne correspond à un message, avec 5 colonnes :
+
+| Session ID | Timestamp | Utilisateur | Question | Réponse bot |
+|---|---|---|---|---|
+| `****0912_27/08 14h32` | `27/08/2026 14:32` | `****0912` | Bonjour, c'est combien... | Bonjour ! ... |
+
+Le **Session ID** permet de regrouper tous les messages d'une même conversation : toutes les lignes avec le même ID appartiennent au même échange. Les 4 derniers chiffres du numéro permettent d'identifier un client régulier sans stocker son numéro complet.
+
+### Le system prompt — cerveau du chatbot
+
+Le comportement du chatbot (ton, connaissances, réponses) est entièrement défini par un seul fichier :
+
+```
+src/routes/api/whatsapp-system-prompt.txt
+```
+
+C'est là que sont renseignés : les tarifs, les horaires, les prestations, le lien Planity, le numéro de téléphone, les réponses aux questions fréquentes, et le ton à adopter.
+
+**Modifier le system prompt** (via GitHub web) :
+1. Ouvrir le fichier `src/routes/api/whatsapp-system-prompt.txt` sur GitHub
+2. Cliquer sur l'icône crayon (Modifier)
+3. Faire les modifications
+4. Cliquer sur **"Commit changes"** — le nouveau prompt est actif dans la minute
+
+> Pas besoin de redéployer : le system prompt est lu à chaque message reçu.
+
+### Où mettre les réponses "figées"
+
+Pour les réponses qu'on veut contrôler précisément (tarifs exacts, formulations particulières, questions récurrentes), **tout va dans le même fichier** `whatsapp-system-prompt.txt`. Il suffit d'ajouter une section du type :
+
+```
+## Réponses aux questions fréquentes
+
+Question : "C'est combien l'épilation laser des jambes complètes ?"
+Réponse exacte à donner : "L'épilation laser jambes complètes est à X€ la séance, ou X€ le forfait 6 séances."
+
+Question : "Vous êtes ouverts le dimanche ?"
+Réponse exacte à donner : "Non, nous sommes fermés le dimanche. Nous vous accueillons du lundi au samedi, de X à Xh."
+```
+
+Un fichier séparé n'apporterait rien de plus — le system prompt est déjà le fichier texte dédié au chatbot, simple à modifier sans aucune compétence technique.
 
 ---
 
@@ -717,6 +789,18 @@ Le **système de styles** qui contrôle tout l'aspect visuel. Plutôt que d'écr
 ### shadcn/ui
 
 Une **bibliothèque de composants d'interface** prêts à l'emploi : boutons, accordéons, menus, modales… Ils sont construits sur Radix UI (qui garantit l'accessibilité) et stylisés avec Tailwind. Les accordéons FAQ visibles sur les pages soins et les landing pages viennent de là. Les composants sont dans `src/components/ui/`.
+
+### Claude Haiku
+
+Le **modèle d'intelligence artificielle** qui génère les réponses du chatbot WhatsApp. Haiku est le modèle le plus rapide et le moins coûteux d'Anthropic — adapté à un usage de type questions/réponses courtes. Il reçoit le system prompt (les instructions Reboot) + l'historique de la conversation + la nouvelle question, et produit une réponse en 1 à 2 secondes.
+
+### Upstash Redis
+
+La **base de données de mémoire** du chatbot. Elle stocke temporairement l'historique des 5 derniers échanges de chaque conversation WhatsApp (identifiée par le numéro de téléphone), pendant 24h. Passé ce délai, la conversation repart de zéro. Upstash est intégré à Vercel et ne nécessite aucune maintenance.
+
+### Google Sheets
+
+Le **journal de bord** des conversations. À chaque échange, une ligne est ajoutée automatiquement dans le sheet partagé avec Aline. L'accès se fait via un *service account* Google (un compte technique sans interface) qui a les droits d'écriture sur le document.
 
 ### Decap CMS
 
