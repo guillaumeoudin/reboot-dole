@@ -32,10 +32,10 @@ export function LaserPricingTable() {
               role="tab"
               aria-selected={tab === t}
               onClick={() => setTab(t)}
-              className={`flex-1 py-3 text-sm transition-colors ${
+              className={`flex-1 cursor-pointer py-3 text-sm transition-colors ${
                 tab === t
                   ? "bg-gold/10 text-gold"
-                  : "bg-background text-muted-foreground hover:text-foreground"
+                  : "bg-surface text-muted-foreground hover:text-foreground"
               }`}
             >
               {t}
@@ -66,7 +66,7 @@ export function LaserPricingTable() {
               role="tab"
               aria-selected={selectedCat === cat.label}
               onClick={() => setSelectedCat(cat.label)}
-              className={`flex-1 border-r border-border px-2 py-3 text-xs last:border-r-0 transition-colors ${
+              className={`flex-1 cursor-pointer border-r border-border px-2 py-3 text-xs last:border-r-0 transition-colors ${
                 selectedCat === cat.label
                   ? "bg-gold/10 text-gold"
                   : "bg-surface text-muted-foreground hover:text-foreground"
