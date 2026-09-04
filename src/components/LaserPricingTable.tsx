@@ -76,6 +76,7 @@ export function LaserPricingTable() {
             <span>{selectedCat}</span>
             <span
               className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}
+              style={{ filter: "drop-shadow(0 0 5px var(--color-gold))" }}
             >
               <ChevronDown open={dropdownOpen} />
             </span>
