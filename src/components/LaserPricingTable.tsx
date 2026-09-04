@@ -76,17 +76,25 @@ export function LaserPricingTable() {
           {laserCategories.map((cat) => {
             const rows = tab === "Femme" ? cat.femme : cat.homme;
             if (rows.length === 0) return null;
+            const minPrice = Math.min(
+              ...rows.map((r) => parseInt(r.seance.replace(/\s/g, ""), 10))
+            );
             return (
               <AccordionItem
                 key={cat.label}
                 value={cat.label}
                 className="border-b border-border px-5 sm:px-6"
               >
-                <AccordionTrigger className="text-sm font-medium text-foreground hover:text-gold hover:no-underline">
-                  {cat.label}
-                  <span className="ml-auto mr-3 text-xs text-muted-foreground">
-                    {rows.length} zone{rows.length > 1 ? "s" : ""}
-                  </span>
+                <AccordionTrigger className="hover:no-underline">
+                  <div className="flex flex-col gap-0.5 text-left">
+                    <span className="text-sm font-medium text-foreground group-hover:text-gold transition-colors">
+                      {cat.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {rows.length} zone{rows.length > 1 ? "s" : ""}{" "}
+                      <span className="text-gold">· dès {minPrice} €</span>
+                    </span>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-4">
                   <ZoneTable rows={rows} />
