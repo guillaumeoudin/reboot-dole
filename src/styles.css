@@ -164,6 +164,16 @@
   view-transition-name: grain;
 }
 
+/* ─── CTA nudge — hint directionnel pour indiquer un élément cliquable ─────
+ * Reste immobile ~70 % du temps, puis pointe brièvement vers le bas et revient.
+ * Appliqué au chevron de la dropdown mobile (LaserPricingTable).
+ * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes cta-nudge {
+  0%, 65%, 100% { transform: translateY(0); }
+  75%           { transform: translateY(4px); }
+  90%           { transform: translateY(0); }
+}
+
 /* ─── Clip-path reveal sur les titres de page ──────────────────────────────
  * Balaie de gauche à droite — impression de texte imprimé sur la page.
  * Appliqué sur h1 (natif) et .heading-reveal (via EyebrowHeading).

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { laserCategories, laserForfaits } from "@/data/laser-pricing";
 
 type Tab = "Femme" | "Homme";
@@ -26,12 +26,6 @@ export function LaserPricingTable() {
   const [tab, setTab] = useState<Tab>("Femme");
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [ctaBounce, setCtaBounce] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setCtaBounce(false), 3000);
-    return () => clearTimeout(t);
-  }, []);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
@@ -77,12 +71,11 @@ export function LaserPricingTable() {
           {/* Trigger */}
           <button
             onClick={() => setDropdownOpen((v) => !v)}
-            className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${activeBtn}`}
+            className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${dropdownOpen ? activeBtn : inactiveBtn}`}
           >
             <span>{selectedCat}</span>
             <span
-              className={ctaBounce && !dropdownOpen ? "animate-bounce" : ""}
-              style={ctaBounce && !dropdownOpen ? { animationIterationCount: 3 } : undefined}
+              className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}
             >
               <ChevronDown open={dropdownOpen} />
             </span>
