@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { laserCategories, laserForfaits } from "@/data/laser-pricing";
 
 type Tab = "Femme" | "Homme";
@@ -27,16 +27,6 @@ export function LaserPricingTable() {
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function onClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
-  }, []);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
@@ -77,8 +67,9 @@ export function LaserPricingTable() {
           ))}
         </div>
 
-        {/* Mobile : dropdown custom */}
-        <div className="relative sm:hidden" ref={dropdownRef}>
+        {/* Mobile : accordion inline — évite tout problème de z-index / transparence */}
+        <div className="sm:hidden">
+          {/* Trigger */}
           <button
             onClick={() => setDropdownOpen((v) => !v)}
             className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${
@@ -89,28 +80,43 @@ export function LaserPricingTable() {
             <ChevronDown open={dropdownOpen} />
           </button>
 
-          {/* Liste déroulante */}
+          {/* Liste inline — s'étend et pousse le contenu vers le bas */}
           <div
-            className={`absolute z-20 w-full border border-t-0 border-border transition-all duration-200 ${
-              dropdownOpen
-                ? "pointer-events-auto translate-y-0 opacity-100"
-                : "pointer-events-none -translate-y-1 opacity-0"
+            className={`grid transition-all duration-200 ease-in-out ${
+              dropdownOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
             }`}
           >
-            {laserCategories.map((cat) => (
-              <button
-                key={cat.label}
-                onClick={() => {
-                  setSelectedCat(cat.label);
-                  setDropdownOpen(false);
-                }}
-                className={`w-full cursor-pointer border-b border-border px-4 py-3 text-left text-sm transition-colors last:border-b-0 ${
-                  selectedCat === cat.label ? activeBtn : inactiveBtn
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            <div className="overflow-hidden">
+              {laserCategories.map((cat) => (
+                <button
+                  key={cat.label}
+                  onClick={() => {
+                    setSelectedCat(cat.label);
+                    setDropdownOpen(false);
+                  }}
+                  className={`flex w-full cursor-pointer items-center justify-between border-x border-b border-border px-4 py-3 text-left text-sm transition-colors ${
+                    selectedCat === cat.label ? activeBtn : inactiveBtn
+                  }`}
+                >
+                  <span>{cat.label}</span>
+                  {selectedCat === cat.label && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
