@@ -89,7 +89,6 @@ export function LaserPricingTable() {
                   <span className="text-sm text-foreground">{cat.label}</span>
                   <span className="ml-auto mr-3 flex items-center gap-2 text-xs text-muted-foreground">
                     <span className="text-gold">Dès {minPrice} €</span>
-                    <span>· {rows.length} zone{rows.length > 1 ? "s" : ""}</span>
                     <span>· Voir tarif par zone</span>
                   </span>
                 </AccordionTrigger>
