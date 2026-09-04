@@ -121,7 +121,7 @@ function EpilationLaserMaillotDole() {
     <SeoLandingPage
       title="Épilation laser maillot intégral à Dole"
       tagline="Une liberté permanente, toute l'année."
-      description="Maillot simple, brésilien ou intégral : le centre Reboot à Dole traite la zone bikini au laser de dernière génération, dans un cadre confidentiel et professionnel. Résultat durable dès 8 à 10 séances. Bilan gratuit avant la première séance pour définir la zone et le protocole adapté."
+      description="Maillot simple, brésilien ou intégral : le centre Reboot à Dole traite la zone bikini au laser de dernière génération, dans un cadre confidentiel et professionnel. Résultat durable dès 8 à 10 séances. Bilan personnalisé avant la première séance."
       specs={{
         duration: "20 à 30 min",
         sessions: "8 à 10 séances espacées de 4 à 8 sem.",
@@ -132,7 +132,7 @@ function EpilationLaserMaillotDole() {
         alt: "Technologie laser épilation au centre Reboot à Dole — zone maillot",
       }}
       highlights={highlights}
-      seoContent="L'épilation laser du maillot au centre Reboot à Dole (Jura) propose trois niveaux de traitement : le maillot simple (parties visibles hors du maillot de bain), le brésilien (réduction plus importante avec une bande préservée) et l'intégral (épilation complète de la zone pubienne). La zone traitée est précisément définie avec la praticienne lors d'un bilan gratuit, avant la première séance. La zone bikini étant plus sensible que les jambes, la technologie utilisée à Reboot intègre un système de refroidissement continu pour un confort optimal — une crème anesthésiante peut également être appliquée en amont si nécessaire. En cas de déséquilibre hormonal, quelques séances supplémentaires peuvent être requises : le suivi personnalisé du centre en tient compte. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura)."
+      seoContent="L'épilation laser du maillot au centre Reboot à Dole (Jura) propose trois niveaux de traitement : le maillot simple (parties visibles hors du maillot de bain), le brésilien (réduction plus importante avec une bande préservée) et l'intégral (épilation complète de la zone pubienne). La zone traitée est précisément définie avec la praticienne lors d'un bilan personnalisé, avant la première séance. La zone bikini étant plus sensible que les jambes, la technologie utilisée à Reboot intègre un système de refroidissement continu pour un confort optimal — une crème anesthésiante peut également être appliquée en amont si nécessaire. En cas de déséquilibre hormonal, quelques séances supplémentaires peuvent être requises : le suivi personnalisé du centre en tient compte. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura)."
       faq={faq}
       parentHref="/soins/epilation-laser"
       parentLabel="Épilation laser"

@@ -8,6 +8,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { LaserPricingTable } from "@/components/LaserPricingTable";
+import { SoinPricingTable } from "@/components/SoinPricingTable";
 import { getSoin, soins } from "@/data/soins";
 import { site } from "@/data/site";
 
@@ -164,6 +166,13 @@ function SoinDetail() {
           </Reveal>
         </div>
       </section>
+
+      {/* Section tarifs — laser : onglets Femme/Homme ; autres soins : tableau simple */}
+      {soin.slug === "epilation-laser" ? (
+        <LaserPricingTable />
+      ) : soin.pricingTable ? (
+        <SoinPricingTable title={soin.title} data={soin.pricingTable} />
+      ) : null}
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">

@@ -4,6 +4,27 @@ import soinPeeling from "@/assets/soin-peeling.jpg";
 import soinMicroneedling from "@/assets/soin-microneedling.jpg";
 import soinDomeLed from "@/assets/soin-dome-led.jpg";
 
+export type PricingRow = {
+  /** Libellé de la prestation */
+  label: string;
+  /** Durée indicative, ex : "45 min" */
+  duree?: string;
+  /** Prix à l'unité, ex : "95 €" */
+  price: string;
+  /** Prix de cure (si applicable), ex : "405 €" avec cureLabel pour préciser */
+  cure?: string;
+  /** Label de la colonne cure, ex : "Cure 5" (défaut : "Cure") */
+  cureLabel?: string;
+};
+
+export type SoinPricingTable = {
+  /** Phrase d'intro optionnelle sous le titre */
+  intro?: string;
+  rows: PricingRow[];
+  /** Note de bas de tableau */
+  note?: string;
+};
+
 export type Soin = {
   slug: string;
   index: string;
@@ -23,6 +44,11 @@ export type Soin = {
   metaDescription: string;
   faq: { q: string; a: string }[];
   /**
+   * Tableau de tarifs affiché sur la page soin.
+   * Non renseigné pour l'épilation laser (structure trop complexe → LaserPricingTable).
+   */
+  pricingTable?: SoinPricingTable;
+  /**
    * Hub SEO associé — lien discret affiché en bas de page après la FAQ.
    * Une seule ligne de texte : non intrusif pour l'utilisateur, utile pour Google.
    */
@@ -40,8 +66,8 @@ export const soins: Soin[] = [
     long: "Nous utilisons une technologie laser de dernière génération, adaptée à tous les phototypes. Le faisceau cible le pigment du poil sans agresser la peau environnante, pour un résultat progressif, précis et durable.",
     duration: "15 à 60 min selon la zone",
     sessions: "8 à 10 séances espacées de 4 à 8 semaines",
-    price: "à partir de 40 €",
-    priceFrom: "à partir de 40 €",
+    price: "à partir de 29 €",
+    priceFrom: "à partir de 29 €",
     image: soinLaser,
     imageAlt: "Pièce à main de laser d'épilation dans un cadre clinique",
     indications: [
@@ -56,7 +82,7 @@ export const soins: Soin[] = [
     ],
     metaTitle: "Épilation laser à Dole — Reboot",
     metaDescription:
-      "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 40 €. Bilan offert.",
+      "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 29 €. Bilan personnalisé.",
     faq: [
       {
         q: "Combien de séances faut-il pour une épilation laser définitive à Dole ?",
@@ -76,7 +102,7 @@ export const soins: Soin[] = [
       },
       {
         q: "Quel est le tarif de l'épilation laser à Reboot Dole ?",
-        a: "Les séances démarrent à partir de 40 €, selon la zone traitée. Un devis personnalisé est établi lors de votre premier rendez-vous au centre.",
+        a: "Les séances démarrent à partir de 29 €, selon la zone traitée. Un devis personnalisé est établi lors de votre premier rendez-vous au centre.",
       },
     ],
   },
@@ -90,8 +116,8 @@ export const soins: Soin[] = [
     long: "La cryolipolyse expose les adipocytes à un froid contrôlé qui les détruit sélectivement. Ils sont ensuite éliminés naturellement par l'organisme, sur 6 à 12 semaines, pour un remodelage progressif.",
     duration: "45 à 70 min par zone",
     sessions: "1 à 3 séances espacées de 6 à 8 semaines",
-    price: "à partir de 250 €",
-    priceFrom: "à partir de 250 €",
+    price: "à partir de 220 €",
+    priceFrom: "à partir de 220 €",
     image: soinCryolipolyse,
     imageAlt: "Cristaux de givre évoquant le froid contrôlé de la cryolipolyse",
     indications: [
@@ -106,7 +132,7 @@ export const soins: Soin[] = [
     ],
     metaTitle: "Cryolipolyse à Dole — Reboot",
     metaDescription:
-      "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 250 €. Bilan offert.",
+      "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 220 €. Bilan personnalisé.",
     faq: [
       {
         q: "La cryolipolyse est-elle efficace pour éliminer les poignées d'amour ?",
@@ -126,9 +152,18 @@ export const soins: Soin[] = [
       },
       {
         q: "Quel est le tarif de la cryolipolyse à Reboot Dole ?",
-        a: "Les séances démarrent à partir de 250 €. Un devis précis est établi après bilan selon le nombre de zones et de passages à traiter.",
+        a: "Les séances démarrent à partir de 220 €. Un devis précis est établi après bilan selon le nombre de zones et de passages à traiter.",
       },
     ],
+    pricingTable: {
+      intro:
+        "Tarifs TTC par zone de traitement. La cure de 5 séances bénéficie d'une remise par rapport à l'achat à l'unité. Un bilan préalable est réalisé pour définir le nombre de zones et de passages.",
+      rows: [
+        { label: "1 zone",            duree: "≈ 1 h",     price: "220 €",    cure: "935 €",    cureLabel: "Cure 5" },
+        { label: "2 zones",           duree: "≈ 1 h 30",  price: "350 €",    cure: "1 485 €",  cureLabel: "Cure 5" },
+      ],
+      note: "Prix TTC, applicable au 1er octobre 2026.",
+    },
   },
   {
     slug: "peeling",
@@ -179,6 +214,17 @@ export const soins: Soin[] = [
         a: "Les séances démarrent à partir de 95 €. Le tarif exact dépend du type de peeling et du protocole défini lors de votre bilan.",
       },
     ],
+    pricingTable: {
+      intro:
+        "Gamme Mesoestetic®. Le protocole — type de peeling, profondeur, nombre de séances — est défini lors du bilan cutané initial.",
+      rows: [
+        { label: "Soin visage Mesopeel® peau neuve",             duree: "45 min",     price: "95 €",        cure: "405 €",   cureLabel: "Cure 5" },
+        { label: "Soin visage Mesoéclat®",                       duree: "45 min",     price: "95 €",        cure: "405 €",   cureLabel: "Cure 5" },
+        { label: "+ Option contour des yeux (Eyecon)",            duree: "+ 15 min",   price: "30 €" },
+        { label: "Cosmelan® — dépigmentation (cure 6 mois)",     duree: "sur devis",  price: "sur demande" },
+      ],
+      note: "Cure 5 = 5 séances espacées de 3 à 4 semaines. Prix TTC.",
+    },
   },
   {
     slug: "microneedling",
@@ -190,8 +236,8 @@ export const soins: Soin[] = [
     long: "De fines aiguilles créent des micro-canaux dans le derme et déclenchent une réponse de réparation naturelle : production de collagène et d'élastine, meilleure pénétration des actifs, peau visiblement plus dense.",
     duration: "45 à 60 min",
     sessions: "Cure de 3 à 4 séances espacées de 4 semaines",
-    price: "à partir de 90 €",
-    priceFrom: "à partir de 90 €",
+    price: "à partir de 100 €",
+    priceFrom: "à partir de 100 €",
     image: soinMicroneedling,
     imageAlt: "Stylo de microneedling posé sur un tissu bleu nuit",
     indications: [
@@ -206,7 +252,7 @@ export const soins: Soin[] = [
     ],
     metaTitle: "Microneedling à Dole — Reboot",
     metaDescription:
-      "Microneedling à Dole (Jura) : relance du collagène, réduction des ridules, cicatrices et pores. Protocole personnalisé. À partir de 90 €.",
+      "Microneedling à Dole (Jura) : relance du collagène, réduction des ridules, cicatrices et pores. Protocole personnalisé. À partir de 100 €.",
     faq: [
       {
         q: "À quoi sert le microneedling ?",
@@ -226,9 +272,20 @@ export const soins: Soin[] = [
       },
       {
         q: "Quel est le tarif du microneedling à Reboot Dole ?",
-        a: "Les séances démarrent à partir de 90 €. Un devis est établi lors de votre premier rendez-vous selon le protocole adapté à votre peau.",
+        a: "Les séances démarrent à partir de 100 €. Un devis est établi lors de votre premier rendez-vous selon le protocole adapté à votre peau.",
       },
     ],
+    pricingTable: {
+      intro:
+        "Protocoles Mesoestetic® adaptés à votre type de peau et à votre objectif. Le plan de traitement est défini lors du bilan cutané.",
+      rows: [
+        { label: "Soin meso.prof® Lift&Glow",                  duree: "45 min",  price: "100 €" },
+        { label: "Soin contour des yeux Global Eyecon",         duree: "45 min",  price: "100 €" },
+        { label: "+ Option cou / décolleté",                                       price: "40 €"  },
+        { label: "Soin Mesopeel® + microstimulation",           duree: "1 h",     price: "150 €" },
+      ],
+      note: "Prix TTC. Des cures personnalisées sont établies sur devis lors du bilan.",
+    },
   },
   {
     slug: "dome-led",
@@ -240,8 +297,8 @@ export const soins: Soin[] = [
     long: "Le dôme LED enveloppe le corps dans un rayonnement de lumière calibrée — rouge, infrarouge et bleu. Chaque longueur d'onde agit sur un processus distinct : stimulation du collagène, réduction de l'inflammation, récupération musculaire. Aucune chaleur, aucun contact. Une séance douce, visible dès les premières utilisations.",
     duration: "20 à 30 min",
     sessions: "Cure de 8 à 12 séances — ou en complément de soin",
-    price: "à partir de 60 €",
-    priceFrom: "à partir de 60 €",
+    price: "à partir de 39 €",
+    priceFrom: "à partir de 39 €",
     image: soinDomeLed,
     imageAlt: "Dôme LED de photobiomodulation au centre Reboot à Dole",
     indications: [
@@ -256,7 +313,7 @@ export const soins: Soin[] = [
     ],
     metaTitle: "Dôme LED à Dole — Photobiomodulation | Reboot",
     metaDescription:
-      "Séances de dôme LED (photobiomodulation) à Dole (Jura) : stimulation cellulaire, éclat, récupération. Lumière rouge, infrarouge et bleue. À partir de 60 €.",
+      "Séances de dôme LED (photobiomodulation) à Dole (Jura) : stimulation cellulaire, éclat, récupération. Lumière rouge, infrarouge et bleue. À partir de 39 €.",
     faq: [
       {
         q: "Qu'est-ce que le dôme LED et comment ça fonctionne ?",
@@ -276,9 +333,17 @@ export const soins: Soin[] = [
       },
       {
         q: "Quel est le tarif d'une séance de dôme LED à Reboot Dole ?",
-        a: "Les séances démarrent à partir de 60 €. Des formules en cure ou combinées avec d'autres soins sont disponibles — un devis est établi lors de votre bilan.",
+        a: "Les séances démarrent à partir de 39 €. Des formules en cure ou combinées avec d'autres soins sont disponibles — un devis est établi lors de votre bilan.",
       },
     ],
+    pricingTable: {
+      intro:
+        "Le dôme LED peut être utilisé seul ou en complément d'un soin visage pour amplifier les résultats.",
+      rows: [
+        { label: "Séance en cabine",          duree: "15–30 min",  price: "39 €",   cure: "165 €",  cureLabel: "Cure 5" },
+      ],
+      note: "Cure 5 = 5 séances. Peut être combiné le même jour avec un autre soin. Prix TTC.",
+    },
   },
 ];
 

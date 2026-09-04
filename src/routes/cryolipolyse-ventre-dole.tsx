@@ -8,7 +8,7 @@ const PAGE_URL = `${site.url}/cryolipolyse-ventre-dole`;
 
 const metaTitle = "Cryolipolyse ventre à Dole — Reboot";
 const metaDescription =
-  "Cryolipolyse du ventre à Dole (Jura) : réduction des amas graisseux abdominaux sans chirurgie. Résultat visible en 6 à 12 semaines. À partir de 250 €.";
+  "Cryolipolyse du ventre à Dole (Jura) : réduction des amas graisseux abdominaux sans chirurgie. Résultat visible en 6 à 12 semaines. À partir de 220 €.";
 
 const faq = [
   {
@@ -29,7 +29,7 @@ const faq = [
   },
   {
     q: "Quel est le tarif de la cryolipolyse du ventre à Reboot Dole ?",
-    a: "La cryolipolyse du ventre démarre à partir de 250 € par zone et par passage. Le tarif exact est établi lors du bilan, selon le nombre de zones et de passages à réaliser.",
+    a: "La cryolipolyse du ventre démarre à partir de 220 € par zone et par passage. Le tarif exact est établi lors du bilan, selon le nombre de zones et de passages à réaliser.",
   },
   {
     q: "La cryolipolyse du ventre est-elle adaptée après une grossesse ?",
@@ -68,7 +68,7 @@ const jsonLd = {
       ],
       offers: {
         "@type": "Offer",
-        price: "250",
+        price: "220",
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
@@ -121,11 +121,11 @@ function CryolipolyseVentreDole() {
     <SeoLandingPage
       title="Cryolipolyse ventre à Dole"
       tagline="Les amas du ventre, sans bistouri."
-      description="Le bas-ventre, l'abdomen, les bourrelets : la cryolipolyse au centre Reboot à Dole détruit les cellules graisseuses localisées par le froid contrôlé, sans chirurgie et sans éviction. Résultat progressif visible sur 6 à 12 semaines. Bilan gratuit avant la première séance."
+      description="Le bas-ventre, l'abdomen, les bourrelets : la cryolipolyse au centre Reboot à Dole détruit les cellules graisseuses localisées par le froid contrôlé, sans chirurgie et sans éviction. Résultat progressif visible sur 6 à 12 semaines. Bilan personnalisé avant la première séance."
       specs={{
         duration: "45 à 60 min par zone",
         sessions: "1 à 2 séances espacées de 6 à 8 sem.",
-        price: "à partir de 250 €",
+        price: "à partir de 220 €",
       }}
       image={{
         src: soinCryolipolyse,

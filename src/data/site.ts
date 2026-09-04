@@ -14,7 +14,7 @@ export const site = {
   postalCode: "39100",
   countryCode: "FR",
   geo: { latitude: 47.090721, longitude: 5.489599 },
-  priceRange: "40–250 €",
+  priceRange: "29–220 €",
   phone: "06 51 57 79 09",
   phoneHref: "tel:+33651577909",
   email: "contact@reboot-dole.fr",

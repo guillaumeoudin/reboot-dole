@@ -18,7 +18,7 @@ const PAGE_URL = `${site.url}/epilation-laser-dole`;
 
 const metaTitle = "Épilation laser définitive à Dole — Centre Reboot (Jura)";
 const metaDescription =
-  "Épilation laser définitive à Dole (Jura) : toutes zones (jambes, maillot, aisselles, visage, bras), tous phototypes, technologie dernière génération. Centre Reboot — à partir de 40 €. Bilan offert.";
+  "Épilation laser définitive à Dole (Jura) : toutes zones (jambes, maillot, aisselles, visage, bras), tous phototypes, technologie dernière génération. Centre Reboot — à partir de 29 €. Bilan personnalisé.";
 
 const faq = [
   {
@@ -31,7 +31,7 @@ const faq = [
   },
   {
     q: "Quel est le tarif de l'épilation laser à Reboot Dole ?",
-    a: "Les séances démarrent à partir de 40 € selon la zone traitée. Des forfaits multi-séances sont proposés pour les protocoles complets. Un devis personnalisé est établi lors du bilan gratuit avant la première séance.",
+    a: "Les séances démarrent à partir de 29 € selon la zone traitée. Des forfaits multi-séances sont proposés pour les protocoles complets. Un devis personnalisé est établi avant la première séance.",
   },
   {
     q: "Peut-on traiter plusieurs zones lors d'une même séance ?",
@@ -47,7 +47,7 @@ const faq = [
   },
   {
     q: "Comment prendre rendez-vous pour une épilation laser définitive à Dole ?",
-    a: `En ligne via Planity (lien disponible sur le site), par téléphone au ${site.phone} ou par email à ${site.email}. Le premier rendez-vous comprend un bilan cutané gratuit avant toute impulsion laser.`,
+    a: `En ligne via Planity (lien disponible sur le site), par téléphone au ${site.phone} ou par email à ${site.email}. Le premier rendez-vous comprend un bilan personnalisé avant toute impulsion laser.`,
   },
 ];
 
@@ -75,7 +75,7 @@ const jsonLd = {
       ],
       offers: {
         "@type": "Offer",
-        price: "40",
+        price: "29",
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
@@ -155,7 +155,7 @@ function EpilationLaserDolePage() {
     <SeoLandingPage
       title="Épilation laser à Dole"
       tagline="Toutes les zones. Définitivement."
-      description="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage — jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous phototypes. Bilan cutané gratuit avant la première séance."
+      description="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage — jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous phototypes. Bilan personnalisé avant la première séance."
       image={{
         src: soinLaser,
         alt: "Épilation laser au centre Reboot à Dole, Jura — technologie dernière génération",
@@ -167,11 +167,11 @@ function EpilationLaserDolePage() {
         description:
           "Chaque zone fait l'objet d'un protocole adapté à sa densité pilaire, à sa sensibilité et au phototype. Le bilan initial permet de définir le plan de traitement complet.",
       }}
-      seoContent="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage : jambes (demi-jambes, jambes complètes, genoux, cuisses), maillot (simple, brésilien, intégral), aisselles, bras et avant-bras, dos, torse, et visage (lèvre supérieure, menton, sourcils). Chaque zone fait l'objet d'un protocole adapté à la densité pilaire et à la couleur du poil. La technologie laser utilisée est certifiée pour tous les phototypes, y compris les peaux mates et foncées. Un bilan cutané gratuit est systématiquement réalisé avant la première séance pour définir le protocole, estimer le nombre de séances et établir un devis personnalisé. Situé au 7 rue Jacques de Molay à Dole (39100), le centre Reboot est accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min). Rendez-vous en ligne via Planity ou par téléphone."
+      seoContent="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage : jambes (demi-jambes, jambes complètes, genoux, cuisses), maillot (simple, brésilien, intégral), aisselles, bras et avant-bras, dos, torse, et visage (lèvre supérieure, menton, sourcils). Chaque zone fait l'objet d'un protocole adapté à la densité pilaire et à la couleur du poil. La technologie laser utilisée est certifiée pour tous les phototypes, y compris les peaux mates et foncées. Un bilan personnalisé est réalisé avant la première séance pour définir le protocole, estimer le nombre de séances et établir un devis personnalisé. Situé au 7 rue Jacques de Molay à Dole (39100), le centre Reboot est accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min). Rendez-vous en ligne via Planity ou par téléphone."
       specs={{
         duration: "15 à 60 min selon la zone",
         sessions: "8 à 10 séances espacées de 4 à 8 sem.",
-        price: "à partir de 40 € — devis au bilan",
+        price: "à partir de 29 € — devis au bilan",
       }}
       faq={faq}
       parentHref="/soins/epilation-laser"

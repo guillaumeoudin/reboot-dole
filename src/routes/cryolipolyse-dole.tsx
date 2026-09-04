@@ -18,7 +18,7 @@ const PAGE_URL = `${site.url}/cryolipolyse-dole`;
 
 const metaTitle = "Cryolipolyse à Dole — Solution minceur sans chirurgie | Reboot";
 const metaDescription =
-  "Cryolipolyse à Dole (Jura) : ventre, flancs, cuisses, bras — réduction des amas graisseux localisés sans chirurgie. Centre Reboot. À partir de 250 €. Bilan offert.";
+  "Cryolipolyse à Dole (Jura) : ventre, flancs, cuisses, bras — réduction des amas graisseux localisés sans chirurgie. Centre Reboot. À partir de 220 €. Bilan personnalisé.";
 
 const faq = [
   {
@@ -47,7 +47,7 @@ const faq = [
   },
   {
     q: "Quel est le tarif de la cryolipolyse à Reboot Dole ?",
-    a: "Les séances démarrent à partir de 250 € par zone et par passage. Un devis personnalisé est établi lors du bilan gratuit en fonction du nombre de zones à traiter et du protocole défini.",
+    a: "Les séances démarrent à partir de 220 € par zone et par passage. Un devis personnalisé est établi en fonction du nombre de zones à traiter et du protocole défini.",
   },
 ];
 
@@ -75,7 +75,7 @@ const jsonLd = {
       ],
       offers: {
         "@type": "Offer",
-        price: "250",
+        price: "220",
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
@@ -155,7 +155,7 @@ function CryolipolyseDolePage() {
     <SeoLandingPage
       title="Cryolipolyse à Dole"
       tagline="Éliminer les amas localisés. Sans bistouri."
-      description="Le centre Reboot à Dole (Jura) propose la cryolipolyse sur toutes les zones du corps : ventre, flancs, cuisses, bras, dos, double menton. Technologie certifiée, sans anesthésie, sans éviction. Bilan gratuit avant la première séance."
+      description="Le centre Reboot à Dole (Jura) propose la cryolipolyse sur toutes les zones du corps : ventre, flancs, cuisses, bras, dos, double menton. Technologie certifiée, sans anesthésie, sans éviction. Bilan personnalisé avant la première séance."
       image={{
         src: soinCryolipolyse,
         alt: "Cryolipolyse à Dole — réduction des amas graisseux localisés au centre Reboot, Jura",
@@ -171,7 +171,7 @@ function CryolipolyseDolePage() {
       specs={{
         duration: "45 à 70 min par zone",
         sessions: "1 à 2 séances par zone",
-        price: "à partir de 250 € — devis au bilan",
+        price: "à partir de 220 € — devis au bilan",
       }}
       faq={faq}
       parentHref="/soins/cryolipolyse"

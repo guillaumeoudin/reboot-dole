@@ -146,7 +146,7 @@ function Index() {
                 className="group flex flex-col bg-background transition-colors hover:bg-surface"
               >
                 <div className="glow-warm flex aspect-16/10 w-full items-center justify-center border-b border-border">
-                  <span className="font-display text-4xl text-gold">Bilan offert</span>
+                  <span className="font-display text-4xl text-gold">Bilan personnalisé</span>
                 </div>
                 <div className="p-8">
                   <span className="label-caps text-gold-soft">Première étape</span>
@@ -154,7 +154,7 @@ function Index() {
                     Votre bilan personnalisé
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Avant toute chose, un bilan. Gratuit, sans engagement — pour définir le protocole
+                    Avant toute chose, un bilan. Sans engagement — pour définir le protocole
                     adapté à votre peau et à vos objectifs.
                   </p>
                   <p className="mt-6 text-sm text-gold">
