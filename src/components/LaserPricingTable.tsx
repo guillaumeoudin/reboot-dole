@@ -74,10 +74,14 @@ export function LaserPricingTable() {
             className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${dropdownOpen ? activeBtn : inactiveBtn}`}
           >
             <span>{selectedCat}</span>
-            <span
-              className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}
-            >
-              <ChevronDown open={dropdownOpen} />
+            {/* Ping sonar — visible uniquement quand la dropdown est fermée */}
+            <span className="relative flex items-center justify-center">
+              {!dropdownOpen && (
+                <span className="absolute h-7 w-7 animate-ping rounded-full bg-gold opacity-50" />
+              )}
+              <span className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}>
+                <ChevronDown open={dropdownOpen} />
+              </span>
             </span>
           </button>
 
