@@ -295,7 +295,7 @@ export const soins: Soin[] = [
     short:
       "Photobiomodulation corps entier : stimulation cellulaire, éclat et récupération par la lumière calibrée.",
     long: "Le dôme LED enveloppe le corps dans un rayonnement de lumière calibrée — rouge, infrarouge et bleu. Chaque longueur d'onde agit sur un processus distinct : stimulation du collagène, réduction de l'inflammation, récupération musculaire. Aucune chaleur, aucun contact. Une séance douce, visible dès les premières utilisations.",
-    duration: "20 à 30 min",
+    duration: "30 min",
     sessions: "Cure de 8 à 12 séances — ou en complément de soin",
     price: "à partir de 39 €",
     priceFrom: "à partir de 39 €",
@@ -340,7 +340,7 @@ export const soins: Soin[] = [
       intro:
         "Le dôme LED peut être utilisé seul ou en complément d'un soin visage pour amplifier les résultats.",
       rows: [
-        { label: "Séance en cabine",          duree: "15–30 min",  price: "39 €",   cure: "165 €",  cureLabel: "Cure 5" },
+        { label: "Séance en cabine",          duree: "30 min",     price: "39 €",   cure: "165 €",  cureLabel: "Cure 5" },
       ],
       note: "Cure 5 = 5 séances. Peut être combiné le même jour avec un autre soin. Prix TTC.",
     },
