@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { laserCategories, laserForfaits } from "@/data/laser-pricing";
 
 type Tab = "Femme" | "Homme";
@@ -26,7 +26,22 @@ export function LaserPricingTable() {
   const [tab, setTab] = useState<Tab>("Femme");
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [dropdownUsed, setDropdownUsed] = useState(false);
+  const [showPing, setShowPing] = useState(true);
+  const pingTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => () => clearTimeout(pingTimer.current), []);
+
+  function toggleDropdown() {
+    if (!dropdownOpen) {
+      // Ouverture : ping masqué immédiatement
+      setShowPing(false);
+      clearTimeout(pingTimer.current);
+    } else {
+      // Fermeture : ping reprend après 1.5s
+      pingTimer.current = setTimeout(() => setShowPing(true), 1500);
+    }
+    setDropdownOpen((v) => !v);
+  }
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
@@ -71,13 +86,13 @@ export function LaserPricingTable() {
         <div className="sm:hidden">
           {/* Trigger */}
           <button
-            onClick={() => { setDropdownUsed(true); setDropdownOpen((v) => !v); }}
+            onClick={toggleDropdown}
             className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${dropdownOpen ? activeBtn : inactiveBtn}`}
           >
             <span>{selectedCat}</span>
             {/* Ping sonar — visible uniquement quand la dropdown est fermée */}
             <span className="relative flex items-center justify-center">
-              {!dropdownOpen && !dropdownUsed && (
+              {showPing && !dropdownOpen && (
                 <span className="absolute h-7 w-7 rounded-full bg-gold [animation:ping-fast_3s_ease-out_infinite]" />
               )}
               <span className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}>
