@@ -15,7 +15,7 @@ function ChevronDown({ open }: { open: boolean }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={`gold-glow shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
     >
       <path d="m6 9 6 6 6-6" />
     </svg>

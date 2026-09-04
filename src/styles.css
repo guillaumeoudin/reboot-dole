@@ -174,22 +174,6 @@
   90%           { transform: translateY(0); }
 }
 
-@keyframes gold-glow {
-  0%, 100% { filter: drop-shadow(0 0 2px var(--color-gold)); }
-  50%      { filter: drop-shadow(0 0 8px var(--color-gold)) drop-shadow(0 0 18px var(--color-gold-soft)); }
-}
-
-.gold-glow {
-  animation: gold-glow 2s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gold-glow {
-    animation: none;
-    filter: drop-shadow(0 0 4px var(--color-gold));
-  }
-}
-
 /* ─── Clip-path reveal sur les titres de page ──────────────────────────────
  * Balaie de gauche à droite — impression de texte imprimé sur la page.
  * Appliqué sur h1 (natif) et .heading-reveal (via EyebrowHeading).
