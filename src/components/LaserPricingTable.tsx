@@ -26,7 +26,6 @@ export function LaserPricingTable() {
   const [tab, setTab] = useState<Tab>("Femme");
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
