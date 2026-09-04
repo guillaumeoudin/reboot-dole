@@ -88,7 +88,7 @@ export function LaserPricingTable() {
           {rows.map((row) => (
             <div
               key={row.zone}
-              className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm last:border-b-0 sm:px-6"
+              className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm sm:px-6"
             >
               <span className="text-foreground">{row.zone}</span>
               <span className="text-right tabular-nums text-muted-foreground">{row.duree}</span>
@@ -96,13 +96,10 @@ export function LaserPricingTable() {
               <span className="text-right tabular-nums text-gold">{row.cure6}</span>
             </div>
           ))}
-        </div>
 
-        {/* Forfaits multi-zones */}
-        {forfaits.length > 0 && (
-          <div className="mt-8">
-            <p className="label-caps text-gold-soft">Forfaits multi-zones</p>
-            <div className="mt-4 border border-border">
+          {/* Séparateur forfaits */}
+          {forfaits.length > 0 && (
+            <>
               <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border bg-surface px-5 py-3 text-[10px] uppercase tracking-widest text-muted-foreground/60 sm:px-6">
                 <span>Forfait</span>
                 <span className="text-right">Durée</span>
@@ -112,7 +109,7 @@ export function LaserPricingTable() {
               {forfaits.map((f) => (
                 <div
                   key={f.name}
-                  className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-4 text-sm last:border-b-0 sm:px-6"
+                  className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm last:border-b-0 sm:px-6"
                 >
                   <span className="text-foreground">{f.name}</span>
                   <span className="text-right tabular-nums text-muted-foreground">{f.duree}</span>
@@ -120,9 +117,9 @@ export function LaserPricingTable() {
                   <span className="text-right tabular-nums text-gold">{f.cure6}</span>
                 </div>
               ))}
-            </div>
-          </div>
-        )}
+            </>
+          )}
+        </div>
 
         <p className="mt-6 text-xs text-muted-foreground/60">
           Version applicable au 1er octobre 2026. Prix TTC. Les durées sont indicatives
