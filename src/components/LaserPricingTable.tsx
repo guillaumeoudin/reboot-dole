@@ -19,9 +19,10 @@ export function LaserPricingTable() {
           Nos tarifs d'épilation laser par zone
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Tous les tarifs sont TTC. La cure de 6 séances bénéficie d'une remise de 15 %
-          par rapport à l'achat à l'unité. Un bilan est réalisé avant la première séance
-          pour établir un devis adapté à votre situation.
+          Sélectionnez votre profil et la zone souhaitée pour afficher les tarifs
+          correspondants. Tous les tarifs sont TTC. La cure de 6 séances bénéficie d'une
+          remise de 15 % par rapport à l'achat à l'unité. Un bilan est réalisé avant la
+          première séance pour établir un devis adapté à votre situation.
         </p>
 
         {/* Sélecteur Femme / Homme */}
