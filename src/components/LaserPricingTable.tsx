@@ -1,15 +1,50 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { laserCategories, laserForfaits } from "@/data/laser-pricing";
 
 type Tab = "Femme" | "Homme";
 
+function ChevronDown({ open }: { open: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
 export function LaserPricingTable() {
   const [tab, setTab] = useState<Tab>("Femme");
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
   const forfaits = laserForfaits.filter((f) => f.profil === tab);
+
+  /* Classe commune pour les boutons inactifs des deux sélecteurs */
+  const inactiveBtn = "bg-gold/[0.07] text-muted-foreground hover:text-foreground hover:bg-gold/[0.12]";
+  const activeBtn = "bg-gold/20 text-gold";
 
   return (
     <section className="border-b border-border">
@@ -34,9 +69,7 @@ export function LaserPricingTable() {
               aria-selected={tab === t}
               onClick={() => setTab(t)}
               className={`flex-1 cursor-pointer py-3 text-sm transition-colors ${
-                tab === t
-                  ? "bg-gold/10 text-gold"
-                  : "bg-surface text-muted-foreground hover:text-foreground"
+                tab === t ? activeBtn : inactiveBtn
               }`}
             >
               {t}
@@ -44,20 +77,42 @@ export function LaserPricingTable() {
           ))}
         </div>
 
-        {/* Sélecteur de catégorie — dropdown sur mobile, pills sur desktop */}
+        {/* Mobile : dropdown custom */}
+        <div className="relative sm:hidden" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen((v) => !v)}
+            className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${
+              dropdownOpen ? activeBtn : inactiveBtn
+            }`}
+          >
+            <span>{selectedCat}</span>
+            <ChevronDown open={dropdownOpen} />
+          </button>
 
-        {/* Mobile : <select> */}
-        <select
-          value={selectedCat}
-          onChange={(e) => setSelectedCat(e.target.value)}
-          className="block w-full border border-t-0 border-border bg-surface px-4 py-3 text-sm text-foreground sm:hidden"
-        >
-          {laserCategories.map((cat) => (
-            <option key={cat.label} value={cat.label}>
-              {cat.label}
-            </option>
-          ))}
-        </select>
+          {/* Liste déroulante */}
+          <div
+            className={`absolute z-20 w-full border border-t-0 border-border transition-all duration-200 ${
+              dropdownOpen
+                ? "pointer-events-auto translate-y-0 opacity-100"
+                : "pointer-events-none -translate-y-1 opacity-0"
+            }`}
+          >
+            {laserCategories.map((cat) => (
+              <button
+                key={cat.label}
+                onClick={() => {
+                  setSelectedCat(cat.label);
+                  setDropdownOpen(false);
+                }}
+                className={`w-full cursor-pointer border-b border-border px-4 py-3 text-left text-sm transition-colors last:border-b-0 ${
+                  selectedCat === cat.label ? activeBtn : inactiveBtn
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Desktop : pills pleine largeur */}
         <div className="hidden border border-t-0 border-border sm:flex" role="tablist">
@@ -68,9 +123,7 @@ export function LaserPricingTable() {
               aria-selected={selectedCat === cat.label}
               onClick={() => setSelectedCat(cat.label)}
               className={`flex-1 cursor-pointer border-r border-border px-2 py-3 text-xs last:border-r-0 transition-colors ${
-                selectedCat === cat.label
-                  ? "bg-gold/10 text-gold"
-                  : "bg-surface text-muted-foreground hover:text-foreground"
+                selectedCat === cat.label ? activeBtn : inactiveBtn
               }`}
             >
               {cat.label}
