@@ -15,7 +15,7 @@ function ChevronDown({ open }: { open: boolean }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      className={`gold-glow shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
@@ -76,7 +76,6 @@ export function LaserPricingTable() {
             <span>{selectedCat}</span>
             <span
               className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}
-              style={{ filter: "drop-shadow(0 0 5px var(--color-gold))" }}
             >
               <ChevronDown open={dropdownOpen} />
             </span>
