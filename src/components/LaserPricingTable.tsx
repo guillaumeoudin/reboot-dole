@@ -26,6 +26,7 @@ export function LaserPricingTable() {
   const [tab, setTab] = useState<Tab>("Femme");
   const [selectedCat, setSelectedCat] = useState(laserCategories[0]!.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownUsed, setDropdownUsed] = useState(false);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
@@ -70,13 +71,13 @@ export function LaserPricingTable() {
         <div className="sm:hidden">
           {/* Trigger */}
           <button
-            onClick={() => setDropdownOpen((v) => !v)}
+            onClick={() => { setDropdownUsed(true); setDropdownOpen((v) => !v); }}
             className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${dropdownOpen ? activeBtn : inactiveBtn}`}
           >
             <span>{selectedCat}</span>
             {/* Ping sonar — visible uniquement quand la dropdown est fermée */}
             <span className="relative flex items-center justify-center">
-              {!dropdownOpen && (
+              {!dropdownOpen && !dropdownUsed && (
                 <span className="absolute h-7 w-7 animate-ping rounded-full bg-gold opacity-50 [animation-duration:3s]" />
               )}
               <span className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}>
