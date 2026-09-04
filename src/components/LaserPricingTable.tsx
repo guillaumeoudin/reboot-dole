@@ -85,7 +85,7 @@ export function LaserPricingTable() {
                 value={cat.label}
                 className="border-b border-border px-5 sm:px-6"
               >
-                <AccordionTrigger className="font-normal hover:no-underline">
+                <AccordionTrigger className="[font-family:var(--font-sans)] font-normal hover:no-underline">
                   <span className="text-sm text-foreground">{cat.label}</span>
                   <span className="ml-auto mr-3 flex items-center gap-2 text-xs text-muted-foreground">
                     <span className="text-gold">Dès {minPrice} €</span>
