@@ -29,7 +29,7 @@ export function LaserPricingTable() {
   const [showPing, setShowPing] = useState(true);
   const pingTimer = useRef<ReturnType<typeof setTimeout>>();
 
-  useEffect(() => () => clearTimeout(pingTimer.current), []);
+  useEffect(() => () => { if (pingTimer.current) clearTimeout(pingTimer.current); }, []);
 
   function toggleDropdown() {
     if (!dropdownOpen) {
