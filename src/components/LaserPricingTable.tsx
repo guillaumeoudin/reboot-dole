@@ -87,7 +87,7 @@ export function LaserPricingTable() {
               >
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex flex-col gap-0.5 text-left">
-                    <span className="text-sm font-medium text-foreground group-hover:text-gold transition-colors">
+                    <span className="text-sm text-foreground group-hover:text-gold transition-colors">
                       {cat.label}
                     </span>
                     <span className="text-xs text-muted-foreground">
