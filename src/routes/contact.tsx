@@ -92,26 +92,35 @@ function ContactPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 space-y-4">
-          <div className="overflow-hidden border border-border">
-            <iframe
-              title="Localisation du centre Reboot à Dole"
-              loading="lazy"
-              className="h-[380px] w-full border-0 grayscale-[35%]"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=5.4858%2C47.0887%2C5.4958%2C47.0930&layer=mapnik&marker=47.0908%2C5.4908"
-            />
-          </div>
-          <div className="flex justify-end">
-            <a
-              href="https://maps.google.com?q=7+rue+Jacques+de+Molay+39100+Dole"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-muted-foreground transition-colors hover:text-gold"
-            >
-              Ouvrir dans Google Maps →
-            </a>
-          </div>
-        </div>
+        {(() => {
+          const { latitude: lat, longitude: lon } = site.geo;
+          const δlon = 0.005;
+          const δlat = 0.0025;
+          const osmSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - δlon}%2C${lat - δlat}%2C${lon + δlon}%2C${lat + δlat}&layer=mapnik&marker=${lat}%2C${lon}`;
+          const gmapsHref = `https://maps.google.com?q=${encodeURIComponent(site.address.slice(1).join(", "))}`;
+          return (
+            <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 space-y-4">
+              <div className="overflow-hidden border border-border">
+                <iframe
+                  title="Localisation du centre Reboot à Dole"
+                  loading="lazy"
+                  className="h-[380px] w-full border-0 grayscale-[35%]"
+                  src={osmSrc}
+                />
+              </div>
+              <div className="flex justify-end">
+                <a
+                  href={gmapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted-foreground transition-colors hover:text-gold"
+                >
+                  Ouvrir dans Google Maps →
+                </a>
+              </div>
+            </div>
+          );
+        })()}
       </section>
     </>
   );
