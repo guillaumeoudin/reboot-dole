@@ -78,7 +78,7 @@ export function LaserPricingTable() {
             {/* Ping sonar — visible uniquement quand la dropdown est fermée */}
             <span className="relative flex items-center justify-center">
               {!dropdownOpen && !dropdownUsed && (
-                <span className="absolute h-7 w-7 animate-ping rounded-full bg-gold opacity-50 [animation-duration:3s]" />
+                <span className="absolute h-7 w-7 rounded-full bg-gold [animation:ping-fast_3s_ease-out_infinite]" />
               )}
               <span className={!dropdownOpen ? "motion-safe:animate-[cta-nudge_2.5s_ease-in-out_infinite]" : ""}>
                 <ChevronDown open={dropdownOpen} />

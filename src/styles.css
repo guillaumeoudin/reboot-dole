@@ -168,6 +168,11 @@
  * Reste immobile ~70 % du temps, puis pointe brièvement vers le bas et revient.
  * Appliqué au chevron de la dropdown mobile (LaserPricingTable).
  * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes ping-fast {
+  0%       { transform: scale(1); opacity: 0.5; }
+  50%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
 @keyframes cta-nudge {
   0%, 65%, 100% { transform: translateY(0); }
   75%           { transform: translateY(4px); }
