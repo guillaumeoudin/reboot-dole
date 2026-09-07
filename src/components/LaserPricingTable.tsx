@@ -29,21 +29,19 @@ export function LaserPricingTable() {
   const [showPing, setShowPing] = useState(true);
   const pingTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  useEffect(() => () => { if (pingTimer.current) clearTimeout(pingTimer.current); }, []);
-
-  function toggleDropdown() {
-    if (!dropdownOpen) {
-      // Ouverture : ping masqué immédiatement
+  // Gère le ping en fonction de l'état du dropdown — quelle que soit la façon dont il se ferme
+  useEffect(() => {
+    if (pingTimer.current) clearTimeout(pingTimer.current);
+    if (dropdownOpen) {
       setShowPing(false);
-      clearTimeout(pingTimer.current);
     } else {
-      // Fermeture : ping reprend après 1.5s
       pingTimer.current = setTimeout(() => setShowPing(true), 1500);
     }
-    setDropdownOpen((v) => !v);
-  }
+    return () => { if (pingTimer.current) clearTimeout(pingTimer.current); };
+  }, [dropdownOpen]);
 
   const currentCat = (laserCategories.find((c) => c.label === selectedCat) ?? laserCategories[0])!;
+  const catLabel = (tab === "Femme" && currentCat.labelFemme) ? currentCat.labelFemme : currentCat.label;
   const rows = tab === "Femme" ? currentCat.femme : currentCat.homme;
   const forfaits = laserForfaits.filter((f) => f.profil === tab);
 
@@ -86,10 +84,10 @@ export function LaserPricingTable() {
         <div className="sm:hidden">
           {/* Trigger */}
           <button
-            onClick={toggleDropdown}
+            onClick={() => setDropdownOpen((v) => !v)}
             className={`flex w-full cursor-pointer items-center justify-between border border-t-0 border-border px-4 py-3 text-sm transition-colors ${dropdownOpen ? activeBtn : inactiveBtn}`}
           >
-            <span>{selectedCat}</span>
+            <span>{catLabel}</span>
             {/* Ping sonar — visible uniquement quand la dropdown est fermée */}
             <span className="relative flex items-center justify-center">
               {showPing && !dropdownOpen && (
@@ -136,26 +134,24 @@ export function LaserPricingTable() {
                 selectedCat === cat.label ? activeBtn : inactiveBtn
               }`}
             >
-              {cat.label}
+              {(tab === "Femme" && cat.labelFemme) ? cat.labelFemme : cat.label}
             </button>
           ))}
         </div>
 
         {/* Tableau de tarifs */}
         <div className="border-x border-b border-border">
-          <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border bg-surface px-5 py-3 text-[10px] uppercase tracking-widest text-muted-foreground/60 sm:px-6">
+          <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 border-b border-border bg-surface px-5 py-3 text-[10px] uppercase tracking-widest text-muted-foreground/60 sm:px-6">
             <span>Zone</span>
-            <span className="text-right">Durée</span>
             <span className="text-right">Séance</span>
             <span className="text-right">Cure 6</span>
           </div>
           {rows.map((row) => (
             <div
               key={row.zone}
-              className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm sm:px-6"
+              className="grid grid-cols-[1fr_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm sm:px-6"
             >
               <span className="text-foreground">{row.zone}</span>
-              <span className="text-right tabular-nums text-muted-foreground">{row.duree}</span>
               <span className="text-right tabular-nums text-foreground">{row.seance}</span>
               <span className="text-right tabular-nums text-gold">{row.cure6}</span>
             </div>
@@ -164,19 +160,17 @@ export function LaserPricingTable() {
           {/* Séparateur forfaits */}
           {forfaits.length > 0 && (
             <>
-              <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border bg-surface px-5 py-3 text-[10px] uppercase tracking-widest text-muted-foreground/60 sm:px-6">
+              <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 border-b border-border bg-surface px-5 py-3 text-[10px] uppercase tracking-widest text-muted-foreground/60 sm:px-6">
                 <span>Forfait</span>
-                <span className="text-right">Durée</span>
                 <span className="text-right">Séance</span>
                 <span className="text-right">Cure 6</span>
               </div>
               {forfaits.map((f) => (
                 <div
                   key={f.name}
-                  className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm last:border-b-0 sm:px-6"
+                  className="grid grid-cols-[1fr_auto_auto] gap-x-4 border-b border-border px-5 py-3 text-sm last:border-b-0 sm:px-6"
                 >
                   <span className="text-foreground">{f.name}</span>
-                  <span className="text-right tabular-nums text-muted-foreground">{f.duree}</span>
                   <span className="text-right tabular-nums text-foreground">{f.seance}</span>
                   <span className="text-right tabular-nums text-gold">{f.cure6}</span>
                 </div>
@@ -186,8 +180,7 @@ export function LaserPricingTable() {
         </div>
 
         <p className="mt-6 text-xs text-muted-foreground/60">
-          Version applicable au 1er octobre 2026. Prix TTC. Les durées sont indicatives
-          selon la densité pilaire et la surface réelle de cabine.
+          Version applicable au 1er octobre 2026. Prix TTC.
         </p>
       </div>
     </section>

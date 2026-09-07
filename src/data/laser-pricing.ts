@@ -7,6 +7,8 @@ export type ZoneRow = {
 
 export type PricingCategory = {
   label: string;
+  /** Label alternatif affiché dans l'onglet Femme */
+  labelFemme?: string;
   femme: ZoneRow[];
   homme: ZoneRow[];
 };
@@ -73,7 +75,7 @@ export const laserCategories: PricingCategory[] = [
     ],
   },
   {
-    label: "Maillot et fessier",
+    label: "Zone intime",
     femme: [
       { zone: "Sillon inter-fessier",        duree: "5 min",   seance: "29 €",  cure6: "150 €" },
       { zone: "Maillot classique",            duree: "20 min",  seance: "49 €",  cure6: "250 €" },
@@ -90,6 +92,7 @@ export const laserCategories: PricingCategory[] = [
   },
   {
     label: "Torse et dos",
+    labelFemme: "Poitrine et dos",
     femme: [
       { zone: "V de chemise",             duree: "10 min",  seance: "29 €",   cure6: "150 €"  },
       { zone: "Aréoles",                  duree: "5 min",   seance: "39 €",   cure6: "200 €"  },
