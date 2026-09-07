@@ -76,6 +76,7 @@ export function MobileCtaBar() {
         </a>
         <Link
           to="/contact"
+          hash="formulaire"
           aria-label="Nous contacter"
           className="pointer-events-auto flex h-12 flex-1 basis-0 items-center justify-center gap-2 border border-gold/40 bg-surface text-sm font-medium tracking-wide text-surface-foreground shadow-lg shadow-black/20 transition-colors hover:border-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
