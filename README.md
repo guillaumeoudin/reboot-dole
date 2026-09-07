@@ -4,6 +4,23 @@ Site officiel du centre Reboot à Dole. Ce document explique comment maintenir e
 
 ---
 
+## Sommaire
+
+1. [Comment fonctionne le site](#1-comment-fonctionne-le-site)
+2. [Mettre à jour les informations du centre](#2-mettre-à-jour-les-informations-du-centre)
+3. [Inventaire complet des pages](#3-inventaire-complet-des-pages)
+4. [Soins & landing pages SEO](#4-soins--landing-pages-seo)
+5. [Blog — Decap CMS](#5-blog--decap-cms)
+6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
+7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
+8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
+9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
+10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
+11. [Stack technique](#11-stack-technique)
+- [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
+
+---
+
 ## Avant de commencer — Workflow local
 
 Si tu veux modifier les fichiers directement sur ton poste (plutôt que via l'interface GitHub en ligne), voici le workflow complet.
@@ -40,23 +57,6 @@ npm run dev          # démarre le serveur → http://localhost:8080
 Les modifications sont alors visibles en temps réel dans le navigateur dès que tu sauvegardes un fichier. Pour la plupart des modifications textuelles, ce n'est pas indispensable — tu peux éditer, pousser, et vérifier directement sur le site en ligne 30 secondes plus tard.
 
 > **Alternative :** tu peux aussi modifier les fichiers directement sur GitHub (interface web). La commande `git push` est remplacée par le bouton "Commit changes". Pas besoin de cloner quoi que ce soit.
-
----
-
-## Sommaire
-
-1. [Comment fonctionne le site](#1-comment-fonctionne-le-site)
-2. [Mettre à jour les informations du centre](#2-mettre-à-jour-les-informations-du-centre)
-3. [Inventaire complet des pages](#3-inventaire-complet-des-pages)
-4. [Soins & landing pages SEO](#4-soins--landing-pages-seo)
-5. [Blog — Decap CMS](#5-blog--decap-cms)
-6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
-7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
-8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
-9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
-10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
-11. [Stack technique](#11-stack-technique)
-- [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
 
