@@ -11,8 +11,7 @@ coverImage: /uploads/blog-epilation-laser-aisselles.jpg
 coverAlt: Séance d'épilation laser au centre Reboot à Dole
 draft: false
 ---
-
-Les aisselles sont la zone la plus traitée en épilation laser, toutes cliniques confondues. Petite surface, poils denses, repousse rapide : c'est aussi l'une de celles où le résultat est le plus spectaculaire. Voici tout ce qu'il faut savoir avant de commencer au centre Reboot à Dole.
+Les aisselles sont la zone la plus traitée en épilation laser, toutes cliniques confondues. C'est aussi l'une de celles où le résultat est le plus spectaculaire. Voici tout ce qu'il faut savoir avant de commencer au centre Reboot à Dole.
 
 ## Pourquoi les aisselles répondent si bien au laser
 
@@ -26,9 +25,9 @@ En règle générale, **6 à 8 séances** espacées de 4 à 6 semaines suffisent
 
 Quelques facteurs peuvent allonger le protocole :
 
-- Un profil hormonal perturbé (SOPK, déséquilibres thyroïdiens)
-- Des poils châtains clairs ou légèrement roux
-- Des séances espacées irrégulièrement (le laser n'attrape que les poils en phase anagène — rater une fenêtre ralentit le résultat)
+* Un profil hormonal perturbé (SOPK, déséquilibres thyroïdiens)
+* Des poils châtains clairs ou légèrement roux
+* Des séances espacées irrégulièrement (le laser n'attrape que les poils en phase anagène — rater une fenêtre ralentit le résultat)
 
 Un bilan est réalisé au centre avant la première séance pour estimer le nombre de séances adapté à votre profil.
 
@@ -42,15 +41,15 @@ Pour les peaux très réactives, une crème anesthésiante peut être appliquée
 
 **Avant :**
 
-- Raser la zone la veille (pas de cire ni d'épilateur électrique dans les 4 semaines précédentes)
-- Éviter le soleil et les autobronzants sur la zone
-- Ne pas appliquer de déodorant le jour J
+* Raser la zone la veille (pas de cire ni d'épilateur électrique dans les 4 semaines précédentes)
+* Éviter le soleil et les autobronzants sur la zone
+* Ne pas appliquer de déodorant le jour J
 
 **Après :**
 
-- Éviter les déodorants parfumés 24 h
-- Pas de sauna, hammam ou sport intense pendant 48 h
-- Appliquer une crème apaisante si une rougeur persiste
+* Éviter les déodorants parfumés 24 h
+* Pas de sauna, hammam ou sport intense pendant 48 h
+* Appliquer une crème apaisante si une rougeur persiste
 
 ## Quel est le tarif ?
 
@@ -58,7 +57,7 @@ Le tarif d'une séance aisselles au centre Reboot est établi lors du bilan init
 
 Pour connaître le tarif exact et vérifier que le laser est adapté à votre profil, le bilan est gratuit et sans engagement.
 
----
+- - -
 
 Vous souhaitez traiter d'autres zones en même temps ? Il est possible de combiner les aisselles avec le maillot ou une autre zone courte lors d'un même rendez-vous.
 
