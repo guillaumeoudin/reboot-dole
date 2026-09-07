@@ -5,6 +5,7 @@ backend:
   branch: main
   base_url: https://www.reboot-dole.fr
   auth_endpoint: api/auth
+  open_authoring: true
 
 publish_mode: editorial_workflow
 
