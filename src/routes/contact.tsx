@@ -78,7 +78,7 @@ function ContactPage() {
             </div>
           </div>
 
-          <div id="formulaire" className="scroll-mt-20">
+          <div id="formulaire" className="scroll-mt-28">
             <p className="label-caps text-gold">Nous écrire</p>
             <div className="mt-5">
               <ContactForm />
