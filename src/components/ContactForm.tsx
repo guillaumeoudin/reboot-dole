@@ -138,7 +138,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={set("message")}
-          placeholder="Bonjour, je prépare une surprise pour le retour de Marc Antoine qui revient de campagne dans un mois. J'aimerais traiter quelques amas rebelles au niveau du ventre. Comment prendre rendez-vous pour un bilan ?"
+          placeholder="Bonjour, je prépare une surprise pour le retour de Marc Antoine qui revient de campagne dans trois mois. J'aimerais traiter quelques amas graisseux rebelles au niveau du ventre. Comment prendre rendez-vous pour un bilan ?"
           className={`${inputClass} resize-none`}
         />
       </label>
