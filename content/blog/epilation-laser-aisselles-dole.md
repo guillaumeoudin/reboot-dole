@@ -1,12 +1,14 @@
 ---
-title: "Épilation laser des aisselles — ce qu'on observe en pratique"
-slug: "epilation-laser-aisselles-dole"
-date: "2026-08-20"
-author: "L'équipe Reboot"
-category: "Soins"
-excerpt: "L'épilation laser des aisselles à Dole : combien de séances, quel résultat, quel prix ? Tout ce qu'il faut savoir avant de commencer au centre Reboot."
-coverImage: "/uploads/blog-epilation-laser-aisselles.jpg"
-coverAlt: "Séance d'épilation laser au centre Reboot à Dole"
+title: "Épilation laser des aisselles : ce qu'on observe en pratique"
+slug: epilation-laser-aisselles-dole
+date: 2026-08-20
+author: L'équipe Reboot
+category: Soins
+excerpt: "L'épilation laser des aisselles à Dole : combien de séances, quel
+  résultat, quel prix ? Tout ce qu'il faut savoir avant de commencer au centre
+  Reboot."
+coverImage: /uploads/blog-epilation-laser-aisselles.jpg
+coverAlt: Séance d'épilation laser au centre Reboot à Dole
 draft: false
 ---
 
