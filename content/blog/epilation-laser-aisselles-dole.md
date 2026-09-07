@@ -11,7 +11,7 @@ coverImage: /uploads/blog-epilation-laser-aisselles.jpg
 coverAlt: Séance d'épilation laser au centre Reboot à Dole
 draft: false
 ---
-Les aisselles sont la zone la plus traitée en épilation laser, toutes cliniques confondues. C'est aussi l'une de celles où le résultat est le plus spectaculaire. Voici tout ce qu'il faut savoir avant de commencer une cure au centre Reboot à Dole.
+Les aisselles sont la zone la plus traitée en épilation laser, toutes cliniques confondues. C'est aussi l'une de celles où le résultat est le plus spectaculaire. Voici tout ce qu'il faut savoir avant de commencer une cure  d'épilation laser au centre Reboot à Dole.
 
 ## Pourquoi les aisselles répondent si bien au laser
 
