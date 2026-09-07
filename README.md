@@ -51,12 +51,11 @@ Les modifications sont alors visibles en temps réel dans le navigateur dès que
 4. [Soins & landing pages SEO](#4-soins--landing-pages-seo)
 5. [Blog — Decap CMS](#5-blog--decap-cms)
 6. [Ajouter ou remplacer une image](#6-ajouter-ou-remplacer-une-image)
-7. [Assistant WhatsApp — architecture et configuration](#7-assistant-whatsapp--architecture-et-configuration)
-8. [Comment les modifications arrivent en ligne](#8-comment-les-modifications-arrivent-en-ligne)
-9. [Ce qu'il ne faut pas toucher](#9-ce-quil-ne-faut-pas-toucher)
-10. [Tableaux de bord & ressources utiles](#10-tableaux-de-bord--ressources-utiles)
-11. [Quand faire appel à Guillaume](#11-quand-faire-appel-à-guillaume)
-12. [Stack technique](#12-stack-technique)
+7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
+8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
+9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
+10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
+11. [Stack technique](#11-stack-technique)
 - [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
@@ -70,7 +69,7 @@ Le site est composé de deux parties distinctes selon le type de contenu :
 | Articles de blog | Decap CMS (interface web) | Aline |
 | Tout le reste (textes, soins, pages, tarifs…) | Fichiers du code source (GitHub) | Guillaume |
 
-**Decap CMS** est accessible à l'adresse **[reboot-dole.fr/admin](https://reboot-dole.fr/admin)**. C'est une interface d'édition visuelle — elle fonctionne comme un éditeur de texte en ligne.
+**Decap CMS** est accessible à l'adresse **[www.reboot-dole.fr/admin](https://www.reboot-dole.fr/admin)**. C'est une interface d'édition visuelle — elle fonctionne comme un éditeur de texte en ligne.
 
 **Le reste du site** est géré dans des fichiers de code hébergés sur GitHub. Ces fichiers sont modifiables, mais il faut savoir où regarder et ne pas toucher à la structure du code. Ce document explique exactement quels fichiers modifier selon le besoin.
 
@@ -102,8 +101,8 @@ src/
 ```ts
 export const site = {
   name: "Reboot Dole",
-  phone: "06 77 59 24 50",         ← numéro de téléphone affiché
-  phoneHref: "tel:+33677592450",   ← même numéro au format lien (format international, sans 0 initial)
+  phone: "06 51 57 79 09",         ← numéro de téléphone affiché
+  phoneHref: "tel:+33651577909",   ← même numéro au format lien (format international, sans 0 initial)
   email: "contact@reboot-dole.fr", ← adresse email
   booking: "https://www.planity.com/...", ← lien de réservation Planity
   address: [...],                  ← adresse postale
@@ -114,9 +113,8 @@ export const site = {
 }
 
 export const openingHours = [
-  { day: "Lundi — Vendredi", value: "9h — 19h", ... },
-  { day: "Samedi", value: "9h — 17h", ... },
-  { day: "Dimanche", value: "Fermé", ... },
+  { day: "Lundi — Vendredi", value: "9h30 — 12h · 13h30 — 18h", ... },
+  { day: "Samedi — Dimanche", value: "Fermé", ... },
 ]
 ```
 
@@ -232,8 +230,8 @@ Repérer le soin concerné dans `src/data/soins.ts` et modifier les champs voulu
   seoContent: "...",                       ← paragraphe long SEO (voir explication ci-dessus)
   duration: "15 à 60 min selon la zone",
   sessions: "8 à 10 séances espacées de 4 à 8 semaines",
-  price: "à partir de 40 €",
-  priceFrom: "40",                         ← même prix au format numérique (pour Google)
+  price: "à partir de 29 €",
+  priceFrom: "29",                         ← même prix au format numérique (pour Google)
   metaTitle: "Épilation laser à Dole — Reboot",
   metaDescription: "...",                  ← 160 caractères max
   indications: [                           ← liste "Pour qui ?"
@@ -491,8 +489,8 @@ Les questions dans `jsonLd.mainEntity` et dans `const faq` doivent rester synchr
 Le fil d'ariane reflète la hiérarchie de la page dans le site. Il est en général correct et n'a pas besoin d'être modifié, sauf si la page parent change. Format :
 
 ```ts
-{ "@type": "ListItem", position: 1, name: "Accueil", item: "https://reboot-dole.fr" },
-{ "@type": "ListItem", position: 2, name: "Épilation laser", item: "https://reboot-dole.fr/soins/epilation-laser" },
+{ "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.reboot-dole.fr" },
+{ "@type": "ListItem", position: 2, name: "Épilation laser", item: "https://www.reboot-dole.fr/soins/epilation-laser" },
 { "@type": "ListItem", position: 3, name: "Épilation laser des jambes à Dole", item: PAGE_URL },
 ```
 
@@ -502,13 +500,13 @@ Le fil d'ariane reflète la hiérarchie de la page dans le site. Il est en gén�
 
 ### Accéder à l'interface d'administration
 
-URL : **[https://reboot-dole.fr/admin](https://reboot-dole.fr/admin)**
+URL : **[https://www.reboot-dole.fr/admin](https://www.reboot-dole.fr/admin)**
 
 La connexion se fait via **GitHub**. Tu as besoin d'un compte GitHub ayant accès au dépôt `guillaumeoudin/reboot-dole`. Si ce n'est pas encore le cas, demander à Guillaume de t'ajouter comme collaboratrice.
 
 ### Publier un nouvel article
 
-1. Aller sur [reboot-dole.fr/admin](https://reboot-dole.fr/admin)
+1. Aller sur [www.reboot-dole.fr/admin](https://www.reboot-dole.fr/admin)
 2. Cliquer sur **"Articles de blog"** dans le menu de gauche
 3. Cliquer sur **"Nouvel article de blog"**
 4. Remplir les champs (voir détail ci-dessous)
@@ -554,7 +552,7 @@ L'éditeur dispose d'une barre d'outils avec des boutons pour mettre en forme sa
 
 ### Modifier un article existant
 
-1. Aller sur [reboot-dole.fr/admin](https://reboot-dole.fr/admin)
+1. Aller sur [www.reboot-dole.fr/admin](https://www.reboot-dole.fr/admin)
 2. Cliquer sur **"Articles de blog"**
 3. Cliquer sur l'article à modifier
 4. Faire les modifications
@@ -598,76 +596,7 @@ Les images des articles s'uploadent directement depuis l'interface Decap CMS via
 
 ---
 
-## 7. Assistant WhatsApp — architecture et configuration
-
-### Comment ça fonctionne
-
-Quand une personne envoie un message WhatsApp au numéro du centre, voici ce qui se passe :
-
-1. **WhatsApp** transmet le message à une URL secrète sur le site (un *webhook*)
-2. Le site récupère les **5 derniers échanges** de la conversation (mémorisés dans une base Redis pendant 24h) pour donner du contexte au chatbot
-3. Le message + l'historique sont envoyés à **Claude Haiku** (intelligence artificielle d'Anthropic), avec les instructions spécifiques à Reboot
-4. La réponse générée est renvoyée à l'utilisateur via WhatsApp
-5. L'échange (question + réponse) est enregistré dans le **Google Sheet de logs**
-
-```
-Utilisateur WhatsApp
-        ↓
-  Webhook site (Vercel)
-        ↓
-  Redis (historique 24h)  ←→  Claude Haiku (IA)
-        ↓
-  Réponse WhatsApp  +  Log Google Sheets
-```
-
-### Consulter les conversations
-
-📊 **[Google Sheet — Échanges avec l'assistant WhatsApp](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit)**
-
-Les échanges sont automatiquement enregistrés dans ce Google Sheet. Chaque ligne correspond à un message, avec 5 colonnes :
-
-| Session ID | Timestamp | Utilisateur | Question | Réponse bot |
-|---|---|---|---|---|
-| `****0912_27/08 14h32` | `27/08/2026 14:32` | `****0912` | Bonjour, c'est combien... | Bonjour ! ... |
-
-Le **Session ID** permet de regrouper tous les messages d'une même conversation : toutes les lignes avec le même ID appartiennent au même échange. Les 4 derniers chiffres du numéro permettent d'identifier un client régulier sans stocker son numéro complet.
-
-### Le system prompt — cerveau du chatbot
-
-Le comportement du chatbot (ton, connaissances, réponses) est entièrement défini par un seul fichier :
-
-```
-src/routes/api/whatsapp-system-prompt.txt
-```
-
-C'est là que sont renseignés : les tarifs, les horaires, les prestations, le lien Planity, le numéro de téléphone, les réponses aux questions fréquentes, et le ton à adopter.
-
-**Modifier le system prompt** (via GitHub web) :
-1. Ouvrir le fichier `src/routes/api/whatsapp-system-prompt.txt` sur GitHub
-2. Cliquer sur l'icône crayon (Modifier)
-3. Faire les modifications
-4. Cliquer sur **"Commit changes"** — le nouveau prompt est actif dans la minute
-
-> Pas besoin de redéployer : le system prompt est lu à chaque message reçu.
-
-### Où mettre les réponses "figées"
-
-Pour les réponses qu'on veut contrôler précisément (tarifs exacts, formulations particulières, questions récurrentes), **tout va dans le même fichier** `whatsapp-system-prompt.txt`. Il suffit d'ajouter une section du type :
-
-```
-## Réponses aux questions fréquentes
-
-Question : "C'est combien l'épilation laser des jambes complètes ?"
-Réponse exacte à donner : "L'épilation laser jambes complètes est à X€ la séance, ou X€ le forfait 6 séances."
-
-Question : "Vous êtes ouverts le dimanche ?"
-Réponse exacte à donner : "Non, nous sommes fermés le dimanche. Nous vous accueillons du lundi au samedi, de X à Xh."
-```
-
-Un fichier séparé n'apporterait rien de plus — le system prompt est déjà le fichier texte dédié au chatbot, simple à modifier sans aucune compétence technique.
-
----
-## 8. Comment les modifications arrivent en ligne
+## 7. Comment les modifications arrivent en ligne
 
 Toute modification enregistrée sur la branche `main` du dépôt GitHub déclenche automatiquement un déploiement sur Vercel.
 
@@ -679,7 +608,7 @@ Toute modification enregistrée sur la branche `main` du dépôt GitHub déclenc
 
 ---
 
-## 9. Ce qu'il ne faut pas toucher
+## 8. Ce qu'il ne faut pas toucher
 
 Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les modifier sans valider avec moi:
 
@@ -697,11 +626,10 @@ Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les 
 
 ---
 
-## 10. Tableaux de bord & ressources utiles
+## 9. Tableaux de bord & ressources utiles
 
 | Ressource | Lien |
 |---|---|
-| 💬 Échanges assistant WhatsApp | [Google Sheet](https://docs.google.com/spreadsheets/d/14tTmYM9uCL6DcmQ12nPQ5e7U_MhYF0WFl42U8VwLlTI/edit) |
 | 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
 
 ### Formulaire de contact — comment ça fonctionne
@@ -756,19 +684,18 @@ function doPost(e) {
 
 ---
 
-## 11. Quand faire appel à Guillaume
+## 10. Quand faire appel à Guillaume
 
 Les opérations suivantes sortent du périmètre de maintenance courante et nécessitent une intervention de développeur :
 
 - **Modifier la navigation** (menu principal)
 - **Changer le design** : couleurs, mise en page, typographie
 - **Ajouter une fonctionnalité** : formulaire, intégration, widget
-- **Modifier le comportement de l'assistant WhatsApp** au-delà du system prompt
 - **Tout problème de build** : si le site ne se met pas à jour après une modification
 
 ---
 
-## 12. Stack technique
+## 11. Stack technique
 
 | Élément | Choix |
 |---|---|
@@ -777,13 +704,10 @@ Les opérations suivantes sortent du périmètre de maintenance courante et néc
 | Styles | Tailwind CSS v4 |
 | Composants UI | shadcn/ui (Radix) |
 | Icônes | lucide-react |
-| Assistant WhatsApp | Claude Haiku (Anthropic) |
-| Mémoire de session | Upstash Redis (via Vercel) |
-| Logs conversations | Google Sheets (service account) |
 | Blog (CMS) | Decap CMS (backend GitHub) |
 | Markdown | `marked` (rendu au build) |
 | Hébergement | Vercel (offre Hobby) |
-| Domaine | `reboot-dole.fr` via Hostinger |
+| Domaine | `www.reboot-dole.fr` via Hostinger |
 | Repo | [github.com/guillaumeoudin/reboot-dole](https://github.com/guillaumeoudin/reboot-dole) |
 
 ### Commandes de développement
@@ -847,18 +771,6 @@ Le **système de styles** qui contrôle tout l'aspect visuel. Plutôt que d'écr
 ### shadcn/ui
 
 Une **bibliothèque de composants d'interface** prêts à l'emploi : boutons, accordéons, menus, modales… Ils sont construits sur Radix UI (qui garantit l'accessibilité) et stylisés avec Tailwind. Les accordéons FAQ visibles sur les pages soins et les landing pages viennent de là. Les composants sont dans `src/components/ui/`.
-
-### Claude Haiku
-
-Le **modèle d'intelligence artificielle** qui génère les réponses du chatbot WhatsApp. Haiku est le modèle le plus rapide et le moins coûteux d'Anthropic — adapté à un usage de type questions/réponses courtes. Il reçoit le system prompt (les instructions Reboot) + l'historique de la conversation + la nouvelle question, et produit une réponse en 1 à 2 secondes.
-
-### Upstash Redis
-
-La **base de données de mémoire** du chatbot. Elle stocke temporairement l'historique des 5 derniers échanges de chaque conversation WhatsApp (identifiée par le numéro de téléphone), pendant 24h. Passé ce délai, la conversation repart de zéro. Upstash est intégré à Vercel et ne nécessite aucune maintenance.
-
-### Google Sheets
-
-Le **journal de bord** des conversations. À chaque échange, une ligne est ajoutée automatiquement dans le sheet partagé avec Aline. L'accès se fait via un *service account* Google (un compte technique sans interface) qui a les droits d'écriture sur le document.
 
 ### Decap CMS
 
