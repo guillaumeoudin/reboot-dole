@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 const title = "Contact & rendez-vous — Reboot Dole";
 const description =
-  "Contactez le centre Reboot à Dole : adresse, horaires, téléphone, WhatsApp et formulaire de demande de rendez-vous.";
+  "Contactez le centre Reboot à Dole : adresse, horaires, téléphone et formulaire de demande de rendez-vous.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,7 +33,7 @@ function ContactPage() {
           <EyebrowHeading
             eyebrow="Contact"
             title="Parlons de votre peau."
-            intro="Par téléphone, par WhatsApp ou via le formulaire : nous répondons à chaque demande et proposons un premier bilan personnalisé."
+            intro="Par téléphone ou via le formulaire : nous répondons à chaque demande et proposons un premier bilan personnalisé."
           />
         </div>
       </section>
@@ -61,11 +61,6 @@ function ContactPage() {
                   <a href={`mailto:${site.email}`} className="transition-colors hover:text-gold">
                     {site.email}
                   </a>
-                </li>
-                <li>
-                  <Link to="/contact" className="transition-colors hover:text-gold">
-                    Discuter sur WhatsApp
-                  </Link>
                 </li>
               </ul>
             </div>

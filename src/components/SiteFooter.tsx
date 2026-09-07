@@ -66,7 +66,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link to="/contact" className="transition-colors hover:text-gold">
-                  Discuter sur WhatsApp
+                  Formulaire de contact
                 </Link>
               </li>
             </ul>

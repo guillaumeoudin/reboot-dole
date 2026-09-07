@@ -14,7 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { MobileCtaBar, WhatsAppFloat } from "@/components/MobileCtaBar";
+import { MobileCtaBar, ContactFloat } from "@/components/MobileCtaBar";
 import { HeroCtaProvider } from "@/contexts/hero-cta-context";
 import { SplashScreen } from "@/components/SplashScreen";
 import { localBusinessJsonLd } from "@/data/localBusiness";
@@ -167,7 +167,7 @@ function RootComponent() {
         <SiteFooter />
       </div>
       <MobileCtaBar />
-      <WhatsAppFloat />
+      <ContactFloat />
     </HeroCtaProvider>
     </QueryClientProvider>
   );

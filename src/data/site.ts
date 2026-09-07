@@ -8,7 +8,7 @@ export const site = {
   legalName: "Reboot Dole",
   city: "Dole",
   region: "Jura",
-  url: "https://reboot-dole.fr",
+  url: "https://www.reboot-dole.fr",
   address: ["Reboot Dole", "7 rue Jacques de Molay", "39100 Dole, Jura"],
   streetAddress: "7 rue Jacques de Molay",
   postalCode: "39100",
@@ -20,7 +20,6 @@ export const site = {
   email: "contact@reboot-dole.fr",
   /** Réservation de créneaux en ligne (plateforme externe). */
   booking: "https://www.planity.com/",
-  whatsappHref: "https://wa.me/33651577909",
   social: {
     linkedin: "https://www.linkedin.com/company/reboot-dole/",
     instagram: "https://www.instagram.com/reboot_dole",
