@@ -15,8 +15,9 @@ Site officiel du centre Reboot à Dole. Ce document explique comment maintenir e
 7. [Comment les modifications arrivent en ligne](#7-comment-les-modifications-arrivent-en-ligne)
 8. [Ce qu'il ne faut pas toucher](#8-ce-quil-ne-faut-pas-toucher)
 9. [Tableaux de bord & ressources utiles](#9-tableaux-de-bord--ressources-utiles)
-10. [Quand faire appel à Guillaume](#10-quand-faire-appel-à-guillaume)
-11. [Stack technique](#11-stack-technique)
+10. [Formulaire de contact](#10-formulaire-de-contact)
+11. [Quand faire appel à Guillaume](#11-quand-faire-appel-à-guillaume)
+12. [Stack technique](#12-stack-technique)
 - [Annexe — Comprendre la stack technique](#annexe--comprendre-la-stack-technique)
 
 ---
@@ -632,7 +633,11 @@ Les fichiers suivants sont critiques pour le fonctionnement du site. Ne pas les 
 |---|---|
 | 📋 Réponses formulaires de contact | [Google Sheet](https://docs.google.com/spreadsheets/d/1zR-I2pNYKSrwfjYuBtzdqA_7V5LVIhxbb7A-DZdIiq0/edit) |
 
-### Formulaire de contact — comment ça fonctionne
+---
+
+## 10. Formulaire de contact
+
+### Comment ça fonctionne
 
 Le formulaire de la page Contact (`src/components/ContactForm.tsx`) envoie les données directement à un **Google Apps Script** déployé côté Google, qui écrit chaque soumission dans le sheet ci-dessus.
 
@@ -649,7 +654,7 @@ Google Apps Script → append une ligne dans le Google Sheet
 
 Le formulaire utilise le mode `no-cors` : on ne reçoit pas de réponse de Google, mais la requête arrive bien côté Apps Script. C'est la raison pour laquelle la page affiche "Message envoyé" dès que la requête est envoyée, sans attendre confirmation.
 
-### Formulaire de contact — modifier le contenu
+### Modifier le contenu du formulaire
 
 **Fichier :** `src/components/ContactForm.tsx`
 
@@ -749,7 +754,7 @@ function doPost(e) {
 
 ---
 
-## 10. Quand faire appel à Guillaume
+## 11. Quand faire appel à Guillaume
 
 Les opérations suivantes sortent du périmètre de maintenance courante et nécessitent une intervention de développeur :
 
@@ -760,7 +765,7 @@ Les opérations suivantes sortent du périmètre de maintenance courante et néc
 
 ---
 
-## 11. Stack technique
+## 12. Stack technique
 
 | Élément | Choix |
 |---|---|
