@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { BookButton, HeroBookButton, EyebrowHeading } from "@/components/ui-kit";
 import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
+import { site } from "@/data/site";
 
 const title = "Bien-être & longévité — Reboot Dole";
 const description =
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/bien-etre")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/bien-etre` }],
   }),
   component: BienEtrePage,
 });

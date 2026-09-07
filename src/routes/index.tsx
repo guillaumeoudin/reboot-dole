@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookButton, HeroBookButton, EyebrowHeading, TextLink } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
+import { site } from "@/data/site";
 import centreReboot from "@/assets/centre-reboot.jpg";
 import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
+    links: [{ rel: "canonical", href: site.url }],
   }),
   component: Index,
 });

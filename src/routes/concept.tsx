@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BookButton, HeroBookButton, EyebrowHeading } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
 import centreReboot from "@/assets/centre-reboot.jpg";
+import { site } from "@/data/site";
 
 const title = "Le concept — Reboot Dole";
 const description =
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/concept")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/concept` }],
   }),
   component: ConceptPage,
 });

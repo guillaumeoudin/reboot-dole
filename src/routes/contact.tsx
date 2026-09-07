@@ -16,6 +16,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/contact` }],
   }),
   component: ContactPage,
 });

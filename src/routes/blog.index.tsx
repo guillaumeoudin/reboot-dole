@@ -19,7 +19,7 @@ export const Route = createFileRoute("/blog/")({
       { property: "og:url", content: "/blog" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [{ rel: "canonical", href: `${site.url}/blog` }],
     scripts: [
       {
         type: "application/ld+json",
