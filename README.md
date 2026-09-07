@@ -649,6 +649,71 @@ Google Apps Script → append une ligne dans le Google Sheet
 
 Le formulaire utilise le mode `no-cors` : on ne reçoit pas de réponse de Google, mais la requête arrive bien côté Apps Script. C'est la raison pour laquelle la page affiche "Message envoyé" dès que la requête est envoyée, sans attendre confirmation.
 
+### Formulaire de contact — modifier le contenu
+
+**Fichier :** `src/components/ContactForm.tsx`
+
+#### Labels et placeholders des champs
+
+| Champ | Label affiché | Placeholder | Obligatoire |
+|---|---|---|---|
+| Nom | `Nom & Prénom *` | `Cléopâtre Philopator` | Oui |
+| Email | `Email *` | `reine.cleo@nil-royal.eg` | Oui |
+| Téléphone | `Téléphone` | `01 40 20 50 50` | Non |
+| Objet | `Objet` | *(liste déroulante)* | Non |
+| Message | `Message *` | *(longue phrase d'exemple)* | Oui |
+
+Pour modifier un label ou un placeholder, chercher dans `ContactForm.tsx` la ligne correspondante et modifier le texte entre guillemets :
+
+```tsx
+// Exemple — modifier le label "Nom & Prénom"
+<span className={labelClass}>Nom & Prénom *</span>
+
+// Exemple — modifier le placeholder du champ Nom
+placeholder="Cléopâtre Philopator"
+```
+
+#### Options de la liste déroulante "Objet"
+
+En haut du fichier, le tableau `SUBJECTS` définit les options disponibles :
+
+```ts
+const SUBJECTS = [
+  "Demande d'informations",
+  "Prise de rendez-vous",
+  "Devis",
+  "Autre",
+];
+```
+
+Pour ajouter, supprimer ou renommer une option, modifier ce tableau. L'option vide "Choisir…" (valeur par défaut) est gérée séparément dans le `<select>` — ne pas la supprimer.
+
+#### Message de confirmation après envoi
+
+Quand le formulaire est soumis avec succès, un message de confirmation remplace le formulaire. Pour en modifier le contenu :
+
+```tsx
+<p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+  Merci pour votre message. Nous vous répondrons sous 24h ouvrées. En
+  attendant, vous pouvez réserver directement sur{" "}
+  <a href={site.booking} ...>Planity</a>.
+</p>
+```
+
+Modifier le texte entre les balises `<p>` et `</p>`. Le lien Planity est automatiquement récupéré depuis `site.ts` — pas besoin de le changer ici.
+
+#### Message d'erreur
+
+En cas d'échec d'envoi, ce message s'affiche :
+
+```tsx
+Une erreur est survenue. Contactez-nous directement à {site.email}.
+```
+
+L'adresse email est récupérée depuis `site.ts` — modifier `site.email` si l'adresse change.
+
+---
+
 **Variable d'environnement :** `VITE_CONTACT_SCRIPT_URL` — définie dans Vercel (Settings → Environment Variables). C'est l'URL de déploiement du Apps Script Google. Ne pas modifier sans raison.
 
 **Code du Apps Script (dans Google Apps Script, projet lié au sheet "Formulaires") :**
