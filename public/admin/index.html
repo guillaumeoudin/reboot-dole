@@ -5,8 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reboot — Administration</title>
     <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml">
+    <style>
+      /*
+       * Décap CMS — styles personnalisés
+       *
+       * Bordure rouge sur les champs obligatoires (attribut required sur l'input).
+       * Les hints sont colorés via JS (MutationObserver) car les classes
+       * Decap sont générées dynamiquement et ne sont pas ciblables en CSS pur.
+       */
+      input[required],
+      textarea[required] {
+        border-left: 3px solid #DC2626 !important;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      /**
+       * Coloration des hints Decap CMS.
+       *
+       * Decap utilise du CSS-in-JS (emotion) avec des noms de classes hachés,
+       * impossibles à cibler statiquement. On observe les mutations du DOM et
+       * on applique des couleurs selon le contenu du hint :
+       *   - "Optionnel"          → vert  (#15803D) : champ facultatif
+       *   - "Pré-rempli…"        → bleu  (#1D4ED8) : valeur par défaut fournie
+       *   - "Non coché par…"     → bleu  (#1D4ED8) : comportement par défaut
+       *   - autres hints         → gris  (#4B5563) : guidage neutre
+       *
+       * Pour les bordures required, le CSS ci-dessus suffit si Decap pose
+       * l'attribut HTML required ; sinon le JS ajoute la bordure via les labels.
+       */
+      (function () {
+        var COLORS = {
+          optional:  '#15803D', // vert  — champ non obligatoire
+          prefilled: '#1D4ED8', // bleu  — valeur pré-remplie / comportement par défaut
+          neutral:   '#4B5563', // gris  — hint informatif standard
+          required:  '#DC2626', // rouge — bordure champ obligatoire (cohérence JS/CSS)
+        };
+
+        function applyStyles() {
+          // 1. Colorier les hints (éléments <p> dans le CMS)
+          document.querySelectorAll('p').forEach(function (p) {
+            if (p.dataset.rbd) return;
+            var text = (p.textContent || '').trim();
+            if (!text || text.length > 500) return;
+
+            if (text.startsWith('Optionnel')) {
+              p.style.color = COLORS.optional;
+              p.style.fontWeight = '500';
+            } else if (text.startsWith('Pré-rempli') || text.startsWith('Non coché')) {
+              p.style.color = COLORS.prefilled;
+            } else {
+              p.style.color = COLORS.neutral;
+            }
+            p.dataset.rbd = '1';
+          });
+
+          // 2. Bordure rouge sur les champs obligatoires via les labels (fallback)
+          //    si Decap ne pose pas l'attribut HTML required.
+          document.querySelectorAll('label').forEach(function (label) {
+            if (label.dataset.rbd) return;
+            if (!label.textContent.includes('*')) return;
+            label.dataset.rbd = '1';
+
+            var container = label.closest('div');
+            if (!container) return;
+            var input = container.querySelector('input, textarea, select, [contenteditable="true"]');
+            if (input && !input.dataset.rbd) {
+              input.style.borderLeft = '3px solid ' + COLORS.required;
+              input.dataset.rbd = '1';
+            }
+          });
+        }
+
+        var observer = new MutationObserver(applyStyles);
+        document.addEventListener('DOMContentLoaded', function () {
+          observer.observe(document.body, { childList: true, subtree: true });
+        });
+      })();
+    </script>
   </body>
 </html>
