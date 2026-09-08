@@ -18,7 +18,7 @@ const PAGE_URL = `${site.url}/epilation-laser-dole`;
 
 const metaTitle = "Épilation laser définitive à Dole — Centre Reboot (Jura)";
 const metaDescription =
-  "Épilation laser définitive à Dole (Jura) : toutes zones (jambes, maillot, aisselles, visage, bras), tous phototypes, technologie dernière génération. Centre Reboot — à partir de 29 €. Bilan personnalisé.";
+  "Épilation laser définitive à Dole (Jura) : toutes zones (jambes, maillot, aisselles, visage, bras), tous phototypes, technologie dernière génération. Centre Reboot, à partir de 29 €. Bilan personnalisé.";
 
 const faq = [
   {
@@ -27,7 +27,7 @@ const faq = [
   },
   {
     q: "Combien de séances faut-il pour une épilation laser définitive à Dole ?",
-    a: "En moyenne 8 à 10 séances espacées de 4 à 8 semaines selon la zone et le cycle pilaire. Certaines zones répondent plus vite — les aisselles dès 6 à 8 séances — d'autres, comme les jambes ou le maillot, peuvent nécessiter quelques séances supplémentaires selon la densité et le profil hormonal.",
+    a: "En moyenne 8 à 10 séances espacées de 4 à 8 semaines selon la zone et le cycle pilaire. Certaines zones répondent plus vite : les aisselles dès 6 à 8 séances, et d'autres, comme les jambes ou le maillot, peuvent nécessiter quelques séances supplémentaires selon la densité et le profil hormonal.",
   },
   {
     q: "Quel est le tarif de l'épilation laser à Reboot Dole ?",
@@ -35,7 +35,7 @@ const faq = [
   },
   {
     q: "Peut-on traiter plusieurs zones lors d'une même séance ?",
-    a: "Oui, il est possible de combiner plusieurs zones lors d'un même rendez-vous — aisselles et maillot, ou jambes et aisselles, par exemple. La durée est ajustée en conséquence. Ce point est discuté lors du bilan initial.",
+    a: "Oui, il est possible de combiner plusieurs zones lors d'un même rendez-vous : aisselles et maillot, ou jambes et aisselles, par exemple. La durée est ajustée en conséquence. Ce point est discuté lors du bilan initial.",
   },
   {
     q: "L'épilation laser remplace-t-elle définitivement l'épilation à la cire ?",
@@ -43,7 +43,7 @@ const faq = [
   },
   {
     q: "L'épilation laser est-elle vraiment définitive ?",
-    a: "On parle officiellement d'épilation « durable » plutôt que « définitive », car le terme légal implique une destruction à 100 % irreproductible. Dans la pratique, après un protocole complet, la repousse résiduelle est quasi inexistante pour la très grande majorité des clients. Quelques poils fins et clairsemés peuvent persister ou réapparaître avec les années — des séances d'entretien annuelles suffisent à les maintenir sous contrôle.",
+    a: "On parle officiellement d'épilation « durable » plutôt que « définitive », car le terme légal implique une destruction à 100 % irreproductible. Dans la pratique, après un protocole complet, la repousse résiduelle est quasi inexistante pour la très grande majorité des clients. Quelques poils fins et clairsemés peuvent persister ou réapparaître avec les années. Des séances d'entretien annuelles suffisent à les maintenir sous contrôle.",
   },
   {
     q: "Comment prendre rendez-vous pour une épilation laser définitive à Dole ?",
@@ -95,14 +95,14 @@ const zones = [
   {
     index: "01",
     title: "Jambes",
-    body: "Demi-jambes, jambes complètes, genoux, cuisses intérieures et extérieures — toutes les longueurs prises en charge.",
+    body: "Demi-jambes, jambes complètes, genoux, cuisses intérieures et extérieures : toutes les longueurs prises en charge.",
     href: null,
     cta: null,
   },
   {
     index: "02",
     title: "Maillot",
-    body: "Maillot simple, brésilien ou intégral — protocole défini lors du bilan, dans un cadre confidentiel.",
+    body: "Maillot simple, brésilien ou intégral : protocole défini lors du bilan, dans un cadre confidentiel.",
     href: null,
     cta: null,
   },
@@ -116,7 +116,7 @@ const zones = [
   {
     index: "04",
     title: "Visage",
-    body: "Lèvre supérieure, menton, sourcils — protocoles adaptés à la finesse et à la sensibilité du visage.",
+    body: "Lèvre supérieure, menton, sourcils : protocoles adaptés à la finesse et à la sensibilité du visage.",
     href: null,
     cta: null,
   },
@@ -155,15 +155,15 @@ function EpilationLaserDolePage() {
     <SeoLandingPage
       title="Épilation laser à Dole"
       tagline="Toutes les zones. Définitivement."
-      description="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage — jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous phototypes. Bilan personnalisé avant la première séance."
+      description="Le centre Reboot à Dole (Jura) propose l'épilation laser sur l'ensemble du corps et du visage : jambes, maillot, aisselles, bras, dos, visage. Technologie certifiée tous phototypes. Bilan personnalisé avant la première séance."
       image={{
         src: soinLaser,
-        alt: "Épilation laser au centre Reboot à Dole, Jura — technologie dernière génération",
+        alt: "Épilation laser au centre Reboot à Dole, Jura, technologie dernière génération",
       }}
       highlights={zones.map((z) => ({ index: z.index, title: z.title, text: z.body }))}
       highlightsHeading={{
         label: "Zones traitées",
-        title: "Corps et visage — tout est traitable.",
+        title: "Corps et visage : tout est traitable.",
         description:
           "Chaque zone fait l'objet d'un protocole adapté à sa densité pilaire, à sa sensibilité et au phototype. Le bilan initial permet de définir le plan de traitement complet.",
       }}
@@ -171,7 +171,7 @@ function EpilationLaserDolePage() {
       specs={{
         duration: "15 à 60 min selon la zone",
         sessions: "8 à 10 séances espacées de 4 à 8 sem.",
-        price: "à partir de 29 € — devis au bilan",
+        price: "à partir de 29 € (devis au bilan)",
       }}
       faq={faq}
       parentHref="/soins/epilation-laser"

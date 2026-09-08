@@ -143,7 +143,7 @@ function SoinDetail() {
               {soin.indications.map((item: string) => (
                 <li key={item} className="flex gap-3 border-b border-border pb-4">
                   <span aria-hidden="true" className="text-gold-soft">
-                    —
+                    ›
                   </span>
                   {item}
                 </li>
@@ -157,7 +157,7 @@ function SoinDetail() {
               {soin.aftercare.map((item: string) => (
                 <li key={item} className="flex gap-3 border-b border-border pb-4">
                   <span aria-hidden="true" className="text-gold-soft">
-                    —
+                    ›
                   </span>
                   {item}
                 </li>

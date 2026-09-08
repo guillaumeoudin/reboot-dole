@@ -56,7 +56,7 @@ function Index() {
                 aria-hidden="true"
                 className="mr-3 inline-block h-px w-6 translate-y-[-3px] bg-gold align-middle"
               />
-              Dole — Jura
+              Dole, Jura
             </p>
             <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl md:text-6xl">
               La beauté n'est pas une promesse.
@@ -156,7 +156,7 @@ function Index() {
                     Votre bilan personnalisé
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Avant toute chose, un bilan. Sans engagement — pour définir le protocole
+                    Avant toute chose, un bilan. Sans engagement, pour définir le protocole
                     adapté à votre peau et à vos objectifs.
                   </p>
                   <p className="mt-6 text-sm text-gold">

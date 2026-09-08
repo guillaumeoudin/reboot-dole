@@ -25,7 +25,7 @@ const faq = [
   },
   {
     q: "Peut-on faire l'épilation laser du maillot pendant les règles ?",
-    a: "Il est préférable d'éviter de programmer la séance pendant les règles, en raison d'une sensibilité cutanée accrue. Si vous avez vos règles au moment de la séance, prévenez la praticienne — elle pourra adapter ou reporter la séance.",
+    a: "Il est préférable d'éviter de programmer la séance pendant les règles, en raison d'une sensibilité cutanée accrue. Si vous avez vos règles au moment de la séance, prévenez la praticienne : elle pourra adapter ou reporter la séance.",
   },
   {
     q: "Quel est le tarif de l'épilation laser du maillot à Reboot Dole ?",
@@ -33,7 +33,7 @@ const faq = [
   },
   {
     q: "L'épilation laser du maillot est-elle vraiment définitive ?",
-    a: "Oui, les résultats sont durables dans la très grande majorité des cas. Après un protocole complet, la repousse résiduelle est très clairsemée et souvent imperceptible. Des facteurs hormonaux (grossesse, SOPK, traitement hormonal) peuvent stimuler de nouveaux poils — des séances d'entretien ponctuelles permettent de maintenir le résultat.",
+    a: "Oui, les résultats sont durables dans la très grande majorité des cas. Après un protocole complet, la repousse résiduelle est très clairsemée et souvent imperceptible. Des facteurs hormonaux (grossesse, SOPK, traitement hormonal) peuvent stimuler de nouveaux poils. Des séances d'entretien ponctuelles permettent de maintenir le résultat.",
   },
   {
     q: "Peut-on combiner l'épilation laser du maillot avec d'autres zones lors d'une même séance ?",
@@ -41,7 +41,7 @@ const faq = [
   },
   {
     q: "L'épilation laser du maillot est-elle compatible avec une contraception hormonale ?",
-    a: "Oui, la contraception hormonale (pilule, implant, stérilet hormonal) est compatible avec l'épilation laser. Certains traitements à base de progestérone peuvent toutefois stimuler la repousse pilaire — sans contre-indication au laser, mais avec une possible incidence sur le nombre de séances nécessaires. La praticienne en tient compte lors du bilan.",
+    a: "Oui, la contraception hormonale (pilule, implant, stérilet hormonal) est compatible avec l'épilation laser. Certains traitements à base de progestérone peuvent toutefois stimuler la repousse pilaire, sans contre-indication au laser, mais avec une possible incidence sur le nombre de séances nécessaires. La praticienne en tient compte lors du bilan.",
   },
 ];
 
@@ -88,7 +88,7 @@ const highlights = [
   {
     index: "01",
     title: "Maillot simple, brésilien ou intégral",
-    text: "Trois niveaux de traitement selon vos préférences. La zone exacte est définie avec la praticienne lors du bilan initial — aucune surface n'est traitée sans accord préalable.",
+    text: "Trois niveaux de traitement selon vos préférences. La zone exacte est définie avec la praticienne lors du bilan initial. Aucune surface n'est traitée sans accord préalable.",
   },
   {
     index: "02",
@@ -129,10 +129,10 @@ function EpilationLaserMaillotDole() {
       }}
       image={{
         src: soinLaser,
-        alt: "Technologie laser épilation au centre Reboot à Dole — zone maillot",
+        alt: "Technologie laser épilation au centre Reboot à Dole, zone maillot",
       }}
       highlights={highlights}
-      seoContent="L'épilation laser du maillot au centre Reboot à Dole (Jura) propose trois niveaux de traitement : le maillot simple (parties visibles hors du maillot de bain), le brésilien (réduction plus importante avec une bande préservée) et l'intégral (épilation complète de la zone pubienne). La zone traitée est précisément définie avec la praticienne lors d'un bilan personnalisé, avant la première séance. La zone bikini étant plus sensible que les jambes, la technologie utilisée à Reboot intègre un système de refroidissement continu pour un confort optimal — une crème anesthésiante peut également être appliquée en amont si nécessaire. En cas de déséquilibre hormonal, quelques séances supplémentaires peuvent être requises : le suivi personnalisé du centre en tient compte. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura)."
+      seoContent="L'épilation laser du maillot au centre Reboot à Dole (Jura) propose trois niveaux de traitement : le maillot simple (parties visibles hors du maillot de bain), le brésilien (réduction plus importante avec une bande préservée) et l'intégral (épilation complète de la zone pubienne). La zone traitée est précisément définie avec la praticienne lors d'un bilan personnalisé, avant la première séance. La zone bikini étant plus sensible que les jambes, la technologie utilisée à Reboot intègre un système de refroidissement continu pour un confort optimal : une crème anesthésiante peut également être appliquée en amont si nécessaire. En cas de déséquilibre hormonal, quelques séances supplémentaires peuvent être requises : le suivi personnalisé du centre en tient compte. Centre Reboot, 7 rue Jacques de Molay, 39100 Dole (Jura)."
       faq={faq}
       parentHref="/soins/epilation-laser"
       parentLabel="Épilation laser"

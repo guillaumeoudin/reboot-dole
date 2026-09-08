@@ -17,7 +17,7 @@ const faq = [
   },
   {
     q: "Combien de séances pour une épilation laser des jambes ?",
-    a: "Entre 8 et 10 séances en moyenne, espacées de 4 à 8 semaines selon la repousse. Les jambes sont une grande zone — les premières séances sont souvent les plus efficaces car elles traitent les poils en phase active.",
+    a: "Entre 8 et 10 séances en moyenne, espacées de 4 à 8 semaines selon la repousse. Les jambes sont une grande zone : les premières séances sont souvent les plus efficaces car elles traitent les poils en phase active.",
   },
   {
     q: "L'épilation laser des jambes est-elle efficace sur tous les types de poils ?",
@@ -88,7 +88,7 @@ const highlights = [
   {
     index: "01",
     title: "Toutes les zones des jambes",
-    text: "Demi-jambes inférieures, jambes complètes, genoux, cuisses intérieures et extérieures — chaque zone est traitée selon sa densité pilaire et la puissance adaptée à votre phototype.",
+    text: "Demi-jambes inférieures, jambes complètes, genoux, cuisses intérieures et extérieures : chaque zone est traitée selon sa densité pilaire et la puissance adaptée à votre phototype.",
   },
   {
     index: "02",
@@ -98,7 +98,7 @@ const highlights = [
   {
     index: "03",
     title: "Sans éviction",
-    text: "Aucun temps d'arrêt après la séance. Une légère rougeur peut apparaître quelques heures, puis disparaît. Vous reprenez vos activités immédiatement — travail, sport, sorties.",
+    text: "Aucun temps d'arrêt après la séance. Une légère rougeur peut apparaître quelques heures, puis disparaît. Vous reprenez vos activités immédiatement (travail, sport, sorties).",
   },
 ];
 
@@ -132,7 +132,7 @@ function EpilationLaserJambesDole() {
         alt: "Séance d'épilation laser des jambes au centre Reboot à Dole, Jura",
       }}
       highlights={highlights}
-      seoContent="L'épilation laser des jambes au centre Reboot à Dole (Jura) couvre l'ensemble du membre inférieur : demi-jambes inférieures, jambes complètes, genoux et cuisses intérieures ou extérieures. Chaque zone fait l'objet d'un protocole individualisé, défini lors d'un bilan personnalisé réalisé avant la première séance. La technologie laser utilisée est adaptée à tous les phototypes, y compris les peaux mates — ce qui n'est pas le cas de tous les appareils. Une séance jambes complètes dure 45 à 60 minutes. Les résultats s'installent progressivement : dès la troisième séance, la repousse est nettement réduite et la densité pilaire diminue séance après séance. Le centre est situé au 7 rue Jacques de Molay à Dole (39100, Jura), accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min)."
+      seoContent="L'épilation laser des jambes au centre Reboot à Dole (Jura) couvre l'ensemble du membre inférieur : demi-jambes inférieures, jambes complètes, genoux et cuisses intérieures ou extérieures. Chaque zone fait l'objet d'un protocole individualisé, défini lors d'un bilan personnalisé réalisé avant la première séance. La technologie laser utilisée est adaptée à tous les phototypes, y compris les peaux mates, ce qui n'est pas le cas de tous les appareils. Une séance jambes complètes dure 45 à 60 minutes. Les résultats s'installent progressivement : dès la troisième séance, la repousse est nettement réduite et la densité pilaire diminue séance après séance. Le centre est situé au 7 rue Jacques de Molay à Dole (39100, Jura), accessible depuis Besançon (45 min), Dijon (50 min) et Lons-le-Saunier (40 min)."
       faq={faq}
       parentHref="/soins/epilation-laser"
       parentLabel="Épilation laser"

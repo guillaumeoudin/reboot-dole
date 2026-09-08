@@ -19,7 +19,7 @@ function PolitiqueConfidentialitePage() {
         <div>
           <h2 className="label-caps mb-4 text-gold">Responsable du traitement</h2>
           <address className="space-y-1 not-italic">
-            <p>Aline Gauthier — Reboot Dole</p>
+            <p>Aline Gauthier, Reboot Dole</p>
             <p>7 rue Jacques de Molay, 39100 Dole</p>
             <p>contact@reboot-dole.fr</p>
           </address>

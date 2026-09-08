@@ -37,7 +37,7 @@ function MentionsLegalesPage() {
           <address className="space-y-1 not-italic">
             <p><strong className="text-foreground">Vercel Inc.</strong></p>
             <p>340 Pine Street, Suite 701</p>
-            <p>San Francisco, CA 94104 — États-Unis</p>
+            <p>San Francisco, CA 94104, États-Unis</p>
             <p>
               <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold">
                 vercel.com

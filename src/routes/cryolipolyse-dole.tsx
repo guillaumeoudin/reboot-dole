@@ -18,12 +18,12 @@ const PAGE_URL = `${site.url}/cryolipolyse-dole`;
 
 const metaTitle = "Cryolipolyse à Dole — Solution minceur sans chirurgie | Reboot";
 const metaDescription =
-  "Cryolipolyse à Dole (Jura) : ventre, flancs, cuisses, bras — réduction des amas graisseux localisés sans chirurgie. Centre Reboot. À partir de 220 €. Bilan personnalisé.";
+  "Cryolipolyse à Dole (Jura) : ventre, flancs, cuisses, bras, réduction des amas graisseux localisés sans chirurgie. Centre Reboot. À partir de 220 €. Bilan personnalisé.";
 
 const faq = [
   {
     q: "Qu'est-ce que la cryolipolyse et comment ça fonctionne ?",
-    a: "La cryolipolyse est une technique non invasive qui détruit les cellules graisseuses (adipocytes) en les exposant à un froid contrôlé. Le froid provoque l'apoptose des adipocytes — ils meurent progressivement et sont éliminés naturellement par l'organisme sur 6 à 12 semaines. Les tissus environnants (peau, nerfs, muscles) ne sont pas affectés.",
+    a: "La cryolipolyse est une technique non invasive qui détruit les cellules graisseuses (adipocytes) en les exposant à un froid contrôlé. Le froid provoque l'apoptose des adipocytes : ils meurent progressivement et sont éliminés naturellement par l'organisme sur 6 à 12 semaines. Les tissus environnants (peau, nerfs, muscles) ne sont pas affectés.",
   },
   {
     q: "Quelles zones sont traitées par cryolipolyse à Dole ?",
@@ -39,7 +39,7 @@ const faq = [
   },
   {
     q: "Quels sont les résultats attendus et en combien de temps ?",
-    a: "Une réduction visible et mesurable de l'épaisseur de la couche graisseuse, qui s'installe progressivement sur 6 à 12 semaines. Les premiers changements sont perceptibles dès 4 à 6 semaines. Les adipocytes détruits ne reviennent pas — le résultat est durable tant que le poids reste stable.",
+    a: "Une réduction visible et mesurable de l'épaisseur de la couche graisseuse, qui s'installe progressivement sur 6 à 12 semaines. Les premiers changements sont perceptibles dès 4 à 6 semaines. Les adipocytes détruits ne reviennent pas. Le résultat est durable tant que le poids reste stable.",
   },
   {
     q: "La cryolipolyse est-elle douloureuse ?",
@@ -95,35 +95,35 @@ const zones = [
   {
     index: "01",
     title: "Ventre",
-    body: "Bas-ventre, abdomen, tour de taille — la zone la plus traitée et souvent la plus rebelle aux régimes.",
+    body: "Bas-ventre, abdomen, tour de taille : la zone la plus traitée et souvent la plus rebelle aux régimes.",
     href: null,
     cta: null,
   },
   {
     index: "02",
     title: "Flancs",
-    body: "Poignées d'amour, rolls latéraux — les flancs répondent très bien à la cryolipolyse en 1 à 2 passages.",
+    body: "Poignées d'amour, rolls latéraux : les flancs répondent très bien à la cryolipolyse en 1 à 2 passages.",
     href: null,
     cta: null,
   },
   {
     index: "03",
     title: "Cuisses",
-    body: "Intérieur et extérieur des cuisses (culotte de cheval) — traitement précis sur les amas les plus résistants.",
+    body: "Intérieur et extérieur des cuisses (culotte de cheval) : traitement précis sur les amas les plus résistants.",
     href: null,
     cta: null,
   },
   {
     index: "04",
     title: "Bras",
-    body: "Face interne des bras et bourrelets axillaires — résultat visible sur les zones de graisse localisée.",
+    body: "Face interne des bras et bourrelets axillaires : résultat visible sur les zones de graisse localisée.",
     href: null,
     cta: null,
   },
   {
     index: "05",
     title: "Dos",
-    body: "Bourrelets dorsaux, rouleaux de dos — une zone souvent négligée mais très efficacement traitée.",
+    body: "Bourrelets dorsaux, rouleaux de dos : une zone souvent négligée mais très efficacement traitée.",
     href: null,
     cta: null,
   },
@@ -158,20 +158,20 @@ function CryolipolyseDolePage() {
       description="Le centre Reboot à Dole (Jura) propose la cryolipolyse sur toutes les zones du corps : ventre, flancs, cuisses, bras, dos, double menton. Technologie certifiée, sans anesthésie, sans éviction. Bilan personnalisé avant la première séance."
       image={{
         src: soinCryolipolyse,
-        alt: "Cryolipolyse à Dole — réduction des amas graisseux localisés au centre Reboot, Jura",
+        alt: "Cryolipolyse à Dole, réduction des amas graisseux localisés au centre Reboot, Jura",
       }}
       highlights={zones.map((z) => ({ index: z.index, title: z.title, text: z.body }))}
       highlightsHeading={{
         label: "Zones traitées",
-        title: "Tout le corps — amas par amas.",
+        title: "Tout le corps, amas par amas.",
         description:
           "La cryolipolyse est indiquée sur tous les amas graisseux localisés résistants au sport et à l'alimentation. Chaque zone bénéficie d'un protocole adapté à sa surface et à son épaisseur.",
       }}
-      seoContent="La cryolipolyse au centre Reboot à Dole (Jura) cible les amas graisseux localisés résistants aux régimes et à l'activité physique : ventre (bas-ventre, abdomen), flancs (poignées d'amour), cuisses intérieures et extérieures, bras, dos (bourrelets dorsaux) et double menton. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants — ils sont éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention, ni temps d'éviction. Un seul passage par zone suffit dans la majorité des cas. Le bilan préalable — gratuit et sans engagement — permet de définir les zones à traiter, d'évaluer l'éligibilité et d'établir un devis personnalisé. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura), accessible depuis Besançon, Dijon et Lons-le-Saunier."
+      seoContent="La cryolipolyse au centre Reboot à Dole (Jura) cible les amas graisseux localisés résistants aux régimes et à l'activité physique : ventre (bas-ventre, abdomen), flancs (poignées d'amour), cuisses intérieures et extérieures, bras, dos (bourrelets dorsaux) et double menton. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants : ils sont éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention, ni temps d'éviction. Un seul passage par zone suffit dans la majorité des cas. Le bilan préalable, gratuit et sans engagement, permet de définir les zones à traiter, d'évaluer l'éligibilité et d'établir un devis personnalisé. Centre Reboot, 7 rue Jacques de Molay, 39100 Dole (Jura), accessible depuis Besançon, Dijon et Lons-le-Saunier."
       specs={{
         duration: "45 à 70 min par zone",
         sessions: "1 à 2 séances par zone",
-        price: "à partir de 220 € — devis au bilan",
+        price: "à partir de 220 € (devis au bilan)",
       }}
       faq={faq}
       parentHref="/soins/cryolipolyse"

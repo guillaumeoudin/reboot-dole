@@ -13,7 +13,7 @@ const metaDescription =
 const faq = [
   {
     q: "La cryolipolyse du ventre est-elle efficace ?",
-    a: "Oui, sur les amas graisseux localisés résistants au sport et à l'alimentation. La cryolipolyse ne traite pas un surpoids global — elle cible des zones précises comme le bas-ventre ou l'abdomen. Le résultat est visible progressivement sur 6 à 12 semaines après la séance.",
+    a: "Oui, sur les amas graisseux localisés résistants au sport et à l'alimentation. La cryolipolyse ne traite pas un surpoids global : elle cible des zones précises comme le bas-ventre ou l'abdomen. Le résultat est visible progressivement sur 6 à 12 semaines après la séance.",
   },
   {
     q: "Combien de séances de cryolipolyse faut-il pour le ventre ?",
@@ -33,7 +33,7 @@ const faq = [
   },
   {
     q: "La cryolipolyse du ventre est-elle adaptée après une grossesse ?",
-    a: "Oui, à condition d'attendre au moins 6 mois après l'accouchement (et la fin de l'allaitement). La cryolipolyse est indiquée sur les amas graisseux persistants post-grossesse — mais elle ne traite pas le relâchement musculaire (diastase) ni le relâchement cutané. Le bilan initial permet de s'assurer que la cryolipolyse est bien adaptée à votre situation.",
+    a: "Oui, à condition d'attendre au moins 6 mois après l'accouchement (et la fin de l'allaitement). La cryolipolyse est indiquée sur les amas graisseux persistants post-grossesse, mais elle ne traite pas le relâchement musculaire (diastase) ni le relâchement cutané. Le bilan initial permet de s'assurer que la cryolipolyse est bien adaptée à votre situation.",
   },
   {
     q: "Y a-t-il des contre-indications à la cryolipolyse du ventre ?",
@@ -88,12 +88,12 @@ const highlights = [
   {
     index: "01",
     title: "Ventre, flancs, bas-ventre",
-    text: "La cryolipolyse cible les amas graisseux de l'abdomen, du bas-ventre et des flancs — les zones les plus résistantes au sport et à l'alimentation, avec une précision millimétrique.",
+    text: "La cryolipolyse cible les amas graisseux de l'abdomen, du bas-ventre et des flancs : les zones les plus résistantes au sport et à l'alimentation, avec une précision millimétrique.",
   },
   {
     index: "02",
     title: "Sans chirurgie, sans éviction",
-    text: "Aucune anesthésie, aucune intervention, aucun temps d'arrêt. La séance se déroule au centre et vous reprenez vos activités immédiatement — travail, sport, sorties.",
+    text: "Aucune anesthésie, aucune intervention, aucun temps d'arrêt. La séance se déroule au centre et vous reprenez vos activités immédiatement (travail, sport, sorties).",
   },
   {
     index: "03",
@@ -129,10 +129,10 @@ function CryolipolyseVentreDole() {
       }}
       image={{
         src: soinCryolipolyse,
-        alt: "Cryolipolyse ventre au centre Reboot à Dole — réduction des amas graisseux abdominaux sans chirurgie",
+        alt: "Cryolipolyse ventre au centre Reboot à Dole, réduction des amas graisseux abdominaux sans chirurgie",
       }}
       highlights={highlights}
-      seoContent="La cryolipolyse du ventre au centre Reboot à Dole (Jura) est indiquée sur les amas graisseux du bas-ventre, de l'abdomen et des flancs résistants au sport et à l'alimentation. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants — ils sont ensuite éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention chirurgicale, ni temps d'éviction : vous reprenez vos activités immédiatement après la séance. Un seul passage par zone suffit dans la majorité des cas ; un deuxième peut être envisagé lors du bilan à 8 semaines. Centre Reboot — 7 rue Jacques de Molay, 39100 Dole (Jura), à proximité de Besançon, Dijon et Lons-le-Saunier."
+      seoContent="La cryolipolyse du ventre au centre Reboot à Dole (Jura) est indiquée sur les amas graisseux du bas-ventre, de l'abdomen et des flancs résistants au sport et à l'alimentation. Le froid contrôlé détruit sélectivement les adipocytes sans toucher les tissus environnants : ils sont ensuite éliminés naturellement par l'organisme sur 6 à 12 semaines. Contrairement à la liposuccion, il n'y a ni anesthésie, ni intervention chirurgicale, ni temps d'éviction : vous reprenez vos activités immédiatement après la séance. Un seul passage par zone suffit dans la majorité des cas ; un deuxième peut être envisagé lors du bilan à 8 semaines. Centre Reboot, 7 rue Jacques de Molay, 39100 Dole (Jura), à proximité de Besançon, Dijon et Lons-le-Saunier."
       faq={faq}
       parentHref="/soins/cryolipolyse"
       parentLabel="Cryolipolyse"

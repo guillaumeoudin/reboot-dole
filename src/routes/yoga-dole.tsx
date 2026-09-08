@@ -117,7 +117,7 @@ const pillars = [
   {
     index: "01",
     title: "Accessible à tous",
-    text: "Débutants, seniors, personnes peu sportives — les séances sont conçues pour être pratiquées sans expérience préalable, à son propre rythme.",
+    text: "Débutants, seniors, personnes peu sportives : les séances sont conçues pour être pratiquées sans expérience préalable, à son propre rythme.",
   },
   {
     index: "02",
@@ -220,12 +220,12 @@ function YogaDolePage() {
             <div className="bg-background p-6">
               <dt className="label-caps text-gold-soft">Lieu</dt>
               <dd className="mt-2 text-sm text-foreground">
-                Centre Reboot — 7 rue Jacques de Molay, 39100 Dole
+                Centre Reboot, 7 rue Jacques de Molay, 39100 Dole
               </dd>
             </div>
             <div className="bg-background p-6">
               <dt className="label-caps text-gold-soft">Format</dt>
-              <dd className="mt-2 text-sm text-foreground">Petit groupe — tous niveaux</dd>
+              <dd className="mt-2 text-sm text-foreground">Petit groupe, tous niveaux</dd>
             </div>
             <div className="bg-background p-6">
               <dt className="label-caps text-gold-soft">Réservation</dt>

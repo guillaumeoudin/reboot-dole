@@ -10,28 +10,28 @@ coverAlt: "Séance de laser au centre Reboot à Dole"
 draft: false
 ---
 
-Vous cherchez une solution pour mincir à Dole, sans passer par la chirurgie ? La cryolipolyse est probablement la réponse la plus adaptée — à condition de comprendre précisément ce qu'elle fait, et ce qu'elle ne fait pas.
+Vous cherchez une solution pour mincir à Dole, sans passer par la chirurgie ? La cryolipolyse est probablement la réponse la plus adaptée, à condition de comprendre précisément ce qu'elle fait, et ce qu'elle ne fait pas.
 
 ## Ce que la cryolipolyse fait (et fait très bien)
 
-La cryolipolyse détruit des cellules graisseuses localisées. Pas toutes — celles d'une zone précise, ciblée par le froid contrôlé. Les adipocytes ainsi détruits sont ensuite éliminés naturellement par l'organisme sur 6 à 12 semaines.
+La cryolipolyse détruit des cellules graisseuses localisées. Pas toutes : celles d'une zone précise, ciblée par le froid contrôlé. Les adipocytes ainsi détruits sont ensuite éliminés naturellement par l'organisme sur 6 à 12 semaines.
 
 Le résultat est une **réduction mesurable et durable** de l'épaisseur de la couche graisseuse dans la zone traitée. Les cellules détruites ne reviennent pas.
 
 Les zones les plus traitées au centre Reboot à Dole :
 
-- **Ventre** — bas-ventre, abdomen, tour de taille
-- **Flancs** — poignées d'amour
-- **Cuisses** — intérieur, culotte de cheval
-- **Bras** — face interne
-- **Dos** — bourrelets dorsaux
+- **Ventre** : bas-ventre, abdomen, tour de taille
+- **Flancs** : poignées d'amour
+- **Cuisses** : intérieur, culotte de cheval
+- **Bras** : face interne
+- **Dos** : bourrelets dorsaux
 - **Double menton**
 
 ## Ce que la cryolipolyse ne fait pas
 
 La cryolipolyse **n'est pas un traitement contre le surpoids**. Si votre objectif est de perdre 10 ou 15 kilos, la cryolipolyse n'est pas l'outil adapté. Elle complète un mode de vie sain en éliminant les résistances localisées que ni le sport ni les régimes n'arrivent à corriger.
 
-Elle n'agit pas non plus sur le relâchement cutané — si la peau a perdu de la tonicité après une grossesse ou une perte de poids importante, d'autres traitements ([microneedling](/soins/microneedling), notamment) peuvent compléter le protocole.
+Elle n'agit pas non plus sur le relâchement cutané : si la peau a perdu de la tonicité après une grossesse ou une perte de poids importante, d'autres traitements ([microneedling](/soins/microneedling), notamment) peuvent compléter le protocole.
 
 ## Pour qui c'est vraiment fait
 

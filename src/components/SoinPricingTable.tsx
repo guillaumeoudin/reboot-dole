@@ -14,7 +14,7 @@ export function SoinPricingTable({ title, data }: Props) {
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <p className="label-caps text-gold">Tarifs</p>
         <h2 className="mt-5 text-3xl text-foreground">
-          Nos tarifs — {title}
+          Nos tarifs : {title}
         </h2>
         {data.intro && (
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">

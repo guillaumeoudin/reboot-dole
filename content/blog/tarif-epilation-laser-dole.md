@@ -22,7 +22,7 @@ C'est le facteur principal. Une petite zone (aisselles, lèvre supérieure) se t
 
 L'épilation laser ne fonctionne pas en une seule fois : le laser ne détruit que les poils en phase de croissance active (phase anagène) au moment de la séance. Il faut donc espacer les rendez-vous de 4 à 8 semaines pour attraper tous les poils dans leur fenêtre active.
 
-En moyenne, il faut **8 à 10 séances** pour un résultat durable sur les grandes zones. Certaines zones répondent plus vite — les [aisselles en 6 à 8 séances](/blog/epilation-laser-aisselles-dole), la lèvre supérieure parfois en 6.
+En moyenne, il faut **8 à 10 séances** pour un résultat durable sur les grandes zones. Certaines zones répondent plus vite : les [aisselles en 6 à 8 séances](/blog/epilation-laser-aisselles-dole), la lèvre supérieure parfois en 6.
 
 ### Le profil pilaire
 
@@ -41,11 +41,11 @@ Les séances démarrent à partir de :
 | Demi-jambes | à partir de 60 € |
 | Jambes complètes | à partir de 90 € |
 
-Ces tarifs sont indicatifs. Le devis définitif est établi lors du **bilan gratuit** réalisé avant la première séance — en fonction de la surface exacte, du nombre de zones combinées et du protocole adapté à votre profil.
+Ces tarifs sont indicatifs. Le devis définitif est établi lors du **bilan gratuit** réalisé avant la première séance, en fonction de la surface exacte, du nombre de zones combinées et du protocole adapté à votre profil.
 
 ## Faut-il prévoir un budget global ou séance par séance ?
 
-Les deux sont possibles. Des **forfaits multi-séances** sont disponibles au centre — ils permettent de lisser le coût sur la durée du protocole et de s'engager sur un résultat global plutôt que de payer séance après séance.
+Les deux sont possibles. Des **forfaits multi-séances** sont disponibles au centre : ils permettent de lisser le coût sur la durée du protocole et de s'engager sur un résultat global plutôt que de payer séance après séance.
 
 Pour une évaluation précise du budget total (tarif × nombre de séances estimé), le bilan initial est le bon moment.
 
@@ -53,9 +53,9 @@ Pour une évaluation précise du budget total (tarif × nombre de séances estim
 
 On entend souvent que « le laser, c'est cher ». C'est vrai sur une séance. C'est différent sur 5 ou 10 ans.
 
-Une épilation à la cire des jambes complètes revient en moyenne à 40–60 € par mois, 12 mois par an — soit 480 à 720 € par an. Sur 10 ans : 4 800 à 7 200 €, sans compter le temps passé, les irritations et les poils incarnés.
+Une épilation à la cire des jambes complètes revient en moyenne à 40-60 € par mois, 12 mois par an, soit 480 à 720 € par an. Sur 10 ans : 4 800 à 7 200 €, sans compter le temps passé, les irritations et les poils incarnés.
 
-Un protocole laser complet sur les jambes à Dole représente un investissement initial plus concentré, mais durable — la repousse résiduelle après le protocole est quasi inexistante pour la grande majorité des clients.
+Un protocole laser complet sur les jambes à Dole représente un investissement initial plus concentré, mais durable : la repousse résiduelle après le protocole est quasi inexistante pour la grande majorité des clients.
 
 ---
 

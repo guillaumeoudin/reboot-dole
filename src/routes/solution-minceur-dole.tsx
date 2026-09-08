@@ -22,11 +22,11 @@ const faq = [
   },
   {
     q: "La cryolipolyse fait-elle vraiment maigrir ?",
-    a: "La cryolipolyse ne fait pas « maigrir » au sens global du terme — elle n'agit pas sur le poids total du corps. Elle élimine des adipocytes localisés dans une zone précise, ce qui réduit l'épaisseur de la couche graisseuse de cette zone. Le résultat est un affinement visible et mesurable sur la zone traitée.",
+    a: "La cryolipolyse ne fait pas « maigrir » au sens global du terme : elle n'agit pas sur le poids total du corps. Elle élimine des adipocytes localisés dans une zone précise, ce qui réduit l'épaisseur de la couche graisseuse de cette zone. Le résultat est un affinement visible et mesurable sur la zone traitée.",
   },
   {
     q: "Combien de temps faut-il pour voir les résultats ?",
-    a: "Les premiers changements sont perceptibles dès 4 à 6 semaines après la séance. Le résultat complet s'installe sur 6 à 12 semaines, le temps que les adipocytes détruits soient éliminés naturellement par l'organisme. Il est durable — les cellules détruites ne reviennent pas.",
+    a: "Les premiers changements sont perceptibles dès 4 à 6 semaines après la séance. Le résultat complet s'installe sur 6 à 12 semaines, le temps que les adipocytes détruits soient éliminés naturellement par l'organisme. Il est durable : les cellules détruites ne reviennent pas.",
   },
   {
     q: "La cryolipolyse est-elle adaptée à tout le monde ?",
@@ -55,7 +55,7 @@ const jsonLd = {
     },
     {
       "@type": "Service",
-      name: "Solution minceur à Dole — Cryolipolyse",
+      name: "Solution minceur à Dole : Cryolipolyse",
       description: metaDescription,
       url: PAGE_URL,
       provider: { "@id": `${site.url}/#localbusiness` },
@@ -115,18 +115,18 @@ function SolutionMinceurDolePage() {
       description="Il existe des zones où la graisse résiste à tout. La cryolipolyse au centre Reboot à Dole (Jura) les cible par le froid, sans chirurgie, sans anesthésie, sans temps d'arrêt. Un résultat visible et durable en 6 à 12 semaines."
       image={{
         src: soinCryolipolyse,
-        alt: "Solution minceur à Dole — cryolipolyse sans chirurgie au centre Reboot, Jura",
+        alt: "Solution minceur à Dole, cryolipolyse sans chirurgie au centre Reboot, Jura",
       }}
       highlights={pillars}
       highlightsHeading={{
         label: "Pourquoi la cryolipolyse",
         title: "Une solution minceur non chirurgicale.",
       }}
-      seoContent="La cryolipolyse repose sur un principe simple : les cellules graisseuses (adipocytes) sont plus sensibles au froid que les autres tissus. En les exposant à une température précisément contrôlée, on déclenche leur apoptose — une mort cellulaire naturelle et progressive. Les adipocytes détruits sont ensuite éliminés par l'organisme via le système lymphatique sur 6 à 12 semaines. Le résultat est une réduction mesurable et durable de la couche graisseuse dans la zone traitée. Le centre Reboot à Dole (Jura) est équipé d'une technologie certifiée, opérée par des praticiennes formées. Un bilan cutané préalable — gratuit — permet de confirmer l'indication et de définir le protocole adapté à votre morphologie."
+      seoContent="La cryolipolyse repose sur un principe simple : les cellules graisseuses (adipocytes) sont plus sensibles au froid que les autres tissus. En les exposant à une température précisément contrôlée, on déclenche leur apoptose, une mort cellulaire naturelle et progressive. Les adipocytes détruits sont ensuite éliminés par l'organisme via le système lymphatique sur 6 à 12 semaines. Le résultat est une réduction mesurable et durable de la couche graisseuse dans la zone traitée. Le centre Reboot à Dole (Jura) est équipé d'une technologie certifiée, opérée par des praticiennes formées. Un bilan cutané préalable, gratuit, permet de confirmer l'indication et de définir le protocole adapté à votre morphologie."
       specs={{
         duration: "45 à 70 min par zone",
         sessions: "6 à 12 semaines après la séance",
-        price: "à partir de 220 € — devis au bilan",
+        price: "à partir de 220 € (devis au bilan)",
       }}
       specLabels={{ sessions: "Résultat visible" }}
       faq={faq}

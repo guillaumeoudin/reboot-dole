@@ -15,25 +15,25 @@ Les aisselles sont la zone la plus traitée en épilation laser, toutes clinique
 
 ## Pourquoi les aisselles répondent si bien au laser
 
-Le poil axillaire est généralement foncé, épais et bien ancré dans le derme — exactement le profil idéal pour le laser. Contrairement aux poils blonds ou roux, il absorbe fortement le faisceau lumineux, ce qui permet au laser de cibler le bulbe pileux avec précision.
+Le poil axillaire est généralement foncé, épais et bien ancré dans le derme, exactement le profil idéal pour le laser. Contrairement aux poils blonds ou roux, il absorbe fortement le faisceau lumineux, ce qui permet au laser de cibler le bulbe pileux avec précision.
 
 La densité pilaire des aisselles est importante, mais la surface est petite : une séance complète des deux aisselles prend moins de 10 minutes.
 
 ## Combien de séances pour un résultat définitif ?
 
-En règle générale, **6 à 8 séances** espacées de 4 à 6 semaines suffisent pour obtenir un résultat durable sur les aisselles. Dès la 3e séance, la repousse est nettement réduite — en densité comme en vitesse.
+En règle générale, **6 à 8 séances** espacées de 4 à 6 semaines suffisent pour obtenir un résultat durable sur les aisselles. Dès la 3e séance, la repousse est nettement réduite, en densité comme en vitesse.
 
 Quelques facteurs peuvent allonger le protocole :
 
 * Un profil hormonal perturbé (SOPK, déséquilibres thyroïdiens)
 * Des poils châtains clairs ou légèrement roux
-* Des séances espacées irrégulièrement (le laser n'attrape que les poils en phase anagène — rater une fenêtre ralentit le résultat)
+* Des séances espacées irrégulièrement (le laser n'attrape que les poils en phase anagène : rater une fenêtre ralentit le résultat)
 
 Un bilan est réalisé au centre avant la première séance pour estimer le nombre de séances adapté à votre profil.
 
 ## Est-ce douloureux ?
 
-La zone axillaire est sensible, mais bien tolérée avec une technologie moderne. À Reboot, le système de refroidissement intégré atténue l'inconfort pendant l'impulsion. La sensation ressemble à un léger pincement ou un coup d'élastique — supportable même sans préparation.
+La zone axillaire est sensible, mais bien tolérée avec une technologie moderne. À Reboot, le système de refroidissement intégré atténue l'inconfort pendant l'impulsion. La sensation ressemble à un léger pincement ou un coup d'élastique, supportable même sans préparation.
 
 Pour les peaux très réactives, une crème anesthésiante peut être appliquée 45 minutes avant la séance.
 

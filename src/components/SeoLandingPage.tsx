@@ -151,7 +151,7 @@ export function SeoLandingPage({
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
             <p className="label-caps text-gold">Le soin en détail</p>
-            <h2 className="mt-5 text-3xl text-foreground">{title} — centre Reboot</h2>
+            <h2 className="mt-5 text-3xl text-foreground">{title}, centre Reboot</h2>
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               {seoContent}
             </p>
@@ -202,7 +202,7 @@ export function SeoLandingPage({
               href={parentHref}
               className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 text-sm text-foreground transition-colors hover:border-gold hover:text-gold"
             >
-              {parentLabel} — en savoir plus <span aria-hidden="true">→</span>
+              {parentLabel} : en savoir plus <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
