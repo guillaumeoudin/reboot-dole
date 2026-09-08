@@ -18,7 +18,6 @@ collections:
     preview_path: "blog/{{slug}}"
     fields:
       - { name: "title", label: "Titre", widget: "string" }
-      - { name: "slug", label: "Slug (URL)", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: "author", label: "Auteur", widget: "string", default: "L'équipe Reboot" }
       - { name: "category", label: "Catégorie", widget: "select", options: ["Soins", "Bien-être", "Actualités"] }
