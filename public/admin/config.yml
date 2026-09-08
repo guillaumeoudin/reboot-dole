@@ -18,6 +18,11 @@ collections:
     preview_path: "blog/{{slug}}"
     fields:
       - { name: "title", label: "Titre", widget: "string" }
+      - name: "slug"
+        label: "URL de l'article"
+        widget: "string"
+        hint: "C'est la partie qui vient après reboot-dole.fr/blog/ dans l'adresse. Ex : pour reboot-dole.fr/blog/taches-pigmentaires, saisissez juste : taches-pigmentaires — minuscules, tirets à la place des espaces, pas d'accents."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Minuscules et tirets uniquement, pas d'accents, pas d'URL complète"]
       - { name: "date", label: "Date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: "author", label: "Auteur", widget: "string", default: "L'équipe Reboot" }
       - { name: "category", label: "Catégorie", widget: "select", options: ["Soins", "Bien-être", "Actualités"] }
