@@ -1,6 +1,5 @@
 ---
 title: "Taches pigmentaires : pourquoi apparaissent-elles et comment les atténuer ?"
-slug: https://www.reboot-dole.fr/blog/taches-pigmentaires
 date: 2026-09-08
 author: L'équipe Reboot
 category: Soins
