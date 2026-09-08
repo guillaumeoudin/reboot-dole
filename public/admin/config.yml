@@ -17,17 +17,51 @@ collections:
     slug: "{{slug}}"
     preview_path: "blog/{{slug}}"
     fields:
-      - { name: "title", label: "Titre", widget: "string" }
+      - name: "title"
+        label: "Titre"
+        widget: "string"
       - name: "slug"
         label: "URL de l'article"
         widget: "string"
         hint: "C'est la partie qui vient après reboot-dole.fr/blog/ dans l'adresse. Ex : pour reboot-dole.fr/blog/taches-pigmentaires, saisissez juste : taches-pigmentaires — minuscules, tirets à la place des espaces, pas d'accents."
         pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Minuscules et tirets uniquement, pas d'accents, pas d'URL complète"]
-      - { name: "date", label: "Date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
-      - { name: "author", label: "Auteur", widget: "string", default: "L'équipe Reboot" }
-      - { name: "category", label: "Catégorie", widget: "select", options: ["Soins", "Bien-être", "Actualités"] }
-      - { name: "excerpt", label: "Accroche (SEO, 160 caractères max)", widget: "text" }
-      - { name: "coverImage", label: "Image de couverture", widget: "image", required: false }
-      - { name: "coverAlt", label: "Texte alternatif de l'image", widget: "string", required: false }
-      - { name: "draft", label: "Brouillon", widget: "boolean", default: false }
-      - { name: "body", label: "Contenu", widget: "markdown" }
+      - name: "date"
+        label: "Date de publication"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        hint: "Date affichée sur l'article. Par défaut : aujourd'hui."
+      - name: "author"
+        label: "Auteur"
+        widget: "string"
+        default: "L'équipe Reboot"
+        hint: "Laissez 'L'équipe Reboot' par défaut, ou indiquez un prénom si l'article est signé."
+      - name: "category"
+        label: "Catégorie"
+        widget: "select"
+        options: ["Soins", "Bien-être", "Actualités"]
+        hint: "Choisissez la catégorie la plus proche du sujet de l'article."
+      - name: "excerpt"
+        label: "Accroche"
+        widget: "text"
+        hint: "Courte description affichée dans les résultats Google et sur la liste des articles. 160 caractères maximum pour un bon référencement."
+      - name: "coverImage"
+        label: "Image de couverture"
+        widget: "image"
+        required: false
+        hint: "Photo principale affichée en haut de l'article et dans les aperçus. Formats acceptés : JPG, PNG."
+      - name: "coverAlt"
+        label: "Description de l'image"
+        widget: "string"
+        required: false
+        hint: "Décrivez l'image en une phrase, pour l'accessibilité et le référencement. Ex : 'Soin du visage en cabine'."
+      - name: "draft"
+        label: "Brouillon"
+        widget: "boolean"
+        default: false
+        hint: "Activez cette option pour sauvegarder l'article sans le publier. Désactivez-la pour le rendre visible sur le site."
+      - name: "body"
+        label: "Contenu"
+        widget: "markdown"
+        hint: "Le contenu complet de l'article. Utilisez la barre d'outils pour mettre en forme le texte (titres, gras, listes…)."
