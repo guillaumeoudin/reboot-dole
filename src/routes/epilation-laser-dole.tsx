@@ -42,7 +42,7 @@ const faq = [
     a: "Dans la très grande majorité des cas, oui. Après un protocole complet, la repousse résiduelle est extrêmement fine et clairsemée. La plupart des clients n'ont plus recours à d'autres méthodes d'épilation. Des séances d'entretien annuelles peuvent suffire à maintenir le résultat dans le temps.",
   },
   {
-    q: "L'épilation laser est-elle vraiment définitive ?",
+    q: "Épilation laser à Dole : est-ce vraiment une épilation définitive ?",
     a: "On parle officiellement d'épilation « durable » plutôt que « définitive », car le terme légal implique une destruction à 100 % irreproductible. Dans la pratique, après un protocole complet, la repousse résiduelle est quasi inexistante pour la très grande majorité des clients. Quelques poils fins et clairsemés peuvent persister ou réapparaître avec les années. Des séances d'entretien annuelles suffisent à les maintenir sous contrôle.",
   },
   {

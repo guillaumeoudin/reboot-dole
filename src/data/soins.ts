@@ -104,6 +104,10 @@ export const soins: Soin[] = [
         q: "Quel est le tarif de l'épilation laser à Reboot Dole ?",
         a: "Les séances démarrent à partir de 29 €, selon la zone traitée. Un devis personnalisé est établi lors de votre premier rendez-vous au centre.",
       },
+      {
+        q: "Épilation laser, épilation définitive : quelle différence ?",
+        a: "Dans le langage courant, les deux termes désignent la même chose. Le terme officiel est plutôt « épilation durable », car une destruction du poil à 100 % irréversible ne peut pas être garantie. En pratique, après un protocole complet chez Reboot, la repousse résiduelle est minime pour la grande majorité des clients, avec au besoin une séance d'entretien annuelle.",
+      },
     ],
   },
   {
