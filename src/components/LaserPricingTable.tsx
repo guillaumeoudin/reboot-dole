@@ -50,7 +50,7 @@ export function LaserPricingTable() {
   const activeBtn = "bg-gold/20 text-gold";
 
   return (
-    <section id="tarifs" className="scroll-mt-28 border-b border-border">
+    <section id="tarifs" className="scroll-mt-24 border-b border-border">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <p className="label-caps text-gold">Tarifs</p>
         <h2 className="mt-5 text-3xl text-foreground">

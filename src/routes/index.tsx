@@ -108,30 +108,36 @@ function Index() {
           </Reveal>
           <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
             {soins.map((soin, i) => (
-              <div key={soin.slug} className="bg-background">
-                <img
-                  src={soin.image}
-                  alt={soin.imageAlt}
-                  width={1600}
-                  height={1104}
-                  loading="lazy"
-                  className="aspect-16/10 w-full object-cover"
-                />
+              <div key={soin.slug} className="group bg-background transition-colors hover:bg-surface">
+                <Link to="/soins/$slug" params={{ slug: soin.slug }} viewTransition className="block">
+                  <img
+                    src={soin.image}
+                    alt={soin.imageAlt}
+                    width={1600}
+                    height={1104}
+                    loading="lazy"
+                    className="aspect-16/10 w-full object-cover"
+                  />
+                </Link>
                 <Reveal delay={i * 80} className="p-8">
-                  <span className="label-caps text-gold-soft">{soin.index}</span>
-                  <h3 className="mt-4 text-2xl text-foreground">{soin.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{soin.short}</p>
+                  <Link to="/soins/$slug" params={{ slug: soin.slug }} viewTransition className="block">
+                    <span className="label-caps text-gold-soft">{soin.index}</span>
+                    <h3 className="mt-4 text-2xl text-foreground transition-colors group-hover:text-gold">
+                      {soin.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{soin.short}</p>
+                  </Link>
                   <Link
                     to="/soins/$slug"
                     params={{ slug: soin.slug }}
                     hash="tarifs"
                     viewTransition
-                    className="group mt-6 inline-flex items-center text-sm text-gold transition-colors hover:text-gold-soft"
+                    className="group/price mt-6 inline-flex items-center text-sm text-gold transition-colors hover:text-gold-soft"
                   >
                     {soin.priceFrom}
                     <span
                       aria-hidden="true"
-                      className="ml-2 inline-block transition-transform group-hover:translate-x-1"
+                      className="ml-2 inline-block transition-transform group-hover/price:translate-x-1"
                     >
                       →
                     </span>
