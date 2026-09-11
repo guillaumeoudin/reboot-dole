@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
 import { useHeroCta } from "@/contexts/hero-cta-context";
@@ -130,7 +130,7 @@ export function SpecList({
   items,
   padding = "p-5",
 }: {
-  items: { term: string; value: string }[];
+  items: { term: string; value: ReactNode }[];
   padding?: string;
 }) {
   return (

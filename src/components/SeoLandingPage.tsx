@@ -140,7 +140,11 @@ export function SeoLandingPage({
             </div>
             <div className="bg-background p-6">
               <dt className="label-caps text-gold-soft">{specLabels?.price ?? "Tarif"}</dt>
-              <dd className="mt-2 text-sm text-foreground">{specs.price}</dd>
+              <dd className="mt-2 text-sm text-foreground">
+                <a href={`${parentHref}#tarifs`} className="underline decoration-gold/50 hover:text-gold">
+                  {specs.price}
+                </a>
+              </dd>
             </div>
           </dl>
         </div>

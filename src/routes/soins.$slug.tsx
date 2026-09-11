@@ -127,7 +127,14 @@ function SoinDetail() {
               items={[
                 { term: "Durée", value: soin.duration },
                 { term: "Séances", value: soin.sessions },
-                { term: "Tarif", value: soin.price },
+                {
+                  term: "Tarif",
+                  value: (
+                    <a href="#tarifs" className="underline decoration-gold/50 hover:text-gold">
+                      {soin.price}
+                    </a>
+                  ),
+                },
               ]}
             />
           </Reveal>

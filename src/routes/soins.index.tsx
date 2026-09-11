@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { BookButton, HeroBookButton, EyebrowHeading, SpecList, TextLink } from "@/components/ui-kit";
 import { Reveal } from "@/components/Reveal";
@@ -61,7 +61,20 @@ function SoinsPage() {
                   items={[
                     { term: "Durée", value: soin.duration },
                     { term: "Séances", value: soin.sessions },
-                    { term: "Tarif", value: soin.price },
+                    {
+                      term: "Tarif",
+                      value: (
+                        <Link
+                          to="/soins/$slug"
+                          params={{ slug: soin.slug }}
+                          hash="tarifs"
+                          viewTransition
+                          className="underline decoration-gold/50 hover:text-gold"
+                        >
+                          {soin.price}
+                        </Link>
+                      ),
+                    },
                   ]}
                 />
               </div>

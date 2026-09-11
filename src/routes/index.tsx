@@ -108,13 +108,7 @@ function Index() {
           </Reveal>
           <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
             {soins.map((soin, i) => (
-              <Link
-                key={soin.slug}
-                to="/soins/$slug"
-                params={{ slug: soin.slug }}
-                viewTransition
-                className="group bg-background transition-colors hover:bg-surface"
-              >
+              <div key={soin.slug} className="bg-background">
                 <img
                   src={soin.image}
                   alt={soin.imageAlt}
@@ -125,11 +119,15 @@ function Index() {
                 />
                 <Reveal delay={i * 80} className="p-8">
                   <span className="label-caps text-gold-soft">{soin.index}</span>
-                  <h3 className="mt-4 text-2xl text-foreground transition-colors group-hover:text-gold">
-                    {soin.title}
-                  </h3>
+                  <h3 className="mt-4 text-2xl text-foreground">{soin.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{soin.short}</p>
-                  <p className="mt-6 text-sm text-gold">
+                  <Link
+                    to="/soins/$slug"
+                    params={{ slug: soin.slug }}
+                    hash="tarifs"
+                    viewTransition
+                    className="group mt-6 inline-flex items-center text-sm text-gold transition-colors hover:text-gold-soft"
+                  >
                     {soin.priceFrom}
                     <span
                       aria-hidden="true"
@@ -137,9 +135,9 @@ function Index() {
                     >
                       →
                     </span>
-                  </p>
+                  </Link>
                 </Reveal>
-              </Link>
+              </div>
             ))}
             {/* Tuile CTA — équilibre la grille quand le nombre de soins est impair */}
             {soins.length % 2 !== 0 && (
