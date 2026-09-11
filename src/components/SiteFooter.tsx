@@ -119,7 +119,9 @@ export function SiteFooter() {
         </div>
 
         <details className="mt-4 text-[11px] text-muted-foreground/60 [&::-webkit-details-marker]:hidden">
-          <summary className="w-fit list-none cursor-default select-none">···</summary>
+          <summary aria-label="Voir plus de pages" className="w-fit list-none cursor-default select-none">
+            ···
+          </summary>
           <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
             <li>
               <Link to="/epilation-laser-dole" viewTransition className="hover:text-gold">
