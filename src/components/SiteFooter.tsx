@@ -117,6 +117,47 @@ export function SiteFooter() {
             </a>
           </div>
         </div>
+
+        <details className="mt-4 text-[11px] text-muted-foreground/60 [&::-webkit-details-marker]:hidden">
+          <summary className="w-fit list-none cursor-default select-none">···</summary>
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+            <li>
+              <Link to="/epilation-laser-dole" viewTransition className="hover:text-gold">
+                Épilation laser à Dole
+              </Link>
+            </li>
+            <li>
+              <Link to="/epilation-laser-jambes-dole" viewTransition className="hover:text-gold">
+                Épilation laser jambes
+              </Link>
+            </li>
+            <li>
+              <Link to="/epilation-laser-maillot-dole" viewTransition className="hover:text-gold">
+                Épilation laser maillot
+              </Link>
+            </li>
+            <li>
+              <Link to="/cryolipolyse-dole" viewTransition className="hover:text-gold">
+                Cryolipolyse à Dole
+              </Link>
+            </li>
+            <li>
+              <Link to="/cryolipolyse-ventre-dole" viewTransition className="hover:text-gold">
+                Cryolipolyse ventre
+              </Link>
+            </li>
+            <li>
+              <Link to="/solution-minceur-dole" viewTransition className="hover:text-gold">
+                Solution minceur à Dole
+              </Link>
+            </li>
+            <li>
+              <Link to="/yoga-dole" viewTransition className="hover:text-gold">
+                Yoga à Dole
+              </Link>
+            </li>
+          </ul>
+        </details>
       </div>
     </footer>
   );
