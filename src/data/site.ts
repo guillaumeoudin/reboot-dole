@@ -19,7 +19,7 @@ export const site = {
   phoneHref: "tel:+33651577909",
   email: "contact@reboot-dole.fr",
   /** Réservation de créneaux en ligne (plateforme externe). */
-  booking: "https://www.planity.com/",
+  booking: "https://www.planity.com/reboot-dole-39100",
   social: {
     linkedin: "https://www.linkedin.com/company/reboot-dole/",
     instagram: "https://www.instagram.com/reboot_dole",
