@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 const title = "Bien-être & longévité — Reboot Dole";
 const description =
-  "Yoga, coaching, soins énergétiques et ateliers santé à Dole : une approche holistique du vieillissement, en complément des soins technico-esthétiques.";
+  "Sport, coaching, soins énergétiques et ateliers santé à Dole : une approche holistique du vieillissement, en complément des soins technico-esthétiques.";
 
 export const Route = createFileRoute("/bien-etre")({
   head: () => ({
@@ -35,15 +35,15 @@ const approach = [
   {
     index: "03",
     title: "Un parcours continu",
-    text: "Cabine, tapis de yoga, atelier : les prestations se répondent au sein d'un même parcours, avec la même équipe et la même qualité de suivi.",
+    text: "Cabine, salle de sport, atelier : les prestations se répondent au sein d'un même parcours, avec la même équipe et la même qualité de suivi.",
   },
 ];
 
 const services = [
   {
     index: "01",
-    title: "Yoga & pratiques douces",
-    text: "Des séances en petit groupe dans l'espace dédié du centre : yoga doux, respiration, mobilité. Une pratique régulière qui prolonge les effets des protocoles de longévité.",
+    title: "Pilates, stretching & pratiques douces",
+    text: "Des séances en petit groupe dans l'espace dédié du centre : renforcement musculaire, étirement, respiration, mobilité. Une pratique régulière qui prolonge les effets des protocoles de longévité.",
   },
   {
     index: "02",
@@ -81,7 +81,7 @@ function BienEtrePage() {
           </div>
           <img
             src={bienEtreYoga}
-            alt="Studio de yoga du centre Reboot à Dole"
+            alt="Studio sport du centre Reboot à Dole"
             width={1600}
             height={1104}
             className="aspect-4/3 w-full object-cover"
