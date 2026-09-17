@@ -53,7 +53,7 @@ const team = [
     name: "Lydie Aimé",
     role: "Coach santé et bien-être, réveil cellulaire, reiki & hypnose",
   },
-  { initials: "AD", name: "Anaïs Durand", role: "Professeur de yoga" },
+  { initials: "LM", name: "Loïc Maréchal", role: "Coach sportif, pilates, stretching" },
 ];
 
 function ConceptPage() {
