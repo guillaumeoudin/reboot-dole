@@ -38,15 +38,21 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; body: st
   if (!match) return { data: {}, body: raw };
 
   const data: Record<string, string> = {};
-  for (const line of (match[1] ?? "").split(/\r?\n/)) {
-    const kv = /^([A-Za-z0-9_-]+)\s*:\s*(.*)$/.exec(line.trim());
+  const lines = (match[1] ?? "").split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const kv = /^([A-Za-z0-9_-]+)\s*:\s*(.*)$/.exec((lines[i] ?? "").trim());
     if (!kv || !kv[1]) continue;
     let value = (kv[2] ?? "").trim();
-    if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
-    ) {
-      value = value.slice(1, -1);
+    const quote = value.startsWith('"') ? '"' : value.startsWith("'") ? "'" : null;
+    // Decap CMS replie les valeurs entre guillemets trop longues sur les lignes suivantes.
+    if (quote) {
+      while (i + 1 < lines.length && !(value.length > 1 && value.endsWith(quote))) {
+        i++;
+        value += ` ${(lines[i] ?? "").trim()}`;
+      }
+      if (value.length > 1 && value.startsWith(quote) && value.endsWith(quote)) {
+        value = value.slice(1, -1);
+      }
     }
     data[kv[1]] = value;
   }
