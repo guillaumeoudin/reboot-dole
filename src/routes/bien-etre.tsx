@@ -4,7 +4,7 @@ import { BookButton, HeroBookButton, EyebrowHeading } from "@/components/ui-kit"
 import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 import { site } from "@/data/site";
 
-const title = "Bien-être & longévité — Reboot Dole";
+const title = "Bien-être & longévité - Reboot Dole";
 const description =
   "Sport, coaching, soins énergétiques et ateliers santé à Dole : une approche holistique du vieillissement, en complément des soins technico-esthétiques.";
 

@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/politique-de-confidentialite")({
   head: () => ({
     meta: [
-      { title: "Politique de confidentialité — Reboot Dole" },
+      { title: "Politique de confidentialité - Reboot Dole" },
       { name: "robots", content: "noindex" },
     ],
   }),

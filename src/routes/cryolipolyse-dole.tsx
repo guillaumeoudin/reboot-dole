@@ -16,7 +16,7 @@ import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 
 const PAGE_URL = `${site.url}/cryolipolyse-dole`;
 
-const metaTitle = "Cryolipolyse à Dole — Solution minceur sans chirurgie | Reboot";
+const metaTitle = "Cryolipolyse à Dole - Solution minceur sans chirurgie | Reboot";
 const metaDescription =
   "Cryolipolyse à Dole (Jura) : ventre, flancs, cuisses, bras, réduction des amas graisseux localisés sans chirurgie. Centre Reboot. À partir de 220 €. Bilan personnalisé.";
 

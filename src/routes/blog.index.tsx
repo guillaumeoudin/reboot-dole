@@ -4,7 +4,7 @@ import { EyebrowHeading } from "@/components/ui-kit";
 import { formatDate, posts } from "@/lib/blog";
 import { site } from "@/data/site";
 
-const title = "Blog — conseils soins et longévité | Reboot Dole";
+const title = "Blog - conseils soins et longévité | Reboot Dole";
 const description =
   "Conseils, protocoles et actualités du centre Reboot à Dole : épilation laser, soins de la peau, bien-être et longévité.";
 

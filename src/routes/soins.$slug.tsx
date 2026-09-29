@@ -23,7 +23,7 @@ export const Route = createFileRoute("/soins/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Soin introuvable — Reboot Dole" },
+          { title: "Soin introuvable - Reboot Dole" },
           { name: "robots", content: "noindex" },
         ],
       };

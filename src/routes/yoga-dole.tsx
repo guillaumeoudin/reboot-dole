@@ -12,7 +12,7 @@ import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 
 const PAGE_URL = `${site.url}/yoga-dole`;
 
-const title = "Yoga à Dole — Reboot";
+const title = "Yoga à Dole - Reboot";
 const description =
   "Cours de yoga à Dole (Jura) en petit groupe : yoga doux, respiration, mobilité. Au centre Reboot, 7 rue Jacques de Molay. Réservation en ligne.";
 

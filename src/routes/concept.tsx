@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import centreReboot from "@/assets/centre-reboot.jpg";
 import { site } from "@/data/site";
 
-const title = "Le concept — Reboot Dole";
+const title = "Le concept - Reboot Dole";
 const description =
   "Reboot Dole : un centre pensé comme une clinique, où soins technico-esthétiques, coaching et réveil cellulaire se rejoignent.";
 

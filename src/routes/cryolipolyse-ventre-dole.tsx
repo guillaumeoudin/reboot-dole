@@ -6,7 +6,7 @@ import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 
 const PAGE_URL = `${site.url}/cryolipolyse-ventre-dole`;
 
-const metaTitle = "Cryolipolyse ventre à Dole — Reboot";
+const metaTitle = "Cryolipolyse ventre à Dole - Reboot";
 const metaDescription =
   "Cryolipolyse du ventre à Dole (Jura) : réduction des amas graisseux abdominaux sans chirurgie. Résultat visible en 6 à 12 semaines. À partir de 220 €.";
 

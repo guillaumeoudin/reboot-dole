@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { EyebrowHeading } from "@/components/ui-kit";
 import { site } from "@/data/site";
 
-const title = "Contact & rendez-vous — Reboot Dole";
+const title = "Contact & rendez-vous - Reboot Dole";
 const description =
   "Contactez le centre Reboot à Dole : adresse, horaires, téléphone et formulaire de demande de rendez-vous.";
 

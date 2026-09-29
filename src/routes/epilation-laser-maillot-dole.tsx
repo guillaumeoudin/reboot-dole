@@ -6,7 +6,7 @@ import soinLaser from "@/assets/soin-laser.jpg";
 
 const PAGE_URL = `${site.url}/epilation-laser-maillot-dole`;
 
-const metaTitle = "Épilation laser maillot intégral à Dole — Reboot";
+const metaTitle = "Épilation laser maillot intégral à Dole - Reboot";
 const metaDescription =
   "Épilation laser maillot intégral à Dole (Jura) : maillot simple, brésilien ou intégral. Résultat durable, technologie adaptée. À partir de 45 €.";
 

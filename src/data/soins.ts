@@ -80,7 +80,7 @@ export const soins: Soin[] = [
       "Crème apaisante les 48 premières heures",
       "Rasage de la zone la veille de la séance",
     ],
-    metaTitle: "Épilation laser à Dole — Reboot",
+    metaTitle: "Épilation laser à Dole - Reboot",
     metaDescription:
       "Épilation laser définitive à Dole (Jura) : toutes zones, tous phototypes, technologie dernière génération. À partir de 29 €. Bilan personnalisé.",
     faq: [
@@ -134,7 +134,7 @@ export const soins: Soin[] = [
       "Hydratation renforcée",
       "Résultat visible sur 6 à 12 semaines",
     ],
-    metaTitle: "Cryolipolyse à Dole — Reboot",
+    metaTitle: "Cryolipolyse à Dole - Reboot",
     metaDescription:
       "Cryolipolyse à Dole (Jura) : élimination des amas graisseux localisés sans chirurgie. Ventre, flancs, cuisses. À partir de 220 €. Bilan personnalisé.",
     faq: [
@@ -193,7 +193,7 @@ export const soins: Soin[] = [
       "Pas de gommage pendant une semaine",
       "Desquamation légère possible 2 à 4 jours",
     ],
-    metaTitle: "Peeling à Dole — Reboot",
+    metaTitle: "Peeling à Dole - Reboot",
     metaDescription:
       "Peeling professionnel à Dole (Jura) : éclat, taches, pores, cicatrices d'acné. Protocoles AHA, salicylique, TCA doux. À partir de 95 €.",
     faq: [
@@ -254,7 +254,7 @@ export const soins: Soin[] = [
       "Soins doux et hydratation",
       "Protection solaire stricte",
     ],
-    metaTitle: "Microneedling à Dole — Reboot",
+    metaTitle: "Microneedling à Dole - Reboot",
     metaDescription:
       "Microneedling à Dole (Jura) : relance du collagène, réduction des ridules, cicatrices et pores. Protocole personnalisé. À partir de 100 €.",
     faq: [
@@ -315,7 +315,7 @@ export const soins: Soin[] = [
       "Hydratation conseillée",
       "Peut être combiné avec d'autres soins le même jour",
     ],
-    metaTitle: "Dôme LED à Dole — Photobiomodulation | Reboot",
+    metaTitle: "Dôme LED à Dole - Photobiomodulation | Reboot",
     metaDescription:
       "Séances de dôme LED (photobiomodulation) à Dole (Jura) : stimulation cellulaire, éclat, récupération. Lumière rouge, infrarouge et bleue. À partir de 39 €.",
     faq: [

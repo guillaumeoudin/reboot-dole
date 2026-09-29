@@ -16,7 +16,7 @@ import soinLaser from "@/assets/soin-laser.jpg";
 
 const PAGE_URL = `${site.url}/epilation-laser-dole`;
 
-const metaTitle = "Épilation laser définitive à Dole — Centre Reboot (Jura)";
+const metaTitle = "Épilation laser définitive à Dole - Centre Reboot (Jura)";
 const metaDescription =
   "Épilation laser définitive à Dole (Jura) : toutes zones (jambes, maillot, aisselles, visage, bras), tous phototypes, technologie dernière génération. Centre Reboot, à partir de 29 €. Bilan personnalisé.";
 

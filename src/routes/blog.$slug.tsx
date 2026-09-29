@@ -14,7 +14,7 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ params, loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Article introuvable — Reboot Dole" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Article introuvable - Reboot Dole" }, { name: "robots", content: "noindex" }],
       };
     }
 
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/blog/$slug")({
 
     return {
       meta: [
-        { title: `${post.title} — Reboot Dole` },
+        { title: `${post.title} - Reboot Dole` },
         { name: "description", content: post.excerpt },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.excerpt },

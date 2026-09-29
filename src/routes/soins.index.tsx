@@ -4,7 +4,7 @@ import { BookButton, HeroBookButton, EyebrowHeading, SpecList, TextLink } from "
 import { Reveal } from "@/components/Reveal";
 import { soins } from "@/data/soins";
 
-const title = "Soins technico-esthétiques — Reboot Dole";
+const title = "Soins technico-esthétiques - Reboot Dole";
 const description =
   "Épilation laser, cryolipolyse, peeling et microneedling à Dole : protocoles précis, technologies certifiées et suivi personnalisé.";
 

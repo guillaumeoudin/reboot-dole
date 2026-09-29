@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 import centreReboot from "@/assets/centre-reboot.jpg";
 import bienEtreYoga from "@/assets/bien-etre-yoga.jpg";
 
-const title = "Reboot Dole — Soins esthétiques & longévité dans le Jura";
+const title = "Reboot Dole - Soins esthétiques & longévité dans le Jura";
 const description =
   "Épilation laser, cryolipolyse, peeling, microneedling et bien-être à Dole. Un centre intimiste, des technologies certifiées et un suivi personnalisé.";
 

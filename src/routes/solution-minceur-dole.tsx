@@ -11,7 +11,7 @@ import soinCryolipolyse from "@/assets/soin-cryolipolyse.jpg";
 
 const PAGE_URL = `${site.url}/solution-minceur-dole`;
 
-const metaTitle = "Solution minceur à Dole (Jura) — Sans régime, sans chirurgie | Reboot";
+const metaTitle = "Solution minceur à Dole (Jura) - Sans régime, sans chirurgie | Reboot";
 const metaDescription =
   "Vous cherchez une solution pour mincir à Dole ? La cryolipolyse au centre Reboot élimine les amas graisseux localisés sans chirurgie. Résultat visible en 6 à 12 semaines. Bilan personnalisé.";
 

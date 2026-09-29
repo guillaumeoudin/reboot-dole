@@ -6,7 +6,7 @@ import soinLaser from "@/assets/soin-laser.jpg";
 
 const PAGE_URL = `${site.url}/epilation-laser-jambes-dole`;
 
-const metaTitle = "Épilation laser des jambes à Dole — Reboot";
+const metaTitle = "Épilation laser des jambes à Dole - Reboot";
 const metaDescription =
   "Épilation laser des jambes à Dole (Jura) : demi-jambes, jambes complètes, genoux et cuisses. Résultat durable dès 8 séances. À partir de 60 €.";
 
