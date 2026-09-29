@@ -27,6 +27,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/epilation-laser-maillot-dole", priority: "0.7" },
           { path: "/cryolipolyse-ventre-dole", priority: "0.7" },
           { path: "/yoga-dole", priority: "0.7" },
+          { path: "/pilates-stretching-dole", priority: "0.7" },
           { path: "/concept", priority: "0.7" },
           { path: "/blog", priority: "0.8" },
           { path: "/contact", priority: "0.8" },

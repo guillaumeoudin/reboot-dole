@@ -19,6 +19,7 @@ import { Route as EpilationLaserDoleRouteImport } from './routes/epilation-laser
 import { Route as EpilationLaserJambesDoleRouteImport } from './routes/epilation-laser-jambes-dole'
 import { Route as EpilationLaserMaillotDoleRouteImport } from './routes/epilation-laser-maillot-dole'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PilatesStretchingDoleRouteImport } from './routes/pilates-stretching-dole'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionMinceurDoleRouteImport } from './routes/solution-minceur-dole'
@@ -81,6 +82,11 @@ const EpilationLaserMaillotDoleRoute =
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PilatesStretchingDoleRoute = PilatesStretchingDoleRouteImport.update({
+  id: '/pilates-stretching-dole',
+  path: '/pilates-stretching-dole',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PolitiqueDeConfidentialiteRoute =
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
   '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/pilates-stretching-dole': typeof PilatesStretchingDoleRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solution-minceur-dole': typeof SolutionMinceurDoleRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
   '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/pilates-stretching-dole': typeof PilatesStretchingDoleRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solution-minceur-dole': typeof SolutionMinceurDoleRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/epilation-laser-jambes-dole': typeof EpilationLaserJambesDoleRoute
   '/epilation-laser-maillot-dole': typeof EpilationLaserMaillotDoleRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/pilates-stretching-dole': typeof PilatesStretchingDoleRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solution-minceur-dole': typeof SolutionMinceurDoleRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/epilation-laser-jambes-dole'
     | '/epilation-laser-maillot-dole'
     | '/mentions-legales'
+    | '/pilates-stretching-dole'
     | '/politique-de-confidentialite'
     | '/sitemap.xml'
     | '/solution-minceur-dole'
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/epilation-laser-jambes-dole'
     | '/epilation-laser-maillot-dole'
     | '/mentions-legales'
+    | '/pilates-stretching-dole'
     | '/politique-de-confidentialite'
     | '/sitemap.xml'
     | '/solution-minceur-dole'
@@ -269,6 +280,7 @@ export interface FileRouteTypes {
     | '/epilation-laser-jambes-dole'
     | '/epilation-laser-maillot-dole'
     | '/mentions-legales'
+    | '/pilates-stretching-dole'
     | '/politique-de-confidentialite'
     | '/sitemap.xml'
     | '/solution-minceur-dole'
@@ -293,6 +305,7 @@ export interface RootRouteChildren {
   EpilationLaserJambesDoleRoute: typeof EpilationLaserJambesDoleRoute
   EpilationLaserMaillotDoleRoute: typeof EpilationLaserMaillotDoleRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PilatesStretchingDoleRoute: typeof PilatesStretchingDoleRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionMinceurDoleRoute: typeof SolutionMinceurDoleRoute
@@ -375,6 +388,13 @@ declare module '@tanstack/react-router' {
       path: '/mentions-legales'
       fullPath: '/mentions-legales'
       preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pilates-stretching-dole': {
+      id: '/pilates-stretching-dole'
+      path: '/pilates-stretching-dole'
+      fullPath: '/pilates-stretching-dole'
+      preLoaderRoute: typeof PilatesStretchingDoleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politique-de-confidentialite': {
@@ -479,6 +499,7 @@ const rootRouteChildren: RootRouteChildren = {
   EpilationLaserJambesDoleRoute: EpilationLaserJambesDoleRoute,
   EpilationLaserMaillotDoleRoute: EpilationLaserMaillotDoleRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  PilatesStretchingDoleRoute: PilatesStretchingDoleRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionMinceurDoleRoute: SolutionMinceurDoleRoute,

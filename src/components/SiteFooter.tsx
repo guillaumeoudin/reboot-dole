@@ -158,6 +158,11 @@ export function SiteFooter() {
                 Yoga à Dole
               </Link>
             </li>
+            <li>
+              <Link to="/pilates-stretching-dole" viewTransition className="hover:text-gold">
+                Pilates & stretching à Dole
+              </Link>
+            </li>
           </ul>
         </details>
       </div>
